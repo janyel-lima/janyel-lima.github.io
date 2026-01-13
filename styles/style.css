@@ -1,0 +1,473 @@
+@layer base {
+  :root {
+    --color-main: #00222bff;
+    --color-primary: #00ffffff;
+    --color-primary-rgb: 36, 198, 209;
+    --color-secondary: #24C6D1;
+    --color-accent: rgb(10, 158, 163);
+    --card-bg: rgba(0, 0, 0, 0.3); /* Background para contraste no Verde */
+  }
+  .theme-core {
+    --color-main: #00222bff;
+    --color-primary: #00ffffff;
+    --color-primary-rgb: 36, 198, 209;
+    --color-secondary: #24C6D1;
+    --color-accent: rgb(10, 158, 163);
+    --card-bg: rgba(0, 0, 0, 0.3); /* Background para contraste no Verde */
+  }
+  .theme-voidz{
+    --color-main: #0f0720;
+    --color-primary: #9724D1;
+    --color-primary-rgb: 151, 36, 209;
+    --color-secondary: #341680;
+    --color-accent: #AB34FA;
+    --card-bg: rgba(255, 255, 255, 0.05); /* Background para contraste no Roxo */
+
+  }
+}
+
+@layer utilities {
+  .bg-main { background-color: var(--color-main); }
+  .text-primary { color: var(--color-primary); }
+  .bg-primary { background-color: var(--color-primary); }
+  .border-primary { border-color: var(--color-primary); }
+  .text-accent { color: var(--color-accent); }
+}
+
+/* Configuração Geral */
+body { 
+    background-color: var(--color-main); 
+    color: white; 
+    transition: background-color 0.7s ease;
+}
+
+/* Scrollbar Estilo RPG */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-main); }
+::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 10px; }
+
+/* Botões Retangulares Glass-Neon */
+.rpg-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid var(--color-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rpg-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-accent);
+    transform: translateX(5px);
+    box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.3);
+}
+
+.rpg-button i { transition: all 0.3s ease; }
+.rpg-button:hover i {
+    filter: drop-shadow(0 0 5px var(--color-primary));
+    transform: scale(1.1);
+}
+
+
+.rpg-button-alt {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 4px solid var(--color-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rpg-button-alt:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-accent);
+    transform: translateX(5px);
+    box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.3);
+}
+
+.rpg-button-alt i { transition: all 0.3s ease; }
+.rpg-button-alt:hover i {
+    filter: drop-shadow(0 0 5px var(--color-primary));
+    transform: scale(1.1);
+}
+
+/* Cards com Glassmorphism e Bordas Reforçadas */
+.rpg-card {
+    /* Bordas mais grossas e visíveis */
+    border: 2px solid rgba(255, 255, 255, 0.1); 
+    border-top: 2px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    clip-path: polygon(0 0, 100% 0, 100% 96%, 92% 100%, 0 100%);
+}
+
+.rpg-decriptor-card {
+    /* Bordas mais grossas e visíveis */
+    border: 2px solid rgba(255, 255, 255, 0.1); 
+    border-top: 2px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    clip-path: polygon(0 0, 100% 0, 100% 96%, 92% 100%, 0 100%);
+}
+
+
+@media (min-width: 768px) {
+    .rpg-card { clip-path: polygon(0 0, 100% 0, 100% 92%, 96% 100%, 0 100%); }
+}
+
+@media (min-width: 768px) {
+    .rpg-decriptor-card { clip-path: polygon(0 0, 100% 0, 100% 92%, 96% 100%, 0 100%); }
+}
+
+.rpg-card:hover {
+    
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-primary);
+    transform: translateX(5px);
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.rpg-decriptor-card:hover {
+    
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-primary);
+    transform: translateX(5px);
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Barra de XP Neon */
+#seniority-bar {
+    box-shadow: 0 0 12px var(--color-primary), 0 0 6px var(--color-accent);
+}
+
+/* Imagens e Failsafes */
+img.grayscale { 
+    filter: sepia(1) hue-rotate(240deg) brightness(0.4) grayscale(0.8); 
+}
+
+.h-40, .h-32, .animated {
+    background: linear-gradient(45deg, rgba(0,0,0,0.6) 25%, rgba(20,20,20,0.6) 50%, rgba(0,0,0,0.6) 75%);
+    background-size: 200% 200%;
+    animation: loading-shimmer 2s infinite linear;
+}
+
+@keyframes loading-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+
+
+
+/* Transição suave para a imagem do piloto */
+#photo {
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+/* Remove o triângulo padrão do elemento <details> */
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Animação suave para quando o módulo abrir */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Garante que o avatar do membro não tenha bordas ou contornos extras */
+.group\/member div {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Estilo para o título de resumo quando aberto */
+/* Remove qualquer borda que apareça ao abrir o item */
+details[open] summary {
+    border-bottom: none !important;
+    margin-bottom: 0;
+}
+
+/* Garante que o container interno não force bordas indesejadas */
+details summary {
+    outline: none; /* Remove o contorno de foco padrão do navegador */
+    user-select: none;
+}
+
+/* Mantém apenas a animação de fade, sem mudanças de borda */
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+
+/* Efeito de Cursor de Terminal na barra de pesquisa */
+input:focus::placeholder {
+    opacity: 0.3;
+}
+
+/* Animação para o brilho da barra de scroll no header */
+#main-header.shadow-lg {
+    border-bottom: 1px solid var(--color-primary);
+    box-shadow: 0 4px 30px -10px rgba(var(--color-primary-rgb), 0.3);
+}
+
+/* Ajuste para inputs no mobile */
+@media (max-width: 640px) {
+    input {
+        font-size: 8px !important;
+        padding-left: 2rem !important;
+    }
+}
+
+
+
+
+
+/* CSS para a animação do Typewriter */
+    @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+    @keyframes blink-caret {
+        from, to { border-right-color: transparent; }
+        50% { border-right-color: var(--color-primary); }
+    }
+    .typewriter-text {
+        overflow: hidden; /* Garante que o texto não "vaze" */
+        white-space: nowrap; /* Impede a quebra de linha */
+        border-right: 0.15em solid var(--color-primary); /* Simula o cursor */
+        animation: 
+            typing 3.5s steps(40, end) forwards,
+            blink-caret 0.75s step-end infinite;
+        width: 0; /* Começa com largura zero */
+    }
+
+
+
+    /* CSS para a animação de Glitch e Scramble */
+    @keyframes glitch {
+        0% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); opacity: 0.8; }
+        40% { transform: translate(-2px, -2px); opacity: 0.8; }
+        60% { transform: translate(2px, 2px); opacity: 0.8; }
+        80% { transform: translate(2px, -2px); opacity: 0.8; }
+        100% { transform: translate(0); }
+    }
+
+    .glitch-on-hover:hover .glitch-text {
+        animation: glitch 0.3s linear infinite alternate;
+    }
+
+    /* Animação para o sublinhado que aparece */
+    @keyframes revealLine {
+        from { width: 0%; }
+        to { width: 100%; }
+    }
+    .text-underline-reveal {
+        position: relative;
+        display: inline-block;
+    }
+    .text-underline-reveal::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px; /* Posição do sublinhado */
+        height: 1px;
+        background-color: var(--color-accent); /* Cor do sublinhado */
+        animation: revealLine 1s ease-out forwards;
+        animation-delay: 4s; /* Atraso para aparecer depois do texto */
+        width: 0; /* Começa oculto */
+    }
+
+    /* CSS para animação Flicker */
+    @keyframes flickerFadeIn {
+        0% { opacity: 0; text-shadow: 0 0 5px rgba(var(--color-primary-rgb), 0.5); }
+        50% { opacity: 0.7; text-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.8); }
+        100% { opacity: 1; text-shadow: none; }
+    }
+    .flicker-text {
+        opacity: 0; /* Começa oculto */
+        animation: flickerFadeIn 2s ease-out forwards;
+        animation-delay: 0.5s; /* Atraso antes de começar */
+    }
+
+    /* Animação para as barras laterais */
+    @keyframes barsAppear {
+        from { transform: scaleY(0); }
+        to { transform: scaleY(1); }
+    }
+    .animated-bar {
+        transform: scaleY(0); /* Começa oculto */
+        animation: barsAppear 0.5s ease-out forwards;
+        transform-origin: bottom; /* Cresce de baixo para cima */
+        animation-delay: 0.2s; /* Atraso diferente para as barras */
+    }
+
+
+
+    /* Decode animation */
+
+    @keyframes decode {
+        0% { opacity: 0; filter: blur(3px); letter-spacing: 10px; }
+        50% { opacity: 0.5; filter: blur(1px); }
+        100% { opacity: 1; filter: blur(0); letter-spacing: normal; }
+    }
+
+    .decoder-text {
+        display: inline-block;
+        animation: decode 0.8s cubic-bezier(0.21, 0.82, 0.17, 1) forwards;
+    }
+
+    .scan-line {
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: rgba(var(--color-primary-rgb), 0.5);
+        top: 0;
+        animation: scan 2s linear infinite;
+    }
+
+    @keyframes scan {
+        0% { top: 0; opacity: 0; }
+        50% { opacity: 1; }
+        100% { top: 100%; opacity: 0; }
+    }
+
+
+    /* Hud reveal animation */
+
+    .hud-reveal {
+        background: linear-gradient(90deg, #fff, var(--color-primary), #fff);
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine {
+        to { background-position: 200% center; }
+    }
+
+    .reveal-container {
+        border-left: 1px solid rgba(255,255,255,0.1);
+        padding-left: 15px;
+        animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+        from { transform: translateX(-10px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+
+
+    /* Data steam animation */
+
+    .stream-block {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(5px);
+        animation: streamIn 0.5s ease forwards;
+    }
+
+    @keyframes streamIn {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+
+    /* Glitch translation */
+
+    .lang-glitch {
+  position: relative;
+}
+
+.lang-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: #1bc7fb;
+  opacity: 0;
+  animation: glitch 0.2s linear;
+}
+
+@keyframes glitch {
+  0%   { transform: translate(0); opacity: 0 }
+  30%  { transform: translate(-1px, 1px); opacity: 1 }
+  60%  { transform: translate(1px, -1px); opacity: .8 }
+  100% { transform: translate(0); opacity: 0 }
+}
+
+/* x-cloak para ocultar elementos até que estejam prontos */
+[x-cloak] {
+  display: none !important;
+}
+
+.border-forced  {
+    border: 2px solid var(--color-primary) !important;
+}
+
+.border-forced  {
+    border: 2px solid var(--color-primary) !important;
+}
+
+.icon { width: 1em; height: 1em; }
+.icon-sm { font-size: 1rem; }
+.icon-lg { font-size: 1.5rem; }
+
+
+/* Animação de pulso suave para logo */
+
+.core-glow {
+  filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.35));
+  transform: scale(1);
+}
+
+.group:hover .core-glow {
+  transform: scale(1.08);
+  animation: corePulse 1.6s ease-in-out infinite;
+}
+
+@keyframes corePulse {
+  0% {
+    filter:
+      drop-shadow(0 0 6px rgba(0, 255, 255, 0.4))
+      drop-shadow(0 0 14px rgba(0, 255, 255, 0.35));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 10px rgba(0, 255, 255, 0.75))
+      drop-shadow(0 0 26px rgba(0, 255, 255, 0.65));
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 6px rgba(0, 255, 255, 0.4))
+      drop-shadow(0 0 14px rgba(0, 255, 255, 0.35));
+  }
+}
+
+
+/* PARTICLES BACKGROUND */
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+#particles-js canvas {
+  position: absolute !important;
+  inset: 0;
+}
+
+/* GARANTE QUE O CONTEÚDO FIQUE ACIMA */
+body > *:not(#particles-js) {
+  position: relative;
+}
+

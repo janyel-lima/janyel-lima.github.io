@@ -33,10 +33,13 @@
   x-data="app()" x-init="init()">
 
   <!-- PARTICLES BACKGROUND -->
-  <div id="particles-js"></div>
+   <div id="fx-layer">
+    <div id="particles-js"></div>
+  </div>
 
+<div id="app"  class="relative z-10">
   <!-- HEADER HUD -->
-  <header id="main-header" style="position: fixed;"
+  <header id="main-header" data-interactive style="position: fixed;"
     class="fixed top-0 left-0 right-0
          z-[9999]
          isolate
@@ -87,7 +90,7 @@
   </header>
 
   <!-- MAIN CONTENT -->
-  <main class="max-w-6xl mx-auto p-4 md:p-6 pt-28 md:pt-32 relative z-10">
+  <main data-interactive class="max-w-6xl mx-auto p-4 md:p-6 pt-28 md:pt-32 relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8" >
             <aside class="lg:col-span-4 order-1 lg:order-1 space-y-6">
 
@@ -840,7 +843,9 @@
         </div>
     </main>
 
-    <footer class="mt-20 border-t border-primary/30 bg-black/40 pt-12 pb-8 px-4">
+
+<!-- FOOTER -->
+    <footer data-interactive class="mt-20 border-t border-primary/30 bg-black/40 pt-12 pb-8 px-4">
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
                 <div class="space-y-4">
@@ -889,9 +894,11 @@
 
 
     <!-- OVERLAY -->
-    <div x-cloak x-show="locked" x-transition.opacity data-overlay @keydown.escape.prevent class="fixed inset-0 z-[999]
-            bg-black/95
-            flex items-center justify-center">
+    <div x-effect="
+  const fx = document.getElementById('fx-layer')
+  if (fx) fx.style.pointerEvents = locked ? 'none' : 'auto'
+"
+  x-cloak x-show="locked" x-transition.opacity data-overlay @keydown.escape.prevent class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center">
 
         <div class="relative w-[320px] bg-black p-4 font-mono
               border-forced
@@ -917,9 +924,11 @@
 
 
 
-    <div x-show="false" x-transition.opacity data-overlay @keydown.escape.prevent class="fixed inset-0 z-[999]
-            bg-black/95
-            flex items-center justify-center">
+    <div x-effect="
+  const fx = document.getElementById('fx-layer')
+  if (fx) fx.style.pointerEvents = locked ? 'none' : 'auto'
+"
+ x-show="false" x-transition.opacity data-overlay @keydown.escape.prevent class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center">
 
         <div class="relative w-[320px] bg-black p-4 font-mono
               border-forced
@@ -938,7 +947,7 @@
             </p>
         </div>
     </div>
-
+</div>
 </body>
 
 <script src="scripts/app.js"></script>

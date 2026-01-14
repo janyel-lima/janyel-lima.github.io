@@ -453,21 +453,31 @@ input:focus::placeholder {
 
 
 /* PARTICLES BACKGROUND */
-#particles-js {
+#fx-layer {
   position: fixed;
   inset: 0;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+
+#particles-js {
   width: 100%;
   height: 100%;
-  z-index: 0;
 }
 
-#particles-js canvas {
-  position: absolute !important;
-  inset: 0;
-}
 
 /* GARANTE QUE O CONTEÚDO FIQUE ACIMA */
-body > *:not(#particles-js) {
+body > *:not(#fx-layer) {
   position: relative;
 }
 
+#app {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+[data-interactive] {
+  pointer-events: auto;
+}

@@ -57,8 +57,9 @@ body {
 .rpg-button:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--color-accent);
-    transform: translateX(5px);
-    box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.3);
+    transform: translateX(-5px); /* LEFT */;
+    box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.3)
+    ;
 }
 
 .rpg-button i { transition: all 0.3s ease; }
@@ -68,25 +69,57 @@ body {
 }
 
 
-.rpg-button-alt {
+.rpg-button-left {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid var(--color-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rpg-button-left:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-accent);
+    transform: translateX(-5px); /* LEFT */;
+    box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.3)
+    ;
+}
+
+.rpg-button-left i { transition: all 0.3s ease; }
+.rpg-button-left:hover i {
+    filter: drop-shadow(0 0 5px var(--color-primary));
+    transform: scale(1.1);
+}
+
+
+
+.rpg-button-right {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-right: 4px solid var(--color-primary);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.rpg-button-alt:hover {
+.rpg-button-right:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--color-accent);
     transform: translateX(5px);
     box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.3);
 }
 
-.rpg-button-alt i { transition: all 0.3s ease; }
-.rpg-button-alt:hover i {
+.rpg-button-right i { transition: all 0.3s ease; }
+.rpg-button-right:hover i {
     filter: drop-shadow(0 0 5px var(--color-primary));
     transform: scale(1.1);
 }
+
+@media (max-width: 640px) {
+  .rpg-button-left,
+  .rpg-button-right {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+}
+
 
 /* Cards com Glassmorphism e Bordas Reforçadas */
 .rpg-card {

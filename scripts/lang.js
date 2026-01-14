@@ -44,7 +44,21 @@ const i18n = {
         contact_text: "Ainda restam dúvidas? Sinta-se à vontade para contatar-me pelos canais abaixo.",
         prev_sector: "◀ SETOR_ANTERIOR",
         next_sector: "PRÓXIMO_SETOR ▶",
-        stream_active: "FLUXO_ATIVO"
+        stream_active: "FLUXO_ATIVO",
+        skills_title: "Proficiência_de_Habilidades",
+sys_analysis: "ANÁLISE_DO_SISTEMA",
+
+rank_legend: "Legenda_de_Ranks",
+
+hard_skills: "Habilidades_Técnicas",
+soft_skills: "Habilidades_Comportamentais",
+
+rank_s: "Domínio Total / Pronto para Combate",
+rank_a: "Nível Avançado Operacional",
+rank_b: "Padrão Operacional",
+rank_c: "Capacidade Básica",
+rank_d: "Função Limitada"
+
     },
     'en': {
         nav_projects: "Projects",
@@ -91,7 +105,21 @@ const i18n = {
         contact_text: "Still have questions? Feel free to reach out through the channels below.",
         prev_sector: "◀ PREV_SECTOR",
         next_sector: "NEXT_SECTOR ▶",
-        stream_active: "STREAM_ACTIVE"
+        stream_active: "STREAM_ACTIVE",
+        skills_title: "Skill_Proficiency",
+sys_analysis: "SYS_ANALYSIS",
+
+hard_skills: "Hard_Skills",
+soft_skills: "Soft_Skills",
+
+rank_legend: "Rank_Legend",
+
+rank_s: "Mastery / Combat Ready",
+rank_a: "Advanced Operational",
+rank_b: "Operational Standard",
+rank_c: "Basic Capability",
+rank_d: "Limited Function"
+
     }
 };
 

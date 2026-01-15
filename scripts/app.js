@@ -74,6 +74,16 @@ function getTranslatedLabels() {
   )
 }
 
+function getMinYear(period) {
+  // Se o período for tipo "2023-2025" ou "2024"
+  if (!period) return '';
+  // Se for array por idioma
+  if (typeof period === 'object') period = period[$store.i18n.lang] || '';
+  const years = period.match(/\d{4}/g); // pega todos os anos
+  return years ? Math.min(...years.map(Number)) : '';
+}
+
+
 function updateInterfaceStatic() {
   const lang = Alpine.store('i18n').lang
   const dict = i18n[lang]
@@ -295,12 +305,11 @@ function app() {
     },
 
     init() {
-      this.recalculateLevel()
-      this.unlocked = localStorage.getItem('fragment-unlocked') === '1'
       this.$store.sfx.init()
-      
-      this.$nextTick(() => lucide.createIcons())
       updateInterfaceStatic();
+      this.recalculateLevel()
+      this.$nextTick(() => lucide.createIcons())
+      this.unlocked = localStorage.getItem('fragment-unlocked') === '1'
     },
     watch: {
       unlocked(value) {

@@ -2,12 +2,32 @@
 document.addEventListener('alpine:init', () => {
   Alpine.store('i18n', {
     lang: localStorage.getItem('pref-lang') || 'en',
-    t(key) {
-      return i18n[this.lang]?.[key] || key
-    },
+     messages: i18n, // seu objeto inteiro
+
+  t(key) {
+    const keys = key.split('.');
+    let val = this.messages[this.lang];
+
+    for (const k of keys) {
+      if (val == null) break;
+      val = val[k];
+    }
+
+    // Se for um objeto {pt, en}, pega a língua correta
+    if (val && typeof val === 'object' && 'pt' in val && 'en' in val) {
+      return val[this.lang] ?? key;
+    }
+
+    return val ?? key;
+  },
     toggle() {
+      
       this.lang = this.lang === 'en' ? 'pt-br' : 'en'
       localStorage.setItem('pref-lang', this.lang)
+      updateInterfaceStatic()
+      chart.data.labels = getTranslatedLabels()
+      chart.update()
+      
     }
   })
 })
@@ -47,6 +67,28 @@ document.addEventListener('alpine:init', () => {
     }
   })
 })
+
+function getTranslatedLabels() {
+  return Object.values(window.skillLevels.hard).map(
+    s => Alpine.store('i18n').t(s.label)
+  )
+}
+
+function updateInterfaceStatic() {
+  const lang = Alpine.store('i18n').lang
+  const dict = i18n[lang]
+
+  if (!dict) return
+
+  document.title = dict.title
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n
+    if (dict[key]) el.textContent = dict[key]
+  })
+}
+
+
 
 document.addEventListener('alpine:init', () => {
   Alpine.data('projectStream', (projects, windowSize = 4) => ({
@@ -254,9 +296,11 @@ function app() {
 
     init() {
       this.recalculateLevel()
-      this.$nextTick(() => lucide.createIcons())
       this.unlocked = localStorage.getItem('fragment-unlocked') === '1'
       this.$store.sfx.init()
+      
+      this.$nextTick(() => lucide.createIcons())
+      updateInterfaceStatic();
     },
     watch: {
       unlocked(value) {
@@ -336,3 +380,5 @@ window.addEventListener('scroll', () => {
     logoContainer.classList.remove('md:w-10', 'md:h-10');
   }
 });
+
+

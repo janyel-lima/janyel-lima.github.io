@@ -1,3 +1,29 @@
+window.skillLevels = {
+  hard: {
+    js: { label: 'skill_js', level: 'S', value: 5 },
+    ts: { label: 'skill_ts', level: 'A', value: 4 },
+    node: { label: 'skill_node', level: 'A', value: 4 },
+    react: { label: 'skill_react', level: 'A', value: 4 },
+    vue: { label: 'skill_vue', level: 'B', value: 3 },
+    docker: { label: 'skill_docker', level: 'A', value: 4 },
+    aws: { label: 'skill_aws', level: 'B', value: 3 },
+    pg: { label: 'skill_pg', level: 'A', value: 4 },
+    tailwind: { label: 'skill_tailwind', level: 'S', value: 5 },
+    git: { label: 'skill_git', level: 'A', value: 4 },
+  },
+
+  soft: {
+    problem_solving: { label: 'soft_problem_solving', level: 'S', value: 5 },
+    system_thinking: { label: 'soft_system_thinking', level: 'S', value: 5 },
+    communication: { label: 'soft_communication', level: 'B', value: 3 },
+    autonomy: { label: 'soft_autonomy', level: 'A', value: 4 },
+    leadership: { label: 'soft_leadership', level: 'B', value: 3 },
+    adaptability: { label: 'soft_adaptability', level: 'A', value: 4 },
+    critical_thinking: { label: 'soft_critical_thinking', level: 'A', value: 4 },
+  }
+}
+
+
 const devStats = {
     name: "Icarus V. Tymaeus",
     startedCareer: "2021-01-04", 
@@ -129,37 +155,27 @@ const DEFAULT_ICON = "devicon-devicon-plain";
 
 
 
-const skillLevels = {
-  hard: {
-    "JavaScript": { level: "S", value: 5 },
-    "TypeScript": { level: "A", value: 4 },
-    "Node.js": { level: "A", value: 4 },
-    "React": { level: "A", value: 4 },
-    "Vue.js": { level: "B", value: 3 },
-    "Next.js": { level: "B", value: 3 },
-    "React Native": { level: "B", value: 3 },
-    "Python": { level: "B", value: 3 },
-    "AWS": { level: "B", value: 3 },
-    "PostgreSQL": { level: "A", value: 4 },
-    "Redis": { level: "B", value: 3 },
-    "Docker": { level: "A", value: 4 },
-    "Kubernetes": { level: "C", value: 2 },
-    "Tailwind": { level: "S", value: 5 },
-    "Prisma": { level: "B", value: 3 },
-    "Firebase": { level: "B", value: 3 },
-    "Git": { level: "A", value: 4 },
-    "CSS3": { level: "A", value: 4 },
-    "D3.js": { level: "C", value: 2 },
-    "REST APIs": { level: "A", value: 4 },
-  },
 
-  soft: {
-    "Problem Solving": { level: "S", value: 5 },
-    "System Thinking": { level: "A", value: 4 },
-    "Communication": { level: "B", value: 3 },
-    "Autonomy": { level: "A", value: 4 },
-    "Leadership": { level: "B", value: 3 },
-    "Adaptability": { level: "A", value: 4 },
-    "Critical Thinking": { level: "A", value: 4 },
-  }
+
+const educationLogs = {
+  higher: [
+    {
+      title_key: 'edu_cs_title',
+      provider_key: 'edu_cs_provider',
+      url: 'https://www.universidade-exemplo.com'
+    }
+  ],
+
+  courses: [
+    {
+      title_key: 'course_fullstack',
+      provider_key: 'provider_rocketseat',
+      url: 'https://www.rocketseat.com.br'
+    },
+    {
+      title_key: 'course_docker',
+      provider_key: 'provider_bootcamp',
+      url: 'https://www.docker.com'
+    }
+  ]
 }

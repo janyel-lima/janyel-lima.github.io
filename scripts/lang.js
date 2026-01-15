@@ -24,6 +24,7 @@ const i18n = {
         btn_send: "[ENVIAR]",
         title_network: "■ Links_de_Rede",
         title_projects: "■ Registros_de_Projeto",
+        title_about: "■ Sobre_Mim",
         title_exp: "■ Linha_do_Tempo_Experiencia",
         sys_online: "Status_do_Sistema: Online",
         made_with: "Feito com Tailwind e Feitiçaria",
@@ -46,18 +47,67 @@ const i18n = {
         next_sector: "PRÓXIMO_SETOR ▶",
         stream_active: "FLUXO_ATIVO",
         skills_title: "Proficiência_de_Habilidades",
-sys_analysis: "ANÁLISE_DO_SISTEMA",
+        sys_analysis: "ANÁLISE_DO_SISTEMA",
 
-rank_legend: "Legenda_de_Ranks",
+        rank_legend: "Legenda_de_Ranks",
 
-hard_skills: "Habilidades_Técnicas",
-soft_skills: "Habilidades_Comportamentais",
+        hard_skills: "Técnicas",
+        soft_skills: "Comportamentais",
 
-rank_s: "Domínio Total / Pronto para Combate",
-rank_a: "Nível Avançado Operacional",
-rank_b: "Padrão Operacional",
-rank_c: "Capacidade Básica",
-rank_d: "Função Limitada"
+        rank_s: "Domínio Total / Pronto para Combate",
+        rank_a: "Nível Avançado Operacional",
+        rank_b: "Padrão Operacional",
+        rank_c: "Capacidade Básica",
+        rank_d: "Função Limitada",
+        system_alert: "ALERTA_DO_SISTEMA",
+        secure_fragment_locked: "FRAGMENTO_SEGURO_BLOQUEADO",
+        decrypting: "DESCRIPTOGRAFANDO...",
+        system_boot: "INICIALIZAÇÃO_DO_SISTEMA",
+        loading: "CARREGANDO...",
+        page_title: "Janyel Lima - Portfólio do Profissional",
+        language: "Idioma",
+        certification_logs: 'CERTIFICATION_LOGS',
+        higher_education: 'HIGHER_EDUCATION',
+        courses: 'COURSES',
+
+        edu_cs_title: 'Análise e Desenvolvimento de Sistemas',
+        edu_cs_provider: 'Universidade',
+
+        course_fullstack: 'Desenvolvimento Full Stack',
+        course_docker: 'Arquitetura Docker & Container',
+
+        provider_rocketseat: 'Ministrado por: Rocketseat',
+        provider_bootcamp: 'Ministrado por: Bootcamp',
+        skills: {
+      skill_js: 'JavaScript',
+      skill_ts: 'TypeScript',
+      skill_node: 'Node.js',
+      skill_react: 'React',
+      skill_vue: 'Vue.js',
+      skill_docker: 'Docker',
+      skill_aws: 'AWS',
+      skill_pg: 'PostgreSQL',
+      skill_tailwind: 'Tailwind',
+      skill_git: 'Git',
+
+      soft_problem_solving: 'Resolução de Problemas',
+      soft_system_thinking: 'Pensamento Sistêmico',
+      soft_communication: 'Comunicação',
+      soft_autonomy: 'Autonomia',
+      soft_leadership: 'Liderança',
+      soft_adaptability: 'Adaptabilidade',
+      soft_critical_thinking: 'Pensamento Crítico',
+    },levels: {
+
+        S: "Domínio Total / Pronto para Combate",
+        A: "Nível Avançado Operacional",
+        B: "Padrão Operacional",
+        C: "Capacidade Básica",
+        D: "Função Limitada"
+
+    }
+    
+
 
     },
     'en': {
@@ -85,6 +135,7 @@ rank_d: "Função Limitada"
         btn_send: "[SEND]",
         title_network: "■ Network_Links",
         title_projects: "■ Project_Logs",
+        title_about: "■ About_Me",
         title_exp: "■ Work_Experience_Timeline",
         sys_online: "System_Status: Online",
         made_with: "Made with Tailwind and Sorcery",
@@ -107,21 +158,74 @@ rank_d: "Função Limitada"
         next_sector: "NEXT_SECTOR ▶",
         stream_active: "STREAM_ACTIVE",
         skills_title: "Skill_Proficiency",
-sys_analysis: "SYS_ANALYSIS",
+        sys_analysis: "SYS_ANALYSIS",
 
-hard_skills: "Hard_Skills",
-soft_skills: "Soft_Skills",
+        hard_skills: "Hard",
+        soft_skills: "Soft",
 
-rank_legend: "Rank_Legend",
+        rank_legend: "Rank_Legend",
 
-rank_s: "Mastery / Combat Ready",
-rank_a: "Advanced Operational",
-rank_b: "Operational Standard",
-rank_c: "Basic Capability",
-rank_d: "Limited Function"
+        rank_s: "Mastery / Combat Ready",
+        rank_a: "Advanced Operational",
+        rank_b: "Operational Standard",
+        rank_c: "Basic Capability",
+        rank_d: "Limited Function",
+        system_alert: "SYSTEM_ALERT",
+        secure_fragment_locked: "SECURE_FRAGMENT_LOCKED",
+        decrypting: "DECRYPTING...",
+        system_boot: "SYSTEM_BOOT",
+        loading: "LOADING...",
+        page_title: "Janyel Lima - Professional's Portfolio",
+        language: "Language",
+        certification_logs: 'CERTIFICATION_LOGS',
+        higher_education: 'HIGHER_EDUCATION',
+        courses: 'COURSES',
 
+        edu_cs_title: 'Systems Analysis and Development',
+        edu_cs_provider: 'University',
+
+        course_fullstack: 'Full Stack Development',
+        course_docker: 'Docker & Container Architecture',
+
+        provider_rocketseat: 'Provider: Rocketseat',
+        provider_bootcamp: 'Provider: Bootcamp',skills: {
+      skill_js: 'JavaScript',
+      skill_ts: 'TypeScript',
+      skill_node: 'Node.js',
+      skill_react: 'React',
+      skill_vue: 'Vue.js',
+      skill_docker: 'Docker',
+      skill_aws: 'AWS',
+      skill_pg: 'PostgreSQL',
+      skill_tailwind: 'Tailwind',
+      skill_git: 'Git',
+
+      soft_problem_solving: 'Problem Solving',
+      soft_system_thinking: 'System Thinking',
+      soft_communication: 'Communication',
+      soft_autonomy: 'Autonomy',
+      soft_leadership: 'Leadership',
+      soft_adaptability: 'Adaptability',
+      soft_critical_thinking: 'Critical Thinking',
+    },
+
+    levels: {
+      S: "Mastery / Combat Ready",
+        A: "Advanced Operational",
+        B: "Operational Standard",
+        C: "Basic Capability",
+        D: "Limited Function"
     }
+        
+
+
+
+
+    },
+    
 };
+
+
 
 let currentLang = localStorage.getItem('pref-lang') || 'en';
 

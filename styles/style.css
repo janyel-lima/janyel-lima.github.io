@@ -567,3 +567,12 @@ body > *:not(#fx-layer) {
   height: 12px;
   opacity: 0.6;
 }
+
+
+@keyframes glitchIn {
+  0% { opacity: 0; transform: translateX(-2px); }
+  100% { opacity: 1; transform: none; }
+}
+.animate-glitch {
+  animation: glitchIn 0.2s steps(2, end);
+}

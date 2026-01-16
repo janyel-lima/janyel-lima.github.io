@@ -69,10 +69,21 @@ document.addEventListener('alpine:init', () => {
 })
 
 function getTranslatedLabels() {
-  return Object.values(window.skillLevels.hard).map(
-    s => Alpine.store('i18n').t(s.label)
+  const i18n = Alpine.store('i18n')
+
+  const hardLabels = Object.values(window.skillLevels.hard)
+    .map(s => s?.label)
+    .filter(Boolean)
+
+  const softLabels = Object.values(window.skillLevels.soft)
+    .map(s => s?.label)
+    .filter(Boolean)
+
+  return [...hardLabels, ...softLabels].map(
+    key => i18n.t(`skills.${key}`)
   )
 }
+
 
 function getMinYear(period) {
   // Se o período for tipo "2023-2025" ou "2024"
@@ -122,6 +133,7 @@ document.addEventListener('alpine:init', () => {
       this.direction = 'next'
       this.cursor = (this.cursor + 1) % this.projects.length
       this.$store.sfx.play('select')
+      refreshIcons()
     },
 
     prev() {
@@ -129,6 +141,7 @@ document.addEventListener('alpine:init', () => {
       this.cursor =
         (this.cursor - 1 + this.projects.length) % this.projects.length
       this.$store.sfx.play('select')
+      refreshIcons()
     }
   }))
 })
@@ -243,8 +256,14 @@ function app() {
         'en': { Junior: 'Junior', Pleno: 'Mid-Level', Senior: 'Senior' }
       }
       return map[this.$store.i18n.lang]?.[this.level.label] ?? this.level.label
-    },iconFor(skill) {
-      return this.skillIcons[skill] ?? DEFAULT_ICON
+    },iconFor(skillKey) {
+
+
+        
+  // 2. Retorna ícone ou fallback seguro
+  return skillIcons[skillKey] ?? DEFAULT_ICON
+
+      
     },
     startDecrypt() {
   // já descriptografado → só abrir
@@ -327,7 +346,28 @@ function app() {
     }
   }
 }
+function refreshIcons() {
+  requestAnimationFrame(() => {
+    if (window.lucide) {
+      lucide.createIcons()
+    }
+  })
+}
 
+
+function resolveSkill(skillKey) {
+  const level =
+    window.skillLevels.hard[skillKey] ||
+    window.skillLevels.soft[skillKey]
+
+  return {
+    key: skillKey,
+    labelKey: level?.label ?? skillKey,
+    label: Alpine.store('i18n').t(`skills.${level?.label ?? skillKey}`),
+    icon: skillIcons[level?.label] ?? DEFAULT_ICON,
+    level: level?.level ?? null
+  }
+}
 
 // Image Error Handling
 

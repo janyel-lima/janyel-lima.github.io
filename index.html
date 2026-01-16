@@ -181,7 +181,7 @@
                                         Bio_Metric_Scan</span>
                                     <div
                                         class="animated w-full aspect-square bg-gray-900 overflow-hidden relative border border-white/5">
-                                        <img src="image.png" onerror="handleImageError(event)" id="photo"
+                                        <img src="./img/me.jpg" onerror="handleImageError(event)" id="photo"
                                             class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
                                         <div class="absolute inset-0 pointer-events-none bg-scanlines opacity-20 z-10">
                                         </div>
@@ -380,7 +380,7 @@
                         </div>
 
                         <div class="flex flex-col gap-4">
-                            <a href="https://wa.me/5582999712833" target="_blank"
+                            <a :href="devStats.social_links.whatsapp" target="_blank"
                                 class="rpg-button py-4 px-5 flex items-center justify-between group/btn">
                                 <div class="flex items-center gap-4">
                                     <i data-lucide="message-circle"
@@ -398,7 +398,7 @@
                                     x-text="$store.i18n.t('btn_send')">[SEND]</div>
                             </a>
 
-                            <a href="mailto:seu-email@dominio.com"
+                            <a :href="devStats.social_links.email"
                                 class="rpg-button py-4 px-5 flex items-center justify-between group/btn">
                                 <div class="flex items-center gap-4">
                                     <i data-lucide="mail"
@@ -440,17 +440,18 @@
                             </div>
                         </div>
                         <div class="flex flex-col gap-3">
-                            <a href="#" class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[10px]">
+                            <a target="_blank" :href="devStats.social_links.github" class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[10px]">
                                 <i data-lucide="github" class="w-4 h-4 text-primary shrink-0"></i>
                                 <span class="tracking-[0.2em]">Github</span>
                             </a>
-                            <a href="#" class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[10px]">
+                            <a target="_blank" :href="devStats.social_links.linkedin" class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[10px]">
                                 <i data-lucide="linkedin" class="w-4 h-4 text-primary shrink-0"></i>
                                 <span class="tracking-[0.2em]">LinkedIn</span>
                             </a>
                         </div>
                     </div>
                     <div x-data="{ hardOpen: false, softOpen: false }">
+
                     <div  @mouseenter="$store.sfx.play('hover');" data-interactive class="order-4 bg-black/60 rpg-card p-5 mb-10 border-primary/40"
                         >
 
@@ -609,29 +610,36 @@
         <!-- CONTENT -->
         <div x-show="hardOpen" x-collapse>
             <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+<template x-for="(data, skill) in skillLevels.hard" :key="skill">
+  <div
+    class="relative flex items-center gap-3 px-3 py-2
+           bg-black/35 border border-white/5
+           hover:border-primary/40 transition">
 
-                <template x-for="(data, skill) in skillLevels.hard" :key="skill">
-                    <div
-                        class="relative flex items-center gap-3 px-3 py-2
-                               bg-black/35 border border-white/5
-                               hover:border-primary/40 transition">
+    <!-- SCAN LINE -->
+    <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
 
-                        <!-- SCAN LINE -->
-                        <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
+    <!-- ICON -->
+    <i
+      :class="iconFor(data.label)"
+      class="text-primary text-[18px] shrink-0">
+    </i>
 
-                        <i :class="iconFor(skill)" class="text-primary text-[18px]"></i>
+    <!-- LABEL -->
+    <div class="flex-1 min-w-0">
+      <p class="text-[9px] font-mono uppercase tracking-widest text-white truncate">
+        <span x-text="$store.i18n.t(`skills.${data.label}`)"></span>
+      </p>
+    </div>
 
-                        <div class="flex-1">
-                            <p class="text-[9px] font-mono uppercase tracking-widest text-white">
-                                <span x-text="skill"></span>
-                            </p>
-                        </div>
+    <!-- LEVEL -->
+    <span class="text-xl font-black italic text-primary">
+      <span x-text="data.level"></span>
+    </span>
+  </div>
+</template>
 
-                        <span class="text-xl font-black italic text-primary">
-                            <span x-text="data.level"></span>
-                        </span>
-                    </div>
-                </template>
+
 
             </div>
         </div>
@@ -877,7 +885,7 @@
 
                             <template x-for="(p, i) in visibleProjects" :key="`${p.title}-${cursor}-${i}`">
 
-                                <div data-interactive
+                                <div data-interactive x-data="{ expanded: false, typedText: '', truncateAt: 120 }"
                                     class="rpg-card p-4 md:p-5 group flex flex-col h-full border-primary/20 transition-all bg-black/60 border-primary border border-white/10 mb-5 group overflow-hidden"
                                     @mouseenter="$store.sfx.play('hover');
                                         
@@ -905,8 +913,43 @@
                                         // <span x-text="p.type[$store.i18n.lang]"></span>
                                     </p>
 
-                                    <p class="text-[11px] text-gray-300 font-mono mb-6 line-clamp-2 leading-relaxed"
-                                        x-text="p.about[$store.i18n.lang]"></p>
+                                    <p
+  class="text-[11px] text-gray-300 font-mono leading-relaxed transition-all duration-300"
+  :class="expanded ? '' : 'line-clamp-2'"
+  x-text="
+    expanded
+      ? typedText
+      : p.about[$store.i18n.lang].slice(0, truncateAt) + '…'
+  "
+></p>
+
+<button
+  @click="
+    expanded = !expanded;
+
+    if (expanded) {
+      const full = p.about[$store.i18n.lang];
+
+      // começa exatamente do texto já visível
+      typedText = full.slice(0, truncateAt);
+
+      let i = truncateAt;
+
+      let interval = setInterval(() => {
+        typedText += full[i++];
+        if (i >= full.length) clearInterval(interval);
+      }, 12);
+    }
+  "
+  class="mt-2 flex items-center gap-2
+         text-[9px] font-mono uppercase tracking-widest
+         text-primary hover:text-white transition"
+>
+  <span x-text="expanded ? '▴ COLLAPSE_DATA' : '▾ EXPAND_DATA'"></span>
+  <span class="animate-pulse">█</span>
+</button>
+
+
 
                                     <!-- STACK -->
                                     <details class="group/details mb-2">
@@ -920,7 +963,8 @@
                                         </summary>
 
                                         <div class="flex flex-wrap gap-x-4 gap-y-3 py-4 animate-fade-in">
-                                            <template x-for="s in p.stack" :key="s">
+                                           <template x-for="(s, i) in p.stack" :key="s.key ?? i">
+
                                                 <div class="relative group/stack">
                                                     <div
                                                         class="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-primary opacity-40">
@@ -931,12 +975,12 @@
                                                             class="w-1 h-5 bg-primary shadow-[0_0_8px_var(--color-primary)] mr-2">
                                                         </div>
 
-                                                        <i :class="iconFor(s)" class="text-primary text-[18px]"></i>
+                                                        <i :class="resolveSkill(s.key).icon" class="text-primary text-[18px]"></i>
 
                                                         <div class="bg-primary/5 px-3 py-1 border-r border-white/10">
                                                             <span
                                                                 class="text-[10px] font-mono text-white tracking-[0.1em] uppercase font-black"
-                                                                x-text="s"></span>
+                                                                x-text="resolveSkill(s.key).label"></span>
                                                         </div>
                                                     </div>
 
@@ -983,13 +1027,19 @@
                                                         </p>
 
                                                         <div class="flex gap-3 mt-1.5">
-                                                            <a :href="member.git" target="_blank"
+
+                                                            <a x-show="member.linkedin" :href="member.linkedin" target="_blank"
+                                                                class="text-gray-500 hover:text-white transition-colors">
+                                                                <i data-lucide="linkedin" class="w-3 h-3"></i>
+                                                            </a>
+                                                            <a x-show="member.github" :href="member.github" target="_blank"
                                                                 class="text-gray-500 hover:text-white transition-colors">
                                                                 <i data-lucide="github" class="w-3 h-3"></i>
                                                             </a>
-                                                            <a :href="member.linkedin" target="_blank"
+                                                            
+                                                            <a x-show="member.portfolio" :href="member.portfolio" target="_blank"
                                                                 class="text-gray-500 hover:text-white transition-colors">
-                                                                <i data-lucide="linkedin" class="w-3 h-3"></i>
+                                                                <i data-lucide="globe" class="w-3 h-3"></i>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -1098,7 +1148,7 @@
 
                                                 <div class="overflow-x-auto py-6 scrollbar-hide">
                                                     <div class="flex gap-6 min-w-max px-2">
-                                                        <template x-for="s in job.skills" :key="s">
+                                                        <template x-for="s in job.skills.label" :key="s">
                                                             <div class="relative group/stack">
                                                                 <div
                                                                     class="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-primary opacity-40">
@@ -1109,14 +1159,14 @@
                                                                         class="w-1 h-5 bg-primary shadow-[0_0_8px_var(--color-primary)] mr-2">
                                                                     </div>
 
-                                                                    <i :class="iconFor(s)"
+                                                                    <i :class="resolveSkill(s.key).icon"
                                                                         class="text-primary text-[18px]"></i>
 
                                                                     <div
                                                                         class="bg-primary/5 font-mono px-3 py-1 border-r border-white/10">
                                                                         <span
                                                                             class="text-[10px]  text-white uppercase font-black"
-                                                                            x-text="s"></span>
+                                                                            x-text="resolveSkill(s.key).label"></span>
                                                                     </div>
                                                                 </div>
 

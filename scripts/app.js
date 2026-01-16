@@ -99,9 +99,6 @@ function updateInterfaceStatic() {
   const lang = Alpine.store('i18n').lang
   const dict = i18n[lang]
 
-  if (!dict) return
-
-  document.title = dict.title
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n

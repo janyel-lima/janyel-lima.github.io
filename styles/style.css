@@ -576,3 +576,8 @@ body > *:not(#fx-layer) {
 .animate-glitch {
   animation: glitchIn 0.2s steps(2, end);
 }
+
+.icon-primary:hover {
+  color: var(--color-primary);
+  text-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.6);
+}

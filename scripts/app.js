@@ -25,8 +25,8 @@ document.addEventListener('alpine:init', () => {
       this.lang = this.lang === 'en' ? 'pt-br' : 'en'
       localStorage.setItem('pref-lang', this.lang)
       updateInterfaceStatic()
-      chart.data.labels = getTranslatedLabels()
-      chart.update()
+      charts.data.labels = getTranslatedLabels()
+      charts.update()
       
     }
   })

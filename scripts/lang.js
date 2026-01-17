@@ -261,7 +261,7 @@ const i18n = {
 
 
 
-let currentLang = localStorage.getItem('pref-lang') || 'en';
+let currentLang = localStorage.getItem('pref-lang') || 'pt-br';
 
 function updateInterfaceStatic() {
     document.querySelectorAll('[data-i18n]').forEach(el => {

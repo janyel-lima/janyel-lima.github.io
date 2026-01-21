@@ -251,7 +251,7 @@ const myData = {
             type: { "en": "Paid Content Management System", "pt-br": "Sistema de Gerenciamento de Conteúdo Pago" },
             about: { 
                 "en": "Operational platform for content publication and access control, structured for strategic management of paid access, recurring billing, and continuous monetization. Fully integrated with payment and subscription APIs, operating as a controlled distribution system with automated financial validation and policy enforcement.", 
-                "pt-br": "Plataforma operacional de publicação e controle de conteúdos, estruturada para gerenciamento estratégico de acesso pago, cobrança recorrente e monetização contínua. Integrada a APIs de pagamento e assinaturas, atuando como um sistema de distribuição controlada, validação financeira e execução automatizada de políticas de acesso." 
+                "pt-br": "Plataforma operacional de publicação e controle de conteúdos, estruturada para gerenciamento estratégico de acesso pago, faturamento recorrente e monetização contínua. Totalmente integrada com APIs de pagamento e assinatura, operando como um sistema de distribuição controlada com validação financeira automatizada e aplicação de políticas." 
             },
             images: ["images/neural-dash.jpg"],
             team: [

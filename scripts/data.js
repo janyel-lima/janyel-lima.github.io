@@ -40,27 +40,46 @@ window.skillLevels = {
 
 
 const skillIcons = {
-  skill_js: "devicon-javascript-plain",
-  skill_ts: "devicon-typescript-plain",
-  skill_node: "devicon-nodejs-plain",
-  skill_react: "devicon-react-original",
-  skill_vue: "devicon-vuejs-plain",
-  skill_angular: "devicon-angularjs-plain",
-  skill_java: "devicon-java-plain",
-  skill_spring: "devicon-spring-plain",
-  skill_php: "devicon-php-plain",
-  skill_docker: "devicon-docker-plain",
-  skill_aws: "devicon-amazonwebservices-plain-wordmark",
-  skill_pg: "devicon-postgresql-plain",
-  skill_tailwind: "devicon-tailwindcss-plain",
-  skill_git: "devicon-git-plain",
-  skill_qgis: "devicon-googlecloud-plain",
-  skill_bpmn: "devicon-uml-plain",
-  skill_keycloak: "devicon-keycloak-plain",
-  skill_jira: "devicon-jira-plain",
-  skill_linux: "devicon-linux-plain",
-  skill_ia: "devicon-tensorflow-original",
+  // ───────────────
+  // HARD SKILLS (DEVICON)
+  // ───────────────
+  skill_js:        { type: 'devicon', icon: 'devicon-javascript-plain' },
+  skill_ts:        { type: 'devicon', icon: 'devicon-typescript-plain' },
+  skill_node:      { type: 'devicon', icon: 'devicon-nodejs-plain' },
+  skill_react:     { type: 'devicon', icon: 'devicon-react-original' },
+  skill_vue:       { type: 'devicon', icon: 'devicon-vuejs-plain' },
+  skill_angular:   { type: 'devicon', icon: 'devicon-angularjs-plain' },
+  skill_java:      { type: 'devicon', icon: 'devicon-java-plain' },
+  skill_spring:    { type: 'devicon', icon: 'devicon-spring-plain' },
+  skill_php:       { type: 'devicon', icon: 'devicon-php-plain' },
+  skill_docker:    { type: 'devicon', icon: 'devicon-docker-plain' },
+  skill_express:   { type: 'devicon', icon: 'devicon-express-original' },
+  skill_aws:       { type: 'devicon', icon: 'devicon-amazonwebservices-plain-wordmark' },
+  skill_pg:        { type: 'devicon', icon: 'devicon-postgresql-plain' },
+  skill_tailwind:  { type: 'devicon', icon: 'devicon-tailwindcss-plain' },
+  skill_git:       { type: 'devicon', icon: 'devicon-git-plain' },
+  skill_qgis:      { type: 'devicon', icon: 'devicon-googlecloud-plain' },
+  skill_bpmn:      { type: 'devicon', icon: 'devicon-uml-plain' },
+  skill_keycloak:  { type: 'devicon', icon: 'devicon-oauth-plain' },
+  skill_chartjs:   { type: 'devicon', icon: 'devicon-chartjs-plain' },
+  skill_jira:      { type: 'devicon', icon: 'devicon-jira-plain' },
+  skill_linux:     { type: 'devicon', icon: 'devicon-linux-plain' },
+  skill_ia:        { type: 'devicon', icon: 'devicon-tensorflow-original' },
+
+  // ───────────────
+  // SOFT SKILLS (LUCIDE)
+  // ───────────────
+  soft_problem_solving:        { type: 'lucide', icon: 'lightbulb' },
+  soft_system_thinking:        { type: 'lucide', icon: 'brain-circuit' },
+  soft_communication:          { type: 'lucide', icon: 'speech' },
+  soft_autonomy:               { type: 'lucide', icon: 'rocket' },
+  soft_leadership:             { type: 'lucide', icon: 'chess-king' },
+  soft_adaptability:           { type: 'lucide', icon: 'puzzle' },
+  soft_critical_thinking:      { type: 'lucide', icon: 'brain-cog' },
+  soft_emotional_intelligence: { type: 'lucide', icon: 'heart-handshake' },
+  soft_teamwork:               { type: 'lucide', icon: 'users' },
 }
+
 
 const DEFAULT_ICON = "devicon-devicon-plain"
 
@@ -166,7 +185,7 @@ const myData = {
                 "en": "Integrated management system for mining operations, designed to unify multidisciplinary data collection through a tailored multimodular architecture, ensuring operational transparency, rapid adaptability to internal client requirements, system scalability, and critical real-time decision support.", 
                 "pt-br": "Sistema integrado de gestão para operações de mineração, projetado para unificar a coleta de dados multidisciplinares por meio de uma arquitetura multimodular sob medida, garantindo transparência operacional, adaptação rápida às demandas do cliente interno, escalabilidade do sistema e suporte crítico à tomada de decisão em tempo real." 
             },
-            images: ["images/grimoire-thumb.jpg", "images/grimoire-full.jpg"],
+            images: ["img/sig-team.jpg"],
             team: [
                 { 
                     name: "Deyvson Santos",  
@@ -218,7 +237,7 @@ const myData = {
             ]
         },
         {
-            title: "ANDHE - Content Management System",
+            title: "Content Management System",
             stack: [
   { key: "vue" },
   { key: "ts" },

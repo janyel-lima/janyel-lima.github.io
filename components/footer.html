@@ -1,0 +1,70 @@
+<div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start text-center md:text-left">
+
+      <!-- LEFT -->
+      <div class="space-y-4 flex flex-col items-center md:items-start">
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 bg-primary animate-pulse"></div>
+          <span
+            class="text-[10px] font-mono text-primary tracking-widest uppercase"
+            x-text="$store.i18n.t('sys_online')">
+          </span>
+        </div>
+
+        <p class="text-[9px] font-mono text-gray-400 leading-relaxed uppercase">
+          Data_Encryption: AES-256_ACTIVE<br>
+          Kernel_Version: v2.0.26_CORE<br>
+          Connection: ENCRYPTED_LINK
+        </p>
+      </div>
+
+      <!-- CENTER -->
+      <div class="flex flex-col items-center justify-center space-y-4">
+        <div
+          class="rpg-box w-12 h-12 flex items-center justify-center
+                 border border-primary/40 bg-primary/5 rotate-45
+                 group hover:border-primary transition-all">
+          <img
+            src="img/skull.png"
+            alt="Logo"
+            class="w-7 h-9 object-contain -rotate-45
+                   group-hover:scale-110 transition-transform">
+        </div>
+
+        <div class="space-y-1 text-center">
+          <p class="text-[11px] font-black uppercase tracking-[0.3em] text-white">
+            Janyel B. Lima
+          </p>
+          <p
+            class="text-[9px] font-mono text-gray-300 uppercase tracking-tighter"
+            x-text="$store.i18n.t('made_with')">
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="flex flex-col items-center md:items-end gap-2">
+        <span
+          x-text="$store.i18n.t('footer_termination')"
+          class="text-[10px] font-mono text-gray-200 uppercase mb-2">
+        </span>
+
+        <a
+          href="#main-header"
+          class="text-[9px] font-mono text-gray-400 hover:text-primary
+                 transition-colors uppercase tracking-widest">
+          >>
+          <span x-text="$store.i18n.t('return_top')"></span>
+        </a>
+
+        <a
+          href="mailto:seu-email@dominio.com"
+          class="text-[9px] font-mono text-gray-400 hover:text-primary
+                 transition-colors uppercase tracking-widest">
+          >>
+          <span x-text="$store.i18n.t('send_transmission')"></span>
+        </a>
+      </div>
+
+    </div>
+  </div>

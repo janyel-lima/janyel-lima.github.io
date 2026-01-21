@@ -1,0 +1,650 @@
+<div id="projects" x-data="projectStream(myData.projects, 2)">
+    <h2 x-text="$store.i18n.t('title_about')" class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em]">■
+    </h2>
+
+    <div class="relative flex bg-black/60 border-primary border border-white/10 mb-5 group overflow-hidden"
+        style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
+
+        <div class="w-1 bg-primary shadow-[2px_0_10px_rgba(var(--color-primary-rgb),0.3)]"></div>
+
+        <div class="p-4 pr-6">
+            <div class="flex items-center gap-2 mb-3">
+                <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]">
+                </div>
+
+                <h5 class="text-[13px] font-black uppercase tracking-[0.3em] text-primary"
+                    x-text="$store.i18n.t('data_fragment')">
+                </h5>
+            </div>
+
+            <div class="text-[11px] font-mono text-gray-400 uppercase mb-1 tracking-[0.2em]"
+                x-text="$store.i18n.t('transmission_source')">
+            </div>
+
+            <p class="text-[15px] text-gray-300 font-mono leading-snug
+               group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('contact_text')">
+            </p>
+        </div>
+
+        <div class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20"
+            style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"></div>
+    </div>
+
+    <h2 x-text="$store.i18n.t('title_projects')" class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em]">■
+        Project_Logs</h2>
+
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-0
+         justify-between items-center
+         mb-6 text-[10px] font-mono text-primary/70 tracking-widest">
+
+        <!-- PREV -->
+        <button @click="prev;$store.sfx.play('click');" data-interactive class="rpg-button-left bg-black/60 w-full sm:w-auto
+           py-3 px-4 sm:py-4 sm:px-5
+           flex items-center justify-center sm:justify-start gap-2">
+
+            <span class="whitespace-nowrap" x-text="$store.i18n.t('prev_sector')"></span>
+        </button>
+
+        <!-- STATUS -->
+        <span x-text="$store.i18n.t('stream_active')"
+            class="order-first sm:order-none text-[9px] sm:text-[10px] text-primary animate-pulse">
+        </span>
+
+        <!-- NEXT -->
+        <button data-interactive @click="next;$store.sfx.play('click');" class="rpg-button-right bg-black/60 w-full sm:w-auto
+           py-3 px-4 sm:py-4 sm:px-5
+           flex items-center justify-center sm:justify-end gap-2">
+
+            <span class="whitespace-nowrap" x-text="$store.i18n.t('next_sector')"></span>
+        </button>
+
+    </div>
+
+    <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+
+        <template x-for="(p, i) in visibleProjects" :key="`${p.title}-${cursor}-${i}`">
+
+            <div data-interactive x-data="{ expanded: false, typedText: '', truncateAt: 120 }"
+                class="rpg-card p-4 md:p-5 group flex flex-col h-full border-primary/20 transition-all bg-black/60 border-primary border border-white/10 mb-5 group overflow-hidden"
+                @mouseenter="$store.sfx.play('hover');
+                                        
+                                        ">
+                <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
+                    <span class="text-[8px] font-mono text-primary/60 uppercase tracking-[0.2em]"
+                        x-text="$store.i18n.t('project_data')"></span>
+                    <div class="flex gap-1">
+                        <div class="w-1 h-2 bg-primary/20"></div>
+                        <div class="w-1 h-2 bg-primary/40"></div>
+                        <div class="w-1 h-2 bg-primary animate-pulse"></div>
+                    </div>
+                </div>
+                <div x-data="{
+    images: p.images,
+    index: 0,
+    go(i) { this.index = i },
+    next() { this.index = (this.index + 1) % this.images.length },
+    prev() { this.index = (this.index - 1 + this.images.length) % this.images.length }
+  }" class="h-32 md:h-40 bg-gray-900 mb-4 overflow-hidden relative border border-white/5 loading-shimmer group">
+
+                    <!-- IMAGE -->
+                    <template x-for="(img, i) in images" :key="img">
+                        <img x-show="i === index" x-transition.opacity.duration.300ms :src="img"
+                            @error="handleImageError" class="absolute inset-0 w-full h-full object-cover
+             transition-all duration-500
+             grayscale opacity-80
+             group-hover:grayscale-0
+             group-hover:opacity-100
+             group-hover:scale-110">
+                    </template>
+
+                    <!-- CYBER SELECTOR HUD -->
+                    <div x-data="imageCarousel(p.images)" class="relative h-32 md:h-40 bg-gray-900 mb-4 overflow-hidden
+         border border-white/5 loading-shimmer group">
+
+                        <!-- IMAGE -->
+                        <img :src="currentImage" @error="handleImageError" class="absolute inset-0 w-full h-full object-cover
+           transition-all duration-700
+           grayscale opacity-80
+           group-hover:grayscale-0
+           group-hover:opacity-100
+           group-hover:scale-110" />
+
+                        <!-- PREV -->
+                        <button @click="index = (index - 1 + images.length) % images.length" class="absolute left-2 top-1/2 -translate-y-1/2 z-20
+           w-7 h-7 flex items-center justify-center
+           bg-black/50 border border-primary/40
+           hover:bg-primary/20 transition">
+
+                            <i data-lucide="chevron-left" class="w-4 h-4 text-primary"></i>
+                        </button>
+
+                        <!-- NEXT -->
+                        <button @click="next()" class="absolute right-2 top-1/2 -translate-y-1/2 z-20
+           w-7 h-7 flex items-center justify-center
+           bg-black/50 border border-primary/40
+           hover:bg-primary/20 transition">
+
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-primary"></i>
+                        </button>
+
+                        <!-- CYBER SELECTOR -->
+                        <div class="absolute bottom-3 left-3 z-20 flex items-end gap-1">
+                            <!-- COUNTER -->
+                            <div class="ml-3 font-mono text-[9px] tracking-widest text-primary/80">
+                                <span x-text="String(index + 1).padStart(2,'0')"></span>
+                                /
+                                <span x-text="String(images.length).padStart(2,'0')"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+                <h4 class="font-bold text-base truncate uppercase tracking-tighter text-white" x-text="p.title"></h4>
+
+                <p class="text-[9px] text-primary uppercase font-mono mb-2 tracking-[0.2em] font-black">
+                    // <span x-text="p.type[$store.i18n.lang]"></span>
+                </p>
+
+                <p class="text-[11px] text-gray-300 font-mono leading-relaxed transition-all duration-300"
+                    :class="expanded ? '' : 'line-clamp-2'" x-text="
+    expanded
+      ? typedText
+      : p.about[$store.i18n.lang].slice(0, truncateAt) + '…'
+  "></p>
+
+                <button @click="
+    expanded = !expanded;
+
+    if (expanded) {
+      const full = p.about[$store.i18n.lang];
+
+      // começa exatamente do texto já visível
+      typedText = full.slice(0, truncateAt);
+
+      let i = truncateAt;
+
+      let interval = setInterval(() => {
+        typedText += full[i++];
+        if (i >= full.length) clearInterval(interval);
+      }, 12);
+    }
+  " class="animate-pulse mt-5 mb-5 flex items-center gap-2
+         text-[9px] font-mono uppercase tracking-widest
+         ">
+                    <span x-text="expanded ? '▴ COLLAPSE_DATA' : '▾ EXPAND_DATA'"
+                        class="text-primary hover:text-primary transition"></span>
+                    <span class="animate-pulse text-primary">█</span>
+                </button>
+
+
+
+                <!-- STACK -->
+                <details class="group/details" @click="expanded = !expanded;$store.sfx.play('click');"
+                    x-data="{ expanded: false }" @toggle="expanded = $el.open">
+
+                    <!-- HEADER / CHANNEL -->
+                    <summary
+                        class="group relative w-full list-none cursor-pointer text-left overflow-hidden select-none">
+
+                        <!-- CHANNEL LINE -->
+                        <span class="absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300
+                   opacity-30
+                   group-open/details:opacity-100
+                   group-open/details:shadow-[0_0_12px_rgba(var(--color-primary-rgb),1)]">
+                        </span>
+
+                        <div class="relative flex items-center gap-3 px-4 py-3
+                   bg-black/50 border border-white/5
+                   hover:border-primary/40 transition">
+
+                            <!-- ICON -->
+                            <i data-lucide="layers" class="w-5 h-5 text-primary shrink-0 transition-all duration-300
+                       opacity-70
+                       group-open/details:opacity-100
+                       group-open/details:scale-110
+                       group-open/details:drop-shadow-[0_0_8px_rgba(var(--color-primary-rgb),1)]">
+                            </i>
+
+                            <!-- TEXT -->
+                            <div class="flex-1 min-w-0">
+                                <p :class="expanded ? 'text-primary' : 'text-primary/70'" class="text-[11px] font-mono uppercase tracking-[0.25em] truncate
+                           text-primary/70
+                           group-open/details:text-primary">
+                                    STACK_ANALYSIS
+                                </p>
+                                <p class="text-[9px] font-mono text-white/40 truncate">
+                                    SYSTEM_MODULES
+                                </p>
+                            </div>
+
+                            <!-- STATUS -->
+                            <span class="text-[10px] font-mono tracking-widest shrink-0"
+                                :class="expanded ? 'text-primary' : 'text-white/40'">
+
+                                [
+                                <span x-show="!expanded">OFF</span>
+                                <span x-show="expanded">ON</span>
+                                ]
+                            </span>
+
+
+                            <!-- CHEVRON -->
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-primary shrink-0 transition-transform duration-300
+                       opacity-60
+                       group-open/details:rotate-90
+                       group-open/details:opacity-100
+                       group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
+                            </i>
+                        </div>
+                    </summary>
+
+                    <!-- CONTENT -->
+                    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 animate-fade-in">
+                        <template x-for="(s, i) in p.stack" :key="s.key ?? i">
+
+                            <div class="relative flex items-center gap-3 px-3 py-2
+                       bg-black/35 border border-white/5
+                       hover:border-primary/40 transition group/stack">
+
+                                <!-- SCAN LINE -->
+                                <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
+
+                                <!-- ICON -->
+                                <i :class="resolveSkill(s.key).icon" class="text-primary text-[18px] shrink-0">
+                                </i>
+
+                                <!-- LABEL -->
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-[9px] font-mono uppercase tracking-widest text-white truncate">
+                                        <span x-text="resolveSkill(s.key).label"></span>
+                                    </p>
+                                </div>
+
+                                <!-- GLOW BAR -->
+                                <span class="w-1 h-5 bg-primary
+                           shadow-[0_0_8px_var(--color-primary)]
+                           animate-pulse">
+                                </span>
+
+                            </div>
+
+                        </template>
+                    </div>
+
+                </details>
+
+
+
+
+                <!-- TEAM -->
+                <details @click="expanded = !expanded;$store.sfx.play('click');" class="mt-auto group/details"
+                    x-data="{ expanded: false }" @toggle="expanded = $el.open">
+
+                    <!-- HEADER / CHANNEL -->
+                    <summary
+                        class="group relative w-full list-none cursor-pointer text-left overflow-hidden select-none">
+
+                        <!-- CHANNEL LINE -->
+                        <span class="absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300
+                   opacity-30
+                   group-open/details:opacity-100
+                   group-open/details:shadow-[0_0_12px_rgba(var(--color-primary-rgb),1)]">
+                        </span>
+
+                        <div class="relative flex items-center gap-3 px-4 py-3
+                   bg-black/50 border border-white/5
+                   hover:border-primary/40 transition
+                   min-w-0">
+
+                            <!-- ICON -->
+                            <i data-lucide="users" class="w-5 h-5 text-primary shrink-0 transition-all duration-300
+                       opacity-70
+                       group-open/details:opacity-100
+                       group-open/details:scale-110
+                       group-open/details:drop-shadow-[0_0_8px_rgba(var(--color-primary-rgb),1)]">
+                            </i>
+
+                            <!-- TEXT -->
+                            <div class="flex-1 min-w-0">
+                                <p :class="expanded ? 'text-primary' : 'text-primary/70'"
+                                    class="text-[11px] font-mono uppercase tracking-[0.25em] truncate">
+
+                                    UNIT_SUPPORT
+                                </p>
+                                <p class="text-[9px] font-mono text-white/40 truncate">
+                                    AUXILIARY_MODULES
+                                </p>
+                            </div>
+
+                            <!-- STATUS -->
+                            <span class="text-[10px] font-mono tracking-widest shrink-0"
+                                :class="expanded ? 'text-primary' : 'text-white/40'">
+
+                                [
+                                <span x-show="!expanded">OFF</span>
+                                <span x-show="expanded">ON</span>
+                                ]
+                            </span>
+
+
+                            <!-- CHEVRON -->
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-primary shrink-0 transition-transform duration-300
+                       opacity-60
+                       group-open/details:rotate-90
+                       group-open/details:opacity-100
+                       group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
+                            </i>
+                        </div>
+                    </summary>
+
+                    <!-- CONTENT -->
+                    <div class="grid grid-cols-1 gap-3 py-4 animate-fade-in">
+
+                        <template x-for="member in p.team" :key="member.name">
+
+                            <div class="relative group/member bg-black/20
+                       flex items-center gap-4 p-2
+                       border border-white/5
+                       transition-all duration-300
+                       hover:bg-primary/10
+                       hover:border-primary/40">
+
+                                <!-- SCAN LINE -->
+                                <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
+
+                                <!-- ENERGY BAR -->
+                                <span class="absolute left-0 top-0 h-full w-[2px]
+                           bg-primary opacity-30
+                           group-hover/member:opacity-100
+                           group-hover/member:shadow-[0_0_10px_rgba(var(--color-primary-rgb),1)]
+                           transition-all">
+                                </span>
+
+                                <!-- CORNER MARK -->
+                                <span class="absolute -top-1 -left-1 w-2 h-2
+                           border-t border-l border-primary opacity-40">
+                                </span>
+
+                                <!-- AVATAR -->
+                                <div class="w-10 h-10 shrink-0 overflow-hidden bg-gray-900 relative">
+                                    <img :src="member.avatar_url" @error="handleImageError" class="w-full h-full object-cover
+                               grayscale opacity-80
+                               group-hover/member:grayscale-0
+                               group-hover/member:opacity-100
+                               transition-all">
+                                </div>
+
+                                <!-- INFO -->
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-[10px] font-bold uppercase tracking-tight text-gray-100"
+                                        x-text="member.name">
+                                    </p>
+
+                                    <p class="text-[8px] font-mono uppercase text-primary/70 tracking-[0.1em]">
+                                        // <span x-text="member.role[$store.i18n.lang]"></span>
+                                    </p>
+
+                                    <!-- LINKS -->
+                                    <div class="flex gap-3 mt-1.5">
+
+                                        <a x-show="member.linkedin" :href="member.linkedin" target="_blank"
+                                            class="text-gray-400 icon-primary transition-colors">
+                                            <i data-lucide="linkedin" class="w-3 h-3"></i>
+                                        </a>
+
+                                        <a x-show="member.github" :href="member.github" target="_blank"
+                                            class="text-gray-400 icon-primary transition-colors">
+                                            <i data-lucide="github" class="w-3 h-3"></i>
+                                        </a>
+
+                                        <a x-show="member.portfolio" :href="member.portfolio" target="_blank"
+                                            class="text-gray-400 icon-primary transition-colors">
+                                            <i data-lucide="globe" class="w-3 h-3"></i>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </template>
+                    </div>
+                </details>
+
+
+
+            </div>
+        </template>
+    </div>
+
+</div>
+
+<div class="relative flex bg-black/60 border-primary border border-white/10 mb-5 group overflow-hidden"
+    style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
+
+    <div class="w-1 bg-primary shadow-[2px_0_10px_rgba(var(--color-primary-rgb),0.3)]"></div>
+
+    <div class="p-4 pr-6">
+        <div class="flex items-center gap-2 mb-3">
+            <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
+
+            <h5 class="text-[13px] font-black uppercase tracking-[0.3em] text-primary"
+                x-text="$store.i18n.t('data_fragment')">
+            </h5>
+        </div>
+
+        <div class="text-[11px] font-mono text-gray-400 uppercase mb-1 tracking-[0.2em]"
+            x-text="$store.i18n.t('transmission_source')">
+        </div>
+
+        <p class="text-[15px] text-gray-300 font-mono leading-snug
+               group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('contact_text')">
+        </p>
+    </div>
+
+    <div class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20" style="clip-path: polygon(100% 0, 100% 100%, 0 100%);">
+    </div>
+</div>
+
+<div id="exp">
+    <h2 x-text="$store.i18n.t('title_exp')" class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em]">■
+        Work_Experience_Timeline</h2>
+
+    <div id="experience-timeline" class="space-y-0">
+
+        <template x-for="job in devStats.history" :key="job.company">
+
+            <div class="relative pl-10  border-l-2 border-primary/20 pb-12 last:pb-0">
+
+                <div
+                    class="absolute -left-[9px] top-1 w-4 h-4 bg-main border-2 border-primary shadow-[0_0_10px_var(--color-primary)] rotate-45 flex items-center justify-center">
+                    <div class="w-1 h-1 bg-primary animate-pulse"></div>
+                </div>
+
+                <div data-interactive @mouseenter="$store.sfx.play('hover');"
+                    class="rpg-card bg-black/60 p-0 overflow-hidden border-white/3 hover:border-primary/30 transition-all group/job">
+
+                    <div class="bg-primary/5 p-4 flex justify-between items-start border-b border-white/5">
+                        <div>
+                            <h3 class="font-black text-white uppercase tracking-tighter text-sm"
+                                x-text="job.role[$store.i18n.lang]"></h3>
+
+                            <div class="flex items-center gap-2 mt-1">
+                                <p x-text="$store.i18n.t('deploy')"
+                                    class="text-[10px] text-primary font-mono uppercase tracking-widest">
+                                </p>
+
+                                <span class="text-[10px] text-primary font-mono uppercase tracking-widest"
+                                    x-text="job.company"></span>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <span x-text="$store.i18n.t('period')"
+                                class="block font-mono text-[9px] uppercase tracking-widest">
+
+                            </span>
+                            <span class="font-mono text-[10px] text-white bg-white/5 px-2 py-0.5"
+                                x-text="job.period[$store.i18n.lang]"></span>
+                        </div>
+                    </div>
+
+                    <div class="p-4">
+                        <p class="text-[12px] text-gray-300 font-mono leading-relaxed mb-5">
+                            ■ <span x-text="job.description[$store.i18n.lang]"></span>
+                        </p>
+
+                        <details class="group/skills">
+                            <summary
+                                class="list-none cursor-pointer flex items-center gap-2 group-hover/job:text-primary transition-colors">
+                                <div class="h-[1px] flex-1 bg-white/10"></div>
+                                <span class="text-[10px] font-mono uppercase tracking-[0.3em] flex items-center gap-2">
+                                    <span class="group-open/skills:rotate-90 transition-transform inline-block">▶</span>
+                                    <span x-text="$store.i18n.t('skills_used')"></span>
+                                </span>
+                                <div class="h-[1px] flex-1 bg-white/10"></div>
+                            </summary>
+
+                            <div class="overflow-x-auto py-6 scrollbar-hide">
+                                <div class="flex gap-6 min-w-max px-2">
+                                    <template x-for="s in job.skills.label" :key="s">
+                                        <div class="relative group/stack">
+                                            <div
+                                                class="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-primary opacity-40">
+                                            </div>
+
+                                            <div class="flex items-center gap-2">
+                                                <div
+                                                    class="w-1 h-5 bg-primary shadow-[0_0_8px_var(--color-primary)] mr-2">
+                                                </div>
+
+                                                <i :class="resolveSkill(s.key).icon"
+                                                    class="text-primary text-[18px]"></i>
+
+                                                <div class="bg-primary/5 font-mono px-3 py-1 border-r border-white/10">
+                                                    <span class="text-[10px]  text-white uppercase font-black"
+                                                        x-text="resolveSkill(s.key).label"></span>
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                class="text-[8px] font-mono text-gray-400 mt-1 font-mono ml-6 tracking-widest uppercase">
+                                                Mod_Installed
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+
+                </div>
+            </div>
+
+        </template>
+    </div>
+
+</div>
+
+<div class="relative bg-black/60 border border-white/10
+            mb-10 overflow-hidden
+            [clip-path:polygon(0_0,100%_0,100%_88%,94%_100%,0_100%)]
+            before:absolute before:inset-0
+            before:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent)]
+            before:animate-scan">
+
+    <!-- HEADER STRIP -->
+    <div class="flex items-center justify-between px-4 py-2
+              border-b border-white/10
+              bg-black/60">
+
+        <div class="flex items-center gap-2">
+            <div class="w-2 h-2 bg-primary rotate-45"></div>
+            <span class="text-[10px] font-mono uppercase tracking-widest text-primary">
+                ARCHIVE_NODE
+            </span>
+        </div>
+
+        <span class="text-[9px] font-mono text-white/40 tracking-widest">
+            ID: EDU-AX91
+        </span>
+    </div>
+
+    <!-- BODY -->
+    <div class="p-5 space-y-6">
+
+        <!-- ACADEMIC -->
+        <div x-data="{ educationLogs }" data-interactive>
+
+            <p class="text-[9px] font-mono uppercase tracking-widest text-white/50 mb-3"
+                x-text="$store.i18n.t('certification_logs')">
+            </p>
+
+            <!-- SECTION LOOP -->
+            <template x-for="(items, section) in educationLogs" :key="section">
+
+                <div class="mb-5">
+
+                    <!-- SECTION TITLE -->
+                    <p class="text-[8px] font-mono uppercase tracking-widest text-primary/70 mb-2"
+                        x-text="$store.i18n.t(section === 'higher' ? 'higher_education' : 'courses')">
+                    </p>
+
+                    <div class="space-y-3">
+
+                        <!-- ITEM LOOP -->
+                        <template x-for="item in items" :key="item.title_key">
+
+                            <div class="group flex items-start gap-3
+                   px-2 py-2
+                   border border-transparent
+                   hover:border-primary/30
+                   hover:bg-primary/5
+                   transition-all duration-300">
+
+                                <!-- ICON -->
+                                <div class="relative mt-[2px]">
+                                    <div class="w-2 h-2 rotate-45 bg-primary/70
+                       shadow-[0_0_6px_rgba(var(--color-primary-rgb),0.6)]
+                       group-hover:scale-125
+                       group-hover:bg-primary
+                       transition-all duration-300">
+                                    </div>
+                                </div>
+
+                                <!-- CONTENT -->
+                                <div>
+                                    <a :href="item.url" target="_blank" rel="noopener noreferrer" class="block text-[11px] font-bold uppercase text-white
+                       tracking-tight
+                       transition-colors duration-200
+                       group-hover:text-primary" x-text="$store.i18n.t(item.title_key)">
+                                    </a>
+
+                                    <p class="text-[9px] font-mono text-white/40 tracking-wide"
+                                        x-text="$store.i18n.t(item.provider_key)">
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </template>
+
+                    </div>
+                </div>
+
+            </template>
+        </div>
+
+
+    </div>
+
+    <!-- FOOTER TAG -->
+    <div class="px-4 py-2 border-t border-white/5 text-[8px] font-mono text-white/30 tracking-widest">
+        STATUS: VERIFIED
+    </div>
+</div>

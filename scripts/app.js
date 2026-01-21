@@ -33,6 +33,40 @@ document.addEventListener('alpine:init', () => {
 })
 
 document.addEventListener('alpine:init', () => {
+  Alpine.data('imageCarousel', (images = []) => ({
+    images,
+    index: 0,
+    interval: null,
+
+    get currentImage() {
+      return this.images[this.index]
+    },
+
+    start() {
+      if (this.images.length <= 1) return
+      this.interval = setInterval(() => this.next(), 3000)
+    },
+
+    pause() {
+      clearInterval(this.interval)
+    },
+
+    resume() {
+      this.start()
+    },
+
+    next() {
+      this.index = (this.index + 1) % this.images.length
+    },
+
+    go(i) {
+      this.index = i
+    }
+  }))
+})
+
+
+document.addEventListener('alpine:init', () => {
   Alpine.store('sfx', {
     muted: localStorage.getItem('sfx-muted') === 'true',
 
@@ -253,14 +287,6 @@ function app() {
         'en': { Junior: 'Junior', Pleno: 'Mid-Level', Senior: 'Senior' }
       }
       return map[this.$store.i18n.lang]?.[this.level.label] ?? this.level.label
-    },iconFor(skillKey) {
-
-
-        
-  // 2. Retorna ícone ou fallback seguro
-  return skillIcons[skillKey] ?? DEFAULT_ICON
-
-      
     },
     startDecrypt() {
   // já descriptografado → só abrir
@@ -324,8 +350,8 @@ function app() {
       this.$store.sfx.init()
       updateInterfaceStatic();
       this.recalculateLevel()
-      this.$nextTick(() => lucide.createIcons())
       this.unlocked = localStorage.getItem('fragment-unlocked') === '1'
+ 
     },
     watch: {
       unlocked(value) {

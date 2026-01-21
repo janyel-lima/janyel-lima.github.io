@@ -1,0 +1,630 @@
+<h2 class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em]" x-text="$store.i18n.t('title_profile')">
+    ■ Dev_Profile
+</h2>
+
+<div data-interactive class="rpg-card bg-black/60 p-0 overflow-hidden border-primary/40 order-1"
+    @mouseenter="$store.sfx.play('hover');">
+
+    <div class="p-5 space-y-6">
+        <div class="space-y-4">
+            <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
+                <span class="text-[8px] font-mono text-primary/60 uppercase tracking-[0.2em]"
+                    x-text="$store.i18n.t('dev_data')">Requested_Developer_Data</span>
+                <div class="flex gap-1">
+                    <div class="w-1 h-2 bg-primary/20"></div>
+                    <div class="w-1 h-2 bg-primary/40"></div>
+                    <div class="w-1 h-2 bg-primary animate-pulse"></div>
+                </div>
+            </div>
+            <div class="relative group">
+                <span class="text-[8px] text-gray-400 font-mono uppercase block mb-1"
+                    x-text="$store.i18n.t('bio_scan')">■
+                    Bio_Metric_Scan</span>
+                <div class="animated w-full aspect-square bg-gray-900 overflow-hidden relative border border-white/5">
+                    <img src="./img/me.jpg" onerror="handleImageError(event)" id="photo"
+                        class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                    <div class="absolute inset-0 pointer-events-none bg-scanlines opacity-20 z-10">
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-l-2 pl-3" style="border-color: var(--color-primary);">
+                <span class="text-[10px] text-gray-500 uppercase font-mono block"
+                    x-text="$store.i18n.t('label_id')">Operator_ID</span>
+                <h2 class="text-xl font-black tracking-tighter uppercase italic text-white">
+                    <span x-text="devStats.name || 'EDD'"></span>
+                </h2>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 bg-white/5 p-3 border border-white/5">
+            <div>
+                <span x-data="{ show: true }" x-effect="
+    show = false;
+    setTimeout(() => show = true, 120);
+  " :class="show ? 'lang-fade' : 'lang-fade lang-hidden'"
+                    class="text-[11px] text-gray-400 uppercase font-mono block mb-1"
+                    x-text="$store.i18n.t('label_role')">■
+                    Main Role</span>
+
+                <p class="text-[14px] text-accent font-mono uppercase tracking-widest truncate font-bold"
+                    x-text="devStats.specialization[$store.i18n.lang]">
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 pt-2 border-t border-white/5">
+                <div>
+                    <span class="text-[11px] text-gray-400 font-mono uppercase block mb-1"
+                        x-text="$store.i18n.t('label_seniority')">■
+                        Seniority</span>
+                    <div class="text-[13px] text-white font-mono uppercase tracking-widest truncate" x-text="tierLabel">
+                    </div>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <span class="text-[11px] text-gray-400 uppercase font-mono block mb-1"
+                        x-text="$store.i18n.t('label_exp')">■
+                        Experience</span>
+
+                    <div class="flex justify-between text-[10px] font-mono mb-1">
+                        <span class="text-primary" x-text="level.years"></span>
+                        <span class="text-gray-400" x-text="$store.i18n.t('unit_years')"></span>
+
+                    </div>
+                    <div class="h-1 bg-black/60 border border-white/5 p-[0.5px] w-full">
+                        <div class="h-full bg-primary shadow-[0_0_8px_var(--color-primary)] transition-all duration-1000"
+                            :style="`width: ${level.percent}%`">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                <span class="text-[11px] text-gray-400 uppercase font-mono" x-text="$store.i18n.t('label_avail')">■
+                    Availability</span>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_5px_#22c55e]"></span>
+                    <p class="text-[11px] text-accent font-mono uppercase font-bold tracking-tighter"
+                        x-text="$store.i18n.t('status_avail')">Available
+                        for hire</p>
+                </div>
+            </div>
+
+            <div class="pt-2">
+                <a href="seu-caminho/curriculo.pdf" @click="$store.sfx.play('click');" download="Curriculo_Janyel_Lima"
+                    class="rpg-button w-full py-4 px-5 flex items-center justify-between group/cv border-accent/30 hover:border-accent bg-accent/5">
+
+                    <div class="flex items-center gap-4">
+                        <div class="relative">
+                            <i data-lucide="file-text"
+                                class="w-5 h-5 text-accent shrink-0 transition-transform group-hover/cv:-translate-y-1"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] tracking-[0.2em] font-black uppercase text-white"
+                                x-text="$store.i18n.t('btn_cv')"></span>
+                            <span class="text-[7px] font-mono text-accent/60 uppercase"
+                                x-text="$store.i18n.t('cv_version')"></span>
+                        </div>
+                    </div>
+                    <i data-lucide="download" class="w-4 h-4 text-accent animate-bounce"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-interactive @mouseenter="$store.sfx.play('hover');" x-data="{ showUnlock: false }"
+    @scroll.window="showUnlock = (window.pageYOffset > 100)" class="my-6 flex justify-center order-2 ">
+    <button x-show="showUnlock" x-transition:enter="transition cubic-bezier(0.175, 0.885, 0.32, 1.275) duration-700"
+        x-transition:enter-start="opacity-0 translate-y-12 scale-50 rotate-12"
+        x-transition:enter-end="opacity-100 translate-y-0 scale-100 rotate-0"
+        @click="startDecrypt(); $store.sfx.play('click');"
+        class="rpg-decriptor-card w-full py-4 px-6 bg-black/60 flex items-center justify-between group border-2 border-primary/60 hover:border-primary bg-primary/5 hover:bg-primary/10 shadow-[0_0_15px_rgba(var(--color-primary-rgb),0.3)] hover:shadow-[0_0_25px_rgba(var(--color-primary-rgb),0.5)] transition-all duration-300">
+
+        <div class="flex items-center gap-4">
+            <div class="relative">
+                <i data-lucide="unlock"
+                    class="w-6 h-6 text-primary shrink-0 transition-transform group-hover:rotate-12 group-hover:scale-110"></i>
+                <div class="absolute inset-0 bg-primary/20 blur-lg animate-pulse"></div>
+            </div>
+
+            <div class="flex flex-col items-start gap-0.5">
+                <span class="text-[14px]"
+                    x-text="$store.i18n.t(unlocked ? 'access_fragment' : 'decrypt_fragment')"></span>
+
+                <span x-text="$store.i18n.t('click_to_decrypt')"
+                    class="text-[8px] font-mono text-primary/70 tracking-[0.3em] uppercase animate-pulse">
+
+                </span>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <span
+                class="hidden sm:block text-[8px] font-mono text-gray-400 group-hover:text-white transition-colors uppercase tracking-widest">
+                [ Secure_Gate ]
+            </span>
+            <i data-lucide="chevron-right" class="w-5 h-5 text-primary animate-pulse"></i>
+        </div>
+
+        <!-- Scanline effect override -->
+        <div
+            class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none">
+        </div>
+    </button>
+
+</div>
+
+<div data-interactive x-show="showFragment" x-transition:enter="transition duration-700 ease-out"
+    x-transition:enter-start="opacity-0 translate-y-6 scale-95"
+    x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+    class="order-3 relative flex bg-black/60 border-primary border border-white/10 group overflow-hidden"
+    style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
+    <button @click="closeFragment(); $store.sfx.play('close');"
+        class="absolute top-2 right-2 text-primary/60 hover:text-primary transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+    <div class="w-1 bg-primary shadow-[2px_0_10px_rgba(var(--color-primary-rgb),0.3)]"></div>
+    <div class="scan-line"></div>
+    <div class="p-4 pr-6">
+        <div class="flex items-center gap-2 mb-3">
+            <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
+
+            <h5 class="text-[13px] font-black uppercase tracking-[0.3em] text-primary"
+                x-text="$store.i18n.t('data_fragment')">
+            </h5>
+        </div>
+
+        <div class="text-[11px] font-mono text-gray-400 uppercase mb-1 tracking-[0.2em]"
+            x-text="$store.i18n.t('transmission_source')">
+        </div>
+
+        <p class="text-[15px] text-gray-300 font-mono leading-snug
+               group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('contact_text')">
+        </p>
+    </div>
+
+    <div class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20" style="clip-path: polygon(100% 0, 100% 100%, 0 100%);">
+    </div>
+</div>
+
+<h2 class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em] mt-8" x-text="$store.i18n.t('title_contact')"
+    x-show="showFragment" x-transition:enter="transition duration-700 ease-out"
+    x-transition:enter-start="opacity-0 translate-y-6 scale-95"
+    x-transition:enter-end="opacity-100 translate-y-0 scale-100">
+    ■ Contact_Me
+</h2>
+
+<div data-interactive @mouseenter="$store.sfx.play('hover');"
+    class="rpg-card bg-black/60 p-6 border-primary/40 relative group/contact" x-show="showFragment"
+    x-transition:enter="transition duration-700 ease-out" x-transition:enter-start="opacity-0 translate-y-6 scale-95"
+    x-transition:enter-end="opacity-100 translate-y-0 scale-100">
+    <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
+        <span class="text-[8px] font-mono text-primary/60 uppercase tracking-[0.2em]"
+            x-text="$store.i18n.t('comm_channel')">Comm_Channel_Alpha</span>
+        <div class="flex gap-1">
+            <div class="w-1 h-2 bg-primary/20"></div>
+            <div class="w-1 h-2 bg-primary/40"></div>
+            <div class="w-1 h-2 bg-primary animate-pulse"></div>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+        <a :href="devStats.social_links.whatsapp" target="_blank"
+            class="rpg-button py-4 px-5 flex items-center justify-between group/btn">
+            <div class="flex items-center gap-4">
+                <i data-lucide="message-circle"
+                    class="w-5 h-5 text-primary shrink-0 transition-transform group-hover/btn:scale-110"></i>
+                <div class="flex flex-col">
+                    <span class="text-[10px] tracking-[0.2em] font-black uppercase">WhatsApp_Link</span>
+                    <span
+                        class="text-[7px] font-mono text-gray-300 lowercase opacity-0 group-hover/btn:opacity-100 transition-opacity tracking-tighter"
+                        x-text="$store.i18n.t('secure_msg')">//
+                        secure_handshake_established</span>
+                </div>
+            </div>
+            <div class="text-[10px] font-mono text-primary opacity-30 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all"
+                x-text="$store.i18n.t('btn_send')">[SEND]</div>
+        </a>
+
+        <a :href="devStats.social_links.email" class="rpg-button py-4 px-5 flex items-center justify-between group/btn">
+            <div class="flex items-center gap-4">
+                <i data-lucide="mail"
+                    class="w-5 h-5 text-primary shrink-0 transition-transform group-hover/btn:scale-110"></i>
+                <div class="flex flex-col">
+                    <span class="text-[10px] tracking-[0.2em] font-black uppercase">Direct_Email</span>
+                    <span
+                        class="text-[7px] font-mono text-gray-300 lowercase opacity-0 group-hover/btn:opacity-100 transition-opacity tracking-tighter"
+                        x-text="$store.i18n.t('request_msg')">//
+                        requesting_data_packet</span>
+                </div>
+            </div>
+            <div class="text-[10px] font-mono text-primary opacity-30 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all"
+                x-text="$store.i18n.t('btn_send')">[SEND]</div>
+        </a>
+    </div>
+</div>
+
+<h2 class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em] mt-8" x-text="$store.i18n.t('title_network')"
+    x-show="showFragment" x-transition:enter="transition duration-700 ease-out"
+    x-transition:enter-start="opacity-0 translate-y-6 scale-95"
+    x-transition:enter-end="opacity-100 translate-y-0 scale-100">
+    ■ Network_Links
+</h2>
+
+<div data-interactive class="rpg-card p-6 bg-black/60" x-show="showFragment"
+    x-transition:enter="transition duration-700 ease-out" x-transition:enter-start="opacity-0 translate-y-6 scale-95"
+    x-transition:enter-end="opacity-100 translate-y-0 scale-100">
+    <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2"
+        @mouseenter="$store.sfx.play('hover');">
+        <span class="text-[8px] font-mono text-primary/60 uppercase tracking-[0.2em]"
+            x-text="$store.i18n.t('social_links')">Social_Network_Links</span>
+        <div class="flex gap-1">
+            <div class="w-1 h-2 bg-primary/20"></div>
+            <div class="w-1 h-2 bg-primary/40"></div>
+            <div class="w-1 h-2 bg-primary animate-pulse"></div>
+        </div>
+    </div>
+    <div class="flex flex-col gap-3">
+        <a target="_blank" :href="devStats.social_links.github"
+            class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[10px]">
+            <i data-lucide="github" class="w-4 h-4 text-primary shrink-0"></i>
+            <span class="tracking-[0.2em]">Github</span>
+        </a>
+        <a target="_blank" :href="devStats.social_links.linkedin"
+            class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[10px]">
+            <i data-lucide="linkedin" class="w-4 h-4 text-primary shrink-0"></i>
+            <span class="tracking-[0.2em]">LinkedIn</span>
+        </a>
+    </div>
+</div>
+
+<div x-data="{ hardOpen: false, softOpen: false }">
+
+    <div @mouseenter="$store.sfx.play('hover');" data-interactive
+        class="order-4 bg-black/60 rpg-card p-5 mb-10 border-primary/40">
+
+        <!-- HEADER -->
+        <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
+            <span class="text-[11px] font-mono text-white uppercase tracking-widest"
+                x-text="$store.i18n.t('skills_title')">
+            </span>
+
+            <div class="flex gap-1">
+                <div class="w-1 h-2 bg-primary/20"></div>
+                <div class="w-1 h-2 bg-primary/40"></div>
+                <div class="w-1 h-2 bg-primary animate-pulse"></div>
+            </div>
+        </div>
+
+        <!-- RANK LEGEND -->
+        <div x-data="{ open: false }" class="mb-4 border-b border-white/5 pb-3">
+
+            <!-- TOGGLE -->
+            <button @click="open = !open;$store.sfx.play('click');" class="flex items-center gap-3 text-[9px] font-mono uppercase tracking-widest
+               text-primary/70 hover:text-primary transition group">
+
+                <span x-text="$store.i18n.t('rank_legend')"></span>
+
+                <span class="text-[10px] transition-all duration-300 text-primary/60
+                   group-hover:text-primary" :class="open
+                ? 'rotate-90 drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]'
+                : ''">
+                    ▶
+                </span>
+            </button>
+
+            <!-- CONTENT -->
+            <div x-show="open" x-collapse class="mt-4 space-y-2 text-[9px] font-mono uppercase tracking-widest">
+
+                <!-- S -->
+                <div class="flex items-center justify-between border-b border-white/5 pb-1">
+                    <span class="text-primary font-black italic tracking-wider
+                         drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
+                        S
+                    </span>
+                    <span class="text-white/80" x-text="$store.i18n.t('rank_s')"></span>
+                </div>
+
+                <!-- A -->
+                <div class="flex items-center justify-between border-b border-white/5 pb-1">
+                    <span class="text-primary font-black italic tracking-wider">
+                        A
+                    </span>
+                    <span class="text-white/70" x-text="$store.i18n.t('rank_a')"></span>
+                </div>
+
+                <!-- B -->
+                <div class="flex items-center justify-between border-b border-white/5 pb-1">
+                    <span class="text-primary/90 font-black italic tracking-wider">
+                        B
+                    </span>
+                    <span class="text-white/65" x-text="$store.i18n.t('rank_b')"></span>
+                </div>
+
+                <!-- C -->
+                <div class="flex items-center justify-between border-b border-white/5 pb-1">
+                    <span class="text-primary/80 font-black italic tracking-wider">
+                        C
+                    </span>
+                    <span class="text-white/55" x-text="$store.i18n.t('rank_c')"></span>
+                </div>
+
+                <!-- D -->
+                <div class="flex items-center justify-between">
+                    <span class="text-primary/70 font-black italic tracking-wider">
+                        D
+                    </span>
+                    <span class="text-white/45" x-text="$store.i18n.t('rank_d')"></span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- HARD SKILLS -->
+        <!-- SKILLS PANEL -->
+        <div class="relative space-y-6">
+
+            <!-- HARD SKILLS -->
+            <section class="relative">
+
+                <!-- HEADER -->
+                <button @click="hardOpen = !hardOpen;$store.sfx.play('click');"
+                    class="group relative w-full text-left overflow-hidden">
+
+                    <!-- CHANNEL -->
+                    <span class="absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300" :class="hardOpen
+            ? 'opacity-100 shadow-[0_0_12px_rgba(var(--color-primary-rgb),1)]'
+            : 'opacity-30'">
+                    </span>
+
+                    <div class="relative flex items-center gap-3 px-4 py-3
+               bg-black/50 border border-white/5
+               hover:border-primary/40 transition
+               min-w-0">
+
+                        <!-- ICON -->
+                        <i data-lucide="cpu" class="w-5 h-5 text-primary shrink-0 transition-all duration-300" :class="hardOpen
+                ? 'scale-110 drop-shadow-[0_0_8px_rgba(var(--color-primary-rgb),1)]'
+                : 'opacity-70'">
+                        </i>
+
+                        <!-- TEXT -->
+                        <div class="flex-1 min-w-0">
+                            <p class="text-[11px] font-mono uppercase tracking-[0.25em] truncate"
+                                :class="hardOpen ? 'text-primary' : 'text-primary/70'"
+                                x-text="$store.i18n.t('hard_skills')">
+                            </p>
+                            <p class="text-[9px] font-mono text-white/40 truncate">
+                                SYSTEM_MODULES
+                            </p>
+                        </div>
+
+                        <!-- STATUS -->
+                        <span class="text-[10px] font-mono tracking-widest shrink-0"
+                            :class="hardOpen ? 'text-primary' : 'text-white/40'">
+                            [ <span x-text="hardOpen ? 'ON' : 'OFF'"></span> ]
+                        </span>
+
+                        <!-- CHEVRON (LUCIDE) -->
+                        <i data-lucide="chevron-right"
+                            class="w-4 h-4 text-primary shrink-0 transition-transform duration-300" :class="hardOpen
+                ? 'rotate-90 drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]'
+                : 'opacity-60'">
+                        </i>
+                    </div>
+                </button>
+
+
+
+
+                <!-- CONTENT -->
+                <div x-show="hardOpen" x-collapse>
+                    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <template x-for="(data, skill) in skillLevels.hard" :key="skill">
+                            <div class="relative flex items-center gap-3 px-3 py-2
+           bg-black/35 border border-white/5
+           hover:border-primary/40 transition">
+
+                                <!-- SCAN LINE -->
+                                <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
+
+                                <!-- ICON -->
+                                <template x-if="skillIcons[data.label]?.type === 'devicon'">
+                                    <i :class="skillIcons[data.label].icon" class="text-primary text-[18px] shrink-0">
+                                    </i>
+                                </template>
+
+                                <!-- LABEL -->
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-[9px] font-mono uppercase tracking-widest text-white truncate">
+                                        <span x-text="$store.i18n.t(`skills.${data.label}`)"></span>
+                                    </p>
+                                </div>
+
+                                <!-- LEVEL -->
+                                <span class="text-xl animate-pulse font-black italic text-primary">
+                                    <span x-text="data.level"></span>
+                                </span>
+                            </div>
+                        </template>
+
+
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- SOFT SKILLS -->
+            <section class="relative">
+
+                <!-- HEADER -->
+                <button @click="softOpen = !softOpen; $store.sfx.play('click');"
+                    class="group relative w-full text-left overflow-hidden">
+
+                    <!-- CHANNEL -->
+                    <span class="absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300" :class="softOpen
+                ? 'opacity-100 shadow-[0_0_12px_rgba(var(--color-primary-rgb),1)]'
+                : 'opacity-30'">
+                    </span>
+
+                    <div class="relative flex items-center gap-3 px-4 py-3
+                   bg-black/50 border border-white/5
+                   hover:border-primary/40 transition
+                   min-w-0">
+
+                        <!-- ICON -->
+                        <i data-lucide="brain" class="w-5 h-5 text-primary shrink-0 transition-all duration-300" :class="softOpen
+                    ? 'scale-110 drop-shadow-[0_0_8px_rgba(var(--color-primary-rgb),1)]'
+                    : 'opacity-70'">
+                        </i>
+
+                        <!-- TEXT -->
+                        <div class="flex-1 min-w-0">
+                            <p class="text-[11px] font-mono uppercase tracking-[0.25em] truncate"
+                                :class="softOpen ? 'text-primary' : 'text-primary/70'"
+                                x-text="$store.i18n.t('soft_skills')">
+                            </p>
+                            <p class="text-[9px] font-mono text-white/40 truncate">
+                                NEURAL_TRAITS
+                            </p>
+                        </div>
+
+                        <!-- STATUS -->
+                        <span class="text-[10px] font-mono tracking-widest shrink-0"
+                            :class="softOpen ? 'text-primary' : 'text-white/40'">
+                            [ <span x-text="softOpen ? 'ON' : 'OFF'"></span> ]
+                        </span>
+
+                        <!-- CHEVRON -->
+                        <i data-lucide="chevron-right"
+                            class="w-4 h-4 text-primary shrink-0 transition-transform duration-300" :class="softOpen
+                    ? 'rotate-90 drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]'
+                    : 'opacity-60'">
+                        </i>
+                    </div>
+                </button>
+
+                <!-- CONTENT -->
+                <div x-show="softOpen" x-collapse>
+                    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+                        <template x-for="(data, skill) in skillLevels.soft" :key="skill">
+
+                            <div class="relative flex items-center gap-3 px-3 py-2
+                           bg-black/35 border border-white/5
+                           hover:border-primary/40 transition">
+
+                                <!-- SCAN LINE (IGUAL AO HARD) -->
+                                <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
+
+                                <!-- ICON (GENÉRICO SOFT SKILL) -->
+
+
+                                <template x-if="skillIcons[data.label]?.type === 'lucide'">
+                                    <i :data-lucide="skillIcons[data.label].icon"
+                                        class="w-5 h-5 text-primary shrink-0 transition-all duration-300">
+                                    </i>
+                                </template>
+
+                                <!-- LABEL -->
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-[9px] font-mono uppercase tracking-widest text-white truncate">
+                                        <span x-text="$store.i18n.t(`skills.${data.label}`)"></span>
+                                    </p>
+                                </div>
+
+                                <!-- LEVEL -->
+                                <span class="text-xl animate-pulse font-black italic text-primary">
+                                    <span x-text="data.level"></span>
+                                </span>
+                            </div>
+
+                        </template>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+
+    </div>
+
+    <div data-interactive x-show="hardOpen"
+        class="order-3 relative flex bg-black/60 mb-10 border-primary border border-white/10 group overflow-hidden"
+        style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
+
+
+
+        <div class="w-1 bg-primary shadow-[2px_0_10px_rgba(var(--color-primary-rgb),0.3)]"></div>
+        <div class="scan-line"></div>
+
+        <div class="p-4 pr-6 w-full">
+
+            <!-- HEADER -->
+            <div class="flex items-center gap-2 mb-3">
+                <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
+
+                <h5 class="text-[13px] font-black uppercase tracking-[0.3em] text-primary">
+                    SKILL_MATRIX
+                </h5>
+            </div>
+
+            <!-- CHART CONTAINER (IMPORTANTE) -->
+            <div
+  x-data="{
+    rows: Object.keys(skillLevels.hard).length,
+    rowHeight: 18,
+    padding: 32
+  }"
+  x-init="$nextTick(initHardSkillsChart)"
+  :style="`height: ${rows * rowHeight + padding}px`"
+  class="relative w-full"
+>
+  <canvas id="hardSkillsChart"></canvas>
+</div>
+
+        </div>
+
+        <div class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20"
+            style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"></div>
+    </div>
+
+
+
+    <div data-interactive x-show="softOpen"
+        class="order-3 relative flex bg-black/60 border-primary border border-white/10 group overflow-hidden"
+        style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
+
+
+
+        <div class="w-1 bg-primary shadow-[2px_0_10px_rgba(var(--color-primary-rgb),0.3)]"></div>
+        <div class="scan-line"></div>
+
+        <div class="p-4 pr-6 w-full">
+
+            <!-- HEADER -->
+            <div class="flex items-center gap-2 mb-3">
+                <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
+
+                <h5 class="text-[13px] font-black uppercase tracking-[0.3em] text-primary">
+                    SKILL_MATRIX
+                </h5>
+            </div>
+
+            <!-- CHART CONTAINER (IMPORTANTE) -->
+            <div x-data x-init="$nextTick(initSoftSkillsChart)" class="relative w-full h-[240px]">
+                <canvas id="softSkillsChart"></canvas>
+            </div>
+
+        </div>
+
+        <div class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20"
+            style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"></div>
+    </div>
+
+</div>

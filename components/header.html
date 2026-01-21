@@ -1,0 +1,75 @@
+<div class="flex items-center gap-4">
+    <div id="header-logo-container" class="w-14 h-14 md:w-16 md:h-16 group shrink-0 flex items-center justify-center">
+        <img src="img/core.png" onerror="handleImageError(event)" alt="Core Logo"
+            class="core-glow w-full h-full object-contain transition-transform duration-500">
+    </div>
+
+    <div class="hidden sm:flex flex-col justify-center gap-1">
+        <h1 class="text-[10px] font-mono tracking-[0.4em] uppercase font-black">
+            // CORE_WORKS
+        </h1>
+        <p class="text-[8px] font-mono text-primary/60 tracking-[0.2em] uppercase">
+            <span x-text="$store.i18n.t('status_text')">Status:
+                Operating_Normal</span>
+        </p>
+    </div>
+</div>
+
+<div class="flex-1 max-w-xs mx-4 md:mx-8 relative group">
+    <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+        <i data-lucide="search" class="w-3 h-3 text-primary/50"></i>
+    </div>
+    <input type="text" :placeholder="$store.i18n.t('search_placeholder')" class="w-full bg-black/40 border border-white/10 px-9 py-2 text-[10px]
+               font-mono uppercase tracking-widest focus:outline-none focus:border-primary/50">
+</div>
+
+<div class="flex items-center gap-4 md:gap-6">
+
+    <!-- REALM SHIFT -->
+    <div x-data="{ showHint: false }" class="relative" @mousedown="showHint = true" @mouseup="showHint = false"
+        @mouseleave="showHint = false" @touchstart="showHint = true" @touchend="showHint = false">
+        <button onclick="toggleTheme()" class="rpg-button px-3 md:px-6 py-1.5 bg-black/60
+             flex items-center gap-2
+             text-[10px] font-bold border border-primary uppercase">
+
+            <i data-lucide="moon-star" class="w-4 h-4 text-primary"></i>
+
+            <!-- texto desktop -->
+            <span class="hidden md:inline" x-text="$store.i18n.t('btn_theme')">
+            </span>
+        </button>
+
+        <!-- legenda mobile (i18n) -->
+        <div x-show="showHint" x-transition class="absolute -bottom-7 left-1/2 -translate-x-1/2
+             text-[8px] font-mono uppercase tracking-widest
+             text-white/90 bg-black/80 px-2 py-0.5
+             border border-white/10 backdrop-blur
+             pointer-events-none" x-text="$store.i18n.t('btn_theme')">
+        </div>
+    </div>
+
+    <!-- LANGUAGE -->
+    <div x-data="{ showHint: false }" class="relative" @mousedown="showHint = true" @mouseup="showHint = false"
+        @mouseleave="showHint = false" @touchstart="showHint = true" @touchend="showHint = false">
+        <button @click="$store.i18n.toggle()" class="rpg-button px-3 py-1.5 bg-black/60
+             flex items-center gap-2
+             border border-accent/40">
+
+            <i data-lucide="languages" class="w-4 h-4 text-accent"></i>
+
+            <!-- texto desktop -->
+            <span class="hidden md:inline text-[9px] font-bold tracking-widest uppercase"
+                x-text="$store.i18n.t('language')">
+            </span>
+        </button>
+
+        <!-- legenda mobile (i18n) -->
+        <div x-show="showHint" x-transition class="absolute -bottom-7 left-1/2 -translate-x-1/2
+             text-[8px] font-mono uppercase tracking-widest
+             text-white/90 bg-black/80 px-2 py-0.5
+             border border-white/10 backdrop-blur
+             pointer-events-none" x-text="$store.i18n.t('language')">
+        </div>
+    </div>
+
+</div>

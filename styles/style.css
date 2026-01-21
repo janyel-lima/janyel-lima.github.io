@@ -515,6 +515,10 @@ body > *:not(#fx-layer) {
   pointer-events: auto;
 }
 
+[data-non-interactive] {
+  pointer-events: none;
+}
+
 
 .cert-title {
   font-size: 11px;
@@ -580,4 +584,29 @@ body > *:not(#fx-layer) {
 .icon-primary:hover {
   color: var(--color-primary);
   text-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.6);
+}
+
+/* Cyber thin scrollbar – horizontal */
+.scrollbar-thin-cyber {
+  scrollbar-width: thin;                 /* Firefox */
+  scrollbar-color: rgba(0,255,255,.4) transparent;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+.scrollbar-thin-cyber::-webkit-scrollbar {
+  height: 4px;                            /* <<< espessura */
+}
+
+.scrollbar-thin-cyber::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin-cyber::-webkit-scrollbar-thumb {
+  background: rgba(0,255,255,0.35);
+  border-radius: 999px;
+  box-shadow: 0 0 6px rgba(0,255,255,0.6);
+}
+
+.scrollbar-thin-cyber::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,255,255,0.6);
 }

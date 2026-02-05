@@ -78,6 +78,8 @@ const i18n = {
 
         provider_rocketseat: 'Ministrado por: Rocketseat',
         provider_bootcamp: 'Ministrado por: Bootcamp',
+        soft_title: "Perfil Tático de Competências Comportamentais",
+        hard_title: "Loadout Técnico Principal",
         skills: {
   // HARD
   skill_js: 'JavaScript',
@@ -162,6 +164,8 @@ const i18n = {
         dev_data: "Requested_Developer_Data",
         social_links: "Requested_Social_Links",
         project_data: "Requested_Project_Data",
+        soft_title: "Soft Skills Tactical Profile",
+        hard_title: "Primary Technical Loadout",
         period: "Period_Log",
         deploy: "// DEPLOYED_AT:",
         skills_used: "Skills_Used",

@@ -101,14 +101,36 @@ const devStats = {
     },
     history: [
         {
-            id: "tech-forge-senior-fullstack-2024",
-            company: "Tech Forge Solutions",
-            role: { "en": "Senior Fullstack Dev", "pt-br": "Dev Fullstack Sênior" },
-            period: { "en": "2024 - Present", "pt-br": "2024 - Presente" },
+            id: "fullstack-developer-2023",
+            company: "Self Employed",
+            role: { "en": "Fullstack Developer", "pt-br": "Desenvolvedor Fullstack" },
+            period: { "en": "2023 - Presente", "pt-br": "2023 - Presente" },
             description: {
                 "en": "Leadership of tactical development operations and microservices architecture in high-load environments.",
                 "pt-br": "Liderança de operações táticas de desenvolvimento e arquitetura de microserviços em ambientes de alta carga."
             },
+            skills: [
+                { key: "skill_powerbi", type: "devicon" },
+                { key: "skill_excel", type: "devicon" },
+                { key: "skill_bpmn", type: "devicon" },
+                { key: "skill_java", type: "devicon" },
+                { key: "skill_spring", type: "devicon" },
+                { key: "skill_pg", type: "devicon" },
+                { key: "skill_jsf", type: "devicon" },
+                { key: "skill_php", type: "devicon" },
+                { key: "skill_qgis", type: "devicon" }
+            ]
+        },
+        {
+            id: "vale-verde-process-system-analyst-2022",
+            company: "Tech Forge Solutions",
+            role: { "en": "Junior Process and System Analyst", "pt-br": "Analista de Processos e Sistemas Junior" },
+            period: { "en": "2021 - 2022", "pt-br": "2021 - 2023" },
+            description: {
+            "pt-br": "Sistemas corporativos de alta performance:\n- Desenvolvimento e deploy de BPMN engines (Camunda, Spring, PrimeFaces, Java 11)\n- Criação de APIs RESTful\n- Orquestração de containers Docker\n- Gestão de PostgreSQL e configuração de Linux Server na AWS\n\nInteligência de dados e relatórios:\n- Dashboards e relatórios avançados com JasperReports, Excel e Power BI\n- Domínio de Power Query, DAX, M e PowerPivot\n\nMetodologias ágeis: SCRUM/Kanban com Asana\nEntrega de sistemas robustos, escaláveis e orientados a resultados.",
+  
+            "en": "High-performance corporate systems:\n- Development and deployment of BPMN engines (Camunda, Spring, PrimeFaces, Java 11)\n- Building RESTful APIs\n- Orchestrating Docker containers\n- Managing PostgreSQL and configuring Linux servers on AWS\n\nData intelligence & reporting:\n- Advanced dashboards and reports with JasperReports, Excel, and Power BI\n- Mastering Power Query, DAX, M, and PowerPivot\n\nAgile work: SCRUM/Kanban using Asana\nDelivering robust, scalable, results-driven systems."
+                },
             skills: [
                 { key: "skill_powerbi", type: "devicon" },
                 { key: "skill_excel", type: "devicon" },
@@ -127,8 +149,8 @@ const devStats = {
             role: { "en": "IT Assistant", "pt-br": "Assistente de TI" },
             period: { "en": "2021 - 2021", "pt-br": "2021 - 2021" },
             description: {
-                "en": "During the operational training cycle, I executed administrative support routines, management and organization of critical files, and the construction of tactical data dashboards using Microsoft Power BI.",
-                "pt-br": "Durante o período de treinamento operacional, executei rotinas administrativas de suporte, gerenciamento e organização de arquivos críticos, além da construção de painéis táticos de dados utilizando Microsoft Power BI."
+                "en": "During my tenure, I developed and maintained internal systems to meet corporate needs using Java, Spring Framework, and JSF. I took full ownership of a performance evaluation system, delivering it from development to successful deployment and use, inside the SIGMIN project.",
+                "pt-br": "Durante minha atuação, desenvolvi e mantive sistemas internos para atender demandas corporativas usando Java, Spring Framework e JSF. Assumi o desenvolvimento completo de um sistema de avaliação de desempenho, desde a implementação até a entrega e uso efetivo, dentro do projeto SIGMIN."
             },
             skills: [
                 { key: "skill_java", type: "devicon" },

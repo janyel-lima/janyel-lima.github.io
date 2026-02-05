@@ -453,187 +453,176 @@
 
 <div id="exp" x-data="{ devStats }">
 
-  <h2 x-text="$store.i18n.t('title_exp')"
-      class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em]">
-    ■ Work_Experience_Timeline
-  </h2>
+    <h2 x-text="$store.i18n.t('title_exp')" class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em]">
+        ■ Work_Experience_Timeline
+    </h2>
 
-  <div id="experience-timeline"  class="space-y-0">
+    <div id="experience-timeline" class="space-y-0">
 
-    <template x-for="(job, index) in devStats.history"
-          :key="job.company + '-' + job.period.en">
+        <template x-for="(job, index) in devStats.history" :key="job.company + '-' + job.period.en">
 
-  <div  class="relative pl-10 border-l-2 border-primary/20 pb-12 last:pb-0">
+            <div class="relative pl-10 border-l-2 border-primary/20 pb-12 last:pb-0">
 
-    <!-- VERTICAL LINE (CENTERED ON NODE) -->
-   <!-- TIMELINE AXIS -->
-<span
-  class="absolute left-[40px] top-0 bottom-0 w-[2px]
+                <!-- VERTICAL LINE (CENTERED ON NODE) -->
+                <!-- TIMELINE AXIS -->
+                <span class="absolute left-[40px] top-0 bottom-0 w-[2px]
          bg-primary/30">
-</span>
-    <div data-interactive>
-    <!-- YEAR LABEL -->
-    <div data-non-interactive
-      class="absolute left-[40px] -top-2 -translate-x-1/2
+                </span>
+                <div data-interactive>
+                    <!-- YEAR LABEL -->
+                    <div data-non-interactive class="absolute left-[40px] -top-2 -translate-x-1/2
              text-[12px] font-mono tracking-widest uppercase
              text-white  px-2">
-      <span x-text="job.period[$store.i18n.lang].split(' ')[0]"></span>
-    </div>
+                        <span x-text="job.period[$store.i18n.lang].split(' ')[0]"></span>
+                    </div>
 
-    <!-- NODE -->
-        <div data-non-interactive
-          class="absolute -left-[9px] top-1 w-4 h-4 bg-main border-2 border-primary
+                    <!-- NODE -->
+                    <div data-non-interactive class="absolute -left-[9px] top-1 w-4 h-4 bg-main border-2 border-primary
                  shadow-[0_0_10px_var(--color-primary)] rotate-45 flex items-center justify-center">
-          <div class="w-1 h-1 bg-primary animate-pulse"></div>
-        </div>
+                        <div class="w-1 h-1 bg-primary animate-pulse"></div>
+                    </div>
 
-    <!-- CARD -->
-    <div
-  class="rpg-card relative ml-10
+                    <!-- CARD -->
+                    <div class="rpg-card relative ml-10
          bg-black/65 border border-white/5
          hover:border-primary/40
          transition-all duration-300
          hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.15)]
          overflow-hidden">
 
-  <!-- TOP ENERGY LINE -->
-  <div
-    class="absolute inset-x-0 top-0 h-[2px]
+                        <!-- TOP ENERGY LINE -->
+                        <div class="absolute inset-x-0 top-0 h-[2px]
            bg-gradient-to-r from-transparent via-primary to-transparent">
-  </div>
+                        </div>
 
-  <!-- HEADER -->
-  <div class="p-4 flex justify-between items-start bg-primary/5">
+                        <!-- HEADER -->
+                        <div class="p-4 flex justify-between items-start bg-primary/5">
 
-    <!-- LEFT -->
-    <div class="space-y-1">
-      <h3
-        class="font-black text-white uppercase tracking-tight text-[13px]"
-        x-text="job.role[$store.i18n.lang]">
-      </h3>
+                            <!-- LEFT -->
+                            <div class="space-y-1">
+                                <h3 class="font-black text-white uppercase tracking-tight text-[13px]"
+                                    x-text="job.role[$store.i18n.lang]">
+                                </h3>
 
-      <p
-        class="text-[9px] font-mono uppercase tracking-[0.25em] text-primary">
-        <span x-text="$store.i18n.t('deploy')"></span>
-        <span class="mx-1 text-primary/40">/</span>
-        <span x-text="job.company"></span>
-      </p>
-    </div>
+                                <p class="text-[9px] font-mono uppercase tracking-[0.25em] text-primary">
+                                    <span x-text="$store.i18n.t('deploy')"></span>
+                                    <span class="mx-1 text-primary/40">/</span>
+                                    <span x-text="job.company"></span>
+                                </p>
+                            </div>
 
-    <!-- RIGHT -->
-    <div class="text-right leading-tight">
-      <p
-        x-text="$store.i18n.t('period')"
-        class="text-[8px] font-mono uppercase tracking-widest text-white/40 mb-1">
-      </p>
+                            <!-- RIGHT -->
+                            <div class="text-right leading-tight">
+                                <p x-text="$store.i18n.t('period')"
+                                    class="text-[8px] font-mono uppercase tracking-widest text-white/40 mb-1">
+                                </p>
 
-      <p
-        class="text-[10px] font-mono text-white bg-white/5 px-2 py-0.5 inline-block">
-        <span x-text="job.period[$store.i18n.lang]"></span>
-      </p>
-    </div>
+                                <p class="text-[10px] font-mono text-white bg-white/5 px-2 py-0.5 inline-block">
+                                    <span x-text="job.period[$store.i18n.lang]"></span>
+                                </p>
+                            </div>
 
-  </div>
+                        </div>
 
-  <!-- BODY -->
-  <div class="p-4 space-y-5">
+                        <!-- BODY -->
+                        <div class="p-4 space-y-5">
 
-    <!-- SYSTEM LOG -->
-    <div
-      class="font-mono text-[11px] text-gray-300 leading-relaxed
-             border-l border-primary/20 pl-3">
+                            <!-- SYSTEM LOG -->
+                            <div class="
+        font-mono
+        text-[11px]
+        text-gray-300
+        leading-relaxed
+        border-l
+        border-primary/20
+        pl-3
+    ">
+                                <p x-text="job.description[$store.i18n.lang]" class="
+            mb-2
+            whitespace-pre-line
+        ">
+                                    <!-- O texto do job.description será renderizado aqui -->
+                                </p>
+                            </div>
 
-      <p x-text="job.description[$store.i18n.lang]"></p>
-    </div>
 
-    <!-- SKILLS SUBSYSTEM -->
-    <details
-      class="group/details"
-      x-data="{ expanded: false }"
-      @toggle="expanded = $el.open">
 
-      <summary class="list-none cursor-pointer select-none">
+                            <!-- SKILLS SUBSYSTEM -->
+                            <details class="group/details" x-data="{ expanded: false }" @toggle="expanded = $el.open">
 
-        <div
-          class="flex items-center gap-3 px-3 py-2
+                                <summary class="list-none cursor-pointer select-none">
+
+                                    <div class="flex items-center gap-3 px-3 py-2
                  bg-black/50 border border-white/5
                  hover:border-primary/40 transition">
 
-          <i
-            data-lucide="layers"
-            class="w-4 h-4 text-primary transition
+                                        <i data-lucide="layers" class="w-4 h-4 text-primary transition
                    group-open/details:scale-110
                    group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
-          </i>
+                                        </i>
 
-          <p
-            class="text-[9px] font-mono uppercase tracking-[0.35em]
+                                        <p class="text-[9px] font-mono uppercase tracking-[0.35em]
                    text-primary/70 group-open/details:text-primary">
-            <span x-text="$store.i18n.t('skills_used')"></span>
-          </p>
+                                            <span x-text="$store.i18n.t('skills_used')"></span>
+                                        </p>
 
-          <span
-            class="ml-auto text-[9px] font-mono tracking-widest"
-            :class="expanded ? 'text-primary' : 'text-white/40'">
-            [ <span x-show="!expanded">OFF</span><span x-show="expanded">ON</span> ]
-          </span>
+                                        <span class="ml-auto text-[9px] font-mono tracking-widest"
+                                            :class="expanded ? 'text-primary' : 'text-white/40'">
+                                            [ <span x-show="!expanded">OFF</span><span x-show="expanded">ON</span> ]
+                                        </span>
 
-        </div>
-      </summary>
+                                    </div>
+                                </summary>
 
-      <!-- HORIZONTAL SKILL BUS -->
-      <div class="scrollbar-thin-cyber relative overflow-x-auto py-3">
+                                <!-- HORIZONTAL SKILL BUS -->
+                                <div class="scrollbar-thin-cyber relative overflow-x-auto py-3">
 
-        <span class="absolute left-0 right-0 top-0 h-px bg-primary/20"></span>
+                                    <span class="absolute left-0 right-0 top-0 h-px bg-primary/20"></span>
 
-        <div class="flex gap-3 min-w-max px-2 pt-3">
+                                    <div class="flex gap-3 min-w-max px-2 pt-3">
 
-          <template x-for="s in job.skills" :key="s.key">
+                                        <template x-for="s in job.skills" :key="s.key">
 
-            <div
-              class="relative flex items-center gap-2 px-3 py-2
+                                            <div class="relative flex items-center gap-2 px-3 py-2
                      bg-black/40 border border-white/5
                      hover:border-primary/40 transition">
 
-              <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
+                                                <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
 
-              <template x-if="s.type === 'devicon' && skillIcons[s.key]">
-                <i
-                  :class="skillIcons[s.key].icon"
-                  class="text-primary text-[15px] shrink-0">
-                </i>
-              </template>
+                                                <template x-if="s.type === 'devicon' && skillIcons[s.key]">
+                                                    <i :class="skillIcons[s.key].icon"
+                                                        class="text-primary text-[15px] shrink-0">
+                                                    </i>
+                                                </template>
 
-              <p
-                class="text-[9px] font-mono uppercase tracking-widest
+                                                <p class="text-[9px] font-mono uppercase tracking-widest
                        text-white/90 truncate">
-                <span x-text="resolveSkill(s.key).label"></span>
-              </p>
+                                                    <span x-text="resolveSkill(s.key).label"></span>
+                                                </p>
 
-              <span
-                class="w-1 h-4 bg-primary
+                                                <span class="w-1 h-4 bg-primary
                        shadow-[0_0_6px_var(--color-primary)]
                        animate-pulse">
-              </span>
+                                                </span>
 
+                                            </div>
+
+                                        </template>
+
+                                    </div>
+                                </div>
+
+                            </details>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
+        </template>
 
-          </template>
-
-        </div>
-      </div>
-
-    </details>
-
-  </div>
-</div>
 
     </div>
-  </div>
-</template>
-
-
-  </div>
 </div>
 
 

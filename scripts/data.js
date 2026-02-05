@@ -206,7 +206,7 @@ const myData = {
                 "en": "Integrated management system for mining operations, designed to unify multidisciplinary data collection through a tailored multimodular architecture, ensuring operational transparency, rapid adaptability to internal client requirements, system scalability, and critical real-time decision support.",
                 "pt-br": "Sistema integrado de gestão para operações de mineração, projetado para unificar a coleta de dados multidisciplinares por meio de uma arquitetura multimodular sob medida, garantindo transparência operacional, adaptação rápida às demandas do cliente interno, escalabilidade do sistema e suporte crítico à tomada de decisão em tempo real."
             },
-            images: ["img/sig-team.jpg"],
+            images: ["img/sigmin.png","img/sig-team.jpg"],
             team: [
                 {
                     name: "Deyvson Santos",

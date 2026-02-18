@@ -97,93 +97,164 @@ const devStats = {
         github: "https://github.com/janyel-lima",
         linkedin: "https://www.linkedin.com/in/janyel-lima/",
         email: "mailto:janyel.lima2809@outlook.com",
-        whatsapp: "https://wa.me/5582999712833"
+        whatsapp: "https://wa.me/5582999712833?text=Ol%C3%A1%2C%20Janyel%21%20Vim%20atrav%C3%A9s%20do%20seu%20portf%C3%B3lio%2C%20gostaria%20de%20agendar%20uma%20conversa%21%20Creio%20ter%20um%20desafio%20para%20voc%C3%AA%21"
     },
-    history: [
-        {
-            id: "fullstack-developer-2023",
-            company: "Self Employed",
-            role: { "en": "Fullstack Developer", "pt-br": "Desenvolvedor Fullstack" },
-            period: { "en": "2023 - Presente", "pt-br": "2023 - Presente" },
-            description: {
-                "en": "Leadership of tactical development operations and microservices architecture in high-load environments.",
-                "pt-br": "Liderança de operações táticas de desenvolvimento e arquitetura de microserviços em ambientes de alta carga."
-            },
-            skills: [
-                { key: "skill_powerbi", type: "devicon" },
-                { key: "skill_excel", type: "devicon" },
-                { key: "skill_bpmn", type: "devicon" },
-                { key: "skill_java", type: "devicon" },
-                { key: "skill_spring", type: "devicon" },
-                { key: "skill_pg", type: "devicon" },
-                { key: "skill_jsf", type: "devicon" },
-                { key: "skill_php", type: "devicon" },
-                { key: "skill_qgis", type: "devicon" }
-            ]
-        },
-        {
-            id: "vale-verde-process-system-analyst-2022",
-            company: "Tech Forge Solutions",
-            role: { "en": "Junior Process and System Analyst", "pt-br": "Analista de Processos e Sistemas Junior" },
-            period: { "en": "2021 - 2022", "pt-br": "2021 - 2023" },
-            description: {
-            "pt-br": "Sistemas corporativos de alta performance:\n- Desenvolvimento e deploy de BPMN engines (Camunda, Spring, PrimeFaces, Java 11)\n- Criação de APIs RESTful\n- Orquestração de containers Docker\n- Gestão de PostgreSQL e configuração de Linux Server na AWS\n\nInteligência de dados e relatórios:\n- Dashboards e relatórios avançados com JasperReports, Excel e Power BI\n- Domínio de Power Query, DAX, M e PowerPivot\n\nMetodologias ágeis: SCRUM/Kanban com Asana\nEntrega de sistemas robustos, escaláveis e orientados a resultados.",
-  
-            "en": "High-performance corporate systems:\n- Development and deployment of BPMN engines (Camunda, Spring, PrimeFaces, Java 11)\n- Building RESTful APIs\n- Orchestrating Docker containers\n- Managing PostgreSQL and configuring Linux servers on AWS\n\nData intelligence & reporting:\n- Advanced dashboards and reports with JasperReports, Excel, and Power BI\n- Mastering Power Query, DAX, M, and PowerPivot\n\nAgile work: SCRUM/Kanban using Asana\nDelivering robust, scalable, results-driven systems."
-                },
-            skills: [
-                { key: "skill_powerbi", type: "devicon" },
-                { key: "skill_excel", type: "devicon" },
-                { key: "skill_bpmn", type: "devicon" },
-                { key: "skill_java", type: "devicon" },
-                { key: "skill_spring", type: "devicon" },
-                { key: "skill_pg", type: "devicon" },
-                { key: "skill_jsf", type: "devicon" },
-                { key: "skill_php", type: "devicon" },
-                { key: "skill_qgis", type: "devicon" }
-            ]
-        },
-        {
-            id: "vale-verde-it-assistant-2021",
-            company: "Mineração Vale Verde",
-            role: { "en": "IT Assistant", "pt-br": "Assistente de TI" },
-            period: { "en": "2021 - 2021", "pt-br": "2021 - 2021" },
-            description: {
-                "en": "During my tenure, I developed and maintained internal systems to meet corporate needs using Java, Spring Framework, and JSF. I took full ownership of a performance evaluation system, delivering it from development to successful deployment and use, inside the SIGMIN project.",
-                "pt-br": "Durante minha atuação, desenvolvi e mantive sistemas internos para atender demandas corporativas usando Java, Spring Framework e JSF. Assumi o desenvolvimento completo de um sistema de avaliação de desempenho, desde a implementação até a entrega e uso efetivo, dentro do projeto SIGMIN."
-            },
-            skills: [
-                { key: "skill_java", type: "devicon" },
-                { key: "skill_jsf", type: "devicon" },
-                { key: "skill_spring", type: "devicon" },
-                { key: "skill_pg", type: "devicon" },
-                { key: "skill_docker", type: "devicon" },
-                { key: "skill_aws", type: "devicon" },
-                { key: "skill_js", type: "devicon" },
-                { key: "skill_php", type: "devicon" }
-            ]
-        },
-        {
-            id: "vale-verde-apprentice-2019-2021",
-            company: "Mineração Vale Verde",
-            role: { "en": "Apprentice", "pt-br": "Jovem Aprendiz" },
-            period: { "en": "2019 - 2021", "pt-br": "2019 - 2021" },
-            description: {
-                "en": "During the operational training cycle, I executed administrative support routines, management and organization of critical files, and the construction of tactical data dashboards using Microsoft Power BI.",
-                "pt-br": "Durante o período de treinamento operacional, executei rotinas administrativas de suporte, gerenciamento e organização de arquivos críticos, além da construção de painéis táticos de dados utilizando Microsoft Power BI."
-            },
-            skills: [
-                { key: "skill_java", type: "devicon" },
-                { key: "skill_jsf", type: "devicon" },
-                { key: "skill_spring", type: "devicon" },
-                { key: "skill_pg", type: "devicon" },
-                { key: "skill_docker", type: "devicon" },
-                { key: "skill_aws", type: "devicon" },
-                { key: "skill_js", type: "devicon" },
-                { key: "skill_php", type: "devicon" }
-            ]
-        }
+   history: [
+
+  {
+    id: "fullstack-developer-andhe-2024",
+    company: "ANDHE - Academia Nacional de Desenvolvimento Humano e Ecológico",
+    role: { "en": "Fullstack Developer (CTO Office)", "pt-br": "Desenvolvedor Fullstack (Gabinete do CTO)" },
+    period: { "en": "2025 - 2025", "pt-br": "2025 - 2025" },
+    description: {
+      "en": "Direct execution under the CTO’s guidance, acting as the spearhead for strategic demands and critical operations.\n\nBuilding and evolving corporate systems:\n- Fullstack development focused on stability, clarity, and scalability\n- Implementing and maintaining integrations across systems and services\n- Structuring data routines to support business decision-making\n\nArchitecture and sustainability:\n- Designing services and modules with long-term growth in mind\n- Standardizing delivery practices, versioning, and environments\n- Supporting higher-load environments and maintenance routines\n\nResults-driven execution:\n- Fast delivery of high-impact features\n- Direct communication with leadership and technical stakeholders\n- Strong commitment to consistency, performance, and reliability.",
+      "pt-br": "Execução direta sob orientação do CTO, atuando como ponta de entrega para demandas estratégicas e operações críticas.\n\nConstrução e evolução de sistemas corporativos:\n- Desenvolvimento de soluções fullstack com foco em estabilidade, clareza e escalabilidade\n- Implementação e manutenção de integrações entre sistemas e serviços\n- Organização de bases e rotinas de dados para suportar decisões de negócio\n\nArquitetura e sustentação:\n- Estruturação de serviços e módulos com visão de crescimento\n- Padronização de entregas, versionamento e ambientes\n- Suporte a ambientes de maior carga e rotinas de manutenção\n\nAtuação orientada a resultado:\n- Priorização e entrega rápida de funcionalidades com impacto real\n- Comunicação direta com liderança e stakeholders técnicos\n- Compromisso com consistência, performance e confiabilidade."
+    },
+    skills: [
+      { key: "skill_powerbi", type: "devicon" },
+      { key: "skill_excel", type: "devicon" },
+      { key: "skill_bpmn", type: "devicon" },
+      { key: "skill_java", type: "devicon" },
+      { key: "skill_spring", type: "devicon" },
+      { key: "skill_pg", type: "devicon" },
+      { key: "skill_jsf", type: "devicon" },
+      { key: "skill_php", type: "devicon" },
+      { key: "skill_qgis", type: "devicon" }
     ]
+  },
+
+  {
+    id: "fullstack-developer-2024",
+    company: "Autonomous",
+    role: { "en": "Freelancer Fullstack Developer", "pt-br": "Desenvolvedor Fullstack Freelancer" },
+    period: { "en": "2023 - 2024", "pt-br": "2023 - 2024" },
+    description: {
+      "en": "On-demand development for clients and independent projects, focused on delivering working products from zero to deployment.\n\nEnd-to-end delivery:\n- Requirements gathering and turning needs into practical solutions\n- Fullstack development with a complete view of the user flow\n- Production deployment, adjustments, and post-delivery support\n\nSystems and data:\n- Building APIs and operational dashboards\n- Structuring databases and reports for daily use\n- Automating routines and improving internal processes\n\nExecution profile:\n- Full autonomy, technical ownership, and consistent delivery\n- Ability to adapt technologies to the problem\n- Focus on clarity, quality, and efficiency.",
+      "pt-br": "Desenvolvimento de soluções sob demanda para clientes e projetos independentes, com foco em entregar produto funcional do zero ao deploy.\n\nEntrega end-to-end:\n- Levantamento de requisitos e tradução de necessidades em solução prática\n- Desenvolvimento fullstack com visão completa do fluxo do usuário\n- Deploy, ajustes de produção e suporte pós-entrega\n\nSistemas e dados:\n- Construção de APIs e painéis de acompanhamento\n- Estruturação de bancos e relatórios para uso operacional\n- Automação de rotinas e melhoria de processos internos\n\nPerfil de execução:\n- Autonomia total, responsabilidade técnica e consistência de entrega\n- Capacidade de adaptar tecnologias conforme o problema\n- Foco em clareza, qualidade e eficiência."
+    },
+    skills: [
+      { key: "skill_powerbi", type: "devicon" },
+      { key: "skill_excel", type: "devicon" },
+      { key: "skill_bpmn", type: "devicon" },
+      { key: "skill_java", type: "devicon" },
+      { key: "skill_spring", type: "devicon" },
+      { key: "skill_pg", type: "devicon" },
+      { key: "skill_jsf", type: "devicon" },
+      { key: "skill_php", type: "devicon" },
+      { key: "skill_qgis", type: "devicon" }
+    ]
+  },
+
+  {
+    id: "fullstack-developer-planejare-2023",
+    company: "Planejare Consultoria",
+    role: { "en": "Fullstack Developer", "pt-br": "Desenvolvedor Fullstack" },
+    period: { "en": "2023 - 2023", "pt-br": "2023 - 2023" },
+    description: {
+      "en": "System development for a consulting environment, focused on building process-driven and operational management solutions.\n\nCorporate solutions:\n- Implementing features focused on workflow and productivity\n- Integrating modules and standardizing system routines\n- Supporting data structuring for reporting and monitoring\n\nOrganization and delivery:\n- Active participation across the full cycle: demand, development, validation, and delivery\n- Continuous improvements based on real-world feedback\n- Strong commitment to reliability and usability\n\nPractical execution:\n- Business-oriented development, not just code\n- Consistent delivery under short deadlines\n- Clear communication with teams and stakeholders.",
+      "pt-br": "Desenvolvimento de sistemas para consultoria, atuando na construção de soluções orientadas a processos, operação e gestão.\n\nSoluções corporativas:\n- Implementação de funcionalidades com foco em fluxo de trabalho e produtividade\n- Integração entre módulos e padronização de rotinas do sistema\n- Apoio na estruturação de dados para relatórios e acompanhamento\n\nOrganização e entrega:\n- Participação ativa no ciclo completo: demanda, desenvolvimento, validação e entrega\n- Correções, ajustes e evolução contínua conforme feedback do uso real\n- Compromisso com confiabilidade e usabilidade\n\nAtuação prática:\n- Desenvolvimento com visão de negócio, não só código\n- Entrega consistente em prazos curtos\n- Apoio a times e stakeholders com comunicação objetiva."
+    },
+    skills: [
+      { key: "skill_powerbi", type: "devicon" },
+      { key: "skill_excel", type: "devicon" },
+      { key: "skill_bpmn", type: "devicon" },
+      { key: "skill_java", type: "devicon" },
+      { key: "skill_spring", type: "devicon" },
+      { key: "skill_pg", type: "devicon" },
+      { key: "skill_jsf", type: "devicon" },
+      { key: "skill_php", type: "devicon" },
+      { key: "skill_qgis", type: "devicon" }
+    ]
+  },
+
+  {
+    id: "fullstack-developer-automining-2023",
+    company: "Automining",
+    role: { "en": "Fullstack Developer", "pt-br": "Desenvolvedor Fullstack" },
+    period: { "en": "2023 - 2023", "pt-br": "2023 - 2023" },
+    description: {
+      "en": "Development of operational and management solutions in the mining context, focused on systems that support real daily routines.\n\nOperational systems:\n- Developing and maintaining critical system features\n- Structuring routines and modules with reliability in mind\n- Bridging technical teams and business needs\n\nData and reporting:\n- Supporting dashboards and monitoring reports\n- Organizing data for traceability and decision-making\n- Continuous improvement based on field usage\n\nDelivery and ownership:\n- Working on high-impact, short-deadline demands\n- Strong focus on production stability\n- Hands-on, solution-oriented profile.",
+      "pt-br": "Atuação no desenvolvimento de soluções voltadas à operação e gestão no contexto de mineração, com foco em sistemas que suportam rotina real.\n\nSistemas operacionais:\n- Desenvolvimento e manutenção de funcionalidades críticas do sistema\n- Estruturação de rotinas e módulos com foco em confiabilidade\n- Integração entre áreas técnicas e necessidades do negócio\n\nDados e relatórios:\n- Apoio na construção de painéis e relatórios de acompanhamento\n- Organização de dados para rastreabilidade e tomada de decisão\n- Evolução contínua com base em uso de campo\n\nEntrega e responsabilidade:\n- Participação em demandas de alto impacto e curto prazo\n- Compromisso com estabilidade em produção\n- Perfil hands-on e orientado a solução."
+    },
+    skills: [
+      { key: "skill_powerbi", type: "devicon" },
+      { key: "skill_excel", type: "devicon" },
+      { key: "skill_bpmn", type: "devicon" },
+      { key: "skill_java", type: "devicon" },
+      { key: "skill_spring", type: "devicon" },
+      { key: "skill_pg", type: "devicon" },
+      { key: "skill_jsf", type: "devicon" },
+      { key: "skill_php", type: "devicon" },
+      { key: "skill_qgis", type: "devicon" }
+    ]
+  },
+
+  {
+    id: "vale-verde-process-system-analyst-2022",
+    company: "Mineração Vale Verde",
+    role: { "en": "Junior Process and System Analyst", "pt-br": "Analista de Processos e Sistemas Junior" },
+    period: { "en": "2021 - 2022", "pt-br": "2021 - 2023" },
+    description: {
+      "pt-br": "Sistemas corporativos de alta performance:\n- Desenvolvimento e deploy de BPMN engines (Camunda, Spring, PrimeFaces, Java 11)\n- Criação de APIs RESTful\n- Orquestração de containers Docker\n- Gestão de PostgreSQL e configuração de Linux Server na AWS\n\nInteligência de dados e relatórios:\n- Dashboards e relatórios avançados com JasperReports, Excel e Power BI\n- Domínio de Power Query, DAX, M e PowerPivot\n\nMetodologias ágeis: SCRUM/Kanban com Asana\nEntrega de sistemas robustos, escaláveis e orientados a resultados.",
+      "en": "High-performance corporate systems:\n- Development and deployment of BPMN engines (Camunda, Spring, PrimeFaces, Java 11)\n- Building RESTful APIs\n- Orchestrating Docker containers\n- Managing PostgreSQL and configuring Linux servers on AWS\n\nData intelligence & reporting:\n- Advanced dashboards and reports with JasperReports, Excel, and Power BI\n- Mastering Power Query, DAX, M, and PowerPivot\n\nAgile work: SCRUM/Kanban using Asana\nDelivering robust, scalable, results-driven systems."
+    },
+    skills: [
+      { key: "skill_powerbi", type: "devicon" },
+      { key: "skill_excel", type: "devicon" },
+      { key: "skill_bpmn", type: "devicon" },
+      { key: "skill_java", type: "devicon" },
+      { key: "skill_spring", type: "devicon" },
+      { key: "skill_pg", type: "devicon" },
+      { key: "skill_jsf", type: "devicon" },
+      { key: "skill_php", type: "devicon" },
+      { key: "skill_qgis", type: "devicon" }
+    ]
+  },
+
+  {
+    id: "vale-verde-it-assistant-2021",
+    company: "Mineração Vale Verde",
+    role: { "en": "IT Assistant", "pt-br": "Assistente de TI" },
+    period: { "en": "2021 - 2021", "pt-br": "2021 - 2021" },
+    description: {
+      "en": "During my tenure, I developed and maintained internal systems to meet corporate needs using Java, Spring Framework, and JSF. I took full ownership of a performance evaluation system, delivering it from development to successful deployment and use, inside the SIGMIN project.",
+      "pt-br": "Durante minha atuação, desenvolvi e mantive sistemas internos para atender demandas corporativas usando Java, Spring Framework e JSF. Assumi o desenvolvimento completo de um sistema de avaliação de desempenho, desde a implementação até a entrega e uso efetivo, dentro do projeto SIGMIN."
+    },
+    skills: [
+      { key: "skill_java", type: "devicon" },
+      { key: "skill_jsf", type: "devicon" },
+      { key: "skill_spring", type: "devicon" },
+      { key: "skill_pg", type: "devicon" },
+      { key: "skill_docker", type: "devicon" },
+      { key: "skill_aws", type: "devicon" },
+      { key: "skill_js", type: "devicon" },
+      { key: "skill_php", type: "devicon" }
+    ]
+  },
+
+  {
+    id: "vale-verde-apprentice-2019-2021",
+    company: "Mineração Vale Verde",
+    role: { "en": "Apprentice", "pt-br": "Jovem Aprendiz" },
+    period: { "en": "2019 - 2021", "pt-br": "2019 - 2021" },
+    description: {
+      "en": "During the operational training cycle, I executed administrative support routines, management and organization of critical files, and the construction of tactical data dashboards using Microsoft Power BI.",
+      "pt-br": "Durante o período de treinamento operacional, executei rotinas administrativas de suporte, gerenciamento e organização de arquivos críticos, além da construção de painéis táticos de dados utilizando Microsoft Power BI."
+    },
+    skills: [
+      { key: "skill_java", type: "devicon" },
+      { key: "skill_jsf", type: "devicon" },
+      { key: "skill_spring", type: "devicon" },
+      { key: "skill_pg", type: "devicon" },
+      { key: "skill_docker", type: "devicon" },
+      { key: "skill_aws", type: "devicon" },
+      { key: "skill_js", type: "devicon" },
+      { key: "skill_php", type: "devicon" }
+    ]
+  }
+
+]
+
 };
 
 
@@ -246,7 +317,7 @@ const myData = {
                 "en": "Minimum Operational Platform for project management in the public sector, engineered to encode and enforce the client’s strategic management doctrine. A functional command-and-control core, deployed as a proving ground for the future expansion into a full-scale, enterprise SaaS platform.",
                 "pt-br": "Plataforma mínima operacional de gestão de projetos para o setor público, projetada para codificar e executar a doutrina estratégica do cliente. Um núcleo funcional de comando e controle, desenvolvido como campo de prova para a expansão futura em uma plataforma SaaS completa e escalável."
             },
-            images: ["images/aegis-app.jpg"],
+            images: ["img/planejamais.png"],
             team: [
                 {
                     name: "Lázaro Gustavo Sombra",
@@ -257,22 +328,36 @@ const myData = {
             ]
         },
         {
-            title: "Content Management System",
+            title: "Mais Vida - MVP",
             stack: [
-                { key: "skill_vue", type: "devicon" },
-                { key: "skill_ts", type: "devicon" },
-                { key: "skill_express", type: "devicon" },
-                { key: "skill_prisma", type: "devicon" },
-                { key: "skill_docker", type: "devicon" },
+                { key: "skill_java", type: "devicon" },
+                { key: "skill_jsf", type: "devicon" },
+                { key: "skill_spring", type: "devicon" },
                 { key: "skill_pg", type: "devicon" },
-                { key: "skill_keycloak", type: "devicon" }
+                { key: "skill_docker", type: "devicon" },
+                { key: "skill_js", type: "devicon" }
             ],
-            type: { "en": "Paid Content Management System", "pt-br": "Sistema de Gerenciamento de Conteúdo Pago" },
+            type: { "en": "Healthcare Management Platform", "pt-br": "Plataforma de Gestão de Saúde" },
+            about: {
+                "en": "Operational queue and appointment management platform for medical clinics, designed to orchestrate patient flow end-to-end. Includes self-service check-in via kiosk, real-time queue display (current, last called, and next), appointment control, and generation of the Occupational Health Certificate—delivering a reliable command layer for daily clinical operations.",
+                "pt-br": "Plataforma operacional de gestão de filas e consultas para clínicas médicas, projetada para orquestrar o fluxo de pacientes de ponta a ponta. Inclui autoatendimento via totem de entrada, exibição em tempo real da fila (atual, último chamado e próximo), controle de consultas e geração do Atestado de Saúde Ocupacional — entregando uma camada confiável de comando para as rotinas clínicas."
+            },
+            images: ["img/maisvida.png"],
+            team: [
+                
+            ]
+        },
+        {
+            title: "Content Manager - NDA",
+            stack: [
+                 
+            ],
+            type: { "en": "Content Management", "pt-br": "Gerenciamento de Conteúdo" },
             about: {
                 "en": "Proprietary content management and distribution platform with paid access control, automated financial validation, and internal policy enforcement.",
                 "pt-br": "Plataforma proprietária de gestão e distribuição de conteúdo com controle de acesso pago, validação financeira automatizada e aplicação de políticas internas."
             },
-            images: ["images/neural-dash.jpg"],
+            images: ["img/nda.png"],
             team: [
                 {
                     name: "Eric Lima",

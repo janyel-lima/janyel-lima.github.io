@@ -50,7 +50,8 @@ const i18n = {
         stream_active: "FLUXO_ATIVO",
         skills_title: "Proficiência_de_Habilidades",
         sys_analysis: "ANÁLISE_DO_SISTEMA",
-
+        expand_data: "▾ EXPANDIR",
+        collapse_data: "▴ RECOLHER",
         rank_legend: "Legenda_de_Ranks",
         system_modules: "MÓDULOS_DO_SISTEMA",
         unit_support: "EQUIPE",
@@ -192,6 +193,8 @@ const i18n = {
         skills_title: "Skill_Proficiency",
         sys_analysis: "SYS_ANALYSIS",
         system_modules: "SYSTEM_MODULES",
+        expand_data: "▾ EXPAND",
+        collapse_data: "▴ COLLAPSE",
 
         hard_skills: "Hard",
         soft_skills: "Soft",
@@ -274,6 +277,7 @@ const i18n = {
     },
     
 };
+
 
 
 

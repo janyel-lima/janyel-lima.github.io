@@ -588,6 +588,15 @@ function expandableTypedText(getText, truncateAt = 20, speed = 12) {
       this.typedText = this.fullText.slice(0, truncateAt);
 
       if (this.isVisible) this.resumeTyping();
+
+      this.$nextTick(() => {
+  if (this.$refs.toggleLabel) {
+    const key = this.$refs.toggleLabel.getAttribute('data-i18n');
+    if (i18n[currentLang][key]) {
+      this.$refs.toggleLabel.innerText = i18n[currentLang][key];
+    }
+  }
+});
     },
 
     resumeTyping() {

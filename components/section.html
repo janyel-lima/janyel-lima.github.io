@@ -152,8 +152,11 @@
             @click="toggle()"
             class="animate-pulse mt-5 mb-5 flex items-center gap-2
                    text-[9px] font-mono uppercase tracking-widest">
-      <span x-text="expanded ? '▴ COLLAPSE_DATA' : '▾ EXPAND_DATA'"
-            class="text-primary hover:text-primary transition"></span>
+      <span
+  :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
+  x-effect="$nextTick(() => updateInterfaceStatic())"
+  class="text-primary hover:text-primary transition">
+</span>
       <span class="animate-pulse text-primary">█</span>
     </button>
   </div>
@@ -498,8 +501,11 @@
     @click="toggle()"
     class="animate-pulse mt-3 flex items-center gap-2
            text-[9px] font-mono uppercase tracking-widest">
-    <span x-text="expanded ? '▴ COLLAPSE_DATA' : '▾ EXPAND_DATA'"
-          class="text-primary hover:text-primary transition"></span>
+    <span
+  :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
+  x-effect="$nextTick(() => updateInterfaceStatic())"
+  class="text-primary hover:text-primary transition">
+</span>
     <span class="animate-pulse text-primary">█</span>
   </button>
 

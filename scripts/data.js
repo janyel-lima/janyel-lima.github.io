@@ -354,8 +354,8 @@ const myData = {
             ],
             type: { "en": "Content Management", "pt-br": "Gerenciamento de Conteúdo" },
             about: {
-                "en": "Proprietary content management and distribution platform with paid access control, automated financial validation, and internal policy enforcement.",
-                "pt-br": "Plataforma proprietária de gestão e distribuição de conteúdo com controle de acesso pago, validação financeira automatizada e aplicação de políticas internas."
+                "en": "Proprietary content management and distribution platform with paid access control, automated financial validation, and internal policy enforcement. Developed under a formal Non-Disclosure Agreement (NDA), with details intentionally omitted to respect confidentiality terms.",
+                "pt-br": "Plataforma proprietária de gerenciamento e distribuição de conteúdo com controle de acesso pago, validação financeira automatizada e aplicação de políticas internas. Desenvolvida sob um Acordo de Confidencialidade (NDA) formal, com detalhes intencionalmente omitidos em respeito aos termos de confidencialidade."
             },
             images: ["img/nda.png"],
             team: [

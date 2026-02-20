@@ -229,6 +229,8 @@ document.addEventListener('alpine:init', () => {
 
 
   }));
+
+  
 });
 
 
@@ -485,7 +487,7 @@ function calculateLevel() {
 // ==============================
 // EXPANDABLE TYPED TEXT (FINAL)
 // ==============================
-function expandableTypedText(getText, truncateAt = 160, speed = 12) {
+function expandableTypedText(getText, truncateAt = 20, speed = 12) {
   return {
     expanded: false,
     typedText: "",
@@ -501,7 +503,7 @@ function expandableTypedText(getText, truncateAt = 160, speed = 12) {
     },
 
     get shouldShowToggle() {
-      return this.fullText.length > truncateAt + 10;
+      return this.fullText.length > truncateAt;
     },
 
     get displayText() {

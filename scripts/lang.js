@@ -52,6 +52,10 @@ const i18n = {
         sys_analysis: "ANÁLISE_DO_SISTEMA",
 
         rank_legend: "Legenda_de_Ranks",
+        system_modules: "MÓDULOS_DO_SISTEMA",
+        unit_support: "EQUIPE",
+        stack_analysis: "Stack Utilizada",
+        auxiliary_modules: "MEMBROS_DA_EQUIPE",
 
         hard_skills: "Técnicas",
         soft_skills: "Comportamentais",
@@ -159,6 +163,9 @@ const i18n = {
         title_about: "■ About_Me",
         title_exp: "■ Work_Experience_Timeline",
         sys_online: "System_Status: Online",
+        stack_analysis: "Stack Used",
+        unit_support: "TEAM",
+        auxiliary_modules: "TEAM_MEMBERS",
         made_with: "Made with Tailwind and Sorcery",
         footer_termination: "// Termination_Links",
         return_top: ">> Return_to_Top",
@@ -184,6 +191,7 @@ const i18n = {
         stream_active: "STREAM_ACTIVE",
         skills_title: "Skill_Proficiency",
         sys_analysis: "SYS_ANALYSIS",
+        system_modules: "SYSTEM_MODULES",
 
         hard_skills: "Hard",
         soft_skills: "Soft",

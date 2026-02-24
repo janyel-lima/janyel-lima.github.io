@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "NewRodin";
+  src: url("./FOT-NewRodin-Pro-DB.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --color-main: #00222bff;
@@ -6,7 +14,13 @@
     --color-secondary: #24C6D1;
     --color-accent: rgb(10, 158, 163);
     --card-bg: rgba(0, 0, 0, 0.3); /* Background para contraste no Verde */
+    --font-main: "NewRodin", sans-serif;
   }
+
+
+ 
+
+
   .theme-core {
     --color-main: #00222bff;
     --color-primary: #00ffffff;
@@ -39,6 +53,7 @@ body {
     background-color: var(--color-main); 
     color: white; 
     transition: background-color 0.7s ease;
+    font-family: var(--font-main);
 }
 
 /* Scrollbar Estilo RPG */

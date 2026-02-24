@@ -5,10 +5,10 @@
     </div>
 
     <div class="hidden sm:flex flex-col justify-center gap-1">
-        <h1 class="text-[10px] font-mono tracking-[0.4em] uppercase font-black">
+        <h1 class="text-[10px]  tracking-[0.4em] uppercase font-black">
             // CORE_WORKS
         </h1>
-        <p class="text-[8px] font-mono text-primary/60 tracking-[0.2em] uppercase">
+        <p class="text-[8px]  text-primary/60 tracking-[0.2em] uppercase">
             <span x-text="$store.i18n.t('status_text')">Status:
                 Operating_Normal</span>
         </p>
@@ -28,7 +28,7 @@
     type="text"
     :placeholder="$store.i18n.t('search_placeholder')"
     class="w-full bg-black/40 border border-white/10 px-9 py-2 text-[10px]
-           font-mono uppercase tracking-widest focus:outline-none focus:border-primary/50"
+            uppercase tracking-widest focus:outline-none focus:border-primary/50"
     x-model.debounce.80ms="$store.search.q"
     @input="$store.search.persist()"
   />
@@ -38,7 +38,7 @@
     x-show="$store.search.q.length"
     @click="$store.search.clear()"
     class="absolute right-2 top-1/2 -translate-y-1/2
-           text-[9px] font-mono uppercase tracking-widest
+           text-[9px]  uppercase tracking-widest
            text-white/40 hover:text-primary transition">
     ✕
   </button>
@@ -64,7 +64,7 @@
 
         <!-- legenda mobile (i18n) -->
         <div x-show="showHint" x-transition class="absolute -bottom-7 left-1/2 -translate-x-1/2
-             text-[8px] font-mono uppercase tracking-widest
+             text-[8px]  uppercase tracking-widest
              text-white/90 bg-black/80 px-2 py-0.5
              border border-white/10 backdrop-blur
              pointer-events-none" x-text="$store.i18n.t('btn_theme')">
@@ -88,7 +88,7 @@
 
         <!-- legenda mobile (i18n) -->
         <div x-show="showHint" x-transition class="absolute -bottom-7 left-1/2 -translate-x-1/2
-             text-[8px] font-mono uppercase tracking-widest
+             text-[8px]  uppercase tracking-widest
              text-white/90 bg-black/80 px-2 py-0.5
              border border-white/10 backdrop-blur
              pointer-events-none" x-text="$store.i18n.t('language')">

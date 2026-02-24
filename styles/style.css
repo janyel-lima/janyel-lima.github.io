@@ -282,7 +282,9 @@ input:focus::placeholder {
     }
 }
 
-
+#main-header {
+  scroll-margin-top: 80px;
+}
 
 
 

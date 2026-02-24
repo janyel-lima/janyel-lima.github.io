@@ -1,5 +1,5 @@
 <div id="projects" x-data="projectStream(myData.projects, 2)">
-    <h2 x-text="$store.i18n.t('title_about')" class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.3em]">■
+    <h2 x-text="$store.i18n.t('title_about')" class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.1em]">■
     </h2>
 
     <div class="relative flex bg-black/60 border-primary border border-white/10 mb-5 group overflow-hidden"
@@ -17,7 +17,7 @@
                 </h5>
             </div>
 
-            <div class="text-[length:var(--text-sm)]  text-gray-400 uppercase mb-1 tracking-[0.2em]"
+            <div class="text-[length:var(--text-sm)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
                 x-text="$store.i18n.t('transmission_source')">
             </div>
 
@@ -30,7 +30,7 @@
             style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"></div>
     </div>
 
-    <h2 x-text="$store.i18n.t('title_projects')" class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.3em]">■
+    <h2 x-text="$store.i18n.t('title_projects')" class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.1em]">■
         </h2>
 
     <div class="flex flex-col sm:flex-row gap-3 sm:gap-0
@@ -74,7 +74,7 @@
 
   <!-- HEADER -->
   <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
-    <span class="text-[length:var(--text-micro)]  text-primary/60 uppercase tracking-[0.2em]"
+    <span class="text-[length:var(--text-micro)]  text-primary/60 uppercase tracking-[0.1em]"
           x-text="$store.i18n.t('project_data')"></span>
 
     <div class="flex gap-1">
@@ -139,7 +139,7 @@
         x-on:alpine:destroy="destroy()"
        x-effect="onTextChanged()">
 
-    <p class="text-[length:var(--text-micro)] text-primary uppercase  mb-2 tracking-[0.2em] font-black">
+    <p class="text-[length:var(--text-micro)] text-primary uppercase  mb-2 tracking-[0.1em] font-black">
       // <span x-text="p.type[$store.i18n.lang]"></span>
     </p>
 
@@ -382,12 +382,12 @@
         <div class="flex items-center gap-2 mb-3">
             <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
 
-            <h5 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.3em] text-primary"
+            <h5 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
                 x-text="$store.i18n.t('data_fragment')">
             </h5>
         </div>
 
-        <div class="text-[length:var(--text-sm)]  text-gray-400 uppercase mb-1 tracking-[0.2em]"
+        <div class="text-[length:var(--text-sm)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
             x-text="$store.i18n.t('transmission_source')">
         </div>
 
@@ -402,7 +402,7 @@
 
 <div id="exp" x-data="{ devStats }">
 
-    <h2 x-text="$store.i18n.t('title_exp')" class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.3em]">
+    <h2 x-text="$store.i18n.t('title_exp')" class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.1em]">
        
     </h2>
 
@@ -453,7 +453,7 @@
           x-text="job.role[$store.i18n.lang]">
       </h3>
 
-      <p class="text-[length:var(--text-micro)]  uppercase tracking-[0.25em] text-primary">
+      <p class="text-[length:var(--text-micro)]  uppercase tracking-[0.1em] text-primary">
         <span x-text="$store.i18n.t('deploy')"></span>
         <span class="mx-1 text-primary/40">/</span>
         <span x-text="job.company"></span>

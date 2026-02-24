@@ -5,10 +5,10 @@
     </div>
 
     <div class="hidden sm:flex flex-col justify-center gap-1">
-        <h1 class="text-[10px]  tracking-[0.4em] uppercase font-black">
+        <h1 class="text-[length:var(--text-md)]  tracking-[0.4em] uppercase font-black">
             // CORE_WORKS
         </h1>
-        <p class="text-[8px]  text-primary/60 tracking-[0.2em] uppercase">
+        <p class="text-[length:var(--text-micro)]  text-primary/60 tracking-[0.2em] uppercase">
             <span x-text="$store.i18n.t('status_text')">Status:
                 Operating_Normal</span>
         </p>
@@ -27,7 +27,7 @@
   <input
     type="text"
     :placeholder="$store.i18n.t('search_placeholder')"
-    class="w-full bg-black/40 border border-white/10 px-9 py-2 text-[10px]
+    class="w-full bg-black/40 border border-white/10 px-9 py-2 text-[length:var(--text-xs)]
             uppercase tracking-widest focus:outline-none focus:border-primary/50"
     x-model.debounce.80ms="$store.search.q"
     @input="$store.search.persist()"
@@ -38,7 +38,7 @@
     x-show="$store.search.q.length"
     @click="$store.search.clear()"
     class="absolute right-2 top-1/2 -translate-y-1/2
-           text-[9px]  uppercase tracking-widest
+           text-[length:var(--text-micro)]  uppercase tracking-widest
            text-white/40 hover:text-primary transition">
     ✕
   </button>
@@ -53,7 +53,7 @@
         @mouseleave="showHint = false" @touchstart="showHint = true" @touchend="showHint = false">
         <button onclick="toggleTheme()" class="rpg-button px-3 md:px-6 py-1.5 bg-black/60
              flex items-center gap-2
-             text-[10px] font-bold border border-primary uppercase">
+             text-[length:var(--text-xs)] font-bold border border-primary uppercase">
 
             <i data-lucide="moon-star" class="w-4 h-4 text-primary"></i>
 
@@ -64,7 +64,7 @@
 
         <!-- legenda mobile (i18n) -->
         <div x-show="showHint" x-transition class="absolute -bottom-7 left-1/2 -translate-x-1/2
-             text-[8px]  uppercase tracking-widest
+             text-[length:var(--text-micro)]  uppercase tracking-widest
              text-white/90 bg-black/80 px-2 py-0.5
              border border-white/10 backdrop-blur
              pointer-events-none" x-text="$store.i18n.t('btn_theme')">
@@ -81,14 +81,14 @@
             <i data-lucide="languages" class="w-4 h-4 text-accent"></i>
 
             <!-- texto desktop -->
-            <span class="hidden md:inline text-[9px] font-bold tracking-widest uppercase"
+            <span class="hidden md:inline text-[length:var(--text-xs)] font-bold tracking-widest uppercase"
                 x-text="$store.i18n.t('language')">
             </span>
         </button>
 
         <!-- legenda mobile (i18n) -->
         <div x-show="showHint" x-transition class="absolute -bottom-7 left-1/2 -translate-x-1/2
-             text-[8px]  uppercase tracking-widest
+             text-[length:var(--text-micro)]  uppercase tracking-widest
              text-white/90 bg-black/80 px-2 py-0.5
              border border-white/10 backdrop-blur
              pointer-events-none" x-text="$store.i18n.t('language')">

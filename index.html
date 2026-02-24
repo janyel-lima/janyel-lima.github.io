@@ -84,18 +84,18 @@
 
                 <div class="absolute inset-0 pointer-events-none"></div>
 
-                <p class="text-[10px] text-primary tracking-widest uppercase mb-2"
+                <p class="text-[length:var(--text-md)] text-primary tracking-widest uppercase mb-2"
                     x-text="$store.i18n.t('system_alert')">
                 </p>
 
-                <p class="text-[12px] text-gray-300 mb-4" x-text="$store.i18n.t('secure_fragment_locked')">
+                <p class="text-[length:var(--text-sm)] text-gray-300 mb-4" x-text="$store.i18n.t('secure_fragment_locked')">
                 </p>
 
                 <div class="h-2 bg-black overflow-hidden">
                     <div class="h-full bg-primary" :style="`width: ${progress}%`"></div>
                 </div>
 
-                <p class="text-[9px] text-gray-400 mt-2 uppercase tracking-widest" x-text="$store.i18n.t('decrypting')">
+                <p class="text-[length:var(--text-micro)] text-gray-400 mt-2 uppercase tracking-widest" x-text="$store.i18n.t('decrypting')">
                 </p>
             </div>
         </div>
@@ -113,7 +113,7 @@
 
                 <div class="absolute inset-0 pointer-events-none"></div>
 
-                <p class="text-[10px] text-primary tracking-widest uppercase mb-2"
+                <p class="text-[length:var(--text-md)] text-primary tracking-widest uppercase mb-2"
                     x-text="$store.i18n.t('system_boot')">
                 </p>
 
@@ -121,7 +121,7 @@
                     <div class="h-full bg-primary" :style="`width: ${progress}%`"></div>
                 </div>
 
-                <p class="text-[9px] text-gray-400 mt-2 uppercase tracking-widest" x-text="$store.i18n.t('loading')">
+                <p class="text-[length:var(--text-micro)] text-gray-400 mt-2 uppercase tracking-widest" x-text="$store.i18n.t('loading')">
                 </p>
             </div>
         </div>

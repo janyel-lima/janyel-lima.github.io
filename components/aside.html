@@ -1,4 +1,4 @@
-<h2 class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em]" x-text="$store.i18n.t('title_profile')">
+<h2 class="text-accent font-bold  mb-6 uppercase tracking-[0.3em]" x-text="$store.i18n.t('title_profile')">
     ■ Dev_Profile
 </h2>
 
@@ -8,8 +8,8 @@
     <div class="p-5 space-y-6">
         <div class="space-y-4">
             <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
-                <span class="text-[8px]  text-primary/60 uppercase tracking-[0.2em]"
-                    x-text="$store.i18n.t('dev_data')">Requested_Developer_Data</span>
+                <span class="text-[length:var(--text-micro)]  text-primary/60 uppercase tracking-[0.2em]"
+                    x-text="$store.i18n.t('dev_data')"></span>
                 <div class="flex gap-1">
                     <div class="w-1 h-2 bg-primary/20"></div>
                     <div class="w-1 h-2 bg-primary/40"></div>
@@ -17,9 +17,8 @@
                 </div>
             </div>
             <div class="relative group">
-                <span class="text-[8px] text-gray-400  uppercase block mb-1"
-                    x-text="$store.i18n.t('bio_scan')">■
-                    Bio_Metric_Scan</span>
+                <span class="text-[length:var(--text-micro)] text-gray-400  uppercase block mb-1"
+                    x-text="$store.i18n.t('bio_scan')"></span>
                 <div class="animated w-full aspect-square bg-gray-900 overflow-hidden relative border border-white/5">
                     <img src="./img/me.png" onerror="handleImageError(event)" id="photo"
   class="block w-full h-full object-cover grayscale opacity-80
@@ -31,9 +30,9 @@
             </div>
 
             <div class="border-l-2 pl-3" style="border-color: var(--color-primary);">
-                <span class="text-[10px] text-gray-400 uppercase  block"
-                    x-text="$store.i18n.t('label_id')">Operator_ID</span>
-                <h2 class="text-xl font-black tracking-tighter uppercase italic text-white">
+                <span class="text-[length:var(--text-xs)] text-gray-400 uppercase  block"
+                    x-text="$store.i18n.t('label_id')"></span>
+                <h2 class="text-xl font-black tracking-[0.1em] uppercase italic text-white">
                     <span x-text="devStats.name || 'EDD'"></span>
                 </h2>
             </div>
@@ -45,29 +44,26 @@
     show = false;
     setTimeout(() => show = true, 120);
   " :class="show ? 'lang-fade' : 'lang-fade lang-hidden'"
-                    class="text-[11px] text-gray-400 uppercase  block mb-1"
-                    x-text="$store.i18n.t('label_role')">■
-                    Main Role</span>
+                    class="text-[length:var(--text-sm)] text-gray-400 uppercase  block mb-1"
+                    x-text="$store.i18n.t('label_role')"></span>
 
-                <p class="text-[14px] text-accent  uppercase tracking-widest truncate font-bold"
+                <p class="text-[length:var(--text-md)] text-accent  uppercase tracking-widest truncate font-bold"
                     x-text="devStats.specialization[$store.i18n.lang]">
                 </p>
             </div>
 
             <div class="grid grid-cols-2 gap-4 pt-2 border-t border-white/5">
                 <div>
-                    <span class="text-[11px] text-gray-400  uppercase block mb-1"
-                        x-text="$store.i18n.t('label_seniority')">■
-                        Seniority</span>
-                    <div class="text-[13px] text-white  uppercase tracking-widest truncate" x-text="tierLabel">
+                    <span class="text-[length:var(--text-sm)] text-gray-400  uppercase block mb-1"
+                        x-text="$store.i18n.t('label_seniority')"></span>
+                    <div class="text-[length:var(--text-md)] text-white  uppercase tracking-widest truncate" x-text="tierLabel">
                     </div>
                 </div>
                 <div class="flex flex-col justify-end">
-                    <span class="text-[11px] text-gray-400 uppercase  block mb-1"
-                        x-text="$store.i18n.t('label_exp')">■
-                        Experience</span>
+                    <span class="text-[length:var(--text-sm)] text-gray-400 uppercase  block mb-1"
+                        x-text="$store.i18n.t('label_exp')"></span>
 
-                    <div class="flex justify-between text-[10px]  mb-1">
+                    <div class="flex justify-between text-[length:var(--text-md)]  mb-1">
                         <span class="text-primary" x-text="level.years"></span>
                         <span class="text-gray-400" x-text="$store.i18n.t('unit_years')"></span>
 
@@ -84,13 +80,11 @@
 
         <div class="space-y-4">
             <div class="flex justify-between items-center border-b border-white/5 pb-2">
-                <span class="text-[11px] text-gray-400 uppercase " x-text="$store.i18n.t('label_avail')">■
-                    Availability</span>
+                <span class="text-[length:var(--text-sm)] text-gray-400 uppercase " x-text="$store.i18n.t('label_avail')"></span>
                 <div class="flex items-center gap-2">
                     <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_5px_#22c55e]"></span>
-                    <p class="text-[11px] text-accent  uppercase font-bold tracking-tighter"
-                        x-text="$store.i18n.t('status_avail')">Available
-                        for hire</p>
+                    <p class="text-[length:var(--text-sm)] text-accent  uppercase font-bold "
+                        x-text="$store.i18n.t('status_avail')"></p>
                 </div>
             </div>
 
@@ -104,9 +98,9 @@
                                 class="w-5 h-5 text-accent shrink-0 transition-transform group-hover/cv:-translate-y-1"></i>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-[10px] tracking-[0.2em] font-black uppercase text-white"
+                            <span class="text-[length:var(--text-md)] tracking-[0.2em] font-black uppercase text-white"
                                 x-text="$store.i18n.t('btn_cv')"></span>
-                            <span class="text-[7px]  text-accent/60 uppercase"
+                            <span class="text-[length:var(--text-micro)]  text-accent/60 uppercase"
                                 x-text="$store.i18n.t('cv_version')"></span>
                         </div>
                     </div>
@@ -133,11 +127,11 @@
             </div>
 
             <div class="flex flex-col items-start gap-0.5">
-                <span class="text-[14px]"
+                <span class="text-[length:var(--text-md)]"
                     x-text="$store.i18n.t(unlocked ? 'access_fragment' : 'decrypt_fragment')"></span>
 
                 <span x-text="$store.i18n.t('click_to_decrypt')"
-                    class="text-[8px]  text-primary/70 tracking-[0.3em] uppercase animate-pulse">
+                    class="text-[length:var(--text-micro)]  text-primary/70 tracking-[0.3em] uppercase animate-pulse">
 
                 </span>
             </div>
@@ -145,7 +139,7 @@
 
         <div class="flex items-center gap-3">
             <span
-                class="hidden sm:block text-[8px]  text-gray-400 group-hover:text-white transition-colors uppercase tracking-widest">
+                class="hidden sm:block text-[length:var(--text-micro)]  text-gray-400 group-hover:text-white transition-colors uppercase tracking-widest">
                 [ Secure_Gate ]
             </span>
             <i data-lucide="chevron-right" class="w-5 h-5 text-primary animate-pulse"></i>
@@ -174,16 +168,16 @@
         <div class="flex items-center gap-2 mb-3">
             <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
 
-            <h5 class="text-[13px] font-black uppercase tracking-[0.3em] text-primary"
+            <h5 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.3em] text-primary"
                 x-text="$store.i18n.t('data_fragment')">
             </h5>
         </div>
 
-        <div class="text-[11px]  text-gray-400 uppercase mb-1 tracking-[0.2em]"
+        <div class="text-[length:var(--text-sm)]  text-gray-400 uppercase mb-1 tracking-[0.2em]"
             x-text="$store.i18n.t('transmission_source')">
         </div>
 
-        <p class="text-[15px] text-gray-300  leading-snug
+        <p class="text-[length:var(--text-base)] text-gray-300  leading-snug
                group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('contact_text')">
         </p>
     </div>
@@ -192,7 +186,7 @@
     </div>
 </div>
 
-<h2 class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em] mt-8" x-text="$store.i18n.t('title_contact')"
+<h2 class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.3em] mt-8" x-text="$store.i18n.t('title_contact')"
     x-show="showFragment" x-transition:enter="transition duration-700 ease-out"
     x-transition:enter-start="opacity-0 translate-y-6 scale-95"
     x-transition:enter-end="opacity-100 translate-y-0 scale-100">
@@ -204,7 +198,7 @@
     x-transition:enter="transition duration-700 ease-out" x-transition:enter-start="opacity-0 translate-y-6 scale-95"
     x-transition:enter-end="opacity-100 translate-y-0 scale-100">
     <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
-        <span class="text-[8px]  text-primary/60 uppercase tracking-[0.2em]"
+        <span class="text-[length:var(--text-micro)]  text-primary/60 uppercase tracking-[0.2em]"
             x-text="$store.i18n.t('comm_channel')">Comm_Channel_Alpha</span>
         <div class="flex gap-1">
             <div class="w-1 h-2 bg-primary/20"></div>
@@ -220,14 +214,14 @@
                 <i data-lucide="message-circle"
                     class="w-5 h-5 text-primary shrink-0 transition-transform group-hover/btn:scale-110"></i>
                 <div class="flex flex-col">
-                    <span class="text-[10px] tracking-[0.2em] font-black uppercase">WhatsApp_Link</span>
+                    <span class="text-[length:var(--text-md)] tracking-[0.2em] font-black uppercase">WhatsApp_Link</span>
                     <span
-                        class="text-[7px]  text-gray-300 lowercase opacity-0 group-hover/btn:opacity-100 transition-opacity tracking-tighter"
+                        class="text-[length:var(--text-micro)]  text-gray-300 lowercase opacity-0 group-hover/btn:opacity-100 transition-opacity "
                         x-text="$store.i18n.t('secure_msg')">//
                         secure_handshake_established</span>
                 </div>
             </div>
-            <div class="text-[10px]  text-primary opacity-30 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all"
+            <div class="text-[length:var(--text-md)]  text-primary opacity-30 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all"
                 x-text="$store.i18n.t('btn_send')">[SEND]</div>
         </a>
 
@@ -236,20 +230,20 @@
                 <i data-lucide="mail"
                     class="w-5 h-5 text-primary shrink-0 transition-transform group-hover/btn:scale-110"></i>
                 <div class="flex flex-col">
-                    <span class="text-[10px] tracking-[0.2em] font-black uppercase">Direct_Email</span>
+                    <span class="text-[length:var(--text-md)] tracking-[0.2em] font-black uppercase">Direct_Email</span>
                     <span
-                        class="text-[7px]  text-gray-300 lowercase opacity-0 group-hover/btn:opacity-100 transition-opacity tracking-tighter"
+                        class="text-[length:var(--text-micro)]  text-gray-300 lowercase opacity-0 group-hover/btn:opacity-100 transition-opacity "
                         x-text="$store.i18n.t('request_msg')">//
                         requesting_data_packet</span>
                 </div>
             </div>
-            <div class="text-[10px]  text-primary opacity-30 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all"
+            <div class="text-[length:var(--text-md)]  text-primary opacity-30 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all"
                 x-text="$store.i18n.t('btn_send')">[SEND]</div>
         </a>
     </div>
 </div>
 
-<h2 class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em] mt-8" x-text="$store.i18n.t('title_network')"
+<h2 class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.3em] mt-8" x-text="$store.i18n.t('title_network')"
     x-show="showFragment" x-transition:enter="transition duration-700 ease-out"
     x-transition:enter-start="opacity-0 translate-y-6 scale-95"
     x-transition:enter-end="opacity-100 translate-y-0 scale-100">
@@ -261,7 +255,7 @@
     x-transition:enter-end="opacity-100 translate-y-0 scale-100">
     <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2"
         @mouseenter="$store.sfx.play('hover');">
-        <span class="text-[8px]  text-primary/60 uppercase tracking-[0.2em]"
+        <span class="text-[length:var(--text-micro)]  text-primary/60 uppercase tracking-[0.2em]"
             x-text="$store.i18n.t('social_links')">Social_Network_Links</span>
         <div class="flex gap-1">
             <div class="w-1 h-2 bg-primary/20"></div>
@@ -271,12 +265,12 @@
     </div>
     <div class="flex flex-col gap-3">
         <a target="_blank" :href="devStats.social_links.github"
-            class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[10px]">
+            class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[length:var(--text-md)]">
             <i data-lucide="github" class="w-4 h-4 text-primary shrink-0"></i>
             <span class="tracking-[0.2em]">Github</span>
         </a>
         <a target="_blank" :href="devStats.social_links.linkedin"
-            class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[10px]">
+            class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[length:var(--text-md)]">
             <i data-lucide="linkedin" class="w-4 h-4 text-primary shrink-0"></i>
             <span class="tracking-[0.2em]">LinkedIn</span>
         </a>
@@ -290,7 +284,7 @@
 
         <!-- HEADER -->
         <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
-            <span class="text-[11px]  text-white uppercase tracking-widest"
+            <span class="text-[length:var(--text-sm)]  text-white uppercase tracking-widest"
                 x-text="$store.i18n.t('skills_title')">
             </span>
 
@@ -305,12 +299,12 @@
         <div x-data="{ open: false }" class="mb-4 border-b border-white/5 pb-3">
 
             <!-- TOGGLE -->
-            <button @click="open = !open;$store.sfx.play('click');" class="flex items-center gap-3 text-[9px]  uppercase tracking-widest
+            <button @click="open = !open;$store.sfx.play('click');" class="flex items-center gap-3 text-[length:var(--text-micro)]  uppercase tracking-widest
                text-primary/70 hover:text-primary transition group">
 
                 <span x-text="$store.i18n.t('rank_legend')"></span>
 
-                <span class="text-[10px] transition-all duration-300 text-primary/60
+                <span class="text-[length:var(--text-md)] transition-all duration-300 text-primary/60
                    group-hover:text-primary" :class="open
                 ? 'rotate-90 drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]'
                 : ''">
@@ -319,7 +313,7 @@
             </button>
 
             <!-- CONTENT -->
-            <div x-show="open" x-collapse class="mt-4 space-y-2 text-[9px]  uppercase tracking-widest">
+            <div x-show="open" x-collapse class="mt-4 space-y-2 text-[length:var(--text-micro)]  uppercase tracking-widest">
 
                 <!-- S -->
                 <div class="flex items-center justify-between border-b border-white/5 pb-1">
@@ -396,17 +390,17 @@
 
                         <!-- TEXT -->
                         <div class="flex-1 min-w-0">
-                            <p class="text-[11px]  uppercase tracking-[0.25em] truncate"
+                            <p class="text-[length:var(--text-sm)]  uppercase tracking-[0.25em] truncate"
                                 :class="hardOpen ? 'text-primary' : 'text-primary/70'"
                                 x-text="$store.i18n.t('hard_skills')">
                             </p>
-                            <p class="text-[9px]  text-white/40 truncate">
+                            <p class="text-[length:var(--text-micro)]  text-white/40 truncate">
                                 SYSTEM_MODULES
                             </p>
                         </div>
 
                         <!-- STATUS -->
-                        <span class="text-[10px]  tracking-widest shrink-0"
+                        <span class="text-[length:var(--text-md)]  tracking-widest shrink-0"
                             :class="hardOpen ? 'text-primary' : 'text-white/40'">
                             [ <span x-text="hardOpen ? 'ON' : 'OFF'"></span> ]
                         </span>
@@ -436,13 +430,13 @@
 
                                 <!-- ICON -->
                                 <template x-if="skillIcons[data.label]?.type === 'devicon'">
-                                    <i :class="skillIcons[data.label].icon" class="text-primary text-[18px] shrink-0">
+                                    <i :class="skillIcons[data.label].icon" class="text-primary text-[length:var(--text-lg)] shrink-0">
                                     </i>
                                 </template>
 
                                 <!-- LABEL -->
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-[9px]  uppercase tracking-widest text-white truncate">
+                                    <p class="text-[length:var(--text-micro)]  uppercase tracking-widest text-white truncate">
                                         <span x-text="$store.i18n.t(`skills.${data.label}`)"></span>
                                     </p>
                                 </div>
@@ -486,17 +480,17 @@
 
                         <!-- TEXT -->
                         <div class="flex-1 min-w-0">
-                            <p class="text-[11px]  uppercase tracking-[0.25em] truncate"
+                            <p class="text-[length:var(--text-sm)]  uppercase tracking-[0.25em] truncate"
                                 :class="softOpen ? 'text-primary' : 'text-primary/70'"
                                 x-text="$store.i18n.t('soft_skills')">
                             </p>
-                            <p class="text-[9px]  text-white/40 truncate">
+                            <p class="text-[length:var(--text-micro)]  text-white/40 truncate">
                                 NEURAL_TRAITS
                             </p>
                         </div>
 
                         <!-- STATUS -->
-                        <span class="text-[10px]  tracking-widest shrink-0"
+                        <span class="text-[length:var(--text-md)]  tracking-widest shrink-0"
                             :class="softOpen ? 'text-primary' : 'text-white/40'">
                             [ <span x-text="softOpen ? 'ON' : 'OFF'"></span> ]
                         </span>
@@ -534,7 +528,7 @@
 
                                 <!-- LABEL -->
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-[9px]  uppercase tracking-widest text-white truncate">
+                                    <p class="text-[length:var(--text-micro)]  uppercase tracking-widest text-white truncate">
                                         <span x-text="$store.i18n.t(`skills.${data.label}`)"></span>
                                     </p>
                                 </div>
@@ -571,7 +565,7 @@
             <div class="flex items-center gap-2 mb-3">
                 <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
 
-                <h5 x-text="$store.i18n.t('hard_title')" class="text-[13px] font-black uppercase tracking-[0.3em] text-primary">
+                <h5 x-text="$store.i18n.t('hard_title')" class="text-[length:var(--text-md)] font-black uppercase tracking-[0.3em] text-primary">
                     
                 </h5>
             </div>
@@ -613,7 +607,7 @@
             <div class="flex items-center gap-2 mb-3">
                 <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
 
-                <h5 x-text="$store.i18n.t('soft_title')" class="text-[13px] font-black uppercase tracking-[0.3em] text-primary">
+                <h5 x-text="$store.i18n.t('soft_title')" class="text-[length:var(--text-md)] font-black uppercase tracking-[0.3em] text-primary">
                     
                 </h5>
             </div>

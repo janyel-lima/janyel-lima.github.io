@@ -172,7 +172,7 @@ window.renderSkillChart = function ({
                 Alpine.store('i18n')?.t(`levels.${skill.level}`) ||
                 skill.level
 
-              return `${translated} — Rank ${skill.level} · Power ${skill.value}`
+              return `${translated} — Rank ${skill.level}`
             }
           }
         }

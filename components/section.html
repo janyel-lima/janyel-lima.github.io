@@ -1,5 +1,5 @@
 <div id="projects" x-data="projectStream(myData.projects, 2)">
-    <h2 x-text="$store.i18n.t('title_about')" class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em]">■
+    <h2 x-text="$store.i18n.t('title_about')" class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.3em]">■
     </h2>
 
     <div class="relative flex bg-black/60 border-primary border border-white/10 mb-5 group overflow-hidden"
@@ -12,16 +12,16 @@
                 <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]">
                 </div>
 
-                <h5 class="text-[13px] font-black uppercase tracking-[0.3em] text-primary"
+                <h5 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.3em] text-primary"
                     x-text="$store.i18n.t('data_about')">
                 </h5>
             </div>
 
-            <div class="text-[11px]  text-gray-400 uppercase mb-1 tracking-[0.2em]"
+            <div class="text-[length:var(--text-sm)]  text-gray-400 uppercase mb-1 tracking-[0.2em]"
                 x-text="$store.i18n.t('transmission_source')">
             </div>
 
-            <p class="text-[15px] text-gray-300  leading-snug
+            <p class="text-[length:var(--text-base)] tracking-[0.1em] text-gray-300  leading-snug
                group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('about_me_text')">
             </p>
         </div>
@@ -30,12 +30,12 @@
             style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"></div>
     </div>
 
-    <h2 x-text="$store.i18n.t('title_projects')" class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em]">■
-        Project_Logs</h2>
+    <h2 x-text="$store.i18n.t('title_projects')" class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.3em]">■
+        </h2>
 
     <div class="flex flex-col sm:flex-row gap-3 sm:gap-0
          justify-between items-center
-         mb-6 text-[10px]  text-primary/70 tracking-widest">
+         mb-6 text-[length:var(--text-md)]  text-primary/70 tracking-widest">
 
         <!-- PREV -->
         <button @click="prev;$store.sfx.play('click');" data-interactive class="rpg-button-left bg-black/60 w-full sm:w-auto
@@ -47,7 +47,7 @@
 
         <!-- STATUS -->
         <span x-text="$store.i18n.t('stream_active')"
-            class="order-first sm:order-none text-[9px] sm:text-[10px] text-primary animate-pulse">
+            class="order-first sm:order-none text-[length:var(--text-micro)] sm:text-[length:var(--text-md)] text-primary animate-pulse">
         </span>
 
         <!-- NEXT -->
@@ -74,7 +74,7 @@
 
   <!-- HEADER -->
   <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
-    <span class="text-[8px]  text-primary/60 uppercase tracking-[0.2em]"
+    <span class="text-[length:var(--text-micro)]  text-primary/60 uppercase tracking-[0.2em]"
           x-text="$store.i18n.t('project_data')"></span>
 
     <div class="flex gap-1">
@@ -120,7 +120,7 @@
 
     <!-- COUNTER -->
     <div class="absolute bottom-3 left-3 z-20 flex items-end gap-1">
-      <div class="ml-3  text-[9px] tracking-widest text-primary/80">
+      <div class="ml-3  text-[length:var(--text-micro)] tracking-widest text-primary/80">
         <span x-text="String(index + 1).padStart(2,'0')"></span>
         /
         <span x-text="String(images.length).padStart(2,'0')"></span>
@@ -129,7 +129,7 @@
   </div>
 
   <!-- TITLE -->
-  <h4 class="font-bold text-base truncate uppercase tracking-tighter text-white"
+  <h4 class="font-bold tracking-[0.1em] text-base truncate uppercase  text-white"
       x-text="p.title"></h4>
 
   <!-- ABOUT (i18n + typing + cancel offscreen) -->
@@ -139,11 +139,11 @@
         x-on:alpine:destroy="destroy()"
        x-effect="onTextChanged()">
 
-    <p class="text-[9px] text-primary uppercase  mb-2 tracking-[0.2em] font-black">
+    <p class="text-[length:var(--text-micro)] text-primary uppercase  mb-2 tracking-[0.2em] font-black">
       // <span x-text="p.type[$store.i18n.lang]"></span>
     </p>
 
-    <p class="text-[11px] text-gray-300  leading-relaxed transition-all duration-300"
+    <p class="text-[length:var(--text-sm)] text-gray-300  leading-relaxed transition-all duration-300"
        :class="expanded ? '' : 'line-clamp-2'"
        x-text="displayText">
     </p>
@@ -151,7 +151,7 @@
     <button x-show="shouldShowToggle"
             @click="toggle()"
             class="animate-pulse mt-5 mb-5 flex items-center gap-2
-                   text-[9px]  uppercase tracking-widest">
+                   text-[length:var(--text-micro)]  uppercase tracking-widest">
       <span
   :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
   x-effect="$nextTick(() => updateInterfaceStatic())"
@@ -188,17 +188,17 @@
         </i>
 
         <div class="flex-1 min-w-0">
-          <p class="text-[11px]  uppercase tracking-[0.25em] truncate
+          <p   x-text="$store.i18n.t('stack_analysis')" class="text-[length:var(--text-sm)]  uppercase tracking-[0.1em] truncate
                     text-primary/70 group-open/details:text-primary">
-            <span x-text="$store.i18n.t('stack_analysis')"></span>
+           
           </p>
 
-          <p class="text-[9px]  text-white/40 truncate">
-            <span x-text="$store.i18n.t('system_modules')"></span>
+          <p x-text="$store.i18n.t('system_modules')" class="text-[length:var(--text-micro)] tracking-[0.1em]  text-white/40 truncate">
+            
           </p>
         </div>
 
-        <span class="text-[10px]  tracking-widest shrink-0"
+        <span class="text-[length:var(--text-md)]  tracking-widest shrink-0"
               :class="expanded ? 'text-primary' : 'text-white/40'">
           [
           <span x-show="!expanded">OFF</span>
@@ -228,11 +228,11 @@
 
           
           <template x-if="s.type === 'devicon' && skillIcons[s.key]">
-            <i :class="skillIcons[s.key].icon" class="text-primary text-[18px] shrink-0"></i>
+            <i :class="skillIcons[s.key].icon" class="text-primary text-[length:var(--text-lg)] shrink-0"></i>
           </template>
 
           <div class="flex-1 min-w-0">
-            <p class="text-[9px]  uppercase tracking-widest text-white truncate">
+            <p class="text-[length:var(--text-micro)]  uppercase tracking-widest text-white truncate">
               <span x-text="resolveSkill(s.key).label"></span>
             </p>
           </div>
@@ -275,16 +275,16 @@
         </i>
 
         <div class="flex-1 min-w-0">
-          <p class="text-[11px]  uppercase tracking-[0.25em] truncate text-primary/70">
-            <span x-text="$store.i18n.t('unit_support')"></span>
+          <p x-text="$store.i18n.t('unit_support')" class="text-[length:var(--text-sm)]  uppercase tracking-[0.1em] truncate text-primary/70">
+            
           </p>
 
-          <p class="text-[9px]  text-white/40 truncate">
-            <span x-text="$store.i18n.t('auxiliary_modules')"></span>
+          <p x-text="$store.i18n.t('auxiliary_modules')" class="text-[length:var(--text-micro)] tracking-[0.1em] text-white/40 truncate">
+            
           </p>
         </div>
 
-        <span class="text-[10px]  tracking-widest shrink-0"
+        <span class="text-[length:var(--text-md)]  tracking-widest shrink-0"
               :class="expanded ? 'text-primary' : 'text-white/40'">
           [
           <span x-show="!expanded">OFF</span>
@@ -336,10 +336,10 @@
           </div>
 
           <div class="flex-1 min-w-0">
-            <p class="text-[10px] font-bold uppercase tracking-tight text-gray-100"
+            <p class="text-[length:var(--text-md)] font-bold uppercase tracking-tight text-gray-100"
                x-text="member.name"></p>
 
-            <p class="text-[8px]  uppercase text-primary/70 tracking-[0.1em]">
+            <p class="text-[length:var(--text-micro)]  uppercase text-primary/70 tracking-[0.1em]">
               // <span x-text="member.role[$store.i18n.lang]"></span>
             </p>
 
@@ -382,16 +382,16 @@
         <div class="flex items-center gap-2 mb-3">
             <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
 
-            <h5 class="text-[13px] font-black uppercase tracking-[0.3em] text-primary"
+            <h5 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.3em] text-primary"
                 x-text="$store.i18n.t('data_fragment')">
             </h5>
         </div>
 
-        <div class="text-[11px]  text-gray-400 uppercase mb-1 tracking-[0.2em]"
+        <div class="text-[length:var(--text-sm)]  text-gray-400 uppercase mb-1 tracking-[0.2em]"
             x-text="$store.i18n.t('transmission_source')">
         </div>
 
-        <p class="text-[15px] text-gray-300  leading-snug
+        <p class="text-[length:var(--text-base)] text-gray-300  leading-snug
                group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('contact_text')">
         </p>
     </div>
@@ -402,8 +402,8 @@
 
 <div id="exp" x-data="{ devStats }">
 
-    <h2 x-text="$store.i18n.t('title_exp')" class="text-accent font-bold text-xs mb-6 uppercase tracking-[0.3em]">
-        ■ Work_Experience_Timeline
+    <h2 x-text="$store.i18n.t('title_exp')" class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.3em]">
+       
     </h2>
 
     <div id="experience-timeline" class="space-y-0">
@@ -420,7 +420,7 @@
                 <div data-interactive>
                     <!-- YEAR LABEL -->
                     <div data-non-interactive class="absolute left-[40px] -top-2 -translate-x-1/2
-             text-[12px]  tracking-widest uppercase
+             text-[length:var(--text-sm)]  tracking-widest uppercase
              text-white  px-2">
                         <span x-text="job.period[$store.i18n.lang].split(' ')[0]"></span>
                     </div>
@@ -449,11 +449,11 @@
 
     <!-- LEFT -->
     <div class="space-y-1">
-      <h3 class="font-black text-white uppercase tracking-tight text-[13px]"
+      <h3 class="font-black text-white uppercase tracking-[0.1em] text-[length:var(--text-md)]"
           x-text="job.role[$store.i18n.lang]">
       </h3>
 
-      <p class="text-[9px]  uppercase tracking-[0.25em] text-primary">
+      <p class="text-[length:var(--text-micro)]  uppercase tracking-[0.25em] text-primary">
         <span x-text="$store.i18n.t('deploy')"></span>
         <span class="mx-1 text-primary/40">/</span>
         <span x-text="job.company"></span>
@@ -463,10 +463,10 @@
     <!-- RIGHT -->
     <div class="text-right leading-tight">
       <p x-text="$store.i18n.t('period')"
-         class="text-[8px]  uppercase tracking-widest text-white/40 mb-1">
+         class="text-[length:var(--text-micro)]  uppercase tracking-widest text-white/40 mb-1">
       </p>
 
-      <p class="text-[10px]  text-white bg-white/5 px-2 py-0.5 inline-block">
+      <p class="text-[length:var(--text-md)]  text-white bg-white/5 px-2 py-0.5 inline-block">
         <span x-text="job.period[$store.i18n.lang]"></span>
       </p>
     </div>
@@ -480,7 +480,7 @@
     <!-- SYSTEM LOG -->
 <div class="
         
-        text-[11px]
+        text-[length:var(--text-sm)]
         text-gray-300
         leading-relaxed
         border-l
@@ -500,7 +500,7 @@
     x-show="shouldShowToggle"
     @click="toggle()"
     class="animate-pulse mt-3 flex items-center gap-2
-           text-[9px]  uppercase tracking-widest">
+           text-[length:var(--text-micro)]  uppercase tracking-widest">
     <span
   :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
   x-effect="$nextTick(() => updateInterfaceStatic())"
@@ -526,12 +526,12 @@
                    group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
           </i>
 
-          <p class="text-[9px]  uppercase tracking-[0.35em]
+          <p class="text-[length:var(--text-micro)]  uppercase tracking-[0.35em]
                    text-primary/70 group-open/details:text-primary">
             <span x-text="$store.i18n.t('skills_used')"></span>
           </p>
 
-          <span class="ml-auto text-[9px]  tracking-widest"
+          <span class="ml-auto text-[length:var(--text-micro)]  tracking-widest"
                 :class="expanded ? 'text-primary' : 'text-white/40'">
             [ <span x-show="!expanded">OFF</span><span x-show="expanded">ON</span> ]
           </span>
@@ -556,11 +556,11 @@
 
               <template x-if="s.type === 'devicon' && skillIcons[s.key]">
                 <i :class="skillIcons[s.key].icon"
-                   class="text-primary text-[15px] shrink-0">
+                   class="text-primary text-[length:var(--text-base)] shrink-0">
                 </i>
               </template>
 
-              <p class="text-[9px]  uppercase tracking-widest
+              <p class="text-[length:var(--text-micro)]  uppercase tracking-widest
                        text-white/90 truncate">
                 <span x-text="resolveSkill(s.key).label"></span>
               </p>
@@ -607,12 +607,12 @@
 
         <div class="flex items-center gap-2">
             <div class="w-2 h-2 bg-primary rotate-45"></div>
-            <span class="text-[10px]  uppercase tracking-widest text-primary">
+            <span class="text-[length:var(--text-md)]  uppercase tracking-widest text-primary">
                 ARCHIVE_NODE
             </span>
         </div>
 
-        <span class="text-[9px]  text-white/40 tracking-widest">
+        <span class="text-[length:var(--text-micro)]  text-white/40 tracking-widest">
             ID: EDU-AX91
         </span>
     </div>
@@ -623,7 +623,7 @@
         <!-- ACADEMIC -->
         <div x-data="{ educationLogs }" data-interactive>
 
-            <p class="text-[9px]  uppercase tracking-widest text-white/50 mb-3"
+            <p class="text-[length:var(--text-micro)]  uppercase tracking-widest text-white/50 mb-3"
                 x-text="$store.i18n.t('certification_logs')">
             </p>
 
@@ -633,7 +633,7 @@
                 <div class="mb-5">
 
                     <!-- SECTION TITLE -->
-                    <p class="text-[8px]  uppercase tracking-widest text-primary/70 mb-2"
+                    <p class="text-[length:var(--text-micro)]  uppercase tracking-widest text-primary/70 mb-2"
                         x-text="$store.i18n.t(section === 'higher' ? 'higher_education' : 'courses')">
                     </p>
 
@@ -661,13 +661,13 @@
 
                                 <!-- CONTENT -->
                                 <div>
-                                    <a :href="item.url" target="_blank" rel="noopener noreferrer" class="block text-[11px] font-bold uppercase text-white
+                                    <a :href="item.url" target="_blank" rel="noopener noreferrer" class="block text-[length:var(--text-sm)] font-bold uppercase text-white
                        tracking-tight
                        transition-colors duration-200
                        group-hover:text-primary" x-text="$store.i18n.t(item.title_key)">
                                     </a>
 
-                                    <p class="text-[9px]  text-white/40 tracking-wide"
+                                    <p class="text-[length:var(--text-micro)]  text-white/40 tracking-wide"
                                         x-text="$store.i18n.t(item.provider_key)">
                                     </p>
                                 </div>
@@ -686,7 +686,7 @@
     </div>
 
     <!-- FOOTER TAG -->
-    <div class="px-4 py-2 border-t border-white/5 text-[8px]  text-white/30 tracking-widest">
+    <div class="px-4 py-2 border-t border-white/5 text-[length:var(--text-micro)]  text-white/30 tracking-widest">
         STATUS: VERIFIED
     </div>
 </div>

@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "NewRodin";
-  src: url("./FOT-NewRodin-Pro-DB.otf") format("opentype");
+  font-family: "EuroStile";
+  src: url("./eurostile.TTF") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -14,7 +14,16 @@
     --color-secondary: #24C6D1;
     --color-accent: rgb(10, 158, 163);
     --card-bg: rgba(0, 0, 0, 0.3); /* Background para contraste no Verde */
-    --font-main: "NewRodin", sans-serif;
+    --font-main: "EuroStile", sans-serif;
+
+
+    --text-micro: clamp(0.55rem, 0.5vw, 0.65rem);   /* antigo 8-9px */
+    --text-xs: clamp(0.65rem, 0.6vw, 0.75rem);      /* antigo 10px */
+    --text-sm: clamp(0.75rem, 0.8vw, 0.875rem);     /* antigo 12px */
+    --text-md: clamp(0.85rem, 0.95vw, 1rem);
+    --text-base: clamp(0.9rem, 1.1vw, 1rem);
+    --text-lg: clamp(1.1rem, 1.8vw, 1.4rem);
+    --text-xl: clamp(1.5rem, 3vw, 2.5rem);
   }
 
 
@@ -54,6 +63,7 @@ body {
     color: white; 
     transition: background-color 0.7s ease;
     font-family: var(--font-main);
+    font-size: var(--text-base);
 }
 
 /* Scrollbar Estilo RPG */

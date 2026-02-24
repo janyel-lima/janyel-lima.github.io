@@ -27,7 +27,7 @@ const i18n = {
         title_about: "■ Sobre_Mim",
         title_exp: "■ Linha_do_Tempo_Experiencia",
         sys_online: "Status_do_Sistema: Online",
-        made_with: "Feito com Tailwind e Feitiçaria",
+        made_with: "Feito com Tailwind e Tecnomancia",
         footer_termination: "// Links_de_Terminação",
         return_top: ">> Voltar_ao_Topo",
         send_transmission: ">> Enviar_Transmissão"
@@ -85,7 +85,7 @@ const i18n = {
 
         provider_rocketseat: 'Ministrado por: Rocketseat',
         provider_bootcamp: 'Ministrado por: Bootcamp',
-        soft_title: "Perfil Tático de Competências Comportamentais",
+        soft_title: "Perfil de Competências Comportamentais",
         hard_title: "Loadout Técnico Principal",
         skills: {
   // HARD
@@ -167,14 +167,14 @@ const i18n = {
         stack_analysis: "Stack Used",
         unit_support: "TEAM",
         auxiliary_modules: "TEAM_MEMBERS",
-        made_with: "Made with Tailwind and Sorcery",
+        made_with: "Made with Tailwind and Technomancy",
         footer_termination: "// Termination_Links",
         return_top: ">> Return_to_Top",
         send_transmission: ">> Send_Transmission",
         dev_data: "Requested_Developer_Data",
         social_links: "Requested_Social_Links",
         project_data: "Requested_Project_Data",
-        soft_title: "Soft Skills Tactical Profile",
+        soft_title: "Soft Skills Profile",
         hard_title: "Primary Technical Loadout",
         period: "Period_Log",
         deploy: "// DEPLOYED_AT:",

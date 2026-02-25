@@ -1,9 +1,28 @@
+// ==============================
+// LOCALE AUTO-DETECT
+// ==============================
+function detectLocale() {
+  const saved = localStorage.getItem('pref-lang');
+  if (saved === 'pt-br' || saved === 'en') return saved;
+
+  const nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  return nav.startsWith('pt') ? 'pt-br' : 'en';
+}
+
+// currentLang é a fonte de verdade para updateInterfaceStatic
+// É sincronizado sempre que o idioma muda
+let currentLang = detectLocale();
+
+// ==============================
+// ALPINE INIT
+// ==============================
 document.addEventListener('alpine:init', () => {
+
   // ==============================
   // GLOBAL: I18N STORE
   // ==============================
   Alpine.store('i18n', {
-    lang: localStorage.getItem('pref-lang') || 'en',
+    lang: detectLocale(),
     messages: i18n,
 
     t(key) {
@@ -15,7 +34,6 @@ document.addEventListener('alpine:init', () => {
         val = val[k];
       }
 
-      // suporte real ao teu schema: { "en": "...", "pt-br": "..." }
       if (
         val &&
         typeof val === 'object' &&
@@ -35,7 +53,10 @@ document.addEventListener('alpine:init', () => {
       this.lang = newLang;
       localStorage.setItem('pref-lang', this.lang);
 
-      // evento global: tudo reage sem quebrar estado
+      // Sincroniza a variável global ANTES de disparar o evento
+      // para que updateInterfaceStatic já leia o valor correto
+      currentLang = this.lang;
+
       window.dispatchEvent(new CustomEvent('i18n:changed', {
         detail: { lang: this.lang }
       }));
@@ -100,10 +121,7 @@ document.addEventListener('alpine:init', () => {
     start() {
       this.pause();
       if (!this.images || this.images.length <= 1) return;
-
-      this.interval = setInterval(() => {
-        this.next();
-      }, 3000);
+      this.interval = setInterval(() => { this.next(); }, 3000);
     },
 
     pause() {
@@ -111,13 +129,8 @@ document.addEventListener('alpine:init', () => {
       this.interval = null;
     },
 
-    resume() {
-      this.start();
-    },
-
-    destroy() {
-      this.pause();
-    },
+    resume() { this.start(); },
+    destroy() { this.pause(); },
 
     next() {
       const total = this.images?.length ?? 0;
@@ -137,36 +150,27 @@ document.addEventListener('alpine:init', () => {
   // ==============================
   // SEARCH STORE
   // ==============================
-
   Alpine.store('search', {
-    q: localStorage.getItem('search-q') || "",
+    q: localStorage.getItem('search-q') || '',
 
-    persist() {
-      localStorage.setItem('search-q', this.q || "")
-    },
-
-    clear() {
-      this.q = ""
-      localStorage.removeItem('search-q')
-    },
+    persist() { localStorage.setItem('search-q', this.q || ''); },
+    clear() { this.q = ''; localStorage.removeItem('search-q'); },
 
     normalize(str) {
-      return String(str ?? "")
+      return String(str ?? '')
         .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "") // remove acentos
-        .replace(/[_\-]+/g, " ")
-        .trim()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[_\-]+/g, ' ')
+        .trim();
     },
 
     match(haystack) {
-      const q = this.normalize(this.q)
-      if (!q) return true
-
-      const text = this.normalize(haystack)
-      return text.includes(q)
+      const q = this.normalize(this.q);
+      if (!q) return true;
+      return this.normalize(haystack).includes(q);
     }
-  })
+  });
 
   // ==============================
   // COMPONENT: PROJECT STREAM
@@ -178,22 +182,20 @@ document.addEventListener('alpine:init', () => {
     direction: 'next',
 
     get visibleProjects() {
-  const list = this.filteredProjects
-  const total = list.length
-  if (!total) return []
+      const list = this.filteredProjects;
+      const total = list.length;
+      if (!total) return [];
 
-  const out = []
-  for (let i = 0; i < this.windowSize; i++) {
-    out.push(list[(this.cursor + i) % total])
-  }
-  return out
-}
-,
+      const out = [];
+      for (let i = 0; i < this.windowSize; i++) {
+        out.push(list[(this.cursor + i) % total]);
+      }
+      return out;
+    },
 
     next() {
       const total = this.projects?.length ?? 0;
       if (!total) return;
-
       this.direction = 'next';
       this.cursor = (this.cursor + 1) % total;
       this.$store.sfx.play('select');
@@ -203,34 +205,27 @@ document.addEventListener('alpine:init', () => {
     prev() {
       const total = this.projects?.length ?? 0;
       if (!total) return;
-
       this.direction = 'prev';
       this.cursor = (this.cursor - 1 + total) % total;
       this.$store.sfx.play('select');
       refreshIcons();
     },
+
     get filteredProjects() {
-  const s = Alpine.store('search')
-
-  return this.projects.filter(p => {
-    const lang = Alpine.store('i18n').lang
-
-    const text = [
-      p.title,
-      p.type?.[lang],
-      p.about?.[lang],
-      ...(p.stack?.map(x => x.key) ?? []),
-      ...(p.team?.map(x => x.name) ?? []),
-    ].join(" ")
-
-    return s.match(text)
-  })
-},
-
-
+      const s = Alpine.store('search');
+      return this.projects.filter(p => {
+        const lang = Alpine.store('i18n').lang;
+        const text = [
+          p.title,
+          p.type?.[lang],
+          p.about?.[lang],
+          ...(p.stack?.map(x => x.key) ?? []),
+          ...(p.team?.map(x => x.name) ?? []),
+        ].join(' ');
+        return s.match(text);
+      });
+    }
   }));
-
-  
 });
 
 
@@ -240,29 +235,17 @@ document.addEventListener('alpine:init', () => {
 
 function getTranslatedLabels() {
   const i18nStore = Alpine.store('i18n');
-
-  const hardLabels = Object.values(window.skillLevels?.hard ?? {})
-    .map(s => s?.label)
-    .filter(Boolean);
-
-  const softLabels = Object.values(window.skillLevels?.soft ?? {})
-    .map(s => s?.label)
-    .filter(Boolean);
-
-  return [...hardLabels, ...softLabels].map(
-    key => i18nStore.t(`skills.${key}`)
-  );
+  const hardLabels = Object.values(window.skillLevels?.hard ?? {}).map(s => s?.label).filter(Boolean);
+  const softLabels = Object.values(window.skillLevels?.soft ?? {}).map(s => s?.label).filter(Boolean);
+  return [...hardLabels, ...softLabels].map(key => i18nStore.t(`skills.${key}`));
 }
 
 function getMinYear(period) {
   if (!period) return '';
-
-  // se for objeto por idioma
   if (typeof period === 'object' && period !== null) {
     const lang = Alpine.store('i18n')?.lang ?? 'en';
     period = period[lang] ?? period.en ?? period['pt-br'] ?? '';
   }
-
   const years = String(period).match(/\d{4}/g);
   return years ? Math.min(...years.map(Number)) : '';
 }
@@ -270,20 +253,27 @@ function getMinYear(period) {
 
 // ==============================
 // STATIC I18N: DATA-I18N ELEMENTS
+// Lê sempre de currentLang (sincronizado com o store)
 // ==============================
 function updateInterfaceStatic() {
-  const store = Alpine.store('i18n');
-  const lang = store.lang;
-  const dict = store.messages?.[lang] ?? {};
-
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    if (!key) return;
-
-    const val = dict[key];
-    if (val != null) el.textContent = val;
+    const key = el.getAttribute('data-i18n');
+    if (i18n[currentLang]?.[key]) el.innerText = i18n[currentLang][key];
   });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (i18n[currentLang]?.[key]) el.placeholder = i18n[currentLang][key];
+  });
+
+  const langLabel = document.getElementById('current-lang');
+  if (langLabel) langLabel.innerText = currentLang.toUpperCase();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  currentLang = detectLocale(); // garante sincronia no carregamento
+  updateInterfaceStatic();
+});
 
 
 // ==============================
@@ -292,7 +282,6 @@ function updateInterfaceStatic() {
 let _iconsRAF = null;
 function refreshIcons() {
   if (_iconsRAF) return;
-
   _iconsRAF = requestAnimationFrame(() => {
     _iconsRAF = null;
     if (window.lucide) lucide.createIcons();
@@ -304,12 +293,8 @@ function refreshIcons() {
 // SKILL RESOLVER
 // ==============================
 function resolveSkill(skillKey) {
-  const level =
-    window.skillLevels?.hard?.[skillKey] ||
-    window.skillLevels?.soft?.[skillKey];
-
+  const level = window.skillLevels?.hard?.[skillKey] || window.skillLevels?.soft?.[skillKey];
   const labelKey = level?.label ?? skillKey;
-
   return {
     key: skillKey,
     labelKey,
@@ -323,8 +308,7 @@ function resolveSkill(skillKey) {
 // ==============================
 // IMAGE ERROR HANDLING
 // ==============================
-const IMAGE_FALLBACK =
-  "https://placehold.co/600x400/1a0b33/ab34fa?text=Asset+Missing";
+const IMAGE_FALLBACK = 'https://placehold.co/600x400/1a0b33/ab34fa?text=Asset+Missing';
 
 function handleImageError(e) {
   const img = e?.target;
@@ -342,7 +326,6 @@ function handleImageError(e) {
     'group-hover:opacity-100',
     'group-hover:scale-110'
   );
-
   img.classList.add('grayscale', 'opacity-20');
   img.style.filter = 'sepia(1) hue-rotate(240deg) brightness(0.3)';
 }
@@ -356,17 +339,17 @@ function calculateLevel() {
   const now = new Date();
   const years = (now - start) / (1000 * 60 * 60 * 24 * 365.25);
 
-  let label = "Junior";
+  let label = 'Junior';
   let progress = 0;
 
   if (years >= 5) {
-    label = "Senior";
+    label = 'Senior';
     progress = 100;
   } else if (years >= 2) {
-    label = "Pleno";
+    label = 'Pleno';
     progress = ((years - 2) / 3) * 100;
   } else {
-    label = "Junior";
+    label = 'Junior';
     progress = (years / 2) * 100;
   }
 
@@ -390,34 +373,17 @@ function calculateLevel() {
     if (!header || !logoContainer) return;
 
     const compact = window.scrollY > 50;
-
     if (compact === lastCompact) return;
     lastCompact = compact;
 
     if (compact) {
       header.classList.remove('p-4', 'md:p-6', 'h-24', 'md:h-28');
-      header.classList.add(
-        'p-2',
-        'md:p-3',
-        'h-16',
-        'border-primary/60',
-        'backdrop-blur-md',
-        'shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
-      );
-
+      header.classList.add('p-2', 'md:p-3', 'h-16', 'border-primary/60', 'backdrop-blur-md', 'shadow-[0_4px_20px_rgba(0,0,0,0.5)]');
       logoContainer.classList.remove('md:w-16', 'md:h-16');
       logoContainer.classList.add('md:w-10', 'md:h-10');
     } else {
       header.classList.add('p-4', 'md:p-6', 'h-24', 'md:h-28');
-      header.classList.remove(
-        'p-2',
-        'md:p-3',
-        'h-16',
-        'border-primary/60',
-        'backdrop-blur-md',
-        'shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
-      );
-
+      header.classList.remove('p-2', 'md:p-3', 'h-16', 'border-primary/60', 'backdrop-blur-md', 'shadow-[0_4px_20px_rgba(0,0,0,0.5)]');
       logoContainer.classList.add('md:w-16', 'md:h-16');
       logoContainer.classList.remove('md:w-10', 'md:h-10');
     }
@@ -431,53 +397,19 @@ function calculateLevel() {
 (() => {
   if (typeof particlesJS !== 'function') return;
 
-  particlesJS("particles-js", {
+  particlesJS('particles-js', {
     particles: {
-      number: {
-        value: 70,
-        density: { enable: true, value_area: 850 }
-      },
-      color: { value: "#d0eef2" },
-      opacity: {
-        value: 0.5,
-        random: false,
-        anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false }
-      },
-      size: {
-        value: 2,
-        random: true,
-        anim: { enable: false, speed: 20, size_min: 0.1, sync: false }
-      },
-      line_linked: {
-        enable: true,
-        distance: 150,
-        color: "#d0eef2",
-        opacity: 0.4,
-        width: 1
-      },
-      move: {
-        enable: true,
-        speed: 2,
-        direction: "none",
-        random: false,
-        straight: false,
-        out_mode: "out",
-        bounce: false,
-        attract: { enable: false, rotateX: 600, rotateY: 1200 }
-      }
+      number: { value: 70, density: { enable: true, value_area: 850 } },
+      color: { value: '#d0eef2' },
+      opacity: { value: 0.5, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
+      size: { value: 2, random: true, anim: { enable: false, speed: 20, size_min: 0.1, sync: false } },
+      line_linked: { enable: true, distance: 150, color: '#d0eef2', opacity: 0.4, width: 1 },
+      move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 } }
     },
     interactivity: {
-      detect_on: "canvas",
-      events: {
-        onhover: { enable: true, mode: "grab" },
-        resize: true
-      },
-      modes: {
-        grab: {
-          distance: 180,
-          line_linked: { opacity: 0.6 }
-        }
-      }
+      detect_on: 'canvas',
+      events: { onhover: { enable: true, mode: 'grab' }, resize: true },
+      modes: { grab: { distance: 180, line_linked: { opacity: 0.6 } } }
     },
     retina_detect: true
   });
@@ -485,21 +417,20 @@ function calculateLevel() {
 
 
 // ==============================
-// EXPANDABLE TYPED TEXT (FINAL)
+// EXPANDABLE TYPED TEXT
 // ==============================
 function expandableTypedText(getText, truncateAt = 20, speed = 12) {
   return {
     expanded: false,
-    typedText: "",
+    typedText: '',
     interval: null,
-
     observer: null,
     isVisible: true,
-    lastFullText: "",
+    lastFullText: '',
 
     get fullText() {
-      const t = typeof getText === "function" ? getText() : getText;
-      return String(t ?? "");
+      const t = typeof getText === 'function' ? getText() : getText;
+      return String(t ?? '');
     },
 
     get shouldShowToggle() {
@@ -508,71 +439,58 @@ function expandableTypedText(getText, truncateAt = 20, speed = 12) {
 
     get displayText() {
       if (this.expanded) return this.typedText;
-
       const base = this.fullText.slice(0, truncateAt);
-      return base + (this.fullText.length > truncateAt ? "…" : "");
+      return base + (this.fullText.length > truncateAt ? '…' : '');
+    },
+
+    // Expõe o idioma atual como propriedade reativa do Alpine
+    // para que o template possa usar x-text com o store diretamente
+    get toggleLabel() {
+      return Alpine.store('i18n').t(this.expanded ? 'collapse_data' : 'expand_data');
     },
 
     init() {
       this.lastFullText = this.fullText;
 
-      // Cancela typing fora da tela
-      this.observer = new IntersectionObserver(
-        (entries) => {
-          const entry = entries[0];
-          this.isVisible = entry.isIntersecting;
-
-          if (!this.isVisible) this.stopTyping();
-
-          if (
-            this.isVisible &&
-            this.expanded &&
-            this.typedText.length < this.fullText.length
-          ) {
-            this.resumeTyping();
-          }
-        },
-        { threshold: 0.15 }
-      );
+      this.observer = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        this.isVisible = entry.isIntersecting;
+        if (!this.isVisible) this.stopTyping();
+        if (this.isVisible && this.expanded && this.typedText.length < this.fullText.length) {
+          this.resumeTyping();
+        }
+      }, { threshold: 0.15 });
 
       this.observer.observe(this.$el);
 
-      // Reagir a troca de idioma sem quebrar estado
-      this._onLang = () => this.onTextChanged();
+      this._onLang = () => {
+        // Sincroniza currentLang caso o evento chegue antes do store atualizar
+        currentLang = Alpine.store('i18n').lang;
+        this.onTextChanged();
+      };
+
       window.addEventListener('i18n:changed', this._onLang);
     },
 
     destroy() {
       this.stopTyping();
-
-      if (this.observer) {
-        this.observer.disconnect();
-        this.observer = null;
-      }
-
-      if (this._onLang) {
-        window.removeEventListener('i18n:changed', this._onLang);
-        this._onLang = null;
-      }
+      if (this.observer) { this.observer.disconnect(); this.observer = null; }
+      if (this._onLang) { window.removeEventListener('i18n:changed', this._onLang); this._onLang = null; }
     },
 
     onTextChanged() {
       const now = this.fullText;
       if (now === this.lastFullText) return;
-
       this.lastFullText = now;
 
-      // colapsado: não faz nada além de recalcular displayText
       if (!this.expanded) {
         this.stopTyping();
-        this.typedText = "";
+        this.typedText = '';
         return;
       }
 
-      // expandido: reinicia typing corretamente
       this.stopTyping();
       this.typedText = now.slice(0, truncateAt);
-
       if (this.isVisible) this.resumeTyping();
     },
 
@@ -581,40 +499,23 @@ function expandableTypedText(getText, truncateAt = 20, speed = 12) {
 
       if (!this.expanded) {
         this.stopTyping();
-        this.typedText = "";
+        this.typedText = '';
         return;
       }
 
       this.typedText = this.fullText.slice(0, truncateAt);
-
       if (this.isVisible) this.resumeTyping();
-
-      this.$nextTick(() => {
-  if (this.$refs.toggleLabel) {
-    const key = this.$refs.toggleLabel.getAttribute('data-i18n');
-    if (i18n[currentLang][key]) {
-      this.$refs.toggleLabel.innerText = i18n[currentLang][key];
-    }
-  }
-});
     },
 
     resumeTyping() {
       this.stopTyping();
-
       const full = this.fullText;
       if (this.typedText.length >= full.length) return;
 
       let i = this.typedText.length;
-
       this.interval = setInterval(() => {
-        if (!this.isVisible) {
-          this.stopTyping();
-          return;
-        }
-
-        this.typedText += full[i++] ?? "";
-
+        if (!this.isVisible) { this.stopTyping(); return; }
+        this.typedText += full[i++] ?? '';
         if (i >= full.length) this.stopTyping();
       }, speed);
     },
@@ -636,9 +537,7 @@ function projectCard(p) {
     images: p?.images ?? [],
     index: 0,
 
-    get currentImage() {
-      return this.images?.[this.index] ?? "";
-    },
+    get currentImage() { return this.images?.[this.index] ?? ''; },
 
     init() {
       if (!this.images.length) this.index = 0;
@@ -668,11 +567,7 @@ function app() {
     devStats,
     myData,
 
-    level: {
-      label: 'Junior',
-      years: '0.0',
-      percent: 0
-    },
+    level: { label: 'Junior', years: '0.0', percent: 0 },
 
     locked: false,
     decrypting: false,
@@ -681,22 +576,18 @@ function app() {
     unlocked: false,
 
     skillIcons,
-
     _raf: null,
 
     get tierLabel() {
       const map = {
         'pt-br': { Junior: 'Júnior', Pleno: 'Pleno', Senior: 'Sênior' },
-        'en': { Junior: 'Junior', Pleno: 'Mid-Level', Senior: 'Senior' }
+        'en':    { Junior: 'Junior', Pleno: 'Mid-Level', Senior: 'Senior' }
       };
       return map[this.$store.i18n.lang]?.[this.level.label] ?? this.level.label;
     },
 
     startDecrypt() {
-      if (this.unlocked) {
-        this.showFragment = true;
-        return;
-      }
+      if (this.unlocked) { this.showFragment = true; return; }
 
       this.locked = true;
       this.decrypting = true;
@@ -706,7 +597,6 @@ function app() {
       audio.currentTime = 0;
 
       if (this._raf) cancelAnimationFrame(this._raf);
-
       audio.play().catch(() => {});
 
       const updateProgress = () => {
@@ -714,41 +604,35 @@ function app() {
           this._raf = requestAnimationFrame(updateProgress);
           return;
         }
-
         this.progress = Math.min((audio.currentTime / audio.duration) * 100, 100);
-
-        if (!audio.ended) {
-          this._raf = requestAnimationFrame(updateProgress);
-        }
+        if (!audio.ended) this._raf = requestAnimationFrame(updateProgress);
       };
 
       updateProgress();
 
       audio.onended = () => {
         cancelAnimationFrame(this._raf);
-
         this.progress = 100;
         this.locked = false;
         this.decrypting = false;
         this.unlocked = true;
         this.showFragment = true;
-
         localStorage.setItem('fragment-unlocked', '1');
       };
     },
 
     init() {
       this.$store.sfx.init();
-
-      // estado persistente
       this.unlocked = localStorage.getItem('fragment-unlocked') === '1';
 
-      // interface inicial
+      currentLang = detectLocale();
       updateInterfaceStatic();
       this.recalculateLevel();
 
-      // reagir a troca de idioma sem quebrar nada
-      window.addEventListener('i18n:changed', () => {
+      window.addEventListener('i18n:changed', (e) => {
+        // currentLang já foi sincronizado pelo store.setLang antes do evento
+        // mas garantimos aqui também por segurança
+        currentLang = e.detail.lang;
         updateInterfaceStatic();
 
         if (window.charts) {
@@ -759,9 +643,7 @@ function app() {
     },
 
     recalculateLevel() {
-      if (typeof calculateLevel === 'function') {
-        this.level = calculateLevel();
-      }
+      if (typeof calculateLevel === 'function') this.level = calculateLevel();
     },
 
     closeFragment() {

@@ -17,7 +17,7 @@
                 </h5>
             </div>
 
-            <div class="text-[length:var(--text-sm)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
+            <div class="text-[length:var(--text-xs)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
                 x-text="$store.i18n.t('transmission_source')">
             </div>
 
@@ -154,7 +154,7 @@
                    text-[length:var(--text-micro)]  uppercase tracking-widest">
       <span
   :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
-  x-effect="$nextTick(() => updateInterfaceStatic())"
+  x-effect="expanded; $nextTick(() => updateInterfaceStatic())"
   class="text-primary tracking-[0.1em] hover:text-primary transition">
 </span>
       <span class="animate-pulse text-primary">█</span>
@@ -383,16 +383,16 @@
             <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
 
             <h5 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
-                x-text="$store.i18n.t('data_fragment')">
+                x-text="$store.i18n.t('timeline_fragment')">
             </h5>
         </div>
 
-        <div class="text-[length:var(--text-sm)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
+        <div class="text-[length:var(--text-xs)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
             x-text="$store.i18n.t('transmission_source')">
         </div>
 
-        <p class="text-[length:var(--text-base)] text-gray-300  leading-snug
-               group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('contact_text')">
+        <p class="text-[length:var(--text-base)] tracking-[0.1em] text-gray-300  leading-snug
+               group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('timeline_source')">
         </p>
     </div>
 
@@ -489,6 +489,8 @@
     "
      x-data="expandableTypedText(() => job.description[$store.i18n.lang], 180)"
      x-init="init()"
+     
+        x-on:alpine:destroy="destroy()"
      x-effect="onTextChanged()">
 
   <p x-text="displayText" 
@@ -503,7 +505,7 @@
            text-[length:var(--text-micro)]  uppercase tracking-widest">
     <span
   :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
-  x-effect="$nextTick(() => updateInterfaceStatic())"
+  x-effect="expanded; $nextTick(() => updateInterfaceStatic())"
   class="text-primary tracking-[0.1em] hover:text-primary transition">
 </span>
     <span class="animate-pulse text-primary">█</span>

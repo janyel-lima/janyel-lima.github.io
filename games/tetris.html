@@ -131,7 +131,7 @@
 
     <!-- Score -->
     <div class="flex items-center gap-1.5">
-      <span class="text-[9px] text-primary/40 uppercase tracking-widest">sc</span>
+      <span class="text-[length:var(--text-xs)] text-primary/40 uppercase tracking-widest">sc</span>
       <span id="tetris-score-mobile"
             class="font-black text-primary tracking-widest
                    drop-shadow-[0_0_5px_rgba(var(--color-primary-rgb),0.7)]"
@@ -141,15 +141,15 @@
     <!-- Level / Lines / Best -->
     <div class="flex items-center gap-2.5">
       <div class="flex items-center gap-1">
-        <span class="text-[9px] text-gray-600 uppercase">lv</span>
+        <span class="text-[length:var(--text-xs)] text-gray-600 uppercase">lv</span>
         <span id="tetris-level-mob" class="text-xs font-black text-primary">1</span>
       </div>
       <div class="flex items-center gap-1">
-        <span class="text-[9px] text-gray-600 uppercase">li</span>
+        <span class="text-[length:var(--text-xs)] text-gray-600 uppercase">li</span>
         <span id="tetris-lines-mob" class="text-xs font-black text-white/70">0</span>
       </div>
       <div class="flex items-center gap-1">
-        <span class="text-[9px] text-gray-600 uppercase" data-i18n="tetris_label_best_short">best</span>
+        <span class="text-[length:var(--text-xs)] text-gray-600 uppercase" data-i18n="tetris_label_best_short">best</span>
         <span id="tetris-best-mobile" class="text-xs font-black text-primary/60">0</span>
       </div>
     </div>
@@ -163,13 +163,13 @@
       </button>
       <button id="tetris-pause-btn-mobile" disabled
         class="px-1.5 h-6 border border-primary/25 bg-black/60 text-primary
-               text-[9px] uppercase tracking-widest
+               text-[length:var(--text-xs)] uppercase tracking-widest
                hover:border-primary transition-all disabled:opacity-25 disabled:cursor-not-allowed touch-manipulation">
         ⏸
       </button>
       <button id="tetris-restart-btn-mobile" disabled
         class="px-1.5 h-6 border border-white/10 bg-black/60 text-gray-500
-               text-[9px] uppercase tracking-widest
+               text-[length:var(--text-xs)] uppercase tracking-widest
                hover:border-white/30 hover:text-white transition-all
                disabled:opacity-25 disabled:cursor-not-allowed touch-manipulation">
         ↺
@@ -303,7 +303,7 @@
 
           <!-- Mobile: hint compacto -->
           <div class="lg:hidden w-full bg-black/60 border border-white/5 p-2 mb-3
-                      text-[9px] text-gray-400 uppercase tracking-widest">
+                      text-[length:var(--text-xs)] text-gray-400 uppercase tracking-widest">
             <div class="grid grid-cols-2 gap-x-3 gap-y-0.5 mb-1.5">
               <p><span class="text-primary">TAP</span> <span data-i18n="tetris_hint_tap">rotacionar</span></p>
               <p><span class="text-primary">SWIPE←→</span> <span data-i18n="tetris_hint_lr">mover</span></p>
@@ -311,7 +311,7 @@
               <p><span class="text-primary">SWIPE↑</span> <span data-i18n="tetris_hint_up">hold</span></p>
             </div>
             <button id="tetris-open-tutorial-start"
-                    class="text-primary/40 hover:text-primary transition underline underline-offset-2 text-[9px]"
+                    class="text-primary/40 hover:text-primary transition underline underline-offset-2 text-[length:var(--text-xs)]"
                     data-i18n="tetris_see_tutorial">ver tutorial →</button>
           </div>
 

@@ -595,100 +595,205 @@
 
 
 
-<div class="relative bg-black/60 border border-white/10
-            mb-10 overflow-hidden
-            [clip-path:polygon(0_0,100%_0,100%_88%,94%_100%,0_100%)]
-            before:absolute before:inset-0
-            before:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent)]
-            before:animate-scan">
+Education component · HTML
+Copiar
 
-    <!-- HEADER STRIP -->
-    <div class="flex items-center justify-between px-4 py-2
-              border-b border-white/10
-              bg-black/60">
+<!-- ═══════════════════════════════════════════════
+  ARCHIVE_NODE — Education & Certifications
+  Cyberpunk RPG dark aesthetic
+════════════════════════════════════════════════ -->
 
-        <div class="flex items-center gap-2">
-            <div class="w-2 h-2 bg-primary rotate-45"></div>
-            <span class="text-[length:var(--text-md)]  uppercase tracking-widest text-primary">
-                ARCHIVE_NODE
-            </span>
-        </div>
+<div class="edu-node relative mb-10 overflow-hidden"
+     x-data="{ educationLogs }"
+     data-interactive>
 
-        <span class="text-[length:var(--text-micro)]  text-white/40 tracking-widest">
-            ID: EDU-AX91
-        </span>
+  <!-- ── Ambient glow background ─────────────── -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-0 w-64 h-32 bg-primary/4 blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-48 h-24 bg-accent/3 blur-3xl"></div>
+  </div>
+
+  <!-- ── Outer frame ──────────────────────────── -->
+  <div class="rpg-card relative bg-black/70"
+       style="clip-path: polygon(0 0, 100% 0, 100% 96%, 92% 100%, 0 100%)">
+
+    <!-- Scan line sweep -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(var(--color-primary-rgb),0.03)_50%,transparent_100%)] animate-scan"></div>
+      <div class="absolute inset-0" style="background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(var(--color-primary-rgb),0.008) 3px,rgba(var(--color-primary-rgb),0.008) 4px)"></div>
     </div>
 
-    <!-- BODY -->
-    <div class="p-5 space-y-6">
+    <!-- ══ HEADER ══════════════════════════════ -->
+    <div class="relative flex items-center justify-between
+                px-5 py-3 border-b border-primary/15
+                bg-gradient-to-r from-primary/8 via-transparent to-transparent">
 
-        <!-- ACADEMIC -->
-        <div x-data="{ educationLogs }" data-interactive>
+      <!-- Left: title + badge -->
+      <div class="flex items-center gap-3">
+        <div class="relative flex items-center justify-center w-8 h-8 border border-primary/50 bg-primary/10
+                    shadow-[0_0_12px_rgba(var(--color-primary-rgb),0.25)]"
+             style="clip-path:polygon(20% 0,80% 0,100% 20%,100% 80%,80% 100%,20% 100%,0 80%,0 20%)">
+          <i data-lucide="graduation-cap" class="w-4 h-4 text-primary"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <div class="w-1.5 h-1.5 bg-primary rotate-45 shadow-[0_0_6px_var(--color-primary)]"></div>
+            <span class="text-[length:var(--text-md)] animate-pulse font-black uppercase tracking-[0.12em] text-primary">
+              ARCHIVE_NODE
+            </span>
+          </div>
+          <span class="text-[length:var(--text-xs)] text-primary/40 uppercase tracking-[0.2em]">
+            // knowledge_fragments_loaded
+          </span>
+        </div>
+      </div>
 
-            <p class="text-[length:var(--text-micro)]  uppercase tracking-widest text-white/50 mb-3"
-                x-text="$store.i18n.t('certification_logs')">
-            </p>
+      <!-- Right: ID + status dot -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex flex-col items-end gap-0.5">
+          <span class="text-[length:var(--text-xs)] text-white/60 uppercase tracking-widest">node_id</span>
+          <span class="text-[length:var(--text-micro)] text-primary/60 font-black tracking-widest">EDU-AX91</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-2 py-1 border border-primary/20 bg-primary/5">
+          <div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_6px_var(--color-primary)]"></div>
+          <span class="text-[length:var(--text-xs)] text-primary/70 uppercase tracking-widest">VERIFIED</span>
+        </div>
+      </div>
+    </div>
 
-            <!-- SECTION LOOP -->
-            <template x-for="(items, section) in educationLogs" :key="section">
+    <!-- ══ BODY ════════════════════════════════ -->
+    <div class="relative p-5 space-y-7">
 
-                <div class="mb-5">
+      <!-- SECTION LOOP -->
+      <template x-for="(items, section) in educationLogs" :key="section">
+        <div>
 
-                    <!-- SECTION TITLE -->
-                    <p class="text-[length:var(--text-micro)]  uppercase tracking-widest text-primary/70 mb-2"
-                        x-text="$store.i18n.t(section === 'higher' ? 'higher_education' : 'courses')">
-                    </p>
+          <!-- Section header with icon + divider line -->
+          <div class="flex items-center gap-3 mb-4">
 
-                    <div class="space-y-3">
+            <!-- Icon for each section -->
+            <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center
+                        border border-primary/40 bg-primary/8"
+                 style="clip-path:polygon(10% 0,90% 0,100% 10%,100% 90%,90% 100%,10% 100%,0 90%,0 10%)">
+              <template x-if="section === 'higher'">
+                <i data-lucide="landmark" class="w-3 h-3 text-primary"></i>
+              </template>
+              <template x-if="section !== 'higher'">
+                <i data-lucide="cpu" class="w-3 h-3 text-primary"></i>
+              </template>
+            </div>
 
-                        <!-- ITEM LOOP -->
-                        <template x-for="item in items" :key="item.title_key">
+            <span class="text-[length:var(--text-sm)] font-black  uppercase tracking-[0.18em] text-primary"
+                  x-text="$store.i18n.t(section === 'higher' ? 'higher_education' : 'courses')">
+            </span>
 
-                            <div class="group flex items-start gap-3
-                   px-2 py-2
-                   border border-transparent
-                   hover:border-primary/30
-                   hover:bg-primary/5
-                   transition-all duration-300">
+            <!-- Decorative line -->
+            <div class="flex-1 h-px bg-gradient-to-r from-primary/25 to-transparent"></div>
+            <div class="w-1 h-1 bg-primary/40 rotate-45"></div>
+          </div>
 
-                                <!-- ICON -->
-                                <div class="relative mt-[2px]">
-                                    <div class="w-2 h-2 rotate-45 bg-primary/70
-                       shadow-[0_0_6px_rgba(var(--color-primary-rgb),0.6)]
-                       group-hover:scale-125
-                       group-hover:bg-primary
-                       transition-all duration-300">
-                                    </div>
-                                </div>
+          <!-- ITEM LOOP -->
+          <div class="space-y-2 pl-1">
+            <template x-for="(item, idx) in items" :key="item.title_key">
 
-                                <!-- CONTENT -->
-                                <div>
-                                    <a :href="item.url" target="_blank" rel="noopener noreferrer" class="block text-[length:var(--text-sm)] font-bold uppercase text-white
-                       tracking-tight
-                       transition-colors duration-200
-                       group-hover:text-primary" x-text="$store.i18n.t(item.title_key)">
-                                    </a>
+              <a :href="item.url" target="_blank" rel="noopener noreferrer"
+                 class="edu-item group relative flex items-start gap-4 p-3
+                        border border-white/5 bg-black/30
+                        hover:border-primary/40 hover:bg-primary/5
+                        transition-all duration-300 overflow-hidden block"
+                 style="clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%)">
 
-                                    <p class="text-[length:var(--text-micro)]  text-white/40 tracking-wide"
-                                        x-text="$store.i18n.t(item.provider_key)">
-                                    </p>
-                                </div>
+                <!-- Hover glow sweep -->
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/4 to-primary/0
+                            translate-x-[-100%] group-hover:translate-x-[100%]
+                            transition-transform duration-700 pointer-events-none"></div>
 
-                            </div>
+                <!-- Left accent on hover -->
+                <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary/0
+                            group-hover:bg-primary
+                            transition-all duration-300
+                            shadow-[0_0_8px_var(--color-primary)]"></div>
 
-                        </template>
-
-                    </div>
+                <!-- Index badge -->
+                <div class="flex-shrink-0 flex items-center justify-center
+                            w-7 h-7 mt-0.5
+                            border border-primary/25 bg-black/60
+                            text-[length:var(--text-xs)] font-black text-primary/50
+                            group-hover:border-primary/60 group-hover:text-primary
+                            transition-all duration-300"
+                     style="clip-path:polygon(15% 0,85% 0,100% 15%,100% 85%,85% 100%,15% 100%,0 85%,0 15%)"
+                     x-text="String(idx + 1).padStart(2,'0')">
                 </div>
 
+                <!-- Content -->
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-2">
+                    <span class="text-[length:var(--text-sm)] font-black uppercase tracking-tight text-white/85
+                                 group-hover:text-primary transition-colors duration-200"
+                          x-text="$store.i18n.t(item.title_key)">
+                    </span>
+                    <!-- External link icon -->
+                    <i data-lucide="external-link"
+                       class="w-3 h-3 text-white/20 group-hover:text-primary/70 flex-shrink-0 mt-0.5
+                              transition-colors duration-200"></i>
+                  </div>
+
+                  <div class="flex items-center gap-2 mt-1">
+                    <i data-lucide="shield-check" class="w-2.5 h-2.5 text-primary/40 flex-shrink-0"></i>
+                    <span class="text-[length:var(--text-micro)] text-white/35 tracking-wide"
+                          x-text="$store.i18n.t(item.provider_key)">
+                    </span>
+                  </div>
+                </div>
+
+              </a>
+
             </template>
+          </div>
+
         </div>
-
+      </template>
 
     </div>
 
-    <!-- FOOTER TAG -->
-    <div class="px-4 py-2 border-t border-white/5 text-[length:var(--text-micro)]  text-white/30 tracking-widest">
-        STATUS: VERIFIED
+    <!-- ══ FOOTER ══════════════════════════════ -->
+    <div class="relative flex items-center justify-between
+                px-5 py-2.5 border-t border-white/5
+                bg-black/40">
+      <div class="flex items-center gap-2">
+        <i data-lucide="database" class="w-3 h-3 text-primary/30"></i>
+        <span class="text-[length:var(--text-xs)] text-white/25 uppercase tracking-[0.18em]"
+              x-text="$store.i18n.t('certification_logs')">CERTIFICATION_LOGS</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex gap-1">
+          <div class="w-1 h-1.5 bg-primary/20"></div>
+          <div class="w-1 h-1.5 bg-primary/50"></div>
+          <div class="w-1 h-1.5 bg-primary animate-pulse"></div>
+        </div>
+        <span class="text-[length:var(--text-xs)] text-primary/40 uppercase tracking-widest">STATUS: VERIFIED</span>
+      </div>
     </div>
-</div>
+
+    <!-- Bottom-right corner cut decoration -->
+    <div class="absolute bottom-0 right-0 w-6 h-6 bg-primary/15 pointer-events-none"
+         style="clip-path:polygon(100% 0,100% 100%,0 100%)"></div>
+
+  </div><!-- /.outer frame -->
+
+</div><!-- /.edu-node -->
+
+<style>
+  /* ── Scan animation ───────────────────────────── */
+  @keyframes scan {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .animate-scan { animation: scan 5s ease-in-out infinite; }
+
+  /* ── Item hover: bottom-right cut follows clip-path ── */
+  .edu-item {
+    cursor: pointer;
+    text-decoration: none;
+  }
+</style>

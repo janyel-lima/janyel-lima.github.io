@@ -126,6 +126,29 @@ const i18n = {
     system_boot:  'INICIALIZAÇÃO_DO_SISTEMA',
     loading:      'CARREGANDO...',
 
+
+        // ─────────────────────────────────────────
+    // Challenge (Tetris) — adicionar em ambos os blocos pt-br e en
+    // ─────────────────────────────────────────
+
+    // ── PT-BR ─────────────────────────────────
+    challenge_incoming:      '// transmissão_recebida',
+    challenge_title:         'RECRUITER_CHALLENGE',
+    challenge_body:          'Você tem coragem de testar seus reflexos? Uma rodada de Tetris está esperando.',
+    challenge_disclaimer:    '// desafio_opcional — sem consequências no processo',
+    challenge_accept:        '[ ACEITAR ]',
+    challenge_decline:       'RECUSAR',
+    sys_online: 'SISTEMA_ATIVO',
+    challenge_refused_label: '// transmission_refused',
+    challenge_refused_body:  'desafio recusado — registro arquivado. acesso ao módulo permanece disponível.',
+    challenge_reopen:        '[ reabrir_protocolo ]',
+
+    challenge_modal_title:   'TETRIS_CHALLENGE.exe',
+    challenge_modal_sub:     '// boa_sorte_recruta',
+    challenge_close_hint:    'Fechar [ESC]',
+    challenge_loading:       'carregando_módulo...',
+    challenge_esc_hint:      '// pressione ESC para sair',
+
     // ── Skills: Labels ───────────────────────────────────────
     skills: {
       // Hard Skills
@@ -300,6 +323,23 @@ const i18n = {
     system_alert: 'SYSTEM_ALERT',
     system_boot:  'SYSTEM_BOOT',
     loading:      'LOADING...',
+
+    challenge_incoming:      '// incoming_transmission',
+    challenge_title:         'RECRUITER_CHALLENGE',
+    challenge_body:          'Do you have what it takes? A round of Tetris is waiting for you.',
+    challenge_disclaimer:    '// optional_challenge — no impact on hiring process',
+    challenge_accept:        '[ ACCEPT ]',
+    challenge_decline:       'DECLINE',
+    sys_online: 'SYSTEM_ACTIVE',
+    challenge_refused_label: '// transmission_refused',
+    challenge_refused_body:  'challenge declined — entry archived. module access remains available.',
+    challenge_reopen:        '[ reopen_protocol ]',
+
+    challenge_modal_title:   'TETRIS_CHALLENGE.exe',
+    challenge_modal_sub:     '// good_luck_recruit',
+    challenge_close_hint:    'Close [ESC]',
+    challenge_loading:       'loading_module...',
+    challenge_esc_hint:      '// press ESC to exit',
 
     // ── Skills: Labels ───────────────────────────────────────
     skills: {

@@ -214,7 +214,7 @@
                 <i data-lucide="message-circle"
                     class="w-5 h-5 text-primary shrink-0 transition-transform group-hover/btn:scale-110"></i>
                 <div class="flex flex-col">
-                    <span class="text-[length:var(--text-md)] tracking-[0.1em] font-black uppercase">WhatsApp_Link</span>
+                    <span class="text-[length:var(--text-xs)] tracking-[0.1em] font-black uppercase">WhatsApp_Link</span>
                     <span
                         class="text-[length:var(--text-micro)]  text-gray-300 lowercase opacity-0 group-hover/btn:opacity-100 transition-opacity "
                         x-text="$store.i18n.t('secure_msg')">//
@@ -230,7 +230,7 @@
                 <i data-lucide="mail"
                     class="w-5 h-5 text-primary shrink-0 transition-transform group-hover/btn:scale-110"></i>
                 <div class="flex flex-col">
-                    <span class="text-[length:var(--text-md)] tracking-[0.1em] font-black uppercase">Direct_Email</span>
+                    <span class="text-[length:var(--text-xs)] tracking-[0.1em] font-black uppercase">Direct_Email</span>
                     <span
                         class="text-[length:var(--text-micro)]  text-gray-300 lowercase opacity-0 group-hover/btn:opacity-100 transition-opacity "
                         x-text="$store.i18n.t('request_msg')">//
@@ -657,7 +657,7 @@
   Aparece após scroll, abre modal com o jogo
 ══════════════════════════════════════════════════════════════ -->
 <div
-data-interactive
+  data-interactive
   x-data="{
     visible:    false,
     accepted:   false,
@@ -669,31 +669,22 @@ data-interactive
       this.gameLoaded = false;
       $store.sfx.play('click');
 
-      // Carrega o HTML do tetris dinamicamente no container
       fetch('./games/tetris.html')
         .then(r => r.text())
         .then(html => {
           const container = document.getElementById('tetris-mount');
           if (!container) return;
           container.innerHTML = html;
-
-          // Executa os scripts injetados pelo fetch
           container.querySelectorAll('script').forEach(old => {
             const s = document.createElement('script');
-            if (old.src) {
-              s.src = old.src;
-            } else {
-              s.textContent = old.textContent;
-            }
+            if (old.src) s.src = old.src;
+            else s.textContent = old.textContent;
             document.body.appendChild(s);
           });
-
           this.gameLoaded = true;
           if (window.lucide) lucide.createIcons();
         })
-        .catch(() => {
-          this.gameLoaded = true; // mostra mesmo assim (tetris.html pode ter erro)
-        });
+        .catch(() => { this.gameLoaded = true; });
     },
 
     decline() {
@@ -721,31 +712,24 @@ data-interactive
     x-transition:leave-start="opacity-100 translate-y-0"
     x-transition:leave-end="opacity-0 translate-y-6"
     @mouseenter="$store.sfx.play('hover')"
-    class=" mt-8 relative"
+    class="mt-8 relative"
   >
-    <!-- Glow de fundo -->
     <div class="absolute -inset-1 bg-primary/10 blur-xl animate-pulse pointer-events-none rounded-sm"></div>
 
-    <div class="rpg-card  relative border border-primary/60 bg-black/80
-                shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.2)]
-                overflow-hidden"
+    <div class="rpg-card relative border border-primary/60 bg-black/60
+                shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.2)] overflow-hidden"
          style="clip-path: polygon(0 0, 100% 0, 100% 88%, 94% 100%, 0 100%)">
 
-      <!-- Scanline topo -->
       <div class="absolute inset-x-0 top-0 h-px bg-primary/40"></div>
-      <!-- Barra lateral -->
       <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary shadow-[2px_0_8px_rgba(var(--color-primary-rgb),0.5)]"></div>
-      <!-- Reflexo sweep -->
       <div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent
                   -translate-x-full animate-[sweep_4s_ease-in-out_infinite] pointer-events-none"></div>
 
       <div class="p-4 pl-5">
 
-        <!-- Label topo -->
         <div class="flex justify-between items-center mb-3">
-          <span class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-[0.15em]">
-            // incoming_transmission
-          </span>
+          <span class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-[0.15em]"
+                x-text="$store.i18n.t('challenge_incoming')"></span>
           <div class="flex gap-1">
             <div class="w-1 h-2 bg-primary/20"></div>
             <div class="w-1 h-2 bg-primary/50"></div>
@@ -753,35 +737,28 @@ data-interactive
           </div>
         </div>
 
-        <!-- Título -->
         <div class="flex items-center gap-3 mb-2">
           <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_6px_var(--color-primary)] shrink-0"></div>
-          <h4 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary">
-            RECRUITER_CHALLENGE
-          </h4>
+          <h4 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
+              x-text="$store.i18n.t('challenge_title')"></h4>
         </div>
 
-        <!-- Mensagem -->
         <p class="text-[length:var(--text-sm)] text-gray-300 leading-relaxed mb-1
-                  border-l border-primary/20 pl-3 tracking-[0.05em]">
-          Você tem coragem de testar seus reflexos?
-          <span class="text-primary">Uma rodada de Tetris</span> está esperando.
-        </p>
-        <p class="text-[length:var(--text-micro)] text-gray-500 pl-3 mb-4 uppercase tracking-widest">
-          // desafio_opcional — sem consequências no processo
-        </p>
+                  border-l border-primary/20 pl-3 tracking-[0.05em]"
+           x-html="$store.i18n.t('challenge_body')"></p>
 
-        <!-- Botões -->
+        <p class="text-[length:var(--text-micro)] text-gray-500 pl-3 mb-4 uppercase tracking-widest"
+           x-text="$store.i18n.t('challenge_disclaimer')"></p>
+
         <div class="flex gap-2 flex-wrap">
           <button
             @click="accept()"
             class="flex-1 rpg-button py-2 px-3 flex items-center justify-center gap-2
                    border-primary/60 hover:border-primary bg-primary/5 hover:bg-primary/10
-                   text-[length:var(--text-micro)] uppercase tracking-widest transition-all duration-200
-                   group"
+                   text-[length:var(--text-micro)] uppercase tracking-widest transition-all duration-200 group"
           >
             <i data-lucide="gamepad-2" class="w-3 h-3 text-primary group-hover:scale-110 transition-transform shrink-0"></i>
-            <span class="text-primary font-black">[ ACEITAR ]</span>
+            <span class="text-primary font-black" x-text="$store.i18n.t('challenge_accept')"></span>
           </button>
 
           <button
@@ -790,35 +767,49 @@ data-interactive
                    border-white/10 hover:border-white/30 bg-black/40
                    text-[length:var(--text-micro)] uppercase tracking-widest
                    text-gray-500 hover:text-gray-300 transition-all duration-200"
-          >
-            RECUSAR
-          </button>
+            x-text="$store.i18n.t('challenge_decline')"
+          ></button>
         </div>
 
       </div>
 
-      <!-- Canto decorativo -->
       <div class="absolute bottom-0 right-0 w-3 h-3 bg-primary/20"
            style="clip-path: polygon(100% 0, 100% 100%, 0 100%)"></div>
     </div>
   </div>
 
-  <!-- ── DECLINED MESSAGE ─────────────────────────────────── -->
+  <!-- ── DECLINED ─────────────────────────────────────────── -->
   <div
     x-show="declined"
-    x-transition.opacity
-    class="mt-6 border-l-2 border-white/10 pl-3"
+    x-transition:enter="transition duration-500 ease-out"
+    x-transition:enter-start="opacity-0 translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    class="mt-6 relative border border-white/5 bg-black/40 p-3 overflow-hidden"
   >
-    <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest">
-      // desafio_recusado — talvez na próxima
-      <button @click="declined = false; visible = true"
-              class="text-primary/40 hover:text-primary transition ml-2 underline underline-offset-2">
-        [rever]
+    <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-red-500/40"></div>
+
+    <div class="pl-3 space-y-2">
+      <p class="text-[length:var(--text-micro)] text-red-500/50 uppercase tracking-[0.15em]"
+         x-text="$store.i18n.t('challenge_refused_label')"></p>
+      <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest leading-relaxed"
+         x-html="$store.i18n.t('challenge_refused_body')"></p>
+
+      <button
+        @click="declined = false; visible = true; $store.sfx.play('click')"
+        class="group flex items-center gap-2 mt-1
+               text-[length:var(--text-micro)] uppercase tracking-widest
+               text-primary/30 hover:text-primary transition-all duration-300"
+      >
+        <span class="w-3 h-px bg-primary/30 group-hover:bg-primary group-hover:w-5 transition-all duration-300"></span>
+        <span x-text="$store.i18n.t('challenge_reopen')"></span>
       </button>
-    </p>
+    </div>
+
+    <div class="absolute bottom-0 right-0 w-2 h-2 bg-red-500/10"
+         style="clip-path: polygon(100% 0, 100% 100%, 0 100%)"></div>
   </div>
 
-  <!-- ── MODAL DO JOGO ────────────────────────────────────── -->
+  <!-- ── MODAL ────────────────────────────────────────────── -->
   <div
     x-show="accepted"
     x-transition:enter="transition duration-500 ease-out"
@@ -831,70 +822,52 @@ data-interactive
     @keydown.escape.window="close()"
     style="backdrop-filter: blur(4px);"
   >
-    <!-- Scanlines overlay -->
     <div class="absolute inset-0 bg-scanlines opacity-5 pointer-events-none"></div>
 
-    <div class="relative w-full max-w-4xl bg-black
-                border border-primary/60
+    <div class="relative w-full max-w-4xl bg-black border border-primary/60
                 shadow-[0_0_60px_rgba(var(--color-primary-rgb),0.2)]"
          style="clip-path: polygon(0 0, 100% 0, 100% 96%, 97% 100%, 0 100%)">
 
-      <!-- Header do modal -->
-      <div class="flex justify-between items-center px-5 py-3
-                  border-b border-primary/20 bg-primary/5">
-
+      <!-- Header -->
+      <div class="flex justify-between items-center px-5 py-3 border-b border-primary/20 bg-primary/5">
         <div class="flex items-center gap-3">
           <div class="w-2 h-2 bg-primary rotate-45 animate-pulse shadow-[0_0_8px_var(--color-primary)]"></div>
-          <span class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary">
-            TETRIS_CHALLENGE.exe
-          </span>
-          <span class="text-[length:var(--text-micro)] text-primary/40 uppercase tracking-widest hidden sm:block">
-            // boa_sorte_recruta
-          </span>
+          <span class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
+                x-text="$store.i18n.t('challenge_modal_title')"></span>
+          <span class="text-[length:var(--text-micro)] text-primary/40 uppercase tracking-widest hidden sm:block"
+                x-text="$store.i18n.t('challenge_modal_sub')"></span>
         </div>
-
         <div class="flex items-center gap-3">
           <div class="flex gap-1">
             <div class="w-1 h-2 bg-primary/20"></div>
             <div class="w-1 h-2 bg-primary/50"></div>
             <div class="w-1 h-2 bg-primary animate-pulse"></div>
           </div>
-          <button
-            @click="close()"
-            class="text-primary/50 hover:text-primary transition-colors p-1"
-            title="Fechar [ESC]"
-          >
+          <button @click="close()" :title="$store.i18n.t('challenge_modal_close_hint')"
+                  class="text-primary/50 hover:text-primary transition-colors p-1">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
       </div>
 
-      <!-- Mount point do tetris.html -->
+      <!-- Mount -->
       <div class="relative">
-
-        <!-- Loading state -->
         <div x-show="!gameLoaded" class="flex items-center justify-center py-20 gap-3">
           <div class="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0ms]"></div>
           <div class="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:150ms]"></div>
           <div class="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:300ms]"></div>
-          <span class="text-[length:var(--text-micro)] text-primary/60 uppercase tracking-widest ml-2">
-            carregando_módulo...
-          </span>
+          <span class="text-[length:var(--text-micro)] text-primary/60 uppercase tracking-widest ml-2"
+                x-text="$store.i18n.t('challenge_loading')"></span>
         </div>
-
-        <!-- Conteúdo injetado pelo fetch -->
         <div id="tetris-mount" x-show="gameLoaded" class="w-full"></div>
-
       </div>
 
-      <!-- Footer do modal -->
+      <!-- Footer -->
       <div class="px-5 py-2 border-t border-primary/10 flex justify-between items-center">
-        <span class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest">
-          // pressione ESC para sair
-        </span>
-        <span class="text-[length:var(--text-micro)] text-primary/30 uppercase tracking-widest">
-          SYSTEM_ACTIVE
-        </span>
+        <span class="text-[length:var(--text-xs)] animate-pulse text-primary/30 uppercase tracking-widest"
+              x-text="$store.i18n.t('challenge_esc_hint')"></span>
+        <span class="text-[length:var(--text-xs)] animate-pulse text-primary/30 uppercase tracking-widest"
+              x-text="$store.i18n.t('challenge_modal_sub')"></span>
       </div>
 
     </div>

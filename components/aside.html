@@ -664,10 +664,27 @@
     gameLoaded: false,
     declined:   false,
 
+    _setHeader(hide) {
+      if (window.innerWidth >= 1024) return;
+      const h = document.getElementById('main-header');
+      if (!h) return;
+      if (hide) {
+        h.dataset.tetrisPrevStyle = h.getAttribute('style') || '';
+        h.style.display = 'none';
+      } else {
+        h.style.display = '';
+        if (h.dataset.tetrisPrevStyle !== undefined) {
+          h.setAttribute('style', h.dataset.tetrisPrevStyle);
+          delete h.dataset.tetrisPrevStyle;
+        }
+      }
+    },
+
     accept() {
       this.accepted   = true;
       this.gameLoaded = false;
       $store.sfx.play('click');
+      this._setHeader(true);
 
       fetch('./games/tetris.html')
         .then(r => r.text())
@@ -696,6 +713,7 @@
     close() {
       this.accepted   = false;
       this.gameLoaded = false;
+      this._setHeader(false);
       $store.sfx.play('close');
     }
   }"
@@ -787,13 +805,11 @@
     class="mt-6 relative border border-white/5 bg-black/40 p-3 overflow-hidden"
   >
     <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-red-500/40"></div>
-
     <div class="pl-3 space-y-2">
       <p class="text-[length:var(--text-micro)] text-red-500/50 uppercase tracking-[0.15em]"
          x-text="$store.i18n.t('challenge_refused_label')"></p>
       <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest leading-relaxed"
          x-html="$store.i18n.t('challenge_refused_body')"></p>
-
       <button
         @click="declined = false; visible = true; $store.sfx.play('click')"
         class="group flex items-center gap-2 mt-1
@@ -804,7 +820,6 @@
         <span x-text="$store.i18n.t('challenge_reopen')"></span>
       </button>
     </div>
-
     <div class="absolute bottom-0 right-0 w-2 h-2 bg-red-500/10"
          style="clip-path: polygon(100% 0, 100% 100%, 0 100%)"></div>
   </div>
@@ -818,55 +833,63 @@
     x-transition:leave="transition duration-300 ease-in"
     x-transition:leave-start="opacity-100 scale-100"
     x-transition:leave-end="opacity-0 scale-95"
-    class="fixed inset-0 z-[10000] bg-black/95 flex items-center justify-center p-4"
+    class="fixed inset-0 z-[10000] bg-black/95 flex items-stretch"
     @keydown.escape.window="close()"
     style="backdrop-filter: blur(4px);"
   >
     <div class="absolute inset-0 bg-scanlines opacity-5 pointer-events-none"></div>
 
-    <div class="relative w-full max-w-4xl bg-black border border-primary/60
-                shadow-[0_0_60px_rgba(var(--color-primary-rgb),0.2)]"
-         style="clip-path: polygon(0 0, 100% 0, 100% 96%, 97% 100%, 0 100%)">
+    <!--
+      Layout do modal em coluna: header fixo + conteúdo flex-1 + footer fixo
+      O conteúdo ocupa 100% da altura restante, passando para o tetris-root calcular o espaço.
+    -->
+    <div class="relative w-full flex flex-col bg-black border-primary/60
+                shadow-[0_0_60px_rgba(var(--color-primary-rgb),0.2)]
+                lg:m-auto lg:max-w-4xl lg:border lg:max-h-[96vh]"
+         style="clip-path: polygon(0 0, 100% 0, 100% 99%, 98.5% 100%, 0 100%)">
 
-      <!-- Header -->
-      <div class="flex justify-between items-center px-5 py-3 border-b border-primary/20 bg-primary/5">
-        <div class="flex items-center gap-3">
+      <!-- Header ─────────────────────────────────── -->
+      <div class="flex-shrink-0 flex justify-between items-center px-4 border-b border-primary/20 bg-primary/5"
+           style="height:44px;min-height:44px">
+        <div class="flex items-center gap-2.5">
           <div class="w-2 h-2 bg-primary rotate-45 animate-pulse shadow-[0_0_8px_var(--color-primary)]"></div>
-          <span class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
+          <span class="text-sm font-black uppercase tracking-[0.1em] text-primary"
                 x-text="$store.i18n.t('challenge_modal_title')"></span>
-          <span class="text-[length:var(--text-micro)] text-primary/40 uppercase tracking-widest hidden sm:block"
+          <span class="text-[10px] text-primary/40 uppercase tracking-widest hidden sm:block"
                 x-text="$store.i18n.t('challenge_modal_sub')"></span>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5">
           <div class="flex gap-1">
             <div class="w-1 h-2 bg-primary/20"></div>
             <div class="w-1 h-2 bg-primary/50"></div>
             <div class="w-1 h-2 bg-primary animate-pulse"></div>
           </div>
-          <button @click="close()" :title="$store.i18n.t('challenge_modal_close_hint')"
-                  class="text-primary/50 hover:text-primary transition-colors p-1">
+          <button @click="close()" class="text-primary/50 hover:text-primary transition-colors p-1">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
       </div>
 
-      <!-- Mount -->
-      <div class="relative">
-        <div x-show="!gameLoaded" class="flex items-center justify-center py-20 gap-3">
+      <!-- Mount: flex-1 para ocupar todo o espaço restante ── -->
+      <div class="flex-1 relative overflow-hidden" style="min-height:0">
+        <!-- Loading -->
+        <div x-show="!gameLoaded" class="absolute inset-0 flex items-center justify-center gap-3">
           <div class="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0ms]"></div>
           <div class="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:150ms]"></div>
           <div class="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:300ms]"></div>
-          <span class="text-[length:var(--text-micro)] text-primary/60 uppercase tracking-widest ml-2"
+          <span class="text-[10px] text-primary/60 uppercase tracking-widest ml-2"
                 x-text="$store.i18n.t('challenge_loading')"></span>
         </div>
-        <div id="tetris-mount" x-show="gameLoaded" class="w-full"></div>
+        <!-- Game mount — 100% height para tetris-root calcular escala -->
+        <div id="tetris-mount" x-show="gameLoaded" class="w-full h-full"></div>
       </div>
 
-      <!-- Footer -->
-      <div class="px-5 py-2 border-t border-primary/10 flex justify-between items-center">
-        <span class="text-[length:var(--text-xs)] animate-pulse text-primary/30 uppercase tracking-widest"
+      <!-- Footer ─────────────────────────────────── -->
+      <div class="flex-shrink-0 px-4 border-t border-primary/10 flex justify-between items-center"
+           style="height:32px;min-height:32px">
+        <span class="text-[10px] animate-pulse text-primary/30 uppercase tracking-widest"
               x-text="$store.i18n.t('challenge_esc_hint')"></span>
-        <span class="text-[length:var(--text-xs)] animate-pulse text-primary/30 uppercase tracking-widest"
+        <span class="text-[10px] animate-pulse text-primary/30 uppercase tracking-widest"
               x-text="$store.i18n.t('challenge_modal_sub')"></span>
       </div>
 
@@ -875,21 +898,10 @@
 
 </div>
 
-<!-- Keyframe do sweep (adicionar no style.css se não existir) -->
 <style>
   @keyframes sweep {
     0%   { transform: translateX(-100%); }
     50%  { transform: translateX(100%); }
     100% { transform: translateX(100%); }
-  }
-
-    /* Header: h-24 = 96px (mobile), h-28 md = 112px */
-  .tetris-modal {
-    top: 96px;
-  }
-  @media (min-width: 768px) {
-    .tetris-modal {
-      top: 112px;
-    }
   }
 </style>

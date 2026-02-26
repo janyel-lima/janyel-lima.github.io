@@ -147,7 +147,7 @@ const i18n = {
     challenge_modal_sub:     '// boa_sorte_recruta',
     challenge_close_hint:    'Fechar [ESC]',
     challenge_loading:       'carregando_módulo...',
-    challenge_esc_hint:      '// pressione ESC para sair',
+    challenge_esc_hint:      '// pressione ESC ou X para sair',
 
     // ── Skills: Labels ───────────────────────────────────────
     skills: {
@@ -339,7 +339,7 @@ const i18n = {
     challenge_modal_sub:     '// good_luck_recruit',
     challenge_close_hint:    'Close [ESC]',
     challenge_loading:       'loading_module...',
-    challenge_esc_hint:      '// press ESC to exit',
+    challenge_esc_hint:      '// press ESC or X to exit',
 
     // ── Skills: Labels ───────────────────────────────────────
     skills: {

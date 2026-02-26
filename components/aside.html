@@ -773,7 +773,7 @@
             @click="accept()"
             class="flex-1 rpg-button py-2 px-3 flex items-center justify-center gap-2
                    border-primary/60 hover:border-primary bg-primary/5 hover:bg-primary/10
-                   text-[length:var(--text-micro)] uppercase tracking-widest transition-all duration-200 group"
+                   text-[length:var(--text-xs)] uppercase tracking-widest transition-all duration-200 group"
           >
             <i data-lucide="gamepad-2" class="w-3 h-3 text-primary group-hover:scale-110 transition-transform shrink-0"></i>
             <span class="text-primary font-black" x-text="$store.i18n.t('challenge_accept')"></span>
@@ -781,10 +781,9 @@
 
           <button
             @click="decline()"
-            class="rpg-button py-2 px-3 flex items-center justify-center
-                   border-white/10 hover:border-white/30 bg-black/40
-                   text-[length:var(--text-micro)] uppercase tracking-widest
-                   text-gray-500 hover:text-gray-300 transition-all duration-200"
+            class="rpg-button-alt py-2 px-3 flex items-center justify-center
+                   text-[length:var(--text-xs)] uppercase tracking-widest
+                   transition-all duration-200"
             x-text="$store.i18n.t('challenge_decline')"
           ></button>
         </div>
@@ -806,18 +805,18 @@
   >
     <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-red-500/40"></div>
     <div class="pl-3 space-y-2">
-      <p class="text-[length:var(--text-micro)] text-red-500/50 uppercase tracking-[0.15em]"
+      <p class="text-[length:var(--text-sm)] text-red-500/60 font-bold uppercase tracking-[0.15em]"
          x-text="$store.i18n.t('challenge_refused_label')"></p>
-      <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest leading-relaxed"
+      <p class="text-[length:var(--text-xs)] text-gray-300 uppercase tracking-widest leading-relaxed"
          x-html="$store.i18n.t('challenge_refused_body')"></p>
       <button
         @click="declined = false; visible = true; $store.sfx.play('click')"
         class="group flex items-center gap-2 mt-1
-               text-[length:var(--text-micro)] uppercase tracking-widest
+               text-[length:var(--text-xs)] uppercase tracking-widest
                text-primary/30 hover:text-primary transition-all duration-300"
       >
+      <span x-text="$store.i18n.t('challenge_reopen')"></span>
         <span class="w-3 h-px bg-primary/30 group-hover:bg-primary group-hover:w-5 transition-all duration-300"></span>
-        <span x-text="$store.i18n.t('challenge_reopen')"></span>
       </button>
     </div>
     <div class="absolute bottom-0 right-0 w-2 h-2 bg-red-500/10"

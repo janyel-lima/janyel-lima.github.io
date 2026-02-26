@@ -24,6 +24,10 @@
     --text-base: clamp(0.9rem, 1.1vw, 1rem);
     --text-lg: clamp(1.1rem, 1.8vw, 1.4rem);
     --text-xl: clamp(1.5rem, 3vw, 2.5rem);
+
+    --color-alt: #9724D1; 
+    --color-alt-accent: #AB34FA;
+    --color-alt-rgb: 151, 36, 209;
   }
 
 
@@ -72,6 +76,26 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 10px; }
 
 /* Botões Retangulares Glass-Neon */
+
+
+.rpg-button-alt {
+    color: var(--color-alt);
+    background: rgba(108, 19, 190, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid var(--color-alt);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: bold;
+}
+
+.rpg-button-alt:hover {
+    background: rgba(61, 5, 150, 0.1);
+    border-color: var(--color-alt);
+    transform: translateX(-5px); /* LEFT */;
+    box-shadow: 0 0 15px rgba(var(--color-alt-rgb), 0.3)
+    ;
+}
+
+
 .rpg-button {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);

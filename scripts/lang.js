@@ -148,6 +148,84 @@ const i18n = {
     challenge_close_hint:    'Fechar [ESC]',
     challenge_loading:       'carregando_módulo...',
     challenge_esc_hint:      '// pressione ESC ou X para sair',
+    // ──────────────────────────────────────────
+// PT-BR  (colar dentro do objeto 'pt-br')
+// ──────────────────────────────────────────
+// ── Tutorial ─────────────────────────────
+tetris_tutorial_title:   'TUTORIAL_TOUCH.exe',
+tetris_tutorial_hint:    '// tutorial pode ser revisto pelo botão',
+tetris_tutorial_ok:      '[ ENTENDIDO — JOGAR ]',
+
+// ── Controles (tutorial) ─────────────────
+tetris_ctrl_move:        'BOTÕES ← →',
+tetris_ctrl_move_desc:   'mover peça',
+tetris_ctrl_rotate:      'ROT ↻ / ROT ↺',
+tetris_ctrl_rotate_desc: 'rotacionar peça',
+tetris_ctrl_soft_desc:   'acelerar',
+tetris_ctrl_hard_desc:   'queda rápida',
+tetris_ctrl_hold_desc:   'guardar peça',
+tetris_ctrl_tap:         'TAP canvas',
+tetris_ctrl_tap_desc:    'rotacionar · swipe ↑=hold',
+tetris_ctrl_swipe:       'Swipe canvas',
+tetris_ctrl_swipe_up:    'swipe ↑ hold',
+tetris_ctrl_swipe_lr:    'swipe ← → mover',
+tetris_ctrl_swipe_dn:    'swipe ↓ queda',
+
+// ── Start screen ─────────────────────────
+tetris_module_sub:       '// módulo_de_desafio_ativo',
+tetris_ctrl_header:      '// controles',
+tetris_ctrl_key_move:    'mover',
+tetris_ctrl_key_rcw:     'rotacionar ↻',
+tetris_ctrl_key_rccw:    'rotacionar ↺',
+tetris_ctrl_key_soft:    'acelerar',
+tetris_ctrl_key_hard:    'queda rápida',
+tetris_ctrl_key_hold:    'hold / pausar',
+tetris_hint_tap:         'rotacionar',
+tetris_hint_lr:          'mover',
+tetris_hint_dn:          'queda',
+tetris_hint_up:          'hold',
+tetris_see_tutorial:     'ver tutorial →',
+
+// ── Botões de ação ────────────────────────
+tetris_btn_start:        '[ INICIAR ]',
+tetris_btn_restart:      '[ REINICIAR ]',
+tetris_btn_pause:        '[ PAUSAR ]',
+tetris_btn_resume:       '[ RETOMAR ]',
+
+// ── Labels desktop ────────────────────────
+tetris_label_hold:       '// hold',
+tetris_label_locked:     'locked',
+tetris_label_level:      '// nível',
+tetris_label_lines:      '// linhas',
+tetris_label_combo:      '// combo',
+tetris_label_spd:        '// spd',
+tetris_label_score:      '// score',
+tetris_label_best:       'melhor',
+tetris_label_next:       '// next',
+tetris_label_ranking:    '// ranking',
+
+// ── Labels mobile ─────────────────────────
+tetris_label_best_short: 'best',
+tetris_label_locked_mob: 'lck',
+tetris_mob_hold:         'hold',
+tetris_mob_next:         'next',
+tetris_mob_lines:        'lines',
+tetris_mob_combo:        'combo',
+tetris_mob_rank:         'rank',
+
+// ── D-pad ─────────────────────────────────
+tetris_dpad_hold:        'HOLD',
+tetris_dpad_spc:         'SPC',
+
+// ── Feedback / game ──────────────────────
+tetris_fb_single:        'SINGLE',
+tetris_fb_double:        'DOUBLE',
+tetris_fb_triple:        'TRIPLE',
+tetris_fb_tetris:        '✦ TETRIS !!!',
+tetris_fb_combo:         'COMBO',
+tetris_fb_level:         '▲ LEVEL',
+tetris_gameover:         'GAME_OVER',
+tetris_confirm_clear:    'Limpar todo o ranking?',
 
     // ── Skills: Labels ───────────────────────────────────────
     skills: {
@@ -340,6 +418,84 @@ const i18n = {
     challenge_close_hint:    'Close [ESC]',
     challenge_loading:       'loading_module...',
     challenge_esc_hint:      '// press ESC or X to exit',
+    // ──────────────────────────────────────────
+// EN  (colar dentro do objeto 'en')
+// ──────────────────────────────────────────
+// ── Tutorial ─────────────────────────────
+tetris_tutorial_title:   'TOUCH_TUTORIAL.exe',
+tetris_tutorial_hint:    '// tutorial can be reviewed via the',
+tetris_tutorial_ok:      '[ UNDERSTOOD — PLAY ]',
+
+// ── Controles (tutorial) ─────────────────
+tetris_ctrl_move:        'BUTTONS ← →',
+tetris_ctrl_move_desc:   'move piece',
+tetris_ctrl_rotate:      'ROT ↻ / ROT ↺',
+tetris_ctrl_rotate_desc: 'rotate piece',
+tetris_ctrl_soft_desc:   'soft drop',
+tetris_ctrl_hard_desc:   'hard drop',
+tetris_ctrl_hold_desc:   'hold piece',
+tetris_ctrl_tap:         'TAP canvas',
+tetris_ctrl_tap_desc:    'rotate · swipe ↑=hold',
+tetris_ctrl_swipe:       'Swipe canvas',
+tetris_ctrl_swipe_up:    'swipe ↑ hold',
+tetris_ctrl_swipe_lr:    'swipe ← → move',
+tetris_ctrl_swipe_dn:    'swipe ↓ drop',
+
+// ── Start screen ─────────────────────────
+tetris_module_sub:       '// challenge_module_active',
+tetris_ctrl_header:      '// controls',
+tetris_ctrl_key_move:    'move',
+tetris_ctrl_key_rcw:     'rotate ↻',
+tetris_ctrl_key_rccw:    'rotate ↺',
+tetris_ctrl_key_soft:    'soft drop',
+tetris_ctrl_key_hard:    'hard drop',
+tetris_ctrl_key_hold:    'hold / pause',
+tetris_hint_tap:         'rotate',
+tetris_hint_lr:          'move',
+tetris_hint_dn:          'drop',
+tetris_hint_up:          'hold',
+tetris_see_tutorial:     'see tutorial →',
+
+// ── Botões de ação ────────────────────────
+tetris_btn_start:        '[ START ]',
+tetris_btn_restart:      '[ RESTART ]',
+tetris_btn_pause:        '[ PAUSE ]',
+tetris_btn_resume:       '[ RESUME ]',
+
+// ── Labels desktop ────────────────────────
+tetris_label_hold:       '// hold',
+tetris_label_locked:     'locked',
+tetris_label_level:      '// level',
+tetris_label_lines:      '// lines',
+tetris_label_combo:      '// combo',
+tetris_label_spd:        '// spd',
+tetris_label_score:      '// score',
+tetris_label_best:       'best',
+tetris_label_next:       '// next',
+tetris_label_ranking:    '// ranking',
+
+// ── Labels mobile ─────────────────────────
+tetris_label_best_short: 'best',
+tetris_label_locked_mob: 'lck',
+tetris_mob_hold:         'hold',
+tetris_mob_next:         'next',
+tetris_mob_lines:        'lines',
+tetris_mob_combo:        'combo',
+tetris_mob_rank:         'rank',
+
+// ── D-pad ─────────────────────────────────
+tetris_dpad_hold:        'HOLD',
+tetris_dpad_spc:         'SPC',
+
+// ── Feedback / game ──────────────────────
+tetris_fb_single:        'SINGLE',
+tetris_fb_double:        'DOUBLE',
+tetris_fb_triple:        'TRIPLE',
+tetris_fb_tetris:        '✦ TETRIS !!!',
+tetris_fb_combo:         'COMBO',
+tetris_fb_level:         '▲ LEVEL',
+tetris_gameover:         'GAME_OVER',
+tetris_confirm_clear:    'Clear the entire ranking?',
 
     // ── Skills: Labels ───────────────────────────────────────
     skills: {

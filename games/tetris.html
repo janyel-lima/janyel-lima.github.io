@@ -2,6 +2,7 @@
   tetris.html — fragmento incluído dinamicamente
   Mobile: canvas escalável, d-pad inline, layout compacto
   Desktop: 3 colunas lado a lado
+  i18n: data-i18n attributes + t() helper no JS
 ══════════════════════════════════════════════════════════════ -->
 
 <div id="tetris-root" class="select-none flex flex-col" style="width:100%;height:100%;min-height:0;overflow:hidden;">
@@ -18,68 +19,95 @@
     <div class="w-full max-w-xs">
       <div class="flex items-center gap-2 mb-5">
         <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
-        <h3 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary">
-          TUTORIAL_TOUCH.exe
-        </h3>
+        <h3 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
+            data-i18n="tetris_tutorial_title">TUTORIAL_TOUCH.exe</h3>
       </div>
 
       <div class="space-y-2 mb-5">
+
+        <!-- ← → -->
         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
           <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">◀▶</div>
           <div>
-            <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight">BOTÕES ← →</p>
-            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest">mover peça</p>
+            <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight"
+               data-i18n="tetris_ctrl_move">BOTÕES ← →</p>
+            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
+               data-i18n="tetris_ctrl_move_desc">mover peça</p>
           </div>
         </div>
+
+        <!-- ↻ ↺ -->
         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
           <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">↻↺</div>
           <div>
-            <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight">ROT ↻ / ROT ↺</p>
-            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest">rotacionar peça</p>
+            <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight"
+               data-i18n="tetris_ctrl_rotate">ROT ↻ / ROT ↺</p>
+            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
+               data-i18n="tetris_ctrl_rotate_desc">rotacionar peça</p>
           </div>
         </div>
+
+        <!-- ▼ -->
         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
           <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-base">▼</div>
           <div>
             <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight">▼</p>
-            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest">acelerar</p>
+            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
+               data-i18n="tetris_ctrl_soft_desc">acelerar</p>
           </div>
         </div>
-          <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
-          <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-base">SPC</div>
+
+        <!-- SPC -->
+        <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
+          <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-sm font-black">SPC</div>
           <div>
             <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight">SPC</p>
-            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest">queda rápida</p>
+            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
+               data-i18n="tetris_ctrl_hard_desc">queda rápida</p>
           </div>
         </div>
+
+        <!-- HOLD -->
         <div class="flex items-center gap-3 p-2.5 border border-primary/20 bg-primary/5">
           <div class="w-10 h-10 flex items-center justify-center border border-primary/40 bg-primary/10 shrink-0 text-base font-black text-primary">H</div>
           <div>
             <p class="text-[length:var(--text-sm)] text-primary font-black uppercase tracking-widest leading-tight">HOLD</p>
-            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest">guardar peça</p>
+            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
+               data-i18n="tetris_ctrl_hold_desc">guardar peça</p>
           </div>
         </div>
+
+        <!-- TAP canvas -->
         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
           <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">👆</div>
           <div>
-            <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight">TAP canvas</p>
-            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest">rotacionar</p>
+            <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight"
+               data-i18n="tetris_ctrl_tap">TAP canvas</p>
+            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
+               data-i18n="tetris_ctrl_tap_desc">rotacionar · swipe ↑=hold</p>
           </div>
-          
         </div>
-         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
+
+        <!-- Swipe canvas -->
+        <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
           <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">📱</div>
           <div>
-            <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight">Swipe canvas</p>
-            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest">swipe ↑ hold</p>
-            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest">swipe ← → mover</p>
-            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest">swipe ↓ queda</p>
+            <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight"
+               data-i18n="tetris_ctrl_swipe">Swipe canvas</p>
+            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
+               data-i18n="tetris_ctrl_swipe_up">swipe ↑ hold</p>
+            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
+               data-i18n="tetris_ctrl_swipe_lr">swipe ← → mover</p>
+            <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
+               data-i18n="tetris_ctrl_swipe_dn">swipe ↓ queda</p>
           </div>
         </div>
+
       </div>
 
       <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest text-center mb-4">
-        // tutorial pode ser revisto pelo botão <span class="text-primary">?</span>
+        <span data-i18n="tetris_tutorial_hint">// tutorial pode ser revisto pelo botão</span>
+        <span class="text-primary"> ?</span>
       </p>
 
       <button id="tetris-tutorial-ok"
@@ -87,7 +115,7 @@
                hover:bg-primary/20 hover:border-primary text-primary font-black
                uppercase tracking-widest text-[length:var(--text-sm)]
                transition-all duration-200 flex items-center justify-center gap-2 active:scale-95">
-        <span>[ ENTENDIDO — JOGAR ]</span><span class="animate-pulse">▶</span>
+        <span data-i18n="tetris_tutorial_ok">[ ENTENDIDO — JOGAR ]</span><span class="animate-pulse">▶</span>
       </button>
     </div>
   </div>
@@ -101,6 +129,7 @@
               px-2 border-b border-primary/10 bg-black/40"
        style="height:36px;min-height:36px">
 
+    <!-- Score -->
     <div class="flex items-center gap-1.5">
       <span class="text-[9px] text-primary/40 uppercase tracking-widest">sc</span>
       <span id="tetris-score-mobile"
@@ -109,6 +138,7 @@
             style="font-size:13px">0</span>
     </div>
 
+    <!-- Level / Lines / Best -->
     <div class="flex items-center gap-2.5">
       <div class="flex items-center gap-1">
         <span class="text-[9px] text-gray-600 uppercase">lv</span>
@@ -119,11 +149,12 @@
         <span id="tetris-lines-mob" class="text-xs font-black text-white/70">0</span>
       </div>
       <div class="flex items-center gap-1">
-        <span class="text-[9px] text-gray-600 uppercase">best</span>
+        <span class="text-[9px] text-gray-600 uppercase" data-i18n="tetris_label_best_short">best</span>
         <span id="tetris-best-mobile" class="text-xs font-black text-primary/60">0</span>
       </div>
     </div>
 
+    <!-- Ações -->
     <div class="flex items-center gap-1">
       <button id="tetris-show-tutorial"
         class="w-6 h-6 flex items-center justify-center border border-white/10 bg-black/60
@@ -164,30 +195,37 @@
 
       <!-- Hold -->
       <div class="border border-primary/30 bg-black/60 p-3 text-center">
-        <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-2">// hold</p>
+        <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-2"
+           data-i18n="tetris_label_hold">// hold</p>
         <canvas id="tetris-hold" width="80" height="80" class="mx-auto block" style="background:transparent"></canvas>
-        <p id="tetris-hold-lock" class="text-[length:var(--text-micro)] text-red-500/60 uppercase tracking-widest mt-1 hidden">locked</p>
+        <p id="tetris-hold-lock"
+           class="text-[length:var(--text-micro)] text-red-500/60 uppercase tracking-widest mt-1 hidden"
+           data-i18n="tetris_label_locked">locked</p>
       </div>
 
       <!-- Stats -->
       <div class="border border-white/5 bg-black/40 p-3 space-y-3">
         <div>
-          <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest">// nível</p>
+          <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest"
+             data-i18n="tetris_label_level">// nível</p>
           <p id="tetris-level" class="text-lg font-black text-primary tracking-widest">1</p>
         </div>
         <div>
-          <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest">// linhas</p>
+          <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest"
+             data-i18n="tetris_label_lines">// linhas</p>
           <p id="tetris-lines" class="text-lg font-black text-white/80 tracking-widest">0</p>
         </div>
         <div>
-          <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest">// combo</p>
+          <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest"
+             data-i18n="tetris_label_combo">// combo</p>
           <p id="tetris-combo" class="text-lg font-black text-accent tracking-widest">0x</p>
         </div>
       </div>
 
       <!-- Speed bar -->
       <div class="border border-white/5 bg-black/40 p-3">
-        <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest mb-1">// spd</p>
+        <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest mb-1"
+           data-i18n="tetris_label_spd">// spd</p>
         <div class="h-1 bg-black border border-white/5">
           <div id="tetris-speed-bar"
                class="h-full bg-primary transition-all duration-500 shadow-[0_0_6px_var(--color-primary)]"
@@ -201,16 +239,14 @@
           class="py-2 px-3 border border-primary/30 bg-black/60 text-primary
                  text-[length:var(--text-micro)] uppercase tracking-widest
                  hover:border-primary hover:bg-primary/10 transition-all duration-200
-                 disabled:opacity-30 disabled:cursor-not-allowed">
-          [ PAUSAR ]
-        </button>
+                 disabled:opacity-30 disabled:cursor-not-allowed"
+          data-i18n="tetris_btn_pause">[ PAUSAR ]</button>
         <button id="tetris-restart-btn" disabled
           class="py-2 px-3 border border-white/10 bg-black/60 text-gray-400
                  text-[length:var(--text-micro)] uppercase tracking-widest
                  hover:border-white/30 hover:text-white transition-all duration-200
-                 disabled:opacity-30 disabled:cursor-not-allowed">
-          [ REINICIAR ]
-        </button>
+                 disabled:opacity-30 disabled:cursor-not-allowed"
+          data-i18n="tetris_btn_restart">[ REINICIAR ]</button>
       </div>
     </div>
 
@@ -250,35 +286,33 @@
           <h3 class="text-[length:var(--text-md)] lg:text-[length:var(--text-lg)] font-black uppercase tracking-[0.1em] text-primary mb-1">
             TETRIS.exe
           </h3>
-          <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-3">
-            // módulo_de_desafio_ativo
-          </p>
+          <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-3"
+             data-i18n="tetris_module_sub">// módulo_de_desafio_ativo</p>
 
           <!-- Desktop: controles teclado -->
           <div class="hidden lg:block w-full bg-black/60 border border-white/5 p-3 mb-4 text-left
                       text-[length:var(--text-micro)] text-gray-400 uppercase tracking-widest space-y-1">
-            <p class="text-primary/60 mb-2">// controles</p>
-            <p><span class="text-primary">← →</span>&nbsp;&nbsp;mover</p>
-            <p><span class="text-primary">↑ / Z</span>&nbsp;rotacionar ↻</p>
-            <p><span class="text-primary">X</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotacionar ↺</p>
-            <p><span class="text-primary">↓</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acelerar</p>
-            <p><span class="text-primary">SPC</span>&nbsp;&nbsp;queda rápida</p>
-            <p><span class="text-primary">C / P</span>&nbsp;hold / pausar</p>
+            <p class="text-primary/60 mb-2" data-i18n="tetris_ctrl_header">// controles</p>
+            <p><span class="text-primary">← →</span>&nbsp;&nbsp;<span data-i18n="tetris_ctrl_key_move">mover</span></p>
+            <p><span class="text-primary">↑ / Z</span>&nbsp;<span data-i18n="tetris_ctrl_key_rcw">rotacionar ↻</span></p>
+            <p><span class="text-primary">X</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-i18n="tetris_ctrl_key_rccw">rotacionar ↺</span></p>
+            <p><span class="text-primary">↓</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-i18n="tetris_ctrl_key_soft">acelerar</span></p>
+            <p><span class="text-primary">SPC</span>&nbsp;&nbsp;<span data-i18n="tetris_ctrl_key_hard">queda rápida</span></p>
+            <p><span class="text-primary">C / P</span>&nbsp;<span data-i18n="tetris_ctrl_key_hold">hold / pausar</span></p>
           </div>
 
           <!-- Mobile: hint compacto -->
           <div class="lg:hidden w-full bg-black/60 border border-white/5 p-2 mb-3
                       text-[9px] text-gray-400 uppercase tracking-widest">
             <div class="grid grid-cols-2 gap-x-3 gap-y-0.5 mb-1.5">
-              <p><span class="text-primary">TAP</span> rotacionar</p>
-              <p><span class="text-primary">SWIPE←→</span> mover</p>
-              <p><span class="text-primary">SWIPE↓</span> queda</p>
-              <p><span class="text-primary">SWIPE↑</span> hold</p>
+              <p><span class="text-primary">TAP</span> <span data-i18n="tetris_hint_tap">rotacionar</span></p>
+              <p><span class="text-primary">SWIPE←→</span> <span data-i18n="tetris_hint_lr">mover</span></p>
+              <p><span class="text-primary">SWIPE↓</span> <span data-i18n="tetris_hint_dn">queda</span></p>
+              <p><span class="text-primary">SWIPE↑</span> <span data-i18n="tetris_hint_up">hold</span></p>
             </div>
             <button id="tetris-open-tutorial-start"
-                    class="text-primary/40 hover:text-primary transition underline underline-offset-2 text-[9px]">
-              ver tutorial →
-            </button>
+                    class="text-primary/40 hover:text-primary transition underline underline-offset-2 text-[9px]"
+                    data-i18n="tetris_see_tutorial">ver tutorial →</button>
           </div>
 
           <button id="tetris-start-btn"
@@ -286,7 +320,8 @@
                    hover:bg-primary/20 hover:border-primary text-primary font-black
                    uppercase tracking-widest text-[length:var(--text-sm)]
                    transition-all duration-200 flex items-center justify-center gap-2 active:scale-95">
-            <span>[ INICIAR ]</span><span class="animate-pulse">█</span>
+            <span id="tetris-start-label" data-i18n="tetris_btn_start">[ INICIAR ]</span>
+            <span class="animate-pulse">█</span>
           </button>
 
           <p id="tetris-gameover-text"
@@ -304,24 +339,28 @@
       <!-- Score -->
       <div class="border border-primary/30 bg-black/60 p-3 text-center
                   shadow-[0_0_15px_rgba(var(--color-primary-rgb),0.1)]">
-        <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-1">// score</p>
+        <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-1"
+           data-i18n="tetris_label_score">// score</p>
         <p id="tetris-score"
            class="text-2xl font-black text-primary tracking-widest
                   drop-shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.8)]">0</p>
-        <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest mt-1">melhor</p>
+        <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest mt-1"
+           data-i18n="tetris_label_best">melhor</p>
         <p id="tetris-best" class="text-sm font-black text-white/50 tracking-widest">0</p>
       </div>
 
       <!-- Next -->
       <div class="border border-primary/30 bg-black/60 p-3 text-center">
-        <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-2">// next</p>
+        <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-2"
+           data-i18n="tetris_label_next">// next</p>
         <canvas id="tetris-next" width="80" height="80" class="mx-auto block" style="background:transparent"></canvas>
       </div>
 
       <!-- Ranking -->
       <div class="border border-primary/20 bg-black/60 p-3">
         <div class="flex items-center justify-between mb-2">
-          <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest">// ranking</p>
+          <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest"
+             data-i18n="tetris_label_ranking">// ranking</p>
           <button id="tetris-clear-rank"
                   class="text-[length:var(--text-micro)] text-red-500/40 hover:text-red-500 transition uppercase tracking-widest">
             [clr]
@@ -339,20 +378,23 @@
       <!-- Hold mini -->
       <div class="border border-primary/25 bg-black/50 flex flex-col items-center justify-center"
            style="width:54px;min-width:54px">
-        <p class="text-[8px] text-primary/40 uppercase tracking-widest leading-none mb-0.5">hold</p>
+        <p class="text-[8px] text-primary/40 uppercase tracking-widest leading-none mb-0.5"
+           data-i18n="tetris_mob_hold">hold</p>
         <canvas id="tetris-hold-mob" width="40" height="40" class="block" style="background:transparent"></canvas>
-        <p id="tetris-hold-lock" class="text-[7px] text-red-500/60 uppercase leading-none hidden">lck</p>
+        <p id="tetris-hold-lock"
+           class="text-[7px] text-red-500/60 uppercase leading-none hidden"
+           data-i18n="tetris_label_locked_mob">lck</p>
       </div>
 
       <!-- Stats: lines + combo -->
       <div class="border border-white/5 bg-black/40 flex flex-col justify-center gap-1 px-2"
            style="min-width:64px">
         <div class="flex items-center justify-between gap-1">
-          <span class="text-[8px] text-gray-600 uppercase">lines</span>
+          <span class="text-[8px] text-gray-600 uppercase" data-i18n="tetris_mob_lines">lines</span>
           <span id="tetris-lines" class="text-xs font-black text-white/80">0</span>
         </div>
         <div class="flex items-center justify-between gap-1">
-          <span class="text-[8px] text-gray-600 uppercase">combo</span>
+          <span class="text-[8px] text-gray-600 uppercase" data-i18n="tetris_mob_combo">combo</span>
           <span id="tetris-combo" class="text-xs font-black text-accent">0x</span>
         </div>
       </div>
@@ -360,14 +402,16 @@
       <!-- Next mini -->
       <div class="border border-primary/25 bg-black/50 flex flex-col items-center justify-center"
            style="width:54px;min-width:54px">
-        <p class="text-[8px] text-primary/40 uppercase tracking-widest leading-none mb-0.5">next</p>
+        <p class="text-[8px] text-primary/40 uppercase tracking-widest leading-none mb-0.5"
+           data-i18n="tetris_mob_next">next</p>
         <canvas id="tetris-next-mob" width="40" height="40" class="block" style="background:transparent"></canvas>
       </div>
 
       <!-- Ranking mobile mini -->
       <div class="border border-primary/15 bg-black/40 flex-1 min-w-0 overflow-hidden p-1.5">
         <div class="flex items-center justify-between mb-0.5">
-          <p class="text-[8px] text-primary/40 uppercase tracking-widest">rank</p>
+          <p class="text-[8px] text-primary/40 uppercase tracking-widest"
+             data-i18n="tetris_mob_rank">rank</p>
           <button id="tetris-clear-rank-mob"
                   class="text-[8px] text-red-500/30 hover:text-red-500 transition uppercase">[x]</button>
         </div>
@@ -414,9 +458,8 @@
           <button id="t-hold"
             class="tdb-accent touch-manipulation"
             style="width:84px;height:26px;font-size:9px;font-weight:900;
-                   text-transform:uppercase;letter-spacing:0.1em">
-            HOLD
-          </button>
+                   text-transform:uppercase;letter-spacing:0.1em"
+            data-i18n="tetris_dpad_hold">HOLD</button>
         </div>
 
         <!-- ▼ + SPC -->
@@ -430,9 +473,8 @@
           <button id="t-drop"
             class="tdb-drop touch-manipulation"
             style="width:54px;height:28px;font-size:9px;font-weight:900;
-                   text-transform:uppercase;letter-spacing:0.08em">
-            SPC
-          </button>
+                   text-transform:uppercase;letter-spacing:0.08em"
+            data-i18n="tetris_dpad_spc">SPC</button>
         </div>
 
       </div>
@@ -447,7 +489,6 @@
   ESTILOS
 ════════════════════════════════════════════════════════════ -->
 <style>
-  /* ── D-pad button base ─────────────────────────────────── */
   .tdb {
     display:flex;align-items:center;justify-content:center;
     border:1px solid rgba(var(--color-primary-rgb),.32);
@@ -490,7 +531,6 @@
     color:white;transform:scale(.88);
   }
 
-  /* ── Scrollbars ────────────────────────────────────────── */
   #tetris-ranking-list::-webkit-scrollbar,
   #tetris-ranking-list-mob::-webkit-scrollbar { width:2px; }
   #tetris-ranking-list::-webkit-scrollbar-track,
@@ -498,17 +538,12 @@
   #tetris-ranking-list::-webkit-scrollbar-thumb,
   #tetris-ranking-list-mob::-webkit-scrollbar-thumb { background:rgba(var(--color-primary-rgb),.3); }
 
-  /* ── Canvas wrapper escalável ──────────────────────────── */
   #tetris-canvas-wrap canvas {
     width:  calc(240px * var(--canvas-scale, 1));
     height: calc(480px * var(--canvas-scale, 1));
     display:block;
   }
-
-  /* ── Garante que o root ocupe 100% da área do mount ───── */
-  #tetris-root {
-    box-sizing:border-box;
-  }
+  #tetris-root { box-sizing:border-box; }
 </style>
 
 
@@ -519,13 +554,36 @@
 (function () {
 
   /* ════════════════════════════════════════
+     i18n HELPER
+     Usa o Alpine store se disponível, senão retorna o fallback
+     (o fallback é o texto pt-br já presente no HTML).
+  ════════════════════════════════════════ */
+  function t(key, fallback) {
+    try {
+      const val = window.Alpine?.store('i18n')?.t(key);
+      return (val && val !== key) ? val : fallback;
+    } catch (_) { return fallback; }
+  }
+
+  /* Aplica traduções a todos os [data-i18n] dentro do tetris-root */
+  function applyI18n() {
+    const root = document.getElementById('tetris-root');
+    if (!root) return;
+    root.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      const translated = t(key, null);
+      if (translated) el.textContent = translated;
+    });
+  }
+
+  /* ════════════════════════════════════════
      CONSTANTS
   ════════════════════════════════════════ */
   const COLS        = 10;
   const ROWS        = 20;
-  const BLOCK       = 24;   // resolução interna: 240×480
-  const MINI_D      = 20;   // mini canvas desktop
-  const MINI_M      = 16;   // mini canvas mobile
+  const BLOCK       = 24;
+  const MINI_D      = 20;
+  const MINI_M      = 16;
   const STORAGE_KEY = 'tetris-rankings';
   const MAX_RANK    = 10;
   const TUTORIAL_K  = 'tetris-tutorial-seen';
@@ -552,19 +610,14 @@
 
   function calcCanvasScale() {
     if (!isMobile()) return 1;
-
-    // Alturas fixas conhecidas do layout mobile (px):
-    const TOPBAR   = 36;   // .tetris-topbar
-    const STATS    = 58;   // stats row mobile
-    const DPAD     = 80;   // d-pad row
-    // Alturas do modal que envolve o tetris:
-    const MOD_HDR  = 44;   // header modal
-    const MOD_FTR  = 32;   // footer modal
-    const PADDING  = 12;   // folga
-
+    const TOPBAR   = 36;
+    const STATS    = 58;
+    const DPAD     = 80;
+    const MOD_HDR  = 44;
+    const MOD_FTR  = 32;
+    const PADDING  = 12;
     const availH = window.innerHeight - MOD_HDR - TOPBAR - STATS - DPAD - MOD_FTR - PADDING;
-    const availW = window.innerWidth  - 8;  // margem mínima lateral
-
+    const availW = window.innerWidth  - 8;
     const scH = availH / 480;
     const scW = availW / 240;
     return Math.max(0.40, Math.min(scH, scW, 1.2));
@@ -585,13 +638,11 @@
   if (!canvas) return;
   const ctx          = canvas.getContext('2d');
 
-  // Desktop hold/next
   const holdCanvasD  = document.getElementById('tetris-hold');
   const nextCanvasD  = document.getElementById('tetris-next');
   const holdCtxD     = holdCanvasD?.getContext('2d');
   const nextCtxD     = nextCanvasD?.getContext('2d');
 
-  // Mobile hold/next (IDs únicos)
   const holdCanvasM  = document.getElementById('tetris-hold-mob');
   const nextCanvasM  = document.getElementById('tetris-next-mob');
   const holdCtxM     = holdCanvasM?.getContext('2d');
@@ -609,12 +660,13 @@
   const speedBar     = document.getElementById('tetris-speed-bar');
   const startScreen  = document.getElementById('tetris-start-screen');
   const startBtn     = document.getElementById('tetris-start-btn');
+  const startLabel   = document.getElementById('tetris-start-label');
   const pauseBtn     = document.getElementById('tetris-pause-btn');
   const pauseBtnMob  = document.getElementById('tetris-pause-btn-mobile');
   const restartBtn   = document.getElementById('tetris-restart-btn');
   const restartBtnMob= document.getElementById('tetris-restart-btn-mobile');
   const gameOverEl   = document.getElementById('tetris-gameover-text');
-  const holdLockEl   = document.getElementById('tetris-hold-lock');
+  const holdLockEls  = document.querySelectorAll('#tetris-hold-lock');
   const feedbackEl   = document.getElementById('tetris-feedback');
   const feedbackTxt  = document.getElementById('tetris-feedback-text');
   const rankListD    = document.getElementById('tetris-ranking-list');
@@ -716,7 +768,7 @@
   }
 
   function clearRankFn() {
-    if (confirm('Limpar todo o ranking?')) {
+    if (confirm(t('tetris_confirm_clear', 'Limpar todo o ranking?'))) {
       try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
       renderRanking();
       if (bestEl)     bestEl.textContent     = '0';
@@ -778,20 +830,16 @@
   }
 
   function drawAllMinis() {
-    // Desktop (80×80)
     drawMini(holdCtxD, holdPiece, 80, 80, MINI_D);
     drawMini(nextCtxD, nextPiece, 80, 80, MINI_D);
-    // Mobile (40×40)
     drawMini(holdCtxM, holdPiece, 40, 40, MINI_M);
     drawMini(nextCtxM, nextPiece, 40, 40, MINI_M);
   }
 
   function draw() {
-    // Limpa board
     ctx.fillStyle = '#070714';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Grid
     ctx.strokeStyle = 'rgba(8,196,202,0.04)';
     ctx.lineWidth   = 0.5;
     for (let x = 0; x <= COLS; x++) {
@@ -801,12 +849,10 @@
       ctx.beginPath(); ctx.moveTo(0,y*BLOCK); ctx.lineTo(canvas.width,y*BLOCK); ctx.stroke();
     }
 
-    // Board fixo
     board.forEach((row, y) => row.forEach((cell, x) => {
       if (cell) drawBlock(ctx, x, y, cell, BLOCK);
     }));
 
-    // Ghost + peça atual
     if (current) {
       let gy = current.y;
       while (!collides({ ...current, y: gy+1 })) gy++;
@@ -822,7 +868,6 @@
 
     drawAllMinis();
 
-    // HUD
     const sc   = score.toLocaleString();
     const best = Math.max(getBest(PLAYER), score).toLocaleString();
 
@@ -884,7 +929,7 @@
     if (newLvl > level) {
       level        = newLvl;
       dropInterval = getDropInterval(level);
-      showFeedback(`▲ LEVEL ${level}`);
+      showFeedback(`${t('tetris_fb_level','▲ LEVEL')} ${level}`);
       sfx('select');
     }
 
@@ -892,10 +937,16 @@
     const comboB = combo > 1 ? COMBO_BONUS*(combo-1)*level : 0;
     score += base + comboB;
 
-    const labels = ['','SINGLE','DOUBLE','TRIPLE','TETRIS!!!'];
-    const msg    = combo > 1
-      ? `${cleared===4?'TETRIS!!!':labels[cleared]} ${combo}x COMBO`
-      : (cleared===4 ? '✦ TETRIS !!!' : labels[cleared]);
+    const labels = [
+      '',
+      t('tetris_fb_single','SINGLE'),
+      t('tetris_fb_double','DOUBLE'),
+      t('tetris_fb_triple','TRIPLE'),
+      t('tetris_fb_tetris','✦ TETRIS !!!'),
+    ];
+    const base_msg = cleared === 4 ? t('tetris_fb_tetris','✦ TETRIS !!!') : labels[cleared];
+    const combo_lbl = t('tetris_fb_combo','COMBO');
+    const msg = combo > 1 ? `${base_msg} ${combo}x ${combo_lbl}` : base_msg;
     showFeedback(msg);
     sfx(cleared===4 ? 'select' : 'hover');
   }
@@ -904,7 +955,7 @@
     current      = nextPiece;
     nextPiece    = randomPiece();
     isHoldLocked = false;
-    holdLockEl?.classList.add('hidden');
+    holdLockEls.forEach(el => el.classList.add('hidden'));
     dropCounter  = 0;
     if (collides(current)) gameOver();
   }
@@ -956,7 +1007,7 @@
       current    = { ...clonePiece(prev), x: Math.floor(COLS/2)-Math.floor(prev.shape[0].length/2), y:0 };
     }
     isHoldLocked = true;
-    holdLockEl?.classList.remove('hidden');
+    holdLockEls.forEach(el => el.classList.remove('hidden'));
     dropCounter  = 0;
     sfx('click');
   }
@@ -968,8 +1019,9 @@
 
     startScreen.style.display = 'flex';
     gameOverEl.classList.remove('hidden');
-    gameOverEl.textContent    = `GAME_OVER — rank #${pos}`;
-    startBtn.textContent      = '[ REINICIAR ]';
+    gameOverEl.textContent = `${t('tetris_gameover','GAME_OVER')} — rank #${pos}`;
+    // Botão vira "reiniciar" — usa data-i18n=tetris_btn_restart
+    if (startLabel) startLabel.textContent = t('tetris_btn_restart', '[ REINICIAR ]');
     if (pauseBtn)    pauseBtn.disabled    = true;
     if (pauseBtnMob) pauseBtnMob.disabled = true;
     if (dpad)        dpad.style.display   = 'none';
@@ -1003,21 +1055,20 @@
     dropCounter  = 0;
     lastTime     = 0;
 
-    holdLockEl?.classList.add('hidden');
+    holdLockEls.forEach(el => el.classList.add('hidden'));
     nextPiece = randomPiece();
     spawnNext();
 
     startScreen.style.display = 'none';
     gameOverEl.classList.add('hidden');
-    gameOverEl.textContent = 'GAME_OVER';
-    startBtn.textContent   = '[ INICIAR ]';
+    gameOverEl.textContent = t('tetris_gameover', 'GAME_OVER');
+    if (startLabel) startLabel.textContent = t('tetris_btn_start', '[ INICIAR ]');
 
-    if (pauseBtn)      { pauseBtn.disabled    = false; pauseBtn.textContent    = '[ PAUSAR ]'; }
+    if (pauseBtn)      { pauseBtn.disabled    = false; pauseBtn.textContent    = t('tetris_btn_pause','[ PAUSAR ]'); }
     if (pauseBtnMob)   { pauseBtnMob.disabled  = false; pauseBtnMob.textContent  = '⏸'; }
-    if (restartBtn)    restartBtn.disabled    = false;
+    if (restartBtn)    { restartBtn.disabled   = false; restartBtn.textContent   = t('tetris_btn_restart','[ REINICIAR ]'); }
     if (restartBtnMob) restartBtnMob.disabled = false;
 
-    // D-pad: inline no mobile
     if (isMobile() && dpad) dpad.style.display = 'block';
 
     applyCanvasScale();
@@ -1028,7 +1079,7 @@
   function togglePause() {
     if (isOver) return;
     isPaused = !isPaused;
-    if (pauseBtn)    pauseBtn.textContent    = isPaused ? '[ RETOMAR ]' : '[ PAUSAR ]';
+    if (pauseBtn)    pauseBtn.textContent    = isPaused ? t('tetris_btn_resume','[ RETOMAR ]') : t('tetris_btn_pause','[ PAUSAR ]');
     if (pauseBtnMob) pauseBtnMob.textContent = isPaused ? '▶' : '⏸';
     if (!isPaused) { lastTime = 0; raf = requestAnimationFrame(loop); }
     sfx('click');
@@ -1080,7 +1131,6 @@
   document.getElementById('t-hold')?.addEventListener('click',    () => !isOver && !isPaused && current && holdAction());
   document.getElementById('t-drop')?.addEventListener('click',    () => !isOver && !isPaused && current && hardDrop());
 
-  // Feedback tátil visual nos botões do d-pad
   ['t-left','t-right','t-rot-cw','t-rot-ccw','t-hold','t-soft-down','t-drop'].forEach(id => {
     const btn = document.getElementById(id);
     if (!btn) return;
@@ -1104,21 +1154,18 @@
     e.preventDefault();
     if (isOver || isPaused || !current) return;
 
-    const t  = e.changedTouches[0];
-    const dx = t.clientX - swX;
-    const dy = t.clientY - swY;
+    const touch = e.changedTouches[0];
+    const dx = touch.clientX - swX;
+    const dy = touch.clientY - swY;
     const ax = Math.abs(dx), ay = Math.abs(dy);
     const dt = Date.now() - swT;
 
-    // Tap → rotacionar
     if (Math.max(ax, ay) < 12 && dt < 220) {
       const now = Date.now();
       if (now - lastTap < 280) { rotate(-1); } else { rotate(1); }
       lastTap = now;
       return;
     }
-
-    // Swipe horizontal → mover (proporcional à distância)
     if (ax > ay && ax > 18) {
       const steps = Math.max(1, Math.round(ax / (28 * canvasScale)));
       for (let i=0; i<steps; i++) {
@@ -1127,14 +1174,8 @@
       }
       return;
     }
-
-    // Swipe up → hold
     if (dy < -32 && ay > ax) { holdAction(); return; }
-
-    // Swipe down rápido → hard drop
     if (dy > 32 && ay > ax && dt < 160) { hardDrop(); return; }
-
-    // Swipe down lento → soft drop
     if (dy > 22 && ay > ax) { drop(true); }
   }, { passive:false });
 
@@ -1157,7 +1198,7 @@
   });
 
   /* ════════════════════════════════════════
-     CLEANUP (observer para remover listeners)
+     CLEANUP
   ════════════════════════════════════════ */
   const _obs = new MutationObserver(() => {
     if (!document.body.contains(canvas)) {
@@ -1173,13 +1214,13 @@
      BOOT
   ════════════════════════════════════════ */
   applyCanvasScale();
+  applyI18n();          // ← aplica traduções no HTML estático
   renderRanking();
 
   const best = getBest(PLAYER).toLocaleString();
   if (bestEl)     bestEl.textContent     = best;
   if (bestMobile) bestMobile.textContent = best;
 
-  // Desenha minis na tela inicial
   nextPiece = randomPiece();
   drawAllMinis();
 

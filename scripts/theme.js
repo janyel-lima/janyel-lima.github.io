@@ -1,7 +1,7 @@
 function toggleTheme() {
     const body = document.body;
     const isVoid = body.classList.contains('theme-void');
-    
+
     if (isVoid) {
         body.classList.remove('theme-void');
         body.classList.add('theme-core');

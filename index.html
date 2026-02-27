@@ -8,21 +8,21 @@
   <!-- ── SEO & Meta ──────────────────────────────────────────── -->
   <title data-i18n="page_title">Janyel Lima - Dev Portfolio</title>
   <meta name="description" content="Fullstack Developer — Janyel B. Lima" />
-  <meta name="author"      content="Janyel B. Lima" />
+  <meta name="author" content="Janyel B. Lima" />
   <link rel="icon" href="./favicon.ico" type="image/x-icon" />
 
   <!-- ── DNS Prefetch / Preconnect (CDNs externos) ───────────── -->
-  <link rel="preconnect"    href="https://cdn.tailwindcss.com" />
-  <link rel="preconnect"    href="https://cdn.jsdelivr.net" />
-  <link rel="preconnect"    href="https://unpkg.com" />
-  <link rel="dns-prefetch"  href="https://cdn.jsdelivr.net" />
-  <link rel="dns-prefetch"  href="https://unpkg.com" />
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
 
   <!-- ── Estilos ─────────────────────────────────────────────── -->
   <link rel="stylesheet" href="styles/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
-  
+
 
   <!-- ── Tailwind ──────────────────────────────────────────────── -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -51,11 +51,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.3/dist/cdn.min.js"></script>
 </head>
 
-<body
-  class="theme-void bg-main text-white min-h-screen transition-colors duration-700"
-  x-data="app()"
-  x-init="init(); includeHTML();"
->
+<body class="theme-void bg-main text-white min-h-screen transition-colors duration-700" x-data="app()"
+  x-init="init(); includeHTML();">
 
   <!-- ═══════════════════════════════════════════════════════════
     FX LAYER — Particles background (z-base)
@@ -74,42 +71,28 @@
     <div id="top" aria-hidden="true"></div>
 
     <!-- ── HEADER ─────────────────────────────────────────────── -->
-    <header
-      id="main-header"
-      data-include="./components/header.html"
-      data-interactive
-      class="fixed top-0 left-0 right-0
+    <header id="main-header" data-include="./components/header.html" data-interactive class="fixed top-0 left-0 right-0
              z-[9999] isolate
              p-4 md:p-6 h-24 md:h-28
              flex justify-between items-center
-             border-b border-primary/30"
-    ></header>
+             border-b border-primary/30"></header>
 
     <!-- ── MAIN ───────────────────────────────────────────────── -->
     <main class="max-w-6xl mx-auto p-4 md:p-6 pt-28 md:pt-32 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
         <!-- Sidebar / Profile -->
-        <aside
-          data-include="./components/aside.html"
-          class="lg:col-span-4 order-1 lg:order-1 space-y-6"
-        ></aside>
+        <aside data-include="./components/aside.html" class="lg:col-span-4 order-1 lg:order-1 space-y-6"></aside>
 
         <!-- Content sections -->
-        <section
-          data-include="./components/section.html"
-          class="lg:col-span-8 order-2 lg:order-2 space-y-12"
-        ></section>
+        <section data-include="./components/section.html" class="lg:col-span-8 order-2 lg:order-2 space-y-12"></section>
 
       </div>
     </main>
 
     <!-- ── FOOTER ─────────────────────────────────────────────── -->
-    <footer
-      data-include="./components/footer.html"
-      data-interactive
-      class="mt-20 border-t border-primary/30 bg-black/40 pt-12 pb-8 px-4"
-    ></footer>
+    <footer data-include="./components/footer.html" data-interactive
+      class="mt-20 border-t border-primary/30 bg-black/40 pt-12 pb-8 px-4"></footer>
 
 
     <!-- ═══════════════════════════════════════════════════════════
@@ -117,58 +100,42 @@
     ══════════════════════════════════════════════════════════════ -->
 
     <!-- Decrypt / Fragment locked overlay -->
-    <div
-      x-cloak
-      x-show="locked"
-      x-transition.opacity
-      x-effect="
+    <div x-cloak x-show="locked" x-transition.opacity x-effect="
         const fx = document.getElementById('fx-layer');
         if (fx) fx.style.pointerEvents = locked ? 'none' : 'auto';
-      "
-      data-overlay
-      @keydown.escape.prevent
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="overlay-title"
-      class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center"
-    >
+      " data-overlay @keydown.escape.prevent role="dialog" aria-modal="true" aria-labelledby="overlay-title"
+      class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center">
       <div class="relative w-[320px] bg-black p-4
                   border-forced
                   shadow-[0_0_25px_rgba(var(--color-primary-rgb),0.35)]">
 
-        <p id="overlay-title"
-           class="text-[length:var(--text-md)] text-primary tracking-widest uppercase mb-2"
-           x-text="$store.i18n.t('system_alert')">
+        <p id="overlay-title" class="text-[length:var(--text-md)] text-primary tracking-widest uppercase mb-2"
+          x-text="$store.i18n.t('system_alert')">
         </p>
 
-        <p class="text-[length:var(--text-sm)] text-gray-300 mb-4"
-           x-text="$store.i18n.t('secure_fragment_locked')">
+        <p class="text-[length:var(--text-sm)] text-gray-300 mb-4" x-text="$store.i18n.t('secure_fragment_locked')">
         </p>
 
-        <div class="h-2 bg-black overflow-hidden" role="progressbar" :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100">
+        <div class="h-2 bg-black overflow-hidden" role="progressbar" :aria-valuenow="progress" aria-valuemin="0"
+          aria-valuemax="100">
           <div class="h-full bg-primary transition-all duration-100" :style="`width: ${progress}%`"></div>
         </div>
 
         <p class="text-[length:var(--text-micro)] text-gray-400 mt-2 uppercase tracking-widest"
-           x-text="$store.i18n.t('decrypting')">
+          x-text="$store.i18n.t('decrypting')">
         </p>
       </div>
     </div>
 
     <!-- System boot overlay (desativado — x-show="false" mantido) -->
-    <div
-      x-show="false"
-      x-transition.opacity
-      data-overlay
-      aria-hidden="true"
-      class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center"
-    >
+    <div x-show="false" x-transition.opacity data-overlay aria-hidden="true"
+      class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center">
       <div class="relative w-[320px] bg-black p-4
                   border-forced
                   shadow-[0_0_25px_rgba(var(--color-primary-rgb),0.35)]">
 
         <p class="text-[length:var(--text-md)] text-primary tracking-widest uppercase mb-2"
-           x-text="$store.i18n.t('system_boot')">
+          x-text="$store.i18n.t('system_boot')">
         </p>
 
         <div class="h-2 bg-black overflow-hidden">
@@ -176,7 +143,7 @@
         </div>
 
         <p class="text-[length:var(--text-micro)] text-gray-400 mt-2 uppercase tracking-widest"
-           x-text="$store.i18n.t('loading')">
+          x-text="$store.i18n.t('loading')">
         </p>
       </div>
     </div>
@@ -197,4 +164,5 @@
   </script>
 
 </body>
+
 </html>

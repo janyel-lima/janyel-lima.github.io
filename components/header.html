@@ -15,33 +15,24 @@
     </div>
 </div>
 
-<div class="flex-1 max-w-xs mx-4 md:mx-8 relative group"
-     x-data
-     @keydown.window.slash.prevent="$nextTick(() => $el.querySelector('input')?.focus())"
-     @keydown.window.escape="Alpine.store('search').clear()">
+<div class="flex-1 max-w-xs mx-4 md:mx-8 relative group" x-data
+    @keydown.window.slash.prevent="$nextTick(() => $el.querySelector('input')?.focus())"
+    @keydown.window.escape="Alpine.store('search').clear()">
 
-  <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-    <i data-lucide="search" class="w-3 h-3 text-primary/50"></i>
-  </div>
+    <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+        <i data-lucide="search" class="w-3 h-3 text-primary/50"></i>
+    </div>
 
-  <input
-    type="text"
-    :placeholder="$store.i18n.t('search_placeholder')"
-    class="w-full bg-black/40 border border-white/10 px-9 py-2 text-[length:var(--text-xs)]
+    <input type="text" :placeholder="$store.i18n.t('search_placeholder')" class="w-full bg-black/40 border border-white/10 px-9 py-2 text-[length:var(--text-xs)]
             uppercase tracking-widest focus:outline-none focus:border-primary/50"
-    x-model.debounce.80ms="$store.search.q"
-    @input="$store.search.persist()"
-  />
+        x-model.debounce.80ms="$store.search.q" @input="$store.search.persist()" />
 
-  <!-- CLEAR BUTTON -->
-  <button
-    x-show="$store.search.q.length"
-    @click="$store.search.clear()"
-    class="absolute right-2 top-1/2 -translate-y-1/2
+    <!-- CLEAR BUTTON -->
+    <button x-show="$store.search.q.length" @click="$store.search.clear()" class="absolute right-2 top-1/2 -translate-y-1/2
            text-[length:var(--text-micro)]  uppercase tracking-widest
            text-white/40 hover:text-primary transition">
-    ✕
-  </button>
+        ✕
+    </button>
 
 </div>
 

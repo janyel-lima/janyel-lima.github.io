@@ -10,23 +10,23 @@
 // ─────────────────────────────────────────────────────────────
 
 const CHART_COLORS = {
-  top1:    'rgba(0,255,255,0.70)',
-  top2:    'rgba(0,220,220,0.58)',
-  top3:    'rgba(0,180,180,0.46)',
+  top1: 'rgba(0,255,255,0.70)',
+  top2: 'rgba(0,220,220,0.58)',
+  top3: 'rgba(0,180,180,0.46)',
   default: 'rgba(7,123,128,0.40)',
 
-  borderTop:     'rgba(0,255,255,0.95)',
+  borderTop: 'rgba(0,255,255,0.95)',
   borderDefault: 'rgba(8,196,202,0.60)',
 
-  radarFill:   'rgba(7,123,128,0.22)',
+  radarFill: 'rgba(7,123,128,0.22)',
   radarBorder: 'rgba(8,196,202,0.60)',
 
   gridHighlight: 'rgba(0,255,255,0.35)',
-  gridDefault:   'rgba(255,255,255,0.12)',
+  gridDefault: 'rgba(255,255,255,0.12)',
 
   tickHighlight: 'rgba(0,255,255,0.90)',
-  tickLabel:     'rgba(255,255,255,0.95)',
-  tooltipBg:     'rgba(5,20,30,0.92)',
+  tickLabel: 'rgba(255,255,255,0.95)',
+  tooltipBg: 'rgba(5,20,30,0.92)',
 };
 
 // Tipos disponíveis por categoria
@@ -37,8 +37,8 @@ const CHART_TYPES = {
 
 // Ícones dos botões de toggle (texto ASCII para zero dependência)
 const TYPE_ICONS = {
-  bar:       '▬ BAR',
-  radar:     '◈ RADAR',
+  bar: '▬ BAR',
+  radar: '◈ RADAR',
   polarArea: '◎ POLAR',
 };
 
@@ -97,7 +97,7 @@ function buildColors(chartType, values) {
     };
   }
   return {
-    bg:     CHART_COLORS.radarFill,
+    bg: CHART_COLORS.radarFill,
     border: CHART_COLORS.radarBorder,
   };
 }
@@ -113,8 +113,8 @@ function buildScales(chartType, rankAxis) {
       r: {
         min: 0, max: 5,
         ticks: { display: false },
-        grid:        { color: 'rgba(255,255,255,0.08)' },
-        angleLines:  { color: 'rgba(255,255,255,0.08)' },
+        grid: { color: 'rgba(255,255,255,0.08)' },
+        angleLines: { color: 'rgba(255,255,255,0.08)' },
         pointLabels: {
           color: CHART_COLORS.tickLabel,
           font: { family: 'monospace', size: 9 },
@@ -144,7 +144,7 @@ function buildScales(chartType, rankAxis) {
         callback: value => rankAxis[value] ?? '',
       },
       grid: {
-        color:     ctx => rankAxis[ctx.tick?.value] ? CHART_COLORS.gridHighlight : CHART_COLORS.gridDefault,
+        color: ctx => rankAxis[ctx.tick?.value] ? CHART_COLORS.gridHighlight : CHART_COLORS.gridDefault,
         lineWidth: ctx => rankAxis[ctx.tick?.value] ? 1.5 : 1,
       },
     },
@@ -165,23 +165,23 @@ function buildScales(chartType, rankAxis) {
 
 function buildDataset(chartType, values, colors) {
   const isRadar = chartType === 'radar';
-  const isBar   = chartType === 'bar';
+  const isBar = chartType === 'bar';
   const isPolar = chartType === 'polarArea';
 
   return {
-    data:            values,
-    fill:            isRadar,
-    borderColor:     colors.border,
+    data: values,
+    fill: isRadar,
+    borderColor: colors.border,
     backgroundColor: isPolar
       ? values.map((_, i) => [
-          CHART_COLORS.top1, CHART_COLORS.top2, CHART_COLORS.top3
-        ][i] ?? CHART_COLORS.default)
+        CHART_COLORS.top1, CHART_COLORS.top2, CHART_COLORS.top3
+      ][i] ?? CHART_COLORS.default)
       : colors.bg,
     borderWidth: 1,
-    pointRadius:          isRadar ? 2 : 0,
+    pointRadius: isRadar ? 2 : 0,
     pointBackgroundColor: '#00ffffff',
-    pointBorderColor:     '#00ffffff',
-    barThickness:  isBar ? 14 : undefined,
+    pointBorderColor: '#00ffffff',
+    barThickness: isBar ? 14 : undefined,
     borderSkipped: false,
   };
 }
@@ -194,22 +194,22 @@ function buildDataset(chartType, values, colors) {
 function buildTooltip(skillKeys, skillsData) {
   return {
     backgroundColor: CHART_COLORS.tooltipBg,
-    borderColor:     CHART_COLORS.borderTop,
-    borderWidth:     1,
-    titleColor:      CHART_COLORS.tickHighlight,
-    bodyColor:       CHART_COLORS.tickLabel,
-    padding:         10,
+    borderColor: CHART_COLORS.borderTop,
+    borderWidth: 1,
+    titleColor: CHART_COLORS.tickHighlight,
+    bodyColor: CHART_COLORS.tickLabel,
+    padding: 10,
     callbacks: {
       title: ctx => {
-        const key   = skillKeys[ctx[0]?.dataIndex];
+        const key = skillKeys[ctx[0]?.dataIndex];
         const skill = skillsData[key];
         return t(resolveSkillI18nKey(skill)) || skill?.label || key;
       },
       label: ctx => {
-        const key   = skillKeys[ctx.dataIndex];
+        const key = skillKeys[ctx.dataIndex];
         const skill = skillsData[key];
         const level = skill?.level ?? '?';
-        const desc  = t(`levels.${level}`) || level;
+        const desc = t(`levels.${level}`) || level;
         return ` Rank ${level} — ${desc}`;
       },
     },
@@ -229,13 +229,13 @@ window.renderSkillChart = function ({ canvasId, skillsData, type = 'hard', chart
   if (canvas._chart) { canvas._chart.destroy(); canvas._chart = null; }
 
   const resolvedType = chartType ?? (type === 'soft' ? 'radar' : 'bar');
-  const rawEntries   = Object.entries(skillsData);
-  const entries      = sortEntries(rawEntries, resolvedType);
-  const skillKeys    = entries.map(([key]) => key);
-  const labels       = getLabels(entries);
-  const values       = entries.map(([, s]) => s.value);
-  const rankAxis     = buildRankAxis(entries);
-  const colors       = buildColors(resolvedType, values);
+  const rawEntries = Object.entries(skillsData);
+  const entries = sortEntries(rawEntries, resolvedType);
+  const skillKeys = entries.map(([key]) => key);
+  const labels = getLabels(entries);
+  const values = entries.map(([, s]) => s.value);
+  const rankAxis = buildRankAxis(entries);
+  const colors = buildColors(resolvedType, values);
 
   canvas._chart = new Chart(canvas, {
     type: resolvedType,
@@ -244,13 +244,13 @@ window.renderSkillChart = function ({ canvasId, skillsData, type = 'hard', chart
       datasets: [buildDataset(resolvedType, values, colors)],
     },
     options: {
-      responsive:          true,
+      responsive: true,
       maintainAspectRatio: false,
-      animation:           { duration: 400, easing: 'easeInOutQuart' },
-      indexAxis:           resolvedType === 'bar' ? 'y' : undefined,
-      scales:              buildScales(resolvedType, rankAxis),
+      animation: { duration: 400, easing: 'easeInOutQuart' },
+      indexAxis: resolvedType === 'bar' ? 'y' : undefined,
+      scales: buildScales(resolvedType, rankAxis),
       plugins: {
-        legend:  { display: false },
+        legend: { display: false },
         tooltip: buildTooltip(skillKeys, skillsData),
       },
     },
@@ -277,10 +277,10 @@ function reRenderChart(canvasId) {
   const reg = _chartRegistry[canvasId];
   if (!reg) return;
   renderSkillChart({
-    canvasId:  reg.canvasId,
+    canvasId: reg.canvasId,
     skillsData: reg.skillsData,
-    type:       reg.type,
-    chartType:  reg.currentChartType,
+    type: reg.type,
+    chartType: reg.currentChartType,
   });
 }
 
@@ -307,10 +307,10 @@ window.switchChartType = function (canvasId, nextType) {
 
   reg.currentChartType = nextType;
   renderSkillChart({
-    canvasId:   reg.canvasId,
+    canvasId: reg.canvasId,
     skillsData: reg.skillsData,
-    type:       reg.type,
-    chartType:  nextType,
+    type: reg.type,
+    chartType: nextType,
   });
 
   // Atualiza estado dos botões de toggle
@@ -323,7 +323,7 @@ window.cycleChartType = function (canvasId) {
   if (!reg) return;
 
   const available = CHART_TYPES[reg.type] ?? ['bar', 'radar'];
-  const idx  = available.indexOf(reg.currentChartType);
+  const idx = available.indexOf(reg.currentChartType);
   const next = available[(idx + 1) % available.length];
   switchChartType(canvasId, next);
 };
@@ -334,10 +334,10 @@ function _updateToggleButtons(canvasId, activeType) {
 
   wrapper.querySelectorAll('[data-chart-type]').forEach(btn => {
     const isActive = btn.dataset.chartType === activeType;
-    btn.classList.toggle('text-primary',    isActive);
-    btn.classList.toggle('border-primary',  isActive);
-    btn.classList.toggle('opacity-100',     isActive);
-    btn.classList.toggle('opacity-40',      !isActive);
+    btn.classList.toggle('text-primary', isActive);
+    btn.classList.toggle('border-primary', isActive);
+    btn.classList.toggle('opacity-100', isActive);
+    btn.classList.toggle('opacity-40', !isActive);
   });
 }
 
@@ -351,18 +351,18 @@ window.exportChartPNG = function (canvasId, filename) {
   if (!canvas?._chart) return;
 
   // Renderiza em fundo escuro para o PNG ficar legível
-  const tmpCanvas  = document.createElement('canvas');
-  tmpCanvas.width  = canvas.width;
+  const tmpCanvas = document.createElement('canvas');
+  tmpCanvas.width = canvas.width;
   tmpCanvas.height = canvas.height;
-  const tmpCtx     = tmpCanvas.getContext('2d');
+  const tmpCtx = tmpCanvas.getContext('2d');
 
   tmpCtx.fillStyle = '#0a0a1a';
   tmpCtx.fillRect(0, 0, tmpCanvas.width, tmpCanvas.height);
   tmpCtx.drawImage(canvas, 0, 0);
 
-  const link    = document.createElement('a');
+  const link = document.createElement('a');
   link.download = filename ?? `${canvasId}_${Date.now()}.png`;
-  link.href     = tmpCanvas.toDataURL('image/png');
+  link.href = tmpCanvas.toDataURL('image/png');
   link.click();
 };
 
@@ -375,7 +375,7 @@ window.exportChartCSV = function (canvasId, filename) {
   const reg = _chartRegistry[canvasId];
   if (!reg) return;
 
-  const lang   = Alpine?.store('i18n')?.lang ?? 'en';
+  const lang = Alpine?.store('i18n')?.lang ?? 'en';
   const header = lang === 'pt-br'
     ? 'Habilidade,Rank,Valor'
     : 'Skill,Rank,Value';
@@ -385,11 +385,11 @@ window.exportChartCSV = function (canvasId, filename) {
     return `"${label}",${skill.level},${skill.value}`;
   });
 
-  const csv  = [header, ...rows].join('\n');
+  const csv = [header, ...rows].join('\n');
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
   link.download = filename ?? `${canvasId}_${Date.now()}.csv`;
-  link.href     = URL.createObjectURL(blob);
+  link.href = URL.createObjectURL(blob);
   link.click();
   URL.revokeObjectURL(link.href);
 };
@@ -411,9 +411,9 @@ window.mountChartControls = function (canvasId) {
   const container = document.querySelector(`[data-chart-controls="${canvasId}"]`);
   if (!container) return;
 
-  const reg      = _chartRegistry[canvasId];
+  const reg = _chartRegistry[canvasId];
   const category = container.dataset.chartCategory ?? (reg?.type ?? 'hard');
-  const types    = CHART_TYPES[category] ?? ['bar', 'radar'];
+  const types = CHART_TYPES[category] ?? ['bar', 'radar'];
 
   // Toggle buttons
   const togglesWrapper = document.createElement('div');
@@ -423,7 +423,7 @@ window.mountChartControls = function (canvasId) {
   types.forEach(ct => {
     const btn = document.createElement('button');
     btn.dataset.chartType = ct;
-    btn.textContent       = TYPE_ICONS[ct] ?? ct.toUpperCase();
+    btn.textContent = TYPE_ICONS[ct] ?? ct.toUpperCase();
     btn.className = [
       'px-2 py-0.5',
       'text-[length:var(--text-micro)] font-mono uppercase tracking-widest',
@@ -452,7 +452,7 @@ window.mountChartControls = function (canvasId) {
 
   const exportCSVBtn = document.createElement('button');
   exportCSVBtn.textContent = '↓ CSV';
-  exportCSVBtn.className   = exportPNGBtn.className;
+  exportCSVBtn.className = exportPNGBtn.className;
   exportCSVBtn.addEventListener('click', () => exportChartCSV(canvasId));
 
   exportWrapper.appendChild(exportPNGBtn);
@@ -473,18 +473,18 @@ window.mountChartControls = function (canvasId) {
 
 window.initHardSkillsChart = () => {
   renderSkillChart({
-    canvasId:  'hardSkillsChart',
+    canvasId: 'hardSkillsChart',
     skillsData: skillLevels.hard,
-    type:      'hard',
+    type: 'hard',
   });
   mountChartControls('hardSkillsChart');
 };
 
 window.initSoftSkillsChart = () => {
   renderSkillChart({
-    canvasId:  'softSkillsChart',
+    canvasId: 'softSkillsChart',
     skillsData: skillLevels.soft,
-    type:      'soft',
+    type: 'soft',
   });
   mountChartControls('softSkillsChart');
 };

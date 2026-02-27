@@ -96,8 +96,8 @@ document.addEventListener('alpine:init', () => {
 
       try {
         sound.currentTime = 0;
-        sound.play().catch(() => {});
-      } catch (_) {}
+        sound.play().catch(() => { });
+      } catch (_) { }
     },
 
     toggleMute() {
@@ -581,7 +581,7 @@ function app() {
     get tierLabel() {
       const map = {
         'pt-br': { Junior: 'Júnior', Pleno: 'Pleno', Senior: 'Sênior' },
-        'en':    { Junior: 'Junior', Pleno: 'Mid-Level', Senior: 'Senior' }
+        'en': { Junior: 'Junior', Pleno: 'Mid-Level', Senior: 'Senior' }
       };
       return map[this.$store.i18n.lang]?.[this.level.label] ?? this.level.label;
     },
@@ -597,7 +597,7 @@ function app() {
       audio.currentTime = 0;
 
       if (this._raf) cancelAnimationFrame(this._raf);
-      audio.play().catch(() => {});
+      audio.play().catch(() => { });
 
       const updateProgress = () => {
         if (!audio.duration || audio.duration === Infinity) {

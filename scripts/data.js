@@ -6,41 +6,41 @@ window.skillLevels = {
 
   // ── Hard Skills ────────────────────────────────────────────
   hard: {
-    js:       { label: 'skill_js',       level: 'A', value: 4 },
-    ts:       { label: 'skill_ts',       level: 'A', value: 4 },
-    node:     { label: 'skill_node',     level: 'A', value: 4 },
-    react:    { label: 'skill_react',    level: 'C', value: 2 },
-    vue:      { label: 'skill_vue',      level: 'A', value: 4 },
-    docker:   { label: 'skill_docker',   level: 'A', value: 4 },
-    aws:      { label: 'skill_aws',      level: 'B', value: 3 },
-    pg:       { label: 'skill_pg',       level: 'B', value: 3 },
+    js: { label: 'skill_js', level: 'A', value: 4 },
+    ts: { label: 'skill_ts', level: 'A', value: 4 },
+    node: { label: 'skill_node', level: 'A', value: 4 },
+    react: { label: 'skill_react', level: 'C', value: 2 },
+    vue: { label: 'skill_vue', level: 'A', value: 4 },
+    docker: { label: 'skill_docker', level: 'A', value: 4 },
+    aws: { label: 'skill_aws', level: 'B', value: 3 },
+    pg: { label: 'skill_pg', level: 'B', value: 3 },
     tailwind: { label: 'skill_tailwind', level: 'B', value: 3 },
-    git:      { label: 'skill_git',      level: 'A', value: 4 },
-    java:     { label: 'skill_java',     level: 'A', value: 4 },
-    php:      { label: 'skill_php',      level: 'C', value: 2 },
-    qgis:     { label: 'skill_qgis',     level: 'B', value: 3 },
-    bpmn:     { label: 'skill_bpmn',     level: 'B', value: 3 },
-    angular:  { label: 'skill_angular',  level: 'B', value: 3 },
-    jsf:      { label: 'skill_jsf',      level: 'B', value: 3 },
-    spring:   { label: 'skill_spring',   level: 'B', value: 3 },
-    express:  { label: 'skill_express',  level: 'A', value: 4 },
+    git: { label: 'skill_git', level: 'A', value: 4 },
+    java: { label: 'skill_java', level: 'A', value: 4 },
+    php: { label: 'skill_php', level: 'C', value: 2 },
+    qgis: { label: 'skill_qgis', level: 'B', value: 3 },
+    bpmn: { label: 'skill_bpmn', level: 'B', value: 3 },
+    angular: { label: 'skill_angular', level: 'B', value: 3 },
+    jsf: { label: 'skill_jsf', level: 'B', value: 3 },
+    spring: { label: 'skill_spring', level: 'B', value: 3 },
+    express: { label: 'skill_express', level: 'A', value: 4 },
     keycloak: { label: 'skill_keycloak', level: 'B', value: 3 },
-    jira:     { label: 'skill_jira',     level: 'B', value: 3 },
-    ia:       { label: 'skill_ia',       level: 'A', value: 4 },
-    linux:    { label: 'skill_linux',    level: 'A', value: 4 },
+    jira: { label: 'skill_jira', level: 'B', value: 3 },
+    ia: { label: 'skill_ia', level: 'A', value: 4 },
+    linux: { label: 'skill_linux', level: 'A', value: 4 },
   },
 
   // ── Soft Skills ────────────────────────────────────────────
   soft: {
-    problem_solving:        { label: 'soft_problem_solving',        level: 'A', value: 4 },
-    system_thinking:        { label: 'soft_system_thinking',        level: 'S', value: 5 },
-    communication:          { label: 'soft_communication',          level: 'B', value: 3 },
-    autonomy:               { label: 'soft_autonomy',               level: 'A', value: 4 },
-    leadership:             { label: 'soft_leadership',             level: 'C', value: 2 },
-    adaptability:           { label: 'soft_adaptability',           level: 'S', value: 5 },
-    critical_thinking:      { label: 'soft_critical_thinking',      level: 'A', value: 4 },
+    problem_solving: { label: 'soft_problem_solving', level: 'A', value: 4 },
+    system_thinking: { label: 'soft_system_thinking', level: 'S', value: 5 },
+    communication: { label: 'soft_communication', level: 'B', value: 3 },
+    autonomy: { label: 'soft_autonomy', level: 'A', value: 4 },
+    leadership: { label: 'soft_leadership', level: 'C', value: 2 },
+    adaptability: { label: 'soft_adaptability', level: 'S', value: 5 },
+    critical_thinking: { label: 'soft_critical_thinking', level: 'A', value: 4 },
     emotional_intelligence: { label: 'soft_emotional_intelligence', level: 'B', value: 3 },
-    teamwork:               { label: 'soft_teamwork',               level: 'A', value: 4 },
+    teamwork: { label: 'soft_teamwork', level: 'A', value: 4 },
   },
 
 };
@@ -54,39 +54,39 @@ window.skillLevels = {
 const skillIcons = {
 
   // ── Hard Skills (Devicon) ──────────────────────────────────
-  skill_js:        { type: 'devicon', icon: 'devicon-javascript-plain' },
-  skill_ts:        { type: 'devicon', icon: 'devicon-typescript-plain' },
-  skill_node:      { type: 'devicon', icon: 'devicon-nodejs-plain' },
-  skill_react:     { type: 'devicon', icon: 'devicon-react-original' },
-  skill_vue:       { type: 'devicon', icon: 'devicon-vuejs-plain' },
-  skill_angular:   { type: 'devicon', icon: 'devicon-angularjs-plain' },
-  skill_java:      { type: 'devicon', icon: 'devicon-java-plain' },
-  skill_spring:    { type: 'devicon', icon: 'devicon-spring-plain' },
-  skill_php:       { type: 'devicon', icon: 'devicon-php-plain' },
-  skill_docker:    { type: 'devicon', icon: 'devicon-docker-plain' },
-  skill_express:   { type: 'devicon', icon: 'devicon-express-original' },
-  skill_aws:       { type: 'devicon', icon: 'devicon-amazonwebservices-plain-wordmark' },
-  skill_pg:        { type: 'devicon', icon: 'devicon-postgresql-plain' },
-  skill_tailwind:  { type: 'devicon', icon: 'devicon-tailwindcss-plain' },
-  skill_git:       { type: 'devicon', icon: 'devicon-git-plain' },
-  skill_qgis:      { type: 'devicon', icon: 'devicon-googlecloud-plain' },
-  skill_bpmn:      { type: 'devicon', icon: 'devicon-uml-plain' },
-  skill_keycloak:  { type: 'devicon', icon: 'devicon-oauth-plain' },
-  skill_chartjs:   { type: 'devicon', icon: 'devicon-chartjs-plain' },
-  skill_jira:      { type: 'devicon', icon: 'devicon-jira-plain' },
-  skill_linux:     { type: 'devicon', icon: 'devicon-linux-plain' },
-  skill_ia:        { type: 'devicon', icon: 'devicon-tensorflow-original' },
+  skill_js: { type: 'devicon', icon: 'devicon-javascript-plain' },
+  skill_ts: { type: 'devicon', icon: 'devicon-typescript-plain' },
+  skill_node: { type: 'devicon', icon: 'devicon-nodejs-plain' },
+  skill_react: { type: 'devicon', icon: 'devicon-react-original' },
+  skill_vue: { type: 'devicon', icon: 'devicon-vuejs-plain' },
+  skill_angular: { type: 'devicon', icon: 'devicon-angularjs-plain' },
+  skill_java: { type: 'devicon', icon: 'devicon-java-plain' },
+  skill_spring: { type: 'devicon', icon: 'devicon-spring-plain' },
+  skill_php: { type: 'devicon', icon: 'devicon-php-plain' },
+  skill_docker: { type: 'devicon', icon: 'devicon-docker-plain' },
+  skill_express: { type: 'devicon', icon: 'devicon-express-original' },
+  skill_aws: { type: 'devicon', icon: 'devicon-amazonwebservices-plain-wordmark' },
+  skill_pg: { type: 'devicon', icon: 'devicon-postgresql-plain' },
+  skill_tailwind: { type: 'devicon', icon: 'devicon-tailwindcss-plain' },
+  skill_git: { type: 'devicon', icon: 'devicon-git-plain' },
+  skill_qgis: { type: 'devicon', icon: 'devicon-googlecloud-plain' },
+  skill_bpmn: { type: 'devicon', icon: 'devicon-uml-plain' },
+  skill_keycloak: { type: 'devicon', icon: 'devicon-oauth-plain' },
+  skill_chartjs: { type: 'devicon', icon: 'devicon-chartjs-plain' },
+  skill_jira: { type: 'devicon', icon: 'devicon-jira-plain' },
+  skill_linux: { type: 'devicon', icon: 'devicon-linux-plain' },
+  skill_ia: { type: 'devicon', icon: 'devicon-tensorflow-original' },
 
   // ── Soft Skills (Lucide) ───────────────────────────────────
-  soft_problem_solving:        { type: 'lucide', icon: 'lightbulb' },
-  soft_system_thinking:        { type: 'lucide', icon: 'brain-circuit' },
-  soft_communication:          { type: 'lucide', icon: 'speech' },
-  soft_autonomy:               { type: 'lucide', icon: 'rocket' },
-  soft_leadership:             { type: 'lucide', icon: 'chess-king' },
-  soft_adaptability:           { type: 'lucide', icon: 'puzzle' },
-  soft_critical_thinking:      { type: 'lucide', icon: 'brain-cog' },
+  soft_problem_solving: { type: 'lucide', icon: 'lightbulb' },
+  soft_system_thinking: { type: 'lucide', icon: 'brain-circuit' },
+  soft_communication: { type: 'lucide', icon: 'speech' },
+  soft_autonomy: { type: 'lucide', icon: 'rocket' },
+  soft_leadership: { type: 'lucide', icon: 'chess-king' },
+  soft_adaptability: { type: 'lucide', icon: 'puzzle' },
+  soft_critical_thinking: { type: 'lucide', icon: 'brain-cog' },
   soft_emotional_intelligence: { type: 'lucide', icon: 'heart-handshake' },
-  soft_teamwork:               { type: 'lucide', icon: 'users' },
+  soft_teamwork: { type: 'lucide', icon: 'users' },
 
 };
 
@@ -100,19 +100,19 @@ const DEFAULT_ICON = 'devicon-devicon-plain';
 // ============================================================
 const devStats = {
 
-  name:           'Janyel B. Lima',
-  startedCareer:  '2021-01-04',
+  name: 'Janyel B. Lima',
+  startedCareer: '2021-01-04',
 
   specialization: {
-    'en':    'Fullstack Developer',
+    'en': 'Fullstack Developer',
     'pt-br': 'Desenvolvedor Fullstack',
   },
 
   // ── Redes Sociais ──────────────────────────────────────────
   social_links: {
-    github:   'https://github.com/janyel-lima',
+    github: 'https://github.com/janyel-lima',
     linkedin: 'https://www.linkedin.com/in/janyel-lima/',
-    email:    'mailto:janyel.lima2809@outlook.com',
+    email: 'mailto:janyel.lima2809@outlook.com',
     whatsapp: 'https://wa.me/5582999712833?text=Ol%C3%A1%2C%20Janyel%21%20Vim%20atrav%C3%A9s%20do%20seu%20portf%C3%B3lio%2C%20gostaria%20de%20agendar%20uma%20conversa%21%20Creio%20ter%20um%20desafio%20para%20voc%C3%AA%21',
   },
 
@@ -121,14 +121,14 @@ const devStats = {
 
     // ── ANDHE (2025) ─────────────────────────────────────────
     {
-      id:      'fullstack-developer-andhe-2024',
+      id: 'fullstack-developer-andhe-2024',
       company: 'ANDHE - Academia Nacional de Desenvolvimento Humano e Ecológico',
       role: {
-        'en':    'Fullstack Developer (CTO Office)',
+        'en': 'Fullstack Developer (CTO Office)',
         'pt-br': 'Desenvolvedor Fullstack (Gabinete do CTO)',
       },
       period: {
-        'en':    '2025 - 2025',
+        'en': '2025 - 2025',
         'pt-br': '2025 - 2025',
       },
       description: {
@@ -137,27 +137,27 @@ const devStats = {
       },
       skills: [
         { key: 'skill_powerbi', type: 'devicon' },
-        { key: 'skill_excel',   type: 'devicon' },
-        { key: 'skill_bpmn',    type: 'devicon' },
-        { key: 'skill_java',    type: 'devicon' },
-        { key: 'skill_spring',  type: 'devicon' },
-        { key: 'skill_pg',      type: 'devicon' },
-        { key: 'skill_jsf',     type: 'devicon' },
-        { key: 'skill_php',     type: 'devicon' },
-        { key: 'skill_qgis',    type: 'devicon' },
+        { key: 'skill_excel', type: 'devicon' },
+        { key: 'skill_bpmn', type: 'devicon' },
+        { key: 'skill_java', type: 'devicon' },
+        { key: 'skill_spring', type: 'devicon' },
+        { key: 'skill_pg', type: 'devicon' },
+        { key: 'skill_jsf', type: 'devicon' },
+        { key: 'skill_php', type: 'devicon' },
+        { key: 'skill_qgis', type: 'devicon' },
       ],
     },
 
     // ── Freelancer (2023–2024) ────────────────────────────────
     {
-      id:      'fullstack-developer-2024',
+      id: 'fullstack-developer-2024',
       company: 'Autonomous',
       role: {
-        'en':    'Freelancer Fullstack Developer',
+        'en': 'Freelancer Fullstack Developer',
         'pt-br': 'Desenvolvedor Fullstack Freelancer',
       },
       period: {
-        'en':    '2023 - 2024',
+        'en': '2023 - 2024',
         'pt-br': '2023 - 2024',
       },
       description: {
@@ -166,27 +166,27 @@ const devStats = {
       },
       skills: [
         { key: 'skill_powerbi', type: 'devicon' },
-        { key: 'skill_excel',   type: 'devicon' },
-        { key: 'skill_bpmn',    type: 'devicon' },
-        { key: 'skill_java',    type: 'devicon' },
-        { key: 'skill_spring',  type: 'devicon' },
-        { key: 'skill_pg',      type: 'devicon' },
-        { key: 'skill_jsf',     type: 'devicon' },
-        { key: 'skill_php',     type: 'devicon' },
-        { key: 'skill_qgis',    type: 'devicon' },
+        { key: 'skill_excel', type: 'devicon' },
+        { key: 'skill_bpmn', type: 'devicon' },
+        { key: 'skill_java', type: 'devicon' },
+        { key: 'skill_spring', type: 'devicon' },
+        { key: 'skill_pg', type: 'devicon' },
+        { key: 'skill_jsf', type: 'devicon' },
+        { key: 'skill_php', type: 'devicon' },
+        { key: 'skill_qgis', type: 'devicon' },
       ],
     },
 
     // ── Planejare Consultoria (2023) ──────────────────────────
     {
-      id:      'fullstack-developer-planejare-2023',
+      id: 'fullstack-developer-planejare-2023',
       company: 'Planejare Consultoria',
       role: {
-        'en':    'Fullstack Developer',
+        'en': 'Fullstack Developer',
         'pt-br': 'Desenvolvedor Fullstack',
       },
       period: {
-        'en':    '2023 - 2023',
+        'en': '2023 - 2023',
         'pt-br': '2023 - 2023',
       },
       description: {
@@ -195,27 +195,27 @@ const devStats = {
       },
       skills: [
         { key: 'skill_powerbi', type: 'devicon' },
-        { key: 'skill_excel',   type: 'devicon' },
-        { key: 'skill_bpmn',    type: 'devicon' },
-        { key: 'skill_java',    type: 'devicon' },
-        { key: 'skill_spring',  type: 'devicon' },
-        { key: 'skill_pg',      type: 'devicon' },
-        { key: 'skill_jsf',     type: 'devicon' },
-        { key: 'skill_php',     type: 'devicon' },
-        { key: 'skill_qgis',    type: 'devicon' },
+        { key: 'skill_excel', type: 'devicon' },
+        { key: 'skill_bpmn', type: 'devicon' },
+        { key: 'skill_java', type: 'devicon' },
+        { key: 'skill_spring', type: 'devicon' },
+        { key: 'skill_pg', type: 'devicon' },
+        { key: 'skill_jsf', type: 'devicon' },
+        { key: 'skill_php', type: 'devicon' },
+        { key: 'skill_qgis', type: 'devicon' },
       ],
     },
 
     // ── Automining (2023) ─────────────────────────────────────
     {
-      id:      'fullstack-developer-automining-2023',
+      id: 'fullstack-developer-automining-2023',
       company: 'Automining',
       role: {
-        'en':    'Fullstack Developer',
+        'en': 'Fullstack Developer',
         'pt-br': 'Desenvolvedor Fullstack',
       },
       period: {
-        'en':    '2023 - 2023',
+        'en': '2023 - 2023',
         'pt-br': '2023 - 2023',
       },
       description: {
@@ -224,27 +224,27 @@ const devStats = {
       },
       skills: [
         { key: 'skill_powerbi', type: 'devicon' },
-        { key: 'skill_excel',   type: 'devicon' },
-        { key: 'skill_bpmn',    type: 'devicon' },
-        { key: 'skill_java',    type: 'devicon' },
-        { key: 'skill_spring',  type: 'devicon' },
-        { key: 'skill_pg',      type: 'devicon' },
-        { key: 'skill_jsf',     type: 'devicon' },
-        { key: 'skill_php',     type: 'devicon' },
-        { key: 'skill_qgis',    type: 'devicon' },
+        { key: 'skill_excel', type: 'devicon' },
+        { key: 'skill_bpmn', type: 'devicon' },
+        { key: 'skill_java', type: 'devicon' },
+        { key: 'skill_spring', type: 'devicon' },
+        { key: 'skill_pg', type: 'devicon' },
+        { key: 'skill_jsf', type: 'devicon' },
+        { key: 'skill_php', type: 'devicon' },
+        { key: 'skill_qgis', type: 'devicon' },
       ],
     },
 
     // ── Mineração Vale Verde — Analista (2021–2022) ───────────
     {
-      id:      'vale-verde-process-system-analyst-2022',
+      id: 'vale-verde-process-system-analyst-2022',
       company: 'Mineração Vale Verde',
       role: {
-        'en':    'Junior Process and System Analyst',
+        'en': 'Junior Process and System Analyst',
         'pt-br': 'Analista de Processos e Sistemas Junior',
       },
       period: {
-        'en':    '2021 - 2022',
+        'en': '2021 - 2022',
         'pt-br': '2021 - 2023',
       },
       description: {
@@ -253,27 +253,27 @@ const devStats = {
       },
       skills: [
         { key: 'skill_powerbi', type: 'devicon' },
-        { key: 'skill_excel',   type: 'devicon' },
-        { key: 'skill_bpmn',    type: 'devicon' },
-        { key: 'skill_java',    type: 'devicon' },
-        { key: 'skill_spring',  type: 'devicon' },
-        { key: 'skill_pg',      type: 'devicon' },
-        { key: 'skill_jsf',     type: 'devicon' },
-        { key: 'skill_php',     type: 'devicon' },
-        { key: 'skill_qgis',    type: 'devicon' },
+        { key: 'skill_excel', type: 'devicon' },
+        { key: 'skill_bpmn', type: 'devicon' },
+        { key: 'skill_java', type: 'devicon' },
+        { key: 'skill_spring', type: 'devicon' },
+        { key: 'skill_pg', type: 'devicon' },
+        { key: 'skill_jsf', type: 'devicon' },
+        { key: 'skill_php', type: 'devicon' },
+        { key: 'skill_qgis', type: 'devicon' },
       ],
     },
 
     // ── Mineração Vale Verde — Assistente de TI (2021) ────────
     {
-      id:      'vale-verde-it-assistant-2021',
+      id: 'vale-verde-it-assistant-2021',
       company: 'Mineração Vale Verde',
       role: {
-        'en':    'IT Assistant',
+        'en': 'IT Assistant',
         'pt-br': 'Assistente de TI',
       },
       period: {
-        'en':    '2021 - 2021',
+        'en': '2021 - 2021',
         'pt-br': '2021 - 2021',
       },
       description: {
@@ -281,27 +281,27 @@ const devStats = {
         'pt-br': 'Durante minha atuação, desenvolvi e mantive sistemas internos para atender demandas corporativas usando Java, Spring Framework e JSF. Assumi o desenvolvimento completo de um sistema de avaliação de desempenho, desde a implementação até a entrega e uso efetivo, dentro do projeto SIGMIN.',
       },
       skills: [
-        { key: 'skill_java',   type: 'devicon' },
-        { key: 'skill_jsf',    type: 'devicon' },
+        { key: 'skill_java', type: 'devicon' },
+        { key: 'skill_jsf', type: 'devicon' },
         { key: 'skill_spring', type: 'devicon' },
-        { key: 'skill_pg',     type: 'devicon' },
+        { key: 'skill_pg', type: 'devicon' },
         { key: 'skill_docker', type: 'devicon' },
-        { key: 'skill_aws',    type: 'devicon' },
-        { key: 'skill_js',     type: 'devicon' },
-        { key: 'skill_php',    type: 'devicon' },
+        { key: 'skill_aws', type: 'devicon' },
+        { key: 'skill_js', type: 'devicon' },
+        { key: 'skill_php', type: 'devicon' },
       ],
     },
 
     // ── Mineração Vale Verde — Jovem Aprendiz (2019–2021) ─────
     {
-      id:      'vale-verde-apprentice-2019-2021',
+      id: 'vale-verde-apprentice-2019-2021',
       company: 'Mineração Vale Verde',
       role: {
-        'en':    'Apprentice',
+        'en': 'Apprentice',
         'pt-br': 'Jovem Aprendiz',
       },
       period: {
-        'en':    '2019 - 2021',
+        'en': '2019 - 2021',
         'pt-br': '2019 - 2021',
       },
       description: {
@@ -309,14 +309,14 @@ const devStats = {
         'pt-br': 'Durante o período de treinamento operacional, executei rotinas administrativas de suporte, gerenciamento e organização de arquivos críticos, além da construção de painéis táticos de dados utilizando Microsoft Power BI.',
       },
       skills: [
-        { key: 'skill_java',   type: 'devicon' },
-        { key: 'skill_jsf',    type: 'devicon' },
+        { key: 'skill_java', type: 'devicon' },
+        { key: 'skill_jsf', type: 'devicon' },
         { key: 'skill_spring', type: 'devicon' },
-        { key: 'skill_pg',     type: 'devicon' },
+        { key: 'skill_pg', type: 'devicon' },
         { key: 'skill_docker', type: 'devicon' },
-        { key: 'skill_aws',    type: 'devicon' },
-        { key: 'skill_js',     type: 'devicon' },
-        { key: 'skill_php',    type: 'devicon' },
+        { key: 'skill_aws', type: 'devicon' },
+        { key: 'skill_js', type: 'devicon' },
+        { key: 'skill_php', type: 'devicon' },
       ],
     },
 
@@ -336,52 +336,52 @@ const myData = {
     {
       title: 'SIGMIN - Sistema Integrado de Gestão de Mineração',
       type: {
-        'en':    'Integrated Management System',
+        'en': 'Integrated Management System',
         'pt-br': 'Sistema Integrado de Gestão',
       },
       about: {
-        'en':    'Integrated management system for mining operations, designed to unify multidisciplinary data collection through a tailored multimodular architecture, ensuring operational transparency, rapid adaptability to internal client requirements, system scalability, and critical real-time decision support.',
+        'en': 'Integrated management system for mining operations, designed to unify multidisciplinary data collection through a tailored multimodular architecture, ensuring operational transparency, rapid adaptability to internal client requirements, system scalability, and critical real-time decision support.',
         'pt-br': 'Sistema integrado de gestão para operações de mineração, projetado para unificar a coleta de dados multidisciplinares por meio de uma arquitetura multimodular sob medida, garantindo transparência operacional, adaptação rápida às demandas do cliente interno, escalabilidade do sistema e suporte crítico à tomada de decisão em tempo real.',
       },
       images: ['img/sigmin.png'],
       stack: [
-        { key: 'skill_java',   type: 'devicon' },
-        { key: 'skill_jsf',    type: 'devicon' },
+        { key: 'skill_java', type: 'devicon' },
+        { key: 'skill_jsf', type: 'devicon' },
         { key: 'skill_spring', type: 'devicon' },
-        { key: 'skill_pg',     type: 'devicon' },
+        { key: 'skill_pg', type: 'devicon' },
         { key: 'skill_docker', type: 'devicon' },
-        { key: 'skill_aws',    type: 'devicon' },
-        { key: 'skill_js',     type: 'devicon' },
-        { key: 'skill_php',    type: 'devicon' },
+        { key: 'skill_aws', type: 'devicon' },
+        { key: 'skill_js', type: 'devicon' },
+        { key: 'skill_php', type: 'devicon' },
       ],
       team: [
         {
-          name:       'Deyvson Santos',
-          linkedin:   'https://br.linkedin.com/in/deyvson-santos-33b82723',
+          name: 'Deyvson Santos',
+          linkedin: 'https://br.linkedin.com/in/deyvson-santos-33b82723',
           avatar_url: 'https://media.licdn.com/dms/image/v2/D4D03AQFjaRG43GiFcQ/profile-displayphoto-shrink_200_200/B4DZV7UeI3HYAY-/0/1741530720352?e=2147483647&v=beta&t=hNMWarps5ptia8bL7oAPU0fXJDC2NSilXPTRxQwluU0',
           role: {
-            'en':    'Process and Systems Supervisor',
+            'en': 'Process and Systems Supervisor',
             'pt-br': 'Supervisor de Processos e Sistemas',
           },
         },
         {
-          name:       'Eric Lima',
-          github:     'https://github.com/ericcruzlima/',
-          portfolio:  'https://ericcruzlima.github.io/',
+          name: 'Eric Lima',
+          github: 'https://github.com/ericcruzlima/',
+          portfolio: 'https://ericcruzlima.github.io/',
           avatar_url: 'https://raw.githubusercontent.com/ericcruzlima/ericcruzlima.github.io/refs/heads/main/photo_transparent.png',
           role: {
-            'en':    'Process and Systems Analyst',
+            'en': 'Process and Systems Analyst',
             'pt-br': 'Analista de Processos e Sistemas Pleno',
           },
         },
         {
-          name:       'Bruno Henrique',
-          github:     'https://github.com/bruhensant/',
-          portfolio:  'https://bruhensant.one/',
-          linkedin:   'https://www.linkedin.com/in/bruno-henrique-santos-2b9675234/',
+          name: 'Bruno Henrique',
+          github: 'https://github.com/bruhensant/',
+          portfolio: 'https://bruhensant.one/',
+          linkedin: 'https://www.linkedin.com/in/bruno-henrique-santos-2b9675234/',
           avatar_url: 'https://avatars.githubusercontent.com/u/25781117?v=4',
           role: {
-            'en':    'IT Trainee',
+            'en': 'IT Trainee',
             'pt-br': 'Estagiário de TI',
           },
         },
@@ -392,29 +392,29 @@ const myData = {
     {
       title: 'Planeja Mais - MVP',
       type: {
-        'en':    'Project Management Platform',
+        'en': 'Project Management Platform',
         'pt-br': 'Plataforma de Gestão de Projetos',
       },
       about: {
-        'en':    'Minimum Operational Platform for project management in the public sector, engineered to encode and enforce the client\'s strategic management doctrine. A functional command-and-control core, deployed as a proving ground for the future expansion into a full-scale, enterprise SaaS platform.',
+        'en': 'Minimum Operational Platform for project management in the public sector, engineered to encode and enforce the client\'s strategic management doctrine. A functional command-and-control core, deployed as a proving ground for the future expansion into a full-scale, enterprise SaaS platform.',
         'pt-br': 'Plataforma mínima operacional de gestão de projetos para o setor público, projetada para codificar e executar a doutrina estratégica do cliente. Um núcleo funcional de comando e controle, desenvolvido como campo de prova para a expansão futura em uma plataforma SaaS completa e escalável.',
       },
       images: ['img/planejamais.png'],
       stack: [
-        { key: 'skill_java',   type: 'devicon' },
-        { key: 'skill_jsf',    type: 'devicon' },
+        { key: 'skill_java', type: 'devicon' },
+        { key: 'skill_jsf', type: 'devicon' },
         { key: 'skill_spring', type: 'devicon' },
-        { key: 'skill_pg',     type: 'devicon' },
+        { key: 'skill_pg', type: 'devicon' },
         { key: 'skill_docker', type: 'devicon' },
-        { key: 'skill_js',     type: 'devicon' },
+        { key: 'skill_js', type: 'devicon' },
       ],
       team: [
         {
-          name:       'Lázaro Gustavo Sombra',
-          github:     'https://github.com/gustavosombra1',
+          name: 'Lázaro Gustavo Sombra',
+          github: 'https://github.com/gustavosombra1',
           avatar_url: 'https://avatars.githubusercontent.com/u/107960686?v=4',
           role: {
-            'en':    'Trainee Developer',
+            'en': 'Trainee Developer',
             'pt-br': 'Desenvolvedor Estagiário',
           },
         },
@@ -425,21 +425,21 @@ const myData = {
     {
       title: 'Mais Vida - MVP',
       type: {
-        'en':    'Healthcare Management Platform',
+        'en': 'Healthcare Management Platform',
         'pt-br': 'Plataforma de Gestão de Saúde',
       },
       about: {
-        'en':    'Operational queue and appointment management platform for medical clinics, designed to orchestrate patient flow end-to-end. Includes self-service check-in via kiosk, real-time queue display (current, last called, and next), appointment control, and generation of the Occupational Health Certificate—delivering a reliable command layer for daily clinical operations.',
+        'en': 'Operational queue and appointment management platform for medical clinics, designed to orchestrate patient flow end-to-end. Includes self-service check-in via kiosk, real-time queue display (current, last called, and next), appointment control, and generation of the Occupational Health Certificate—delivering a reliable command layer for daily clinical operations.',
         'pt-br': 'Plataforma operacional de gestão de filas e consultas para clínicas médicas, projetada para orquestrar o fluxo de pacientes de ponta a ponta. Inclui autoatendimento via totem de entrada, exibição em tempo real da fila (atual, último chamado e próximo), controle de consultas e geração do Atestado de Saúde Ocupacional — entregando uma camada confiável de comando para as rotinas clínicas.',
       },
       images: ['img/maisvida.png'],
       stack: [
-        { key: 'skill_java',   type: 'devicon' },
-        { key: 'skill_jsf',    type: 'devicon' },
+        { key: 'skill_java', type: 'devicon' },
+        { key: 'skill_jsf', type: 'devicon' },
         { key: 'skill_spring', type: 'devicon' },
-        { key: 'skill_pg',     type: 'devicon' },
+        { key: 'skill_pg', type: 'devicon' },
         { key: 'skill_docker', type: 'devicon' },
-        { key: 'skill_js',     type: 'devicon' },
+        { key: 'skill_js', type: 'devicon' },
       ],
       team: [],
     },
@@ -448,23 +448,23 @@ const myData = {
     {
       title: 'Content Manager - NDA',
       type: {
-        'en':    'Content Management',
+        'en': 'Content Management',
         'pt-br': 'Gerenciamento de Conteúdo',
       },
       about: {
-        'en':    'Proprietary content management and distribution platform with paid access control, automated financial validation, and internal policy enforcement. Developed under a formal Non-Disclosure Agreement (NDA), with details intentionally omitted to respect confidentiality terms.',
+        'en': 'Proprietary content management and distribution platform with paid access control, automated financial validation, and internal policy enforcement. Developed under a formal Non-Disclosure Agreement (NDA), with details intentionally omitted to respect confidentiality terms.',
         'pt-br': 'Plataforma proprietária de gerenciamento e distribuição de conteúdo com controle de acesso pago, validação financeira automatizada e aplicação de políticas internas. Desenvolvida sob um Acordo de Confidencialidade (NDA) formal, com detalhes intencionalmente omitidos em respeito aos termos de confidencialidade.',
       },
       images: ['img/nda.png'],
       stack: [],
       team: [
         {
-          name:       'Eric Lima',
-          github:     'https://github.com/ericcruzlima/',
-          portfolio:  'https://ericcruzlima.github.io/',
+          name: 'Eric Lima',
+          github: 'https://github.com/ericcruzlima/',
+          portfolio: 'https://ericcruzlima.github.io/',
           avatar_url: 'https://raw.githubusercontent.com/ericcruzlima/ericcruzlima.github.io/refs/heads/main/photo_transparent.png',
           role: {
-            'en':    'Chief Technology Officer',
+            'en': 'Chief Technology Officer',
             'pt-br': 'Diretor de Tecnologia',
           },
         },
@@ -485,116 +485,94 @@ const educationLogs = {
   // ── Ensino Superior ──────────────────────────────────────
   higher: [
     {
-      title_key:    'edu_cs_title',
+      title_key: 'edu_cs_title',
       provider_key: 'edu_cs_provider',
-      url:          'https://www.anhanguera.com/',
-      icon:         'graduation-cap',
-      hours:        null,
-      cert:         null,
+      url: 'https://www.anhanguera.com/',
+      icon: 'graduation-cap',
+      hours: null,
+      cert: null,
     },
     {
-      title_key:    'edu_cs_title_uneal',
+      title_key: 'edu_cs_title_uneal',
       provider_key: 'edu_cs_provider_uneal',
-      url:          'https://uneal.edu.br/',
-      icon:         'book-open-check',
-      hours:        null,
-      cert:         null,
+      url: 'https://uneal.edu.br/',
+      icon: 'book-open-check',
+      hours: null,
+      cert: null,
     },
   ],
 
   // ── Cursos e Certificações ────────────────────────────────
   courses: [
     {
-      title_key:    'course_green_belt',
+      title_key: 'course_green_belt',
       provider_key: 'provider_setec',
-      url:          'https://www.setecconsulting.com.br/',
-      icon:         'trending-up',
-      hours:        80,
-      cert:         'green-belt-lean-six-sigma.pdf',
+      url: 'https://www.setecconsulting.com.br/',
+      icon: 'trending-up',
+      hours: 80,
+      cert: 'green-belt-lean-six-sigma.pdf',
     },
     {
-      title_key:    'course_js_alura',
+      title_key: 'course_js_alura',
       provider_key: 'provider_alura',
-      url:          'https://www.alura.com.br/',
-      icon:         'braces',
-      hours:        40,
-      cert:         'alura-javascript.pdf',
+      url: 'https://www.alura.com.br/',
+      icon: 'braces',
+      hours: 40,
+      cert: 'alura-javascript.pdf',
     },
     {
-      title_key:    'course_dashboard',
+      title_key: 'course_dashboard',
       provider_key: 'provider_datab',
-      url:          'https://www.datab.com.br/',
-      icon:         'bar-chart-2',
-      hours:        8,
-      cert:         'datab-dashboard-powerbi.pdf',
+      url: 'https://www.datab.com.br/',
+      icon: 'bar-chart-2',
+      hours: 8,
+      cert: 'datab-dashboard-powerbi.pdf',
     },
     {
-      title_key:    'course_bpmn_dheka',
+      title_key: 'course_bpmn_dheka',
       provider_key: 'provider_dheka',
-      url:          'https://www.dheka.com.br/',
-      icon:         'workflow',
-      hours:        16,
-      cert:         'dheka-bpmn.pdf',
+      url: 'https://www.dheka.com.br/',
+      icon: 'workflow',
+      hours: 16,
+      cert: 'dheka-bpmn.pdf',
     },
   ],
 
   // ── Idiomas ───────────────────────────────────────────────
-languages: [
-  {
-    title_key:       'lang_pt_br',
-    provider_key:    'lang_level_native',
-    proficiency:     5,
-    proficiency_key: 'lang_native',
-    flag:            '🇧🇷',
-    icon:            'message-circle',
-    url:             '#',
-    hours:           null,
-    cert:            null,
-  },
-  {
-    title_key:       'lang_en',
-    provider_key:    'lang_level_advanced',
-    proficiency:     4,
-    proficiency_key: 'lang_advanced',
-    flag:            '🇺🇸',
-    icon:            'globe',
-    url:             '#',
-    hours:           null,
-    cert:            null,
-  },
-  {
-    title_key:       'lang_ja',
-    provider_key:    'lang_level_beginner',
-    proficiency:     1,
-    proficiency_key: 'lang_beginner',
-    flag:            '🇯🇵',
-    icon:            'languages',
-    url:             '#',
-    hours:           null,
-    cert:            null,
-  },
-],
+  languages: [
+    {
+      title_key: 'lang_pt_br',
+      provider_key: 'lang_level_native',
+      proficiency: 5,
+      proficiency_key: 'lang_native',
+      flag: '🇧🇷',
+      icon: 'message-circle',
+      url: '#',
+      hours: null,
+      cert: null,
+    },
+    {
+      title_key: 'lang_en',
+      provider_key: 'lang_level_advanced',
+      proficiency: 4,
+      proficiency_key: 'lang_advanced',
+      flag: '🇺🇸',
+      icon: 'globe',
+      url: '#',
+      hours: null,
+      cert: null,
+    },
+    {
+      title_key: 'lang_ja',
+      provider_key: 'lang_level_beginner',
+      proficiency: 1,
+      proficiency_key: 'lang_beginner',
+      flag: '🇯🇵',
+      icon: 'languages',
+      url: '#',
+      hours: null,
+      cert: null,
+    },
+  ],
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

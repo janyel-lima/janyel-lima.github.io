@@ -155,7 +155,7 @@
 
 <div data-interactive x-show="showFragment" x-transition:enter="transition duration-700 ease-out"
     x-transition:enter-start="opacity-0 translate-y-6 scale-95"
-    x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+    x-transition:enter-end="opacity-100 translate-y-0 scale-100" 
     class="order-3 relative flex bg-black/60 border-primary border border-white/10 group overflow-hidden"
     style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
     <button @click="closeFragment(); $store.sfx.play('close');"
@@ -173,7 +173,7 @@
             </h5>
         </div>
 
-        <div class="text-[length:var(--text-sm)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
+        <div class="text-[length:var(--text-xs)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
             x-text="$store.i18n.t('transmission_source')">
         </div>
 
@@ -190,7 +190,7 @@
     x-show="showFragment" x-transition:enter="transition duration-700 ease-out"
     x-transition:enter-start="opacity-0 translate-y-6 scale-95"
     x-transition:enter-end="opacity-100 translate-y-0 scale-100">
-    ■ Contact_Me
+    
 </h2>
 
 <div data-interactive @mouseenter="$store.sfx.play('hover');"
@@ -198,8 +198,8 @@
     x-transition:enter="transition duration-700 ease-out" x-transition:enter-start="opacity-0 translate-y-6 scale-95"
     x-transition:enter-end="opacity-100 translate-y-0 scale-100">
     <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
-        <span class="text-[length:var(--text-micro)]  text-primary/60 uppercase tracking-[0.1em]"
-            x-text="$store.i18n.t('comm_channel')">Comm_Channel_Alpha</span>
+        <span class="text-[length:var(--text-xs)]  text-primary/60 uppercase tracking-[0.1em]"
+            x-text="$store.i18n.t('comm_channel')"></span>
         <div class="flex gap-1">
             <div class="w-1 h-2 bg-primary/20"></div>
             <div class="w-1 h-2 bg-primary/40"></div>
@@ -217,12 +217,12 @@
                     <span class="text-[length:var(--text-xs)] tracking-[0.1em] font-black uppercase">WhatsApp_Link</span>
                     <span
                         class="text-[length:var(--text-micro)]  text-gray-300 lowercase opacity-0 group-hover/btn:opacity-100 transition-opacity "
-                        x-text="$store.i18n.t('secure_msg')">//
-                        secure_handshake_established</span>
+                        x-text="$store.i18n.t('secure_msg')">
+                      </span>
                 </div>
             </div>
             <div class="text-[length:var(--text-md)]  text-primary opacity-30 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all"
-                x-text="$store.i18n.t('btn_send')">[SEND]</div>
+                x-text="$store.i18n.t('btn_send')"></div>
         </a>
 
         <a :href="devStats.social_links.email" class="rpg-button py-4 px-5 flex items-center justify-between group/btn">
@@ -233,12 +233,11 @@
                     <span class="text-[length:var(--text-xs)] tracking-[0.1em] font-black uppercase">Direct_Email</span>
                     <span
                         class="text-[length:var(--text-micro)]  text-gray-300 lowercase opacity-0 group-hover/btn:opacity-100 transition-opacity "
-                        x-text="$store.i18n.t('request_msg')">//
-                        requesting_data_packet</span>
+                        x-text="$store.i18n.t('request_msg')"> </span>
                 </div>
             </div>
             <div class="text-[length:var(--text-md)]  text-primary opacity-30 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all"
-                x-text="$store.i18n.t('btn_send')">[SEND]</div>
+                x-text="$store.i18n.t('btn_send')"></div>
         </a>
     </div>
 </div>
@@ -247,7 +246,7 @@
     x-show="showFragment" x-transition:enter="transition duration-700 ease-out"
     x-transition:enter-start="opacity-0 translate-y-6 scale-95"
     x-transition:enter-end="opacity-100 translate-y-0 scale-100">
-    ■ Network_Links
+
 </h2>
 
 <div data-interactive class="rpg-card p-6 bg-black/60" x-show="showFragment"
@@ -255,8 +254,8 @@
     x-transition:enter-end="opacity-100 translate-y-0 scale-100">
     <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2"
         @mouseenter="$store.sfx.play('hover');">
-        <span class="text-[length:var(--text-micro)]  text-primary/60 uppercase tracking-[0.1em]"
-            x-text="$store.i18n.t('social_links')">Social_Network_Links</span>
+        <span class="text-[length:var(--text-xs)]  text-primary/60 uppercase tracking-[0.1em]"
+            x-text="$store.i18n.t('social_links')"></span>
         <div class="flex gap-1">
             <div class="w-1 h-2 bg-primary/20"></div>
             <div class="w-1 h-2 bg-primary/40"></div>

@@ -482,27 +482,119 @@ const myData = {
 // ============================================================
 const educationLogs = {
 
-  // ── Ensino Superior ────────────────────────────────────────
+  // ── Ensino Superior ──────────────────────────────────────
   higher: [
     {
       title_key:    'edu_cs_title',
       provider_key: 'edu_cs_provider',
-      url:          'https://www.universidade-exemplo.com',
+      url:          'https://www.anhanguera.com/',
+      icon:         'graduation-cap',
+      hours:        null,
+      cert:         null,
+    },
+    {
+      title_key:    'edu_cs_title_uneal',
+      provider_key: 'edu_cs_provider_uneal',
+      url:          'https://uneal.edu.br/',
+      icon:         'book-open-check',
+      hours:        null,
+      cert:         null,
     },
   ],
 
-  // ── Cursos e Certificações ─────────────────────────────────
+  // ── Cursos e Certificações ────────────────────────────────
   courses: [
     {
-      title_key:    'course_fullstack',
-      provider_key: 'provider_rocketseat',
-      url:          'https://www.rocketseat.com.br',
+      title_key:    'course_green_belt',
+      provider_key: 'provider_setec',
+      url:          'https://www.setecconsulting.com.br/',
+      icon:         'trending-up',
+      hours:        80,
+      cert:         'green-belt-lean-six-sigma.pdf',
     },
     {
-      title_key:    'course_docker',
-      provider_key: 'provider_bootcamp',
-      url:          'https://www.docker.com',
+      title_key:    'course_js_alura',
+      provider_key: 'provider_alura',
+      url:          'https://www.alura.com.br/',
+      icon:         'braces',
+      hours:        40,
+      cert:         'alura-javascript.pdf',
+    },
+    {
+      title_key:    'course_dashboard',
+      provider_key: 'provider_datab',
+      url:          'https://www.datab.com.br/',
+      icon:         'bar-chart-2',
+      hours:        8,
+      cert:         'datab-dashboard-powerbi.pdf',
+    },
+    {
+      title_key:    'course_bpmn_dheka',
+      provider_key: 'provider_dheka',
+      url:          'https://www.dheka.com.br/',
+      icon:         'workflow',
+      hours:        16,
+      cert:         'dheka-bpmn.pdf',
     },
   ],
 
+  // ── Idiomas ───────────────────────────────────────────────
+languages: [
+  {
+    title_key:       'lang_pt_br',
+    provider_key:    'lang_level_native',
+    proficiency:     5,
+    proficiency_key: 'lang_native',
+    flag:            '🇧🇷',
+    icon:            'message-circle',
+    url:             '#',
+    hours:           null,
+    cert:            null,
+  },
+  {
+    title_key:       'lang_en',
+    provider_key:    'lang_level_advanced',
+    proficiency:     4,
+    proficiency_key: 'lang_advanced',
+    flag:            '🇺🇸',
+    icon:            'globe',
+    url:             '#',
+    hours:           null,
+    cert:            null,
+  },
+  {
+    title_key:       'lang_ja',
+    provider_key:    'lang_level_beginner',
+    proficiency:     1,
+    proficiency_key: 'lang_beginner',
+    flag:            '🇯🇵',
+    icon:            'languages',
+    url:             '#',
+    hours:           null,
+    cert:            null,
+  },
+],
+
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

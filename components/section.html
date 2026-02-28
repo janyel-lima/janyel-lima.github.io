@@ -398,7 +398,7 @@
     </h2>
 
     <!-- Global collapse/expand — mirrors the skills-subsystem summary bar -->
-    <button @click="toggleAll()" data-interactive
+    <button @click="toggleAll(); $store.sfx.play('click');" data-interactive
       class="flex items-center gap-2 sm:gap-3 px-3 py-1.5
              bg-black/50 border border-white/5
              hover:border-primary transition
@@ -425,7 +425,7 @@
     </button>
   </div>
 
-  <div id="experience-timeline" class="space-y-0">
+  <div id="experience-timeline" @mouseenter="$store.sfx.play('hover');" class="space-y-0">
 
     <template x-for="(job, index) in devStats.history" :key="job.company + '-' + job.period.en">
 
@@ -538,7 +538,7 @@
                       :class="expanded ? '' : 'line-clamp-2'">
                     </p>
 
-                    <button x-show="shouldShowToggle" @click="toggle()"
+                    <button x-show="shouldShowToggle" @click="toggle();"
                       class="animate-pulse mt-3 flex items-center gap-2
                              text-[length:var(--text-micro)] uppercase tracking-[0.1em]">
                       <span :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
@@ -551,7 +551,7 @@
                   </div>
 
                   <!-- SKILLS SUBSYSTEM -->
-                  <details class="group/details" x-data="{ expanded: false }" @toggle="expanded = $el.open">
+                  <details class="group/details" x-data="{ expanded: false }" @toggle="expanded = $el.open; $store.sfx.play('click');">
 
                     <summary class="list-none cursor-pointer select-none">
                       <div class="flex items-center gap-3 px-3 py-2

@@ -82,6 +82,10 @@
   }
 }
 
+.border-primary {
+  border-color: var(--color-primary)!important;
+}
+
 /* Configuração Geral */
 body {
   background-color: var(--color-main);

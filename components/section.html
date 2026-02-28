@@ -3,7 +3,7 @@
     class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.1em]">■
   </h2>
 
-  <div class="relative flex bg-black/60 border-primary border-white/10 mb-5 group overflow-hidden"
+  <div class="relative flex bg-black/60 border-white/10 mb-5 group overflow-hidden"
     style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
     <div class="scan-line"></div>
     <div class="w-1 bg-primary shadow-[2px_0_10px_rgba(var(--color-primary-rgb),0.3)]"></div>
@@ -67,8 +67,8 @@
     <template x-for="(p, i) in visibleProjects" :key="`${p.title}-${cursor}-${i}`">
 
       <div data-interactive class="rpg-card p-4 md:p-5 group flex flex-col h-full
-            border-primary/20 transition-all bg-black/60
-            border-primary border-white/10 mb-5 overflow-hidden" x-data="projectCard(p)" x-init="init()"
+             transition-all bg-black/60
+             border-white/10 mb-5 overflow-hidden" x-data="projectCard(p)" x-init="init()"
         @mouseenter="$store.sfx.play('hover')">
 
         <!-- HEADER -->
@@ -98,7 +98,7 @@
           <!-- PREV -->
           <button @click="prev()" class="absolute left-2 top-1/2 -translate-y-1/2 z-20
                    w-7 h-7 flex items-center justify-center
-                   bg-black/50 border-primary/40
+                   bg-black/50 border-primary
                    hover:bg-primary/20 transition">
 
             <i data-lucide="chevron-left" class="w-4 h-4 text-primary"></i>
@@ -107,7 +107,7 @@
           <!-- NEXT -->
           <button @click="next()" class="absolute right-2 top-1/2 -translate-y-1/2 z-20
                    w-7 h-7 flex items-center justify-center
-                   bg-black/50 border-primary/40
+                   bg-black/50 border-primary
                    hover:bg-primary/20 transition">
 
             <i data-lucide="chevron-right" class="w-4 h-4 text-primary"></i>
@@ -162,7 +162,7 @@
 
             <div class="relative flex items-center gap-3 px-4 py-3
                   bg-black/50 border-white/5
-                  hover:border-primary/40 transition">
+                  hover:border-primary transition">
 
               <i data-lucide="layers" class="w-5 h-5 text-primary shrink-0 transition-all duration-300
                   opacity-70
@@ -206,7 +206,7 @@
 
               <div class="relative flex items-center gap-3 px-3 py-2
                     bg-black/35 border-white/5
-                    hover:border-primary/40 transition group/stack">
+                    hover:border-primary transition group/stack">
 
                 <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
 
@@ -246,7 +246,7 @@
 
             <div class="relative flex items-center gap-3 px-4 py-3
                   bg-black/50 border-white/5
-                  hover:border-primary/40 transition min-w-0">
+                  hover:border-primary transition min-w-0">
 
               <i data-lucide="users" class="w-5 h-5 text-primary shrink-0 transition-all duration-300
                   opacity-70
@@ -292,7 +292,7 @@
                     border-white/5
                     transition-all duration-300
                     hover:bg-primary/10
-                    hover:border-primary/40">
+                    hover:border-primary">
 
                 <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
 
@@ -380,18 +380,58 @@
   </div>
 </div>
 
-<div id="exp" x-data="{ devStats }">
+<div id="exp"
+  x-data="{
+    devStats,
+    allOpen: true,
+    toggleAll() {
+      this.allOpen = !this.allOpen;
+      this.$dispatch('timeline-toggle-all', { open: this.allOpen });
+    }
+  }">
 
-  <h2 x-text="$store.i18n.t('title_exp')"
-    class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.1em]">
-  </h2>
+  <!-- TITLE ROW + GLOBAL TOGGLE -->
+  <div class="flex items-center justify-between gap-4 mb-6">
+
+    <h2 x-text="$store.i18n.t('title_exp')"
+      class="text-accent font-bold text-[length:var(--text-md)] uppercase tracking-[0.1em]">
+    </h2>
+
+    <!-- Global collapse/expand — mirrors the skills-subsystem summary bar -->
+    <button @click="toggleAll()" data-interactive
+      class="flex items-center gap-2 sm:gap-3 px-3 py-1.5
+             bg-black/50 border border-white/5
+             hover:border-primary transition
+             cursor-pointer select-none flex-shrink-0">
+
+      <i data-lucide="list-collapse"
+        class="w-3.5 h-3.5 text-primary transition-transform duration-300"
+        :class="allOpen ? '' : 'rotate-180'">
+      </i>
+
+      <p class="text-[length:var(--text-micro)] uppercase tracking-[0.35em]
+                text-primary/70 hidden sm:block">
+        <span x-text="allOpen
+          ? $store.i18n.t('collapse_all') || 'COLLAPSE ALL'
+          : $store.i18n.t('expand_all')   || 'EXPAND ALL'">
+        </span>
+      </p>
+
+      <span class="text-[length:var(--text-micro)] tracking-[0.1em]"
+        :class="allOpen ? 'text-primary' : 'text-white/40'">
+        [ <span x-show="!allOpen">OFF</span><span x-show="allOpen">ON</span> ]
+      </span>
+
+    </button>
+  </div>
 
   <div id="experience-timeline" class="space-y-0">
 
     <template x-for="(job, index) in devStats.history" :key="job.company + '-' + job.period.en">
 
-      <!-- ── Outer row: smaller left-pad on mobile ── -->
-      <div class="relative pl-7 sm:pl-10 border-l-2 border-primary/20 pb-10 sm:pb-12 last:pb-0">
+      <div class="relative pl-7 sm:pl-10 border-l-2 border-primary pb-10 sm:pb-12 last:pb-0"
+        x-data="{ open: true }"
+        x-on:timeline-toggle-all.window="open = $event.detail.open">
 
         <!-- TIMELINE AXIS -->
         <span class="absolute left-[28px] sm:left-[40px] top-0 bottom-0 w-[2px] bg-primary/30"></span>
@@ -406,17 +446,20 @@
             <span x-text="job.period[$store.i18n.lang].split(' ')[0]"></span>
           </div>
 
-          <!-- NODE -->
+          <!-- NODE — pulses when collapsed to signal hidden content -->
           <div data-non-interactive
             class="absolute -left-[9px] top-1 w-4 h-4 bg-main border-2 border-primary
-                   shadow-[0_0_10px_var(--color-primary)] rotate-45 flex items-center justify-center">
+                   rotate-45 flex items-center justify-center transition-all duration-300"
+            :class="open
+              ? 'shadow-[0_0_10px_var(--color-primary)]'
+              : 'shadow-[0_0_18px_var(--color-primary)] scale-110'">
             <div class="w-1 h-1 bg-primary animate-pulse"></div>
           </div>
 
           <!-- CARD -->
           <div class="rpg-card relative ml-7 sm:ml-10
                       bg-black/65 border-white/5
-                      hover:border-primary/40
+                      hover:border-primary
                       transition-all duration-300
                       hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.15)]
                       overflow-hidden">
@@ -425,9 +468,11 @@
             <div class="absolute inset-x-0 top-0 h-[2px]
                         bg-gradient-to-r from-transparent via-primary to-transparent"></div>
 
-            <!-- HEADER: wraps to column on very small screens -->
+            <!-- HEADER — clickable to collapse/expand body -->
             <div class="p-3 sm:p-4 flex flex-col xs:flex-row sm:flex-row
-                        gap-2 sm:gap-0 justify-between items-start bg-primary/5">
+                        gap-2 sm:gap-0 justify-between items-start bg-primary/5
+                        cursor-pointer select-none group/header"
+              @click="open = !open; $nextTick(() => window.lucide && lucide.createIcons())">
 
               <!-- LEFT -->
               <div class="space-y-1 min-w-0 flex-1">
@@ -443,112 +488,139 @@
                 </p>
               </div>
 
-              <!-- RIGHT: left-aligned on mobile, right-aligned on sm+ -->
-              <div class="text-left xs:text-right sm:text-right flex-shrink-0">
-                <p x-text="$store.i18n.t('period')"
-                  class="text-[length:var(--text-micro)] uppercase tracking-[0.1em] text-white/40 mb-1">
-                </p>
-                <p class="text-[length:var(--text-md)] text-white bg-white/5 px-2 py-0.5 inline-block">
-                  <span x-text="job.period[$store.i18n.lang]"></span>
-                </p>
+              <!-- RIGHT -->
+              <div class="text-left xs:text-right sm:text-right flex-shrink-0 flex items-start gap-3">
+
+                <div>
+                  <p x-text="$store.i18n.t('period')"
+                    class="text-[length:var(--text-micro)] uppercase tracking-[0.1em] text-white/40 mb-1">
+                  </p>
+                  <p class="text-[length:var(--text-md)] text-white bg-white/5 px-2 py-0.5 inline-block">
+                    <span x-text="job.period[$store.i18n.lang]"></span>
+                  </p>
+                </div>
+
+                <!-- Collapse indicator — bracket + rotating diamond -->
+                <div class="flex items-center gap-1.5 mt-0.5 text-[length:var(--text-micro)] tracking-[0.1em]
+                            transition-colors duration-200"
+                  :class="open ? 'text-primary' : 'text-white/30'">
+
+                  <span>[</span>
+                  <!-- diamond rotates on collapse -->
+                  <span class="inline-block transition-transform duration-300 text-primary text-[8px]"
+                    :class="open ? 'rotate-45' : 'rotate-0 text-white/30'">◆</span>
+                  <span>]</span>
+
+                </div>
+
               </div>
 
             </div>
+            <!-- END HEADER -->
 
-            <!-- BODY -->
-            <div class="p-3 sm:p-4 space-y-4 sm:space-y-5">
+            <!-- BODY — collapses smoothly -->
+            <div class="grid transition-all duration-400 ease-in-out"
+              :style="open ? 'grid-template-rows: 1fr; opacity: 1' : 'grid-template-rows: 0fr; opacity: 0'">
+              <div class="overflow-hidden">
 
-              <!-- SYSTEM LOG -->
-              <div class="text-[length:var(--text-sm)] text-gray-300
-                          leading-relaxed border-l border-primary/20 pl-3"
-                x-data="expandableTypedText(() => job.description[$store.i18n.lang], 180)"
-                x-init="init()"
-                x-on:alpine:destroy="destroy()"
-                x-effect="onTextChanged()">
+                <div class="p-3 sm:p-4 space-y-4 sm:space-y-5">
 
-                <p x-text="displayText"
-                  class="mb-2 whitespace-pre-line tracking-[0.1em] transition-all duration-300"
-                  :class="expanded ? '' : 'line-clamp-2'">
-                </p>
+                  <!-- SYSTEM LOG -->
+                  <div class="text-[length:var(--text-sm)] text-gray-300
+                              leading-relaxed border-l border-primary pl-3"
+                    x-data="expandableTypedText(() => job.description[$store.i18n.lang], 180)"
+                    x-init="init()"
+                    x-on:alpine:destroy="destroy()"
+                    x-effect="onTextChanged()">
 
-                <button x-show="shouldShowToggle" @click="toggle()"
-                  class="animate-pulse mt-3 flex items-center gap-2
-                         text-[length:var(--text-micro)] uppercase tracking-[0.1em]">
-                  <span :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
-                    x-effect="expanded; $nextTick(() => updateInterfaceStatic())"
-                    class="text-primary tracking-[0.1em] hover:text-primary transition">
-                  </span>
-                  <span class="animate-pulse text-primary">█</span>
-                </button>
-
-              </div>
-
-              <!-- SKILLS SUBSYSTEM -->
-              <details class="group/details" x-data="{ expanded: false }" @toggle="expanded = $el.open">
-
-                <summary class="list-none cursor-pointer select-none">
-                  <div class="flex items-center gap-3 px-3 py-2
-                              bg-black/50 border-white/5
-                              hover:border-primary/40 transition">
-
-                    <i data-lucide="layers"
-                      class="w-4 h-4 text-primary transition
-                             group-open/details:scale-110
-                             group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
-                    </i>
-
-                    <p class="text-[length:var(--text-micro)] uppercase tracking-[0.35em]
-                              text-primary/70 group-open/details:text-primary">
-                      <span x-text="$store.i18n.t('skills_used')"></span>
+                    <p x-text="displayText"
+                      class="mb-2 whitespace-pre-line tracking-[0.1em] transition-all duration-300"
+                      :class="expanded ? '' : 'line-clamp-2'">
                     </p>
 
-                    <span class="ml-auto text-[length:var(--text-micro)] tracking-[0.1em]"
-                      :class="expanded ? 'text-primary' : 'text-white/40'">
-                      [ <span x-show="!expanded">OFF</span><span x-show="expanded">ON</span> ]
-                    </span>
+                    <button x-show="shouldShowToggle" @click="toggle()"
+                      class="animate-pulse mt-3 flex items-center gap-2
+                             text-[length:var(--text-micro)] uppercase tracking-[0.1em]">
+                      <span :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
+                        x-effect="expanded; $nextTick(() => updateInterfaceStatic())"
+                        class="text-primary tracking-[0.1em] hover:text-primary transition">
+                      </span>
+                      <span class="animate-pulse text-primary">█</span>
+                    </button>
 
                   </div>
-                </summary>
 
-                <!-- HORIZONTAL SKILL BUS -->
-                <div class="scrollbar-thin-cyber relative overflow-x-auto py-3">
-                  <span class="absolute left-0 right-0 top-0 h-px bg-primary/20"></span>
+                  <!-- SKILLS SUBSYSTEM -->
+                  <details class="group/details" x-data="{ expanded: false }" @toggle="expanded = $el.open">
 
-                  <div class="flex gap-2 sm:gap-3 min-w-max px-2 pt-3">
-                    <template x-for="s in job.skills" :key="s.key">
+                    <summary class="list-none cursor-pointer select-none">
+                      <div class="flex items-center gap-3 px-3 py-2
+                                  bg-black/50 border-white/5
+                                  hover:border-primary transition">
 
-                      <div class="relative flex items-center gap-1.5 sm:gap-2
-                                  px-2 sm:px-3 py-1.5 sm:py-2
-                                  bg-black/40 border-white/5
-                                  hover:border-primary/40 transition">
+                        <i data-lucide="layers"
+                          class="w-4 h-4 text-primary transition
+                                 group-open/details:scale-110
+                                 group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
+                        </i>
 
-                        <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
-
-                        <template x-if="s.type === 'devicon' && skillIcons[s.key]">
-                          <i :class="skillIcons[s.key].icon"
-                            class="text-primary text-[length:var(--text-base)] shrink-0">
-                          </i>
-                        </template>
-
-                        <p class="text-[length:var(--text-micro)] uppercase tracking-[0.1em]
-                                  text-white/90 truncate">
-                          <span x-text="resolveSkill(s.key).label"></span>
+                        <p class="text-[length:var(--text-micro)] uppercase tracking-[0.35em]
+                                  text-primary/70 group-open/details:text-primary">
+                          <span x-text="$store.i18n.t('skills_used')"></span>
                         </p>
 
-                        <span class="w-1 h-4 bg-primary
-                                     shadow-[0_0_6px_var(--color-primary)]
-                                     animate-pulse">
+                        <span class="ml-auto text-[length:var(--text-micro)] tracking-[0.1em]"
+                          :class="expanded ? 'text-primary' : 'text-white/40'">
+                          [ <span x-show="!expanded">OFF</span><span x-show="expanded">ON</span> ]
                         </span>
 
                       </div>
+                    </summary>
 
-                    </template>
-                  </div>
+                    <!-- HORIZONTAL SKILL BUS -->
+                    <div class="scrollbar-thin-cyber relative overflow-x-auto py-3">
+                      <span class="absolute left-0 right-0 top-0 h-px bg-primary/20"></span>
+
+                      <div class="flex gap-2 sm:gap-3 min-w-max px-2 pt-3">
+                        <template x-for="s in job.skills" :key="s.key">
+
+                          <div class="relative flex items-center gap-1.5 sm:gap-2
+                                      px-2 sm:px-3 py-1.5 sm:py-2
+                                      bg-black/40 border-white/5
+                                      hover:border-primary transition">
+
+                            <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
+
+                            <template x-if="s.type === 'devicon' && skillIcons[s.key]">
+                              <i :class="skillIcons[s.key].icon"
+                                class="text-primary text-[length:var(--text-base)] shrink-0">
+                              </i>
+                            </template>
+
+                            <p class="text-[length:var(--text-micro)] uppercase tracking-[0.1em]
+                                      text-white/90 truncate">
+                              <span x-text="resolveSkill(s.key).label"></span>
+                            </p>
+
+                            <span class="w-1 h-4 bg-primary
+                                         shadow-[0_0_6px_var(--color-primary)]
+                                         animate-pulse">
+                            </span>
+
+                          </div>
+
+                        </template>
+                      </div>
+                    </div>
+
+                  </details>
+
                 </div>
 
-              </details>
-
+              </div>
             </div>
+            <!-- END BODY -->
+
           </div>
 
         </div>
@@ -733,7 +805,7 @@
 
                 <div class="edu-item relative border border-white/5 bg-black/30
                             transition-all duration-300" x-data="{ open: false }" :class="open
-                       ? 'border-primary/20 bg-black/50 shadow-[inset_0_0_20px_rgba(var(--color-primary-rgb),0.04)]'
+                       ? 'border-primary bg-black/50 shadow-[inset_0_0_20px_rgba(var(--color-primary-rgb),0.04)]'
                        : 'border-primary/6'"
                   style="clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)">
 
@@ -959,108 +1031,254 @@
   </div><!-- /.outer frame -->
 
 
-  <!-- ══════════════════════════════════════════
-    PDF CERT MODAL
-  ══════════════════════════════════════════════ -->
-  <div x-show="certModal.open" x-transition:enter="transition duration-300 ease-out"
-    x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-    x-transition:leave="transition duration-200 ease-in" x-transition:leave-start="opacity-100 scale-100"
-    x-transition:leave-end="opacity-0 scale-95" class="fixed inset-0 z-[12000] flex items-center justify-center p-4"
-    style="backdrop-filter:blur(8px); background:rgba(0,0,0,0.88)">
+<!-- ══════════════════════════════════════════════════════════
+  PDF CERT MODAL
+  Requires certViewerData() merged into the parent x-data scope.
+  The parent element must handle:
+    @keydown.escape.window="closeCert()"
+    @fullscreenchange.window (now handled inside certViewerData)
+════════════════════════════════════════════════════════════ -->
+<div
+  x-show="certModal.open"
+  x-transition:enter="transition duration-300 ease-out"
+  x-transition:enter-start="opacity-0 scale-95"
+  x-transition:enter-end="opacity-100 scale-100"
+  x-transition:leave="transition duration-200 ease-in"
+  x-transition:leave-start="opacity-100 scale-100"
+  x-transition:leave-end="opacity-0 scale-95"
+  class="fixed inset-0 z-[12000] flex items-end sm:items-center justify-center
+         p-0 sm:p-4"
+  style="backdrop-filter:blur(10px); background:rgba(0,0,0,0.90)">
 
-    <div id="cert-modal-box" class="relative w-full max-w-3xl max-h-[90vh] flex flex-col bg-black border-primary/40
-                shadow-[0_0_60px_rgba(var(--color-primary-rgb),0.2)]"
-      style="clip-path:polygon(0 0,100% 0,100% 98%,98% 100%,0 100%)">
+  <div
+    id="cert-modal-box"
+    class="relative w-full sm:max-w-4xl flex flex-col bg-black
+           border border-primary
+           shadow-[0_0_60px_rgba(var(--color-primary-rgb),0.2)]"
+    style="
+      /* Mobile: tall sheet; Desktop: constrained box */
+      height: 92svh;
+      max-height: 92svh;
+    ">
 
-      <!-- Modal top accent -->
-      <div
-        class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-70">
+    <!-- ── Top accent line ──────────────────────────── -->
+    <div class="absolute inset-x-0 top-0 h-px opacity-70
+                bg-gradient-to-r from-transparent via-primary to-transparent
+                pointer-events-none">
+    </div>
+
+    <!-- ══ HEADER ══════════════════════════════════════ -->
+    <div class="flex-shrink-0 flex items-center justify-between
+                px-3 sm:px-4 py-2.5 border-b border-primary bg-primary/5">
+
+      <!-- Left: title + filename -->
+      <div class="flex items-center gap-2 min-w-0">
+        <div class="w-1.5 h-1.5 bg-primary rotate-45 flex-shrink-0 animate-pulse"
+          style="box-shadow:0 0 6px var(--color-primary)"></div>
+        <span class="text-[length:var(--text-sm)] font-black uppercase tracking-[0.1em] text-primary"
+          x-text="$store.i18n.t('edu_cert_viewer')"></span>
+        <span class="hidden sm:block text-[length:var(--text-xs)] text-primary/40
+                     uppercase tracking-[0.1em] truncate max-w-[200px]"
+          x-text="certModal.file"></span>
       </div>
 
-      <!-- Modal header -->
-      <div class="flex-shrink-0 flex items-center justify-between px-4 py-3
-                  border-b border-primary/20 bg-primary/5">
-        <div class="flex items-center gap-2.5">
-          <div class="w-1.5 h-1.5 bg-primary rotate-45 shadow-[0_0_6px_var(--color-primary)] animate-pulse"></div>
-          <span class="text-[length:var(--text-sm)] font-black uppercase tracking-[0.1em] text-primary"
-            x-text="$store.i18n.t('edu_cert_viewer')"></span>
-          <span class="text-[length:var(--text-xs)] text-primary/40 uppercase tracking-[0.1em] hidden sm:block"
-            x-text="certModal.file">
-          </span>
-        </div>
+      <!-- Right: page nav + fullscreen + close -->
+      <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
 
-        <div class="flex items-center gap-2">
+        <!-- Page nav (only when multi-page) -->
+        <template x-if="certModal.total > 1">
+          <div class="flex items-center gap-1">
+            <button @click="prevPage()" :disabled="certModal.page <= 1"
+              class="w-6 h-6 flex items-center justify-center
+                     border border-primary bg-black/60
+                     text-primary/60 hover:text-primary hover:border-primary
+                     disabled:opacity-20 disabled:cursor-not-allowed
+                     transition-all duration-150">
+              <i data-lucide="chevron-left" class="w-3 h-3"></i>
+            </button>
 
-          <!-- Page nav -->
-          <template x-if="certModal.total > 1">
-            <div class="flex items-center gap-1.5">
-              <button @click="prevPage()" :disabled="certModal.page <= 1" class="w-6 h-6 flex items-center justify-center border-primary/25 bg-black/60
-                             text-primary/60 hover:text-primary hover:border-primary
-                             disabled:opacity-20 disabled:cursor-not-allowed transition-all">
-                <i data-lucide="chevron-left" class="w-3 h-3"></i>
-              </button>
-              <span class="text-[length:var(--text-xs)] text-primary/50 font-black tracking-[0.1em] px-1"
-                x-text="certModal.page + ' / ' + certModal.total"></span>
-              <button @click="nextPage()" :disabled="certModal.page >= certModal.total" class="w-6 h-6 flex items-center justify-center border-primary/25 bg-black/60
-                             text-primary/60 hover:text-primary hover:border-primary
-                             disabled:opacity-20 disabled:cursor-not-allowed transition-all">
-                <i data-lucide="chevron-right" class="w-3 h-3"></i>
-              </button>
-            </div>
-          </template>
+            <span class="text-[length:var(--text-xs)] text-primary/50 font-black
+                         tracking-[0.1em] px-1.5 whitespace-nowrap tabular-nums"
+              x-text="certModal.page + ' / ' + certModal.total"></span>
 
-          <!-- Fullscreen toggle -->
-          <button @click="toggleFullscreen()" class="w-7 h-7 flex items-center justify-center bg-primary/8
-                         text-primary/40 hover:text-primary hover:bg-primary/18
-                         hover:shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.2)]
-                         transition-all duration-200"
-            style="clip-path:polygon(10% 0,90% 0,100% 10%,100% 90%,90% 100%,10% 100%,0 90%,0 10%)" :title="certModal.fullscreen
-                    ? $store.i18n.t('edu_fullscreen_exit')
-                    : $store.i18n.t('edu_fullscreen_enter')">
-            <i :data-lucide="certModal.fullscreen ? 'minimize-2' : 'maximize-2'" class="w-3.5 h-3.5"></i>
-          </button>
+            <button @click="nextPage()" :disabled="certModal.page >= certModal.total"
+              class="w-6 h-6 flex items-center justify-center
+                     border border-primary bg-black/60
+                     text-primary/60 hover:text-primary hover:border-primary
+                     disabled:opacity-20 disabled:cursor-not-allowed
+                     transition-all duration-150">
+              <i data-lucide="chevron-right" class="w-3 h-3"></i>
+            </button>
+          </div>
+        </template>
 
-          <!-- Close -->
-          <button @click="closeCert()" class="w-7 h-7 flex items-center justify-center bg-primary/8
-                         text-primary/35 hover:text-primary hover:bg-primary/18
-                         hover:shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.2)]
-                         transition-all duration-200"
-            style="clip-path:polygon(10% 0,90% 0,100% 10%,100% 90%,90% 100%,10% 100%,0 90%,0 10%)">
-            <i data-lucide="x" class="w-4 h-4"></i>
-          </button>
+        <!-- Separator -->
+        <div class="w-px h-4 bg-primary/15 hidden sm:block"></div>
 
-        </div>
+        <!-- Fullscreen -->
+        <button @click="toggleFullscreen()"
+          class="w-7 h-7 hidden sm:flex items-center justify-center
+                 bg-primary/8 text-primary/40
+                 hover:text-primary hover:bg-primary/18
+                 hover:shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.2)]
+                 transition-all duration-200"
+          style="clip-path:polygon(10% 0,90% 0,100% 10%,100% 90%,90% 100%,10% 100%,0 90%,0 10%)"
+          :title="certModal.fullscreen
+            ? $store.i18n.t('edu_fullscreen_exit')
+            : $store.i18n.t('edu_fullscreen_enter')">
+          <i :data-lucide="certModal.fullscreen ? 'minimize-2' : 'maximize-2'" class="w-3.5 h-3.5"></i>
+        </button>
+
+        <!-- Close -->
+        <button @click="closeCert()"
+          class="w-7 h-7 flex items-center justify-center
+                 bg-primary/8 text-primary/35
+                 hover:text-primary hover:bg-primary/18
+                 hover:shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.2)]
+                 transition-all duration-200"
+          style="clip-path:polygon(10% 0,90% 0,100% 10%,100% 90%,90% 100%,10% 100%,0 90%,0 10%)">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+
       </div>
+    </div>
+    <!-- ══ END HEADER ══════════════════════════════════ -->
 
-      <!-- Canvas area -->
-      <div class="flex-1 overflow-auto flex items-start justify-center p-4 relative" style="min-height:0">
+    <!-- ══ ZOOM TOOLBAR ════════════════════════════════ -->
+    <div class="flex-shrink-0 flex items-center gap-1.5 sm:gap-2
+                px-3 sm:px-4 py-1.5 border-b border-primary bg-black/60">
 
-        <!-- Loading spinner -->
-        <div x-show="certModal.loading"
-          class="absolute inset-0 flex items-center justify-center gap-2 bg-black/60 z-10">
-          <div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:0ms]"></div>
-          <div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:150ms]"></div>
-          <div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:300ms]"></div>
-          <span class="text-[10px] text-primary/50 uppercase tracking-[0.1em] ml-1"
-            x-text="$store.i18n.t('edu_cert_loading')"></span>
-        </div>
+      <!-- Fit-width -->
+      <button @click="fitWidth()"
+        class="flex items-center gap-1.5 px-2.5 py-1 transition-all duration-150
+               text-[length:var(--text-xs)] font-black uppercase tracking-[0.1em]"
+        :class="certModal.fitMode === 'width'
+          ? 'text-primary bg-primary/12 border border-primary shadow-[0_0_8px_rgba(var(--color-primary-rgb),0.15)]'
+          : 'text-primary/40 hover:text-primary hover:bg-primary/8 border border-transparent'">
+        <i data-lucide="move-horizontal" class="w-3 h-3"></i>
+        <span class="hidden sm:inline">Fit</span>
+      </button>
 
-        <canvas id="cert-canvas" class="max-w-full shadow-[0_0_30px_rgba(0,0,0,0.8)]" style="display:block"></canvas>
-      </div>
+      <!-- Fit-page -->
+      <button @click="fitPage()"
+        class="flex items-center gap-1.5 px-2.5 py-1 transition-all duration-150
+               text-[length:var(--text-xs)] font-black uppercase tracking-[0.1em]"
+        :class="certModal.fitMode === 'page'
+          ? 'text-primary bg-primary/12 border border-primary shadow-[0_0_8px_rgba(var(--color-primary-rgb),0.15)]'
+          : 'text-primary/40 hover:text-primary hover:bg-primary/8 border border-transparent'">
+        <i data-lucide="maximize" class="w-3 h-3"></i>
+        <span class="hidden sm:inline">Page</span>
+      </button>
 
-      <!-- Modal footer -->
-      <div class="flex-shrink-0 flex items-center justify-between px-4 py-2
-                  border-t border-primary/10 bg-black/40">
-        <span class="text-[length:var(--text-xs)] text-primary/30 uppercase tracking-[0.1em] animate-pulse"
-          x-text="$store.i18n.t('edu_cert_esc')"></span>
-        <div class="flex gap-1">
-          <div class="w-1 h-1.5 bg-primary/20"></div>
-          <div class="w-1 h-1.5 bg-primary/50"></div>
-          <div class="w-1 h-1.5 bg-primary animate-pulse"></div>
-        </div>
+      <!-- Divider -->
+      <div class="w-px h-4 bg-primary/15 mx-0.5"></div>
+
+      <!-- Zoom out -->
+      <button @click="zoomOut()" :disabled="certModal.zoom <= 0.26"
+        class="w-7 h-7 flex items-center justify-center
+               border border-primary bg-black/40
+               text-primary/40 hover:text-primary hover:border-primary
+               disabled:opacity-20 disabled:cursor-not-allowed
+               transition-all duration-150">
+        <i data-lucide="minus" class="w-3 h-3"></i>
+      </button>
+
+      <!-- Zoom % (click to reset to fit-width) -->
+      <button @click="fitWidth()"
+        class="min-w-[3.5rem] px-2 py-1 text-center
+               border border-primary bg-black/40
+               text-[length:var(--text-xs)] font-black tracking-[0.08em] tabular-nums
+               text-primary/55 hover:text-primary hover:border-primary
+               transition-all duration-150">
+        <span x-text="certModal.zoomPct + '%'"></span>
+      </button>
+
+      <!-- Zoom in -->
+      <button @click="zoomIn()" :disabled="certModal.zoom >= 3.99"
+        class="w-7 h-7 flex items-center justify-center
+               border border-primary bg-black/40
+               text-primary/40 hover:text-primary hover:border-primary
+               disabled:opacity-20 disabled:cursor-not-allowed
+               transition-all duration-150">
+        <i data-lucide="plus" class="w-3 h-3"></i>
+      </button>
+
+      <!-- Keyboard hint — desktop only -->
+      <div class="ml-auto hidden md:flex items-center gap-2 text-primary/20">
+        <span class="text-[9px] uppercase tracking-[0.12em]">← → pages</span>
+        <span class="w-px h-3 bg-primary/15"></span>
+        <span class="text-[9px] uppercase tracking-[0.12em]">+ − zoom</span>
+        <span class="w-px h-3 bg-primary/15"></span>
+        <span class="text-[9px] uppercase tracking-[0.12em]">F fullscreen</span>
       </div>
 
     </div>
+    <!-- ══ END ZOOM TOOLBAR ══════════════════════════════ -->
+
+    <!-- ══ CANVAS AREA ══════════════════════════════════ -->
+    <div
+      id="cert-canvas-wrap"
+      class="flex-1 overflow-auto relative
+             flex items-start justify-center p-4"
+      style="min-height:0; scroll-behavior:smooth">
+
+      <!-- Loading overlay -->
+      <div x-show="certModal.loading"
+        x-transition:enter="transition-opacity duration-150"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition-opacity duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="absolute inset-0 flex flex-col items-center justify-center
+               gap-3 bg-black/70 z-10 backdrop-blur-sm">
+
+        <!-- Animated dots -->
+        <div class="flex items-center gap-2">
+          <div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style="animation-delay:0ms"></div>
+          <div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style="animation-delay:150ms"></div>
+          <div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style="animation-delay:300ms"></div>
+        </div>
+
+        <!-- Progress hint -->
+        <span class="text-[length:var(--text-xs)] text-primary/50 uppercase tracking-[0.12em]"
+          x-text="$store.i18n.t('edu_cert_loading')"></span>
+
+        <!-- Scan line -->
+        <div class="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent
+                    animate-[eduScan_1.2s_ease-in-out_infinite]" style="top:50%"></div>
+
+      </div>
+
+      <!-- THE CANVAS -->
+      <canvas
+        id="cert-canvas"
+        class="shadow-[0_0_40px_rgba(0,0,0,0.9)]"
+        style="display:block; max-width:none">
+      </canvas>
+
+    </div>
+    <!-- ══ END CANVAS AREA ══════════════════════════════ -->
+
+    <!-- ══ FOOTER ═══════════════════════════════════════ -->
+    <div class="flex-shrink-0 flex items-center justify-between
+                px-3 sm:px-4 py-1.5 border-t border-primary bg-black/40">
+
+      <!-- Hint -->
+      <span class="text-[length:var(--text-xs)] text-primary/25 uppercase tracking-[0.1em]"
+        x-text="$store.i18n.t('edu_cert_esc')"></span>
+
+      <!-- Blinking status lights -->
+      <div class="flex gap-1 items-end">
+        <div class="w-1 h-1.5 bg-primary/20"></div>
+        <div class="w-1 h-1.5 bg-primary/50"></div>
+        <div class="w-1 h-1.5 bg-primary animate-pulse"></div>
+      </div>
+
+    </div>
+    <!-- ══ END FOOTER ═══════════════════════════════════ -->
+
   </div>
+</div>
 
 </div><!-- /.edu-node -->

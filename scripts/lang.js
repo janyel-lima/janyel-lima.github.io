@@ -46,7 +46,7 @@ const i18n = {
     dev_data: 'Dados_Solicitados_do_Desenvolvedor',
     period: 'Registro_Período',
     deploy: '// OPERACIONAL_EM:',
-    skills_used: 'Habilidades_Utilizadas',
+    skills_used: 'Habilidades Utilizadas',
     stack_analysis: 'Stack Utilizada',
     unit_support: 'EQUIPE',
     auxiliary_modules: 'MEMBROS_DA_EQUIPE',
@@ -235,6 +235,12 @@ const i18n = {
     tetris_gameover: 'GAME_OVER',
     tetris_confirm_clear: 'Limpar todo o ranking?',
 
+    // ═══════════════════════════════════════════════════════════
+    // Timeline
+
+    collapse_all: 'RECOLHER_TUDO',
+    expand_all: 'EXPANDIR_TUDO',
+
 
     // ═══════════════════════════════════════════════════════════
     //  EDUCATION — chaves i18n NOVAS
@@ -386,7 +392,7 @@ const i18n = {
     dev_data: 'Requested_Developer_Data',
     period: 'Period_Log',
     deploy: '// DEPLOYED_AT:',
-    skills_used: 'Skills_Used',
+    skills_used: 'Skills Used',
     stack_analysis: 'Stack Used',
     unit_support: 'TEAM',
     auxiliary_modules: 'TEAM_MEMBERS',
@@ -584,6 +590,14 @@ const i18n = {
     tetris_gameover: 'GAME_OVER',
     tetris_confirm_clear: 'Clear the entire ranking?',
 
+
+
+    // ═══════════════════════════════════════════════════════════
+    // Timeline
+
+    collapse_all: 'COLLAPSE_ALL',
+    expand_all: 'EXPAND_ALL',
+    // ═══════════════════════════════════════════════════════════
 
     // ── EN ─────────────────────────────────────────────────────
 

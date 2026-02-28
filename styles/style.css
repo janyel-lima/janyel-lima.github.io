@@ -1014,3 +1014,150 @@ body>*:not(#fx-layer) {
 .scrollbar-thin-cyber::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 255, 255, 0.6);
 }
+
+
+ @keyframes eduScan {
+          from {
+            left: -48px
+          }
+
+          to {
+            left: 110%
+          }
+        }
+
+        @keyframes secScan {
+          from {
+            left: -64px
+          }
+
+          to {
+            left: 110%
+          }
+        }
+
+        /*
+          Chevron fix:
+          The rotation and transition live on the WRAPPER div (.edu-chev),
+          not on the <i> / <svg> that Lucide replaces — so the class
+          binding always survives icon re-renders.
+        */
+        .edu-chev {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .edu-chev.is-open {
+          transform: rotate(180deg);
+        }
+
+        .edu-item-wrap {
+          transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease;
+        }
+
+        .edu-sec-body {
+          transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.32s ease;
+        }
+
+         /* Mobile: item header becomes 2-row layout */
+  @media (max-width: 480px) {
+    /* Section header: tighter padding */
+    .sec-header-pad { padding: 0.4rem 0.25rem !important; }
+
+    /* Item header: stack title block and right badges vertically */
+    .item-header-row {
+      flex-wrap: wrap;
+      gap: 0.5rem !important;
+      padding: 0.625rem 0.75rem !important;
+    }
+
+    /* Icon badge smaller on mobile */
+    .item-icon-badge {
+      width: 2rem !important;
+      height: 2rem !important;
+      flex-shrink: 0;
+    }
+    .item-icon-badge i { width: 0.875rem !important; height: 0.875rem !important; }
+
+    /* Title text tighter */
+    .item-title-text { font-size: 0.75rem !important; letter-spacing: 0.06em !important; }
+    .item-provider-text { font-size: 0.65rem !important; }
+
+    /* Right area: mini peek sits below title row on mobile */
+    .item-right-area {
+      margin-left: auto;
+    }
+
+    /* Action badges row: wrap freely + smaller height */
+    .action-badges {
+      padding: 0.5rem 0.75rem !important;
+      gap: 0.375rem !important;
+      flex-wrap: wrap;
+    }
+    .action-badge-h {
+      height: 1.75rem !important;
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+      font-size: 0.6rem !important;
+    }
+    .action-cert-btn {
+      height: 1.75rem !important;
+      padding-left: 0.625rem !important;
+      padding-right: 0.625rem !important;
+      font-size: 0.6rem !important;
+    }
+    .action-ext-btn {
+      width: 1.75rem !important;
+      height: 1.75rem !important;
+    }
+
+    /* Expanded panel: allow more height on mobile for wrapped buttons */
+    .edu-item-wrap[style*="max-height:120px"] { max-height: 160px !important; }
+
+    /* Section icon badge smaller */
+    .sec-icon-badge { width: 2rem !important; height: 2rem !important; }
+    .sec-icon-badge i { width: 1rem !important; height: 1rem !important; }
+    .sec-label { font-size: 0.7rem !important; letter-spacing: 0.12em !important; }
+
+    /* Modal: full-screen nearly */
+    #cert-modal-box {
+      max-width: 100% !important;
+      max-height: 95vh !important;
+      margin: 0 !important;
+    }
+    .cert-modal-wrap { padding: 0.25rem !important; }
+
+    /* Modal header text smaller */
+    .cert-header-title { font-size: 0.65rem !important; }
+
+    /* Header top section */
+    .header-pad { padding: 0.5rem 0.75rem !important; }
+    .header-icon { width: 2rem !important; height: 2rem !important; }
+    .header-icon i { width: 1rem !important; height: 1rem !important; }
+    .header-title { font-size: 0.75rem !important; }
+    .header-sub { font-size: 0.6rem !important; }
+
+    /* Footer */
+    .footer-pad { padding: 0.375rem 0.75rem !important; }
+
+    /* Body padding */
+    .body-pad { padding: 0.75rem !important; }
+
+    /* Mini proficiency bars smaller */
+    .mini-bars { gap: 1.5px !important; }
+  }
+
+  /* Tiny phones (< 360px) */
+  @media (max-width: 360px) {
+    .item-title-text { font-size: 0.68rem !important; }
+    .item-header-row { padding: 0.5rem 0.625rem !important; }
+    .sec-label { font-size: 0.65rem !important; }
+  }
+
+  /* Medium screens (481–640px): gentle tuning */
+  @media (min-width: 481px) and (max-width: 640px) {
+    .item-header-row { padding: 0.75rem 1rem !important; }
+    .action-badges { padding: 0.625rem 1rem !important; }
+  }

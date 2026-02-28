@@ -384,70 +384,71 @@
 
   <h2 x-text="$store.i18n.t('title_exp')"
     class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.1em]">
-
   </h2>
 
   <div id="experience-timeline" class="space-y-0">
 
     <template x-for="(job, index) in devStats.history" :key="job.company + '-' + job.period.en">
 
-      <div class="relative pl-10 border-l-2 border-primary/20 pb-12 last:pb-0">
+      <!-- ── Outer row: smaller left-pad on mobile ── -->
+      <div class="relative pl-7 sm:pl-10 border-l-2 border-primary/20 pb-10 sm:pb-12 last:pb-0">
 
-        <!-- VERTICAL LINE (CENTERED ON NODE) -->
         <!-- TIMELINE AXIS -->
-        <span class="absolute left-[40px] top-0 bottom-0 w-[2px]
-         bg-primary/30">
-        </span>
+        <span class="absolute left-[28px] sm:left-[40px] top-0 bottom-0 w-[2px] bg-primary/30"></span>
+
         <div data-interactive>
+
           <!-- YEAR LABEL -->
-          <div data-non-interactive class="absolute left-[40px] -top-2 -translate-x-1/2
-             text-[length:var(--text-sm)]  tracking-[0.1em]st uppercase
-             text-white  px-2">
+          <div data-non-interactive
+            class="absolute left-[28px] sm:left-[40px] -top-2 -translate-x-1/2
+                   text-[length:var(--text-sm)] tracking-[0.1em] uppercase
+                   text-white px-1 sm:px-2">
             <span x-text="job.period[$store.i18n.lang].split(' ')[0]"></span>
           </div>
 
           <!-- NODE -->
-          <div data-non-interactive class="absolute -left-[9px] top-1 w-4 h-4 bg-main border-2 border-primary
-                 shadow-[0_0_10px_var(--color-primary)] rotate-45 flex items-center justify-center">
+          <div data-non-interactive
+            class="absolute -left-[9px] top-1 w-4 h-4 bg-main border-2 border-primary
+                   shadow-[0_0_10px_var(--color-primary)] rotate-45 flex items-center justify-center">
             <div class="w-1 h-1 bg-primary animate-pulse"></div>
           </div>
 
           <!-- CARD -->
-          <div class="rpg-card relative ml-10
-         bg-black/65 border-white/5
-         hover:border-primary/40
-         transition-all duration-300
-         hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.15)]
-         overflow-hidden">
+          <div class="rpg-card relative ml-7 sm:ml-10
+                      bg-black/65 border-white/5
+                      hover:border-primary/40
+                      transition-all duration-300
+                      hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.15)]
+                      overflow-hidden">
 
             <!-- TOP ENERGY LINE -->
             <div class="absolute inset-x-0 top-0 h-[2px]
-           bg-gradient-to-r from-transparent via-primary to-transparent">
-            </div>
+                        bg-gradient-to-r from-transparent via-primary to-transparent"></div>
 
-            <!-- HEADER -->
-            <div class="p-4 flex justify-between items-start bg-primary/5">
+            <!-- HEADER: wraps to column on very small screens -->
+            <div class="p-3 sm:p-4 flex flex-col xs:flex-row sm:flex-row
+                        gap-2 sm:gap-0 justify-between items-start bg-primary/5">
 
               <!-- LEFT -->
-              <div class="space-y-1">
-                <h3 class="font-black text-white uppercase tracking-[0.1em] text-[length:var(--text-md)]"
+              <div class="space-y-1 min-w-0 flex-1">
+                <h3 class="font-black text-white uppercase tracking-[0.1em]
+                           text-[length:var(--text-md)] leading-tight"
                   x-text="job.role[$store.i18n.lang]">
                 </h3>
 
-                <p class="text-[length:var(--text-micro)]  uppercase tracking-[0.1em] text-primary">
+                <p class="text-[length:var(--text-micro)] uppercase tracking-[0.1em] text-primary">
                   <span x-text="$store.i18n.t('deploy')"></span>
                   <span class="mx-1 text-primary/40">/</span>
                   <span x-text="job.company"></span>
                 </p>
               </div>
 
-              <!-- RIGHT -->
-              <div class="text-right leading-tight">
+              <!-- RIGHT: left-aligned on mobile, right-aligned on sm+ -->
+              <div class="text-left xs:text-right sm:text-right flex-shrink-0">
                 <p x-text="$store.i18n.t('period')"
-                  class="text-[length:var(--text-micro)]  uppercase tracking-[0.1em]st text-white/40 mb-1">
+                  class="text-[length:var(--text-micro)] uppercase tracking-[0.1em] text-white/40 mb-1">
                 </p>
-
-                <p class="text-[length:var(--text-md)]  text-white bg-white/5 px-2 py-0.5 inline-block">
+                <p class="text-[length:var(--text-md)] text-white bg-white/5 px-2 py-0.5 inline-block">
                   <span x-text="job.period[$store.i18n.lang]"></span>
                 </p>
               </div>
@@ -455,27 +456,24 @@
             </div>
 
             <!-- BODY -->
-            <div class="p-4 space-y-5">
+            <div class="p-3 sm:p-4 space-y-4 sm:space-y-5">
 
               <!-- SYSTEM LOG -->
-              <!-- SYSTEM LOG -->
-              <div class="
-        
-        text-[length:var(--text-sm)]
-        text-gray-300
-        leading-relaxed
-        border-l
-        border-primary/20
-        pl-3
-    " x-data="expandableTypedText(() => job.description[$store.i18n.lang], 180)" x-init="init()"
-                x-on:alpine:destroy="destroy()" x-effect="onTextChanged()">
+              <div class="text-[length:var(--text-sm)] text-gray-300
+                          leading-relaxed border-l border-primary/20 pl-3"
+                x-data="expandableTypedText(() => job.description[$store.i18n.lang], 180)"
+                x-init="init()"
+                x-on:alpine:destroy="destroy()"
+                x-effect="onTextChanged()">
 
-                <p x-text="displayText" class="mb-2 whitespace-pre-line tracking-[0.1em] transition-all duration-300"
+                <p x-text="displayText"
+                  class="mb-2 whitespace-pre-line tracking-[0.1em] transition-all duration-300"
                   :class="expanded ? '' : 'line-clamp-2'">
                 </p>
 
-                <button x-show="shouldShowToggle" @click="toggle()" class="animate-pulse  mt-3 flex items-center gap-2
-           text-[length:var(--text-micro)]  uppercase tracking-[0.1em]st">
+                <button x-show="shouldShowToggle" @click="toggle()"
+                  class="animate-pulse mt-3 flex items-center gap-2
+                         text-[length:var(--text-micro)] uppercase tracking-[0.1em]">
                   <span :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
                     x-effect="expanded; $nextTick(() => updateInterfaceStatic())"
                     class="text-primary tracking-[0.1em] hover:text-primary transition">
@@ -485,27 +483,26 @@
 
               </div>
 
-
               <!-- SKILLS SUBSYSTEM -->
               <details class="group/details" x-data="{ expanded: false }" @toggle="expanded = $el.open">
 
                 <summary class="list-none cursor-pointer select-none">
-
                   <div class="flex items-center gap-3 px-3 py-2
-                 bg-black/50 border-white/5
-                 hover:border-primary/40 transition">
+                              bg-black/50 border-white/5
+                              hover:border-primary/40 transition">
 
-                    <i data-lucide="layers" class="w-4 h-4 text-primary transition
-                   group-open/details:scale-110
-                   group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
+                    <i data-lucide="layers"
+                      class="w-4 h-4 text-primary transition
+                             group-open/details:scale-110
+                             group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
                     </i>
 
-                    <p class="text-[length:var(--text-micro)]  uppercase tracking-[0.35em]
-                   text-primary/70 group-open/details:text-primary">
+                    <p class="text-[length:var(--text-micro)] uppercase tracking-[0.35em]
+                              text-primary/70 group-open/details:text-primary">
                       <span x-text="$store.i18n.t('skills_used')"></span>
                     </p>
 
-                    <span class="ml-auto text-[length:var(--text-micro)]  tracking-[0.1em]st"
+                    <span class="ml-auto text-[length:var(--text-micro)] tracking-[0.1em]"
                       :class="expanded ? 'text-primary' : 'text-white/40'">
                       [ <span x-show="!expanded">OFF</span><span x-show="expanded">ON</span> ]
                     </span>
@@ -515,16 +512,15 @@
 
                 <!-- HORIZONTAL SKILL BUS -->
                 <div class="scrollbar-thin-cyber relative overflow-x-auto py-3">
-
                   <span class="absolute left-0 right-0 top-0 h-px bg-primary/20"></span>
 
-                  <div class="flex gap-3 min-w-max px-2 pt-3">
-
+                  <div class="flex gap-2 sm:gap-3 min-w-max px-2 pt-3">
                     <template x-for="s in job.skills" :key="s.key">
 
-                      <div class="relative flex items-center gap-2 px-3 py-2
-                     bg-black/40 border-white/5
-                     hover:border-primary/40 transition">
+                      <div class="relative flex items-center gap-1.5 sm:gap-2
+                                  px-2 sm:px-3 py-1.5 sm:py-2
+                                  bg-black/40 border-white/5
+                                  hover:border-primary/40 transition">
 
                         <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
 
@@ -534,20 +530,19 @@
                           </i>
                         </template>
 
-                        <p class="text-[length:var(--text-micro)]  uppercase tracking-[0.1em]st
-                       text-white/90 truncate">
+                        <p class="text-[length:var(--text-micro)] uppercase tracking-[0.1em]
+                                  text-white/90 truncate">
                           <span x-text="resolveSkill(s.key).label"></span>
                         </p>
 
                         <span class="w-1 h-4 bg-primary
-                       shadow-[0_0_6px_var(--color-primary)]
-                       animate-pulse">
+                                     shadow-[0_0_6px_var(--color-primary)]
+                                     animate-pulse">
                         </span>
 
                       </div>
 
                     </template>
-
                   </div>
                 </div>
 
@@ -556,11 +551,9 @@
             </div>
           </div>
 
-
         </div>
       </div>
     </template>
-
 
   </div>
 </div>
@@ -651,52 +644,7 @@
     <!-- ══ BODY ════════════════════════════════ -->
     <div class="relative p-5 space-y-3">
 
-      <style>
-        @keyframes eduScan {
-          from {
-            left: -48px
-          }
-
-          to {
-            left: 110%
-          }
-        }
-
-        @keyframes secScan {
-          from {
-            left: -64px
-          }
-
-          to {
-            left: 110%
-          }
-        }
-
-        /*
-          Chevron fix:
-          The rotation and transition live on the WRAPPER div (.edu-chev),
-          not on the <i> / <svg> that Lucide replaces — so the class
-          binding always survives icon re-renders.
-        */
-        .edu-chev {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .edu-chev.is-open {
-          transform: rotate(180deg);
-        }
-
-        .edu-item-wrap {
-          transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease;
-        }
-
-        .edu-sec-body {
-          transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.32s ease;
-        }
-      </style>
+     
 
       <!-- SECTION LOOP -->
       <template x-for="(items, section) in educationLogs" :key="section">
@@ -892,7 +840,7 @@
                       </div>
                       <div
                         class="absolute top-0 bottom-0 w-12 bg-gradient-to-r from-transparent via-primary/60 to-transparent"
-                        :class="open ? 'animate-[eduScan_0.55s_ease-out_0.05s_forwards]' : ''" style="left:-48px">
+                        :class="open ? 'animate-[eduScan_0.55s_ease-out_0.05s_forwards]' : ''" style="left:-48px" >
                       </div>
                     </div>
 

@@ -65,7 +65,7 @@
     <!-- LANGUAGE -->
     <div x-data="{ showHint: false }" class="relative" @mousedown="showHint = true" @mouseup="showHint = false"
         @mouseleave="showHint = false" @touchstart="showHint = true" @touchend="showHint = false">
-        <button @click="$store.i18n.toggle()" class="rpg-button px-3 py-1.5 bg-black/60
+        <button @click="$store.i18n.toggle();$store.sfx.play('lang');" class="rpg-button px-3 py-1.5 bg-black/60
              flex items-center gap-2
              border border-accent/40">
 

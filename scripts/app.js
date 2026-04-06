@@ -65,45 +65,733 @@ document.addEventListener('alpine:init', () => {
     toggle() {
       this.setLang(this.lang === 'en' ? 'pt-br' : 'en');
     }
-  });
-
-  // ==============================
-  // GLOBAL: SFX STORE
+  });// ==============================
+  // GLOBAL: SFX STORE — Web Audio API
+  // Armored Core VI: Fires of Rubicon — dark mech interface
+  // $store.sfx.play('nome') | toggleMute() | muted
   // ==============================
   Alpine.store('sfx', {
     muted: localStorage.getItem('sfx-muted') === 'true',
+    __ctx: null,
+    __master: null,
 
-    sounds: {
-      click: new Audio('./sfx/click.mp3'),
-      loading: new Audio('./sfx/loading.mp3'),
-      close: new Audio('./sfx/close.mp3'),
-      hover: new Audio('./sfx/hover.mp3'),
-      select: new Audio('./sfx/click.mp3')
-    },
-
-    init() {
-      for (const a of Object.values(this.sounds)) {
-        a.preload = 'auto';
-        a.volume = 0.6;
+    // ── Lazy init do AudioContext ──────────────────────────────
+    _ctx() {
+      if (!this.__ctx) {
+        this.__ctx = new (window.AudioContext || window.webkitAudioContext)();
+        this.__master = this.__ctx.createGain();
+        this.__master.gain.value = 0.38;
+        this.__master.connect(this.__ctx.destination);
       }
-      this.sounds.loading.loop = false;
+      if (this.__ctx.state === 'suspended') this.__ctx.resume();
+      return this.__ctx;
     },
 
+    // ── Buffer de ruído branco com decay exponencial ──────────
+    _noise(c, duration, decay = 0.3) {
+      const len = Math.floor(c.sampleRate * duration);
+      const buf = c.createBuffer(1, len, c.sampleRate);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) {
+        d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * decay));
+      }
+      return buf;
+    },
+
+    // ── WaveShaper para distorção metálica ────────────────────
+    _distort(c, amount = 180) {
+      const ws = c.createWaveShaper();
+      const n = 512;
+      const curve = new Float32Array(n);
+      for (let i = 0; i < n; i++) {
+        const x = (i * 2) / n - 1;
+        curve[i] = ((Math.PI + amount) * x) / (Math.PI + amount * Math.abs(x));
+      }
+      ws.curve = curve;
+      ws.oversample = '4x';
+      return ws;
+    },
+
+    // ── Conecta cadeia e termina no master ────────────────────
+    _chain(master, ...nodes) {
+      for (let i = 0; i < nodes.length - 1; i++) nodes[i].connect(nodes[i + 1]);
+      nodes[nodes.length - 1].connect(master);
+    },
+
+    // ── Catálogo de sons ──────────────────────────────────────
+    _sounds: {
+
+      /* ── hover ─────────────────────────────────────────────
+         Retículo de mira se movendo: micro-tick metálico
+         + sweep HF suave. Quase inaudível, só uma textura.    */
+      hover(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Tick metálico de crosshair
+        const s1 = c.createBufferSource();
+        s1.buffer = ns(c, 0.012, 0.08);
+        const hpf = c.createBiquadFilter();
+        hpf.type = 'highpass'; hpf.frequency.value = 4000;
+        const g1 = c.createGain();
+        g1.gain.setValueAtTime(0.18, t);
+        g1.gain.exponentialRampToValueAtTime(0.001, t + 0.012);
+        ch(s1, hpf, g1);
+        s1.start(t);
+
+        // Sweep sine suave (reticle lock partial)
+        const osc = c.createOscillator();
+        const g2 = c.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, t + 0.005);
+        osc.frequency.linearRampToValueAtTime(1000, t + 0.055);
+        g2.gain.setValueAtTime(0.045, t + 0.005);
+        g2.gain.linearRampToValueAtTime(0, t + 0.07);
+        ch(osc, g2);
+        osc.start(t + 0.005); osc.stop(t + 0.08);
+      },
+
+      /* ── click ─────────────────────────────────────────────
+         Painel tático: impacto metálico seco + sub-thud.
+         Peso físico de interface de mech.                     */
+      click(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Sub-thud (massa física)
+        const sub = c.createOscillator();
+        const gs = c.createGain();
+        sub.type = 'sine';
+        sub.frequency.setValueAtTime(90, t);
+        sub.frequency.exponentialRampToValueAtTime(30, t + 0.055);
+        gs.gain.setValueAtTime(0.32, t);
+        gs.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
+        ch(sub, gs);
+        sub.start(t); sub.stop(t + 0.065);
+
+        // Impacto metálico (corpo do clique)
+        const s1 = c.createBufferSource();
+        s1.buffer = ns(c, 0.03, 0.1);
+        const bpf = c.createBiquadFilter();
+        bpf.type = 'bandpass'; bpf.frequency.value = 2800; bpf.Q.value = 1.2;
+        const g1 = c.createGain();
+        g1.gain.setValueAtTime(0.45, t);
+        g1.gain.exponentialRampToValueAtTime(0.001, t + 0.03);
+        ch(s1, bpf, g1);
+        s1.start(t);
+
+        // HF click (definição de borda)
+        const s2 = c.createBufferSource();
+        s2.buffer = ns(c, 0.008, 0.05);
+        const hpf = c.createBiquadFilter();
+        hpf.type = 'highpass'; hpf.frequency.value = 5500;
+        const g2 = c.createGain();
+        g2.gain.setValueAtTime(0.22, t);
+        g2.gain.exponentialRampToValueAtTime(0.001, t + 0.008);
+        ch(s2, hpf, g2);
+        s2.start(t);
+      },
+
+      /* ── loading ── alias de click ──────────────────────── */
+      loading(c, ch, ns, ds) { this.click(c, ch, ns, ds); },
+
+      /* ── select ─────────────────────────────────────────────
+         Confirmação de seleção de missão: dois beeps limpos
+         eletrônicos, precisos, militares.                     */
+      select(c, ch, ns, ds) {
+        const t = c.currentTime;
+        [[880, 0], [1320, 0.08]].forEach(([freq, delay]) => {
+          const osc = c.createOscillator();
+          const g = c.createGain();
+          osc.type = 'sine';
+          osc.frequency.value = freq;
+          g.gain.setValueAtTime(0.0, t + delay);
+          g.gain.linearRampToValueAtTime(0.14, t + delay + 0.004);
+          g.gain.setValueAtTime(0.14, t + delay + 0.035);
+          g.gain.linearRampToValueAtTime(0.0, t + delay + 0.055);
+          ch(osc, g);
+          osc.start(t + delay); osc.stop(t + delay + 0.065);
+        });
+      },
+
+      /* ── close ──────────────────────────────────────────────
+         Retração de servo: descida mecânica + thud de fechamento.
+         Como uma escotilha de cockpit sendo fechada.          */
+      close(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Descida de servo (sawtooth filtrado)
+        const osc = c.createOscillator();
+        const lpf = c.createBiquadFilter();
+        const g1 = c.createGain();
+        lpf.type = 'lowpass';
+        lpf.frequency.setValueAtTime(1800, t);
+        lpf.frequency.exponentialRampToValueAtTime(200, t + 0.18);
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(380, t);
+        osc.frequency.exponentialRampToValueAtTime(80, t + 0.18);
+        g1.gain.setValueAtTime(0.12, t);
+        g1.gain.linearRampToValueAtTime(0, t + 0.2);
+        ch(osc, lpf, g1);
+        osc.start(t); osc.stop(t + 0.22);
+
+        // Thud de impacto mecânico no fim
+        const sub = c.createOscillator();
+        const gs = c.createGain();
+        sub.type = 'sine';
+        sub.frequency.setValueAtTime(65, t + 0.14);
+        sub.frequency.exponentialRampToValueAtTime(28, t + 0.22);
+        gs.gain.setValueAtTime(0.28, t + 0.14);
+        gs.gain.exponentialRampToValueAtTime(0.001, t + 0.24);
+        ch(sub, gs);
+        sub.start(t + 0.14); sub.stop(t + 0.26);
+
+        // Noise de impacto
+        const sn = c.createBufferSource();
+        sn.buffer = ns(c, 0.04, 0.12);
+        const bpf = c.createBiquadFilter();
+        bpf.type = 'bandpass'; bpf.frequency.value = 600; bpf.Q.value = 0.8;
+        const gn = c.createGain();
+        gn.gain.setValueAtTime(0.2, t + 0.15);
+        gn.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+        ch(sn, bpf, gn);
+        sn.start(t + 0.15);
+      },
+
+      /* ── toggle ─────────────────────────────────────────────
+         Acionamento de sistema: alavanca pesada + servo motor.
+         Painéis de skills, details, educação, rank legend.    */
+      toggle(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Alavanca / switch throw (noise + distorção)
+        const s1 = c.createBufferSource();
+        s1.buffer = ns(c, 0.018, 0.1);
+        const d1 = ds(c, 120);
+        const bpf = c.createBiquadFilter();
+        bpf.type = 'bandpass'; bpf.frequency.value = 1600; bpf.Q.value = 1.5;
+        const g1 = c.createGain();
+        g1.gain.setValueAtTime(0.3, t);
+        g1.gain.exponentialRampToValueAtTime(0.001, t + 0.018);
+        ch(s1, d1, bpf, g1);
+        s1.start(t);
+
+        // Servo motor (pitch descendente rápido)
+        const osc = c.createOscillator();
+        const lpf = c.createBiquadFilter();
+        const g2 = c.createGain();
+        lpf.type = 'lowpass'; lpf.frequency.value = 800;
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(320, t + 0.018);
+        osc.frequency.exponentialRampToValueAtTime(140, t + 0.07);
+        g2.gain.setValueAtTime(0.08, t + 0.018);
+        g2.gain.linearRampToValueAtTime(0, t + 0.08);
+        ch(osc, lpf, g2);
+        osc.start(t + 0.018); osc.stop(t + 0.085);
+
+        // Echo tick seco
+        const s2 = c.createBufferSource();
+        s2.buffer = ns(c, 0.01, 0.06);
+        const hpf = c.createBiquadFilter();
+        hpf.type = 'highpass'; hpf.frequency.value = 3500;
+        const g3 = c.createGain();
+        g3.gain.setValueAtTime(0.12, t + 0.055);
+        g3.gain.exponentialRampToValueAtTime(0.001, t + 0.065);
+        ch(s2, hpf, g3);
+        s2.start(t + 0.055);
+      },
+
+      /* ── nav ────────────────────────────────────────────────
+         Propulsão de boost lateral: rajada de thruster
+         + aceleração sônica. Prev/next projetos.             */
+      nav(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Rajada de thruster (ruído bass filtrado)
+        const sn = c.createBufferSource();
+        sn.buffer = ns(c, 0.14, 0.35);
+        const lpf = c.createBiquadFilter();
+        lpf.type = 'lowpass';
+        lpf.frequency.setValueAtTime(300, t);
+        lpf.frequency.exponentialRampToValueAtTime(80, t + 0.14);
+        const gn = c.createGain();
+        gn.gain.setValueAtTime(0.22, t);
+        gn.gain.exponentialRampToValueAtTime(0.001, t + 0.14);
+        ch(sn, lpf, gn);
+        sn.start(t);
+
+        // Whoosh sônico (sawtooth + bandpass)
+        const osc = c.createOscillator();
+        const bpf = c.createBiquadFilter();
+        const g1 = c.createGain();
+        bpf.type = 'bandpass'; bpf.frequency.value = 700; bpf.Q.value = 2;
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(160, t);
+        osc.frequency.exponentialRampToValueAtTime(1200, t + 0.13);
+        g1.gain.setValueAtTime(0.14, t);
+        g1.gain.linearRampToValueAtTime(0, t + 0.15);
+        ch(osc, bpf, g1);
+        osc.start(t); osc.stop(t + 0.16);
+
+        // HF tail (esteira de ar)
+        const osc2 = c.createOscillator();
+        const g2 = c.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(2200, t + 0.06);
+        osc2.frequency.exponentialRampToValueAtTime(600, t + 0.2);
+        g2.gain.setValueAtTime(0.05, t + 0.06);
+        g2.gain.linearRampToValueAtTime(0, t + 0.22);
+        ch(osc2, g2);
+        osc2.start(t + 0.06); osc2.stop(t + 0.24);
+      },
+
+      /* ── decrypt ────────────────────────────────────────────
+         Invasão de sistema: interferência em 3 ondas
+         + estática de transmissão + acesso autorizado.        */
+      decrypt(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Onda 1: interferência digital baixa
+        const o1 = c.createOscillator();
+        const d1 = ds(c, 250);
+        const g1 = c.createGain();
+        o1.type = 'square';
+        o1.frequency.setValueAtTime(110, t);
+        o1.frequency.linearRampToValueAtTime(440, t + 0.09);
+        g1.gain.setValueAtTime(0.12, t);
+        g1.gain.linearRampToValueAtTime(0, t + 0.1);
+        ch(o1, d1, g1);
+        o1.start(t); o1.stop(t + 0.11);
+
+        // Onda 2: glitch médio
+        const o2 = c.createOscillator();
+        const d2 = ds(c, 180);
+        const g2 = c.createGain();
+        o2.type = 'sawtooth';
+        o2.frequency.setValueAtTime(280, t + 0.1);
+        o2.frequency.linearRampToValueAtTime(900, t + 0.19);
+        g2.gain.setValueAtTime(0.1, t + 0.1);
+        g2.gain.linearRampToValueAtTime(0, t + 0.2);
+        ch(o2, d2, g2);
+        o2.start(t + 0.1); o2.stop(t + 0.21);
+
+        // Onda 3: alta frequência (data corruption)
+        const o3 = c.createOscillator();
+        const bpf = c.createBiquadFilter();
+        const g3 = c.createGain();
+        bpf.type = 'bandpass'; bpf.frequency.value = 3200; bpf.Q.value = 3;
+        o3.type = 'square';
+        o3.frequency.setValueAtTime(1600, t + 0.2);
+        o3.frequency.linearRampToValueAtTime(400, t + 0.28);
+        g3.gain.setValueAtTime(0.09, t + 0.2);
+        g3.gain.linearRampToValueAtTime(0, t + 0.3);
+        ch(o3, bpf, g3);
+        o3.start(t + 0.2); o3.stop(t + 0.32);
+
+        // Estática de transmissão
+        const sn = c.createBufferSource();
+        sn.buffer = ns(c, 0.28, 0.5);
+        const bpf2 = c.createBiquadFilter();
+        bpf2.type = 'bandpass'; bpf2.frequency.value = 2000; bpf2.Q.value = 1.5;
+        const gn = c.createGain();
+        gn.gain.setValueAtTime(0.16, t);
+        gn.gain.setValueAtTime(0.16, t + 0.22);
+        gn.gain.linearRampToValueAtTime(0, t + 0.28);
+        ch(sn, bpf2, gn);
+        sn.start(t);
+
+        // Sub-impacto de breach
+        const sub = c.createOscillator();
+        const gs = c.createGain();
+        sub.type = 'sine';
+        sub.frequency.setValueAtTime(55, t + 0.28);
+        sub.frequency.exponentialRampToValueAtTime(22, t + 0.42);
+        gs.gain.setValueAtTime(0.28, t + 0.28);
+        gs.gain.exponentialRampToValueAtTime(0.001, t + 0.44);
+        ch(sub, gs);
+        sub.start(t + 0.28); sub.stop(t + 0.46);
+
+        // Confirmação de acesso (tom limpo ascendente)
+        const osc = c.createOscillator();
+        const gc = c.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(660, t + 0.38);
+        osc.frequency.linearRampToValueAtTime(1320, t + 0.52);
+        gc.gain.setValueAtTime(0.0, t + 0.38);
+        gc.gain.linearRampToValueAtTime(0.13, t + 0.42);
+        gc.gain.setValueAtTime(0.13, t + 0.5);
+        gc.gain.linearRampToValueAtTime(0.0, t + 0.55);
+        ch(osc, gc);
+        osc.start(t + 0.38); osc.stop(t + 0.57);
+      },
+
+      /* ── unlock ─────────────────────────────────────────────
+         Acesso autorizado: sequência militar ascendente,
+         limpa e decisiva. Após decrypt completar.            */
+      unlock(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Arpejo de autorização (AC6-style: 4 notas + acorde)
+        [[440, 0], [554, 0.075], [659, 0.15], [880, 0.225]].forEach(([freq, delay]) => {
+          const osc = c.createOscillator();
+          const g = c.createGain();
+          osc.type = 'sine';
+          osc.frequency.value = freq;
+          g.gain.setValueAtTime(0.0, t + delay);
+          g.gain.linearRampToValueAtTime(0.12, t + delay + 0.006);
+          g.gain.setValueAtTime(0.12, t + delay + 0.055);
+          g.gain.linearRampToValueAtTime(0.0, t + delay + 0.09);
+          ch(osc, g);
+          osc.start(t + delay); osc.stop(t + delay + 0.1);
+        });
+
+        // Tick metálico de confirmação final
+        const sn = c.createBufferSource();
+        sn.buffer = ns(c, 0.015, 0.08);
+        const hpf = c.createBiquadFilter();
+        hpf.type = 'highpass'; hpf.frequency.value = 5000;
+        const gn = c.createGain();
+        gn.gain.setValueAtTime(0.2, t + 0.32);
+        gn.gain.exponentialRampToValueAtTime(0.001, t + 0.34);
+        ch(sn, hpf, gn);
+        sn.start(t + 0.32);
+      },
+
+      /* ── download ───────────────────────────────────────────
+         Uplink de dados: sequência de beeps de transmissão
+         + pulso de confirmação. Download CV.                  */
+      download(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Sequência de uplink (beeps precisos)
+        [[440, 0], [440, 0.06], [660, 0.12], [440, 0.18], [880, 0.24]].forEach(([freq, delay]) => {
+          const osc = c.createOscillator();
+          const g = c.createGain();
+          osc.type = 'square';
+          osc.frequency.value = freq;
+          g.gain.setValueAtTime(0.0, t + delay);
+          g.gain.linearRampToValueAtTime(0.07, t + delay + 0.003);
+          g.gain.setValueAtTime(0.07, t + delay + 0.035);
+          g.gain.linearRampToValueAtTime(0.0, t + delay + 0.048);
+          ch(osc, g);
+          osc.start(t + delay); osc.stop(t + delay + 0.055);
+        });
+
+        // Ruído de transmissão (carrier wave)
+        const sn = c.createBufferSource();
+        sn.buffer = ns(c, 0.32, 0.6);
+        const bpf = c.createBiquadFilter();
+        bpf.type = 'bandpass'; bpf.frequency.value = 3500; bpf.Q.value = 4;
+        const gn = c.createGain();
+        gn.gain.setValueAtTime(0.06, t);
+        gn.gain.linearRampToValueAtTime(0, t + 0.32);
+        ch(sn, bpf, gn);
+        sn.start(t);
+
+        // Confirmação final: sub-thud + beep limpo
+        const sub = c.createOscillator();
+        const gs = c.createGain();
+        sub.type = 'sine';
+        sub.frequency.setValueAtTime(80, t + 0.3);
+        sub.frequency.exponentialRampToValueAtTime(35, t + 0.38);
+        gs.gain.setValueAtTime(0.22, t + 0.3);
+        gs.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+        ch(sub, gs);
+        sub.start(t + 0.3); sub.stop(t + 0.42);
+      },
+
+      /* ── lang ───────────────────────────────────────────────
+         Reconfiguração de sistema: scramble de dados
+         + confirmação de sync. Troca de idioma.              */
+      lang(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Scramble rápido (glitch de reconfiguraçã)
+        for (let i = 0; i < 5; i++) {
+          const osc = c.createOscillator();
+          const d = ds(c, 90 + i * 30);
+          const g = c.createGain();
+          osc.type = i % 2 === 0 ? 'square' : 'sawtooth';
+          osc.frequency.value = 300 + i * 280 + Math.random() * 200;
+          g.gain.setValueAtTime(0.07, t + i * 0.028);
+          g.gain.linearRampToValueAtTime(0, t + i * 0.028 + 0.022);
+          ch(osc, d, g);
+          osc.start(t + i * 0.028); osc.stop(t + i * 0.028 + 0.03);
+        }
+
+        // Beep de sync confirmado
+        const osc = c.createOscillator();
+        const g = c.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = 1100;
+        g.gain.setValueAtTime(0.0, t + 0.16);
+        g.gain.linearRampToValueAtTime(0.1, t + 0.168);
+        g.gain.linearRampToValueAtTime(0.0, t + 0.2);
+        ch(osc, g);
+        osc.start(t + 0.16); osc.stop(t + 0.21);
+      },
+
+      /* ── theme ──────────────────────────────────────────────
+         Ciclo de energia: corte de energia + reinicialização
+         + power-up whine crescente. Troca de tema.           */
+      theme(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Corte de energia (ruído de capacitor descarregando)
+        const sn = c.createBufferSource();
+        sn.buffer = ns(c, 0.12, 0.2);
+        const lpf = c.createBiquadFilter();
+        lpf.type = 'lowpass';
+        lpf.frequency.setValueAtTime(800, t);
+        lpf.frequency.exponentialRampToValueAtTime(60, t + 0.12);
+        const gn = c.createGain();
+        gn.gain.setValueAtTime(0.25, t);
+        gn.gain.exponentialRampToValueAtTime(0.001, t + 0.14);
+        ch(sn, lpf, gn);
+        sn.start(t);
+
+        // Silêncio + power-up whine
+        const osc = c.createOscillator();
+        const lpf2 = c.createBiquadFilter();
+        const g1 = c.createGain();
+        lpf2.type = 'lowpass';
+        lpf2.frequency.setValueAtTime(400, t + 0.15);
+        lpf2.frequency.exponentialRampToValueAtTime(3000, t + 0.45);
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(55, t + 0.15);
+        osc.frequency.exponentialRampToValueAtTime(880, t + 0.45);
+        g1.gain.setValueAtTime(0.0, t + 0.14);
+        g1.gain.linearRampToValueAtTime(0.14, t + 0.22);
+        g1.gain.linearRampToValueAtTime(0.0, t + 0.48);
+        ch(osc, lpf2, g1);
+        osc.start(t + 0.15); osc.stop(t + 0.5);
+
+        // Sub-impacto de reboot
+        const sub = c.createOscillator();
+        const gs = c.createGain();
+        sub.type = 'sine';
+        sub.frequency.setValueAtTime(45, t + 0.15);
+        sub.frequency.exponentialRampToValueAtTime(18, t + 0.3);
+        gs.gain.setValueAtTime(0.3, t + 0.15);
+        gs.gain.exponentialRampToValueAtTime(0.001, t + 0.32);
+        ch(sub, gs);
+        sub.start(t + 0.15); sub.stop(t + 0.34);
+      },
+
+      /* ── gamepad ────────────────────────────────────────────
+         Aceitar missão: fanfare curto estilo AC6,
+         arpejo decisivo + impacto. Botão accept() Tetris.    */
+      gamepad(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Arpejo de missão aceita (square wave limpo)
+        [[523, 0], [659, 0.07], [784, 0.14], [1047, 0.21]].forEach(([freq, delay]) => {
+          const osc = c.createOscillator();
+          const lpf = c.createBiquadFilter();
+          const g = c.createGain();
+          lpf.type = 'lowpass'; lpf.frequency.value = 2000 - delay * 1000;
+          osc.type = 'square';
+          osc.frequency.value = freq;
+          g.gain.setValueAtTime(0.0, t + delay);
+          g.gain.linearRampToValueAtTime(0.11, t + delay + 0.005);
+          g.gain.setValueAtTime(0.11, t + delay + 0.045);
+          g.gain.linearRampToValueAtTime(0.0, t + delay + 0.065);
+          ch(osc, lpf, g);
+          osc.start(t + delay); osc.stop(t + delay + 0.075);
+        });
+
+        // Impacto de confirmação no fim
+        const sub = c.createOscillator();
+        const gs = c.createGain();
+        sub.type = 'sine';
+        sub.frequency.setValueAtTime(70, t + 0.3);
+        sub.frequency.exponentialRampToValueAtTime(28, t + 0.42);
+        gs.gain.setValueAtTime(0.3, t + 0.3);
+        gs.gain.exponentialRampToValueAtTime(0.001, t + 0.44);
+        ch(sub, gs);
+        sub.start(t + 0.3); sub.stop(t + 0.46);
+
+        const sn = c.createBufferSource();
+        sn.buffer = ns(c, 0.04, 0.15);
+        const bpf = c.createBiquadFilter();
+        bpf.type = 'bandpass'; bpf.frequency.value = 1200; bpf.Q.value = 1;
+        const gn = c.createGain();
+        gn.gain.setValueAtTime(0.25, t + 0.3);
+        gn.gain.exponentialRampToValueAtTime(0.001, t + 0.36);
+        ch(sn, bpf, gn);
+        sn.start(t + 0.3);
+      },
+
+      /* ── decline ────────────────────────────────────────────
+         Missão abortada: arpejo descendente + estática
+         de sistema rejeitado. Botão decline() Tetris.        */
+      decline(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Descida de frequência (abort sequence)
+        [[440, 0], [330, 0.08], [220, 0.16], [165, 0.24]].forEach(([freq, delay]) => {
+          const osc = c.createOscillator();
+          const d = ds(c, 60);
+          const g = c.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.value = freq;
+          g.gain.setValueAtTime(0.0, t + delay);
+          g.gain.linearRampToValueAtTime(0.1, t + delay + 0.005);
+          g.gain.setValueAtTime(0.1, t + delay + 0.05);
+          g.gain.linearRampToValueAtTime(0.0, t + delay + 0.07);
+          ch(osc, d, g);
+          osc.start(t + delay); osc.stop(t + delay + 0.08);
+        });
+
+        // Buzz de sistema rejeitado
+        const osc = c.createOscillator();
+        const lpf = c.createBiquadFilter();
+        const g = c.createGain();
+        lpf.type = 'lowpass'; lpf.frequency.value = 400;
+        osc.type = 'square';
+        osc.frequency.value = 120;
+        g.gain.setValueAtTime(0.1, t + 0.32);
+        g.gain.linearRampToValueAtTime(0, t + 0.46);
+        ch(osc, lpf, g);
+        osc.start(t + 0.32); osc.stop(t + 0.48);
+      },
+
+      /* ── cert ───────────────────────────────────────────────
+         Verificação de lacre: impacto + scan + aprovação.
+         Botão openCert() nos itens de educação.              */
+      cert(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Impacto de verificação (stamp)
+        const sub = c.createOscillator();
+        const gs = c.createGain();
+        sub.type = 'sine';
+        sub.frequency.setValueAtTime(100, t);
+        sub.frequency.exponentialRampToValueAtTime(38, t + 0.06);
+        gs.gain.setValueAtTime(0.32, t);
+        gs.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
+        ch(sub, gs);
+        sub.start(t); sub.stop(t + 0.08);
+
+        const sn = c.createBufferSource();
+        sn.buffer = ns(c, 0.05, 0.18);
+        const bpf = c.createBiquadFilter();
+        bpf.type = 'bandpass'; bpf.frequency.value = 2500; bpf.Q.value = 2;
+        const gn = c.createGain();
+        gn.gain.setValueAtTime(0.28, t);
+        gn.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
+        ch(sn, bpf, gn);
+        sn.start(t);
+
+        // Scan de verificação (sweep sine)
+        const osc = c.createOscillator();
+        const g1 = c.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(300, t + 0.08);
+        osc.frequency.linearRampToValueAtTime(2400, t + 0.2);
+        g1.gain.setValueAtTime(0.0, t + 0.08);
+        g1.gain.linearRampToValueAtTime(0.08, t + 0.1);
+        g1.gain.linearRampToValueAtTime(0.0, t + 0.22);
+        ch(osc, g1);
+        osc.start(t + 0.08); osc.stop(t + 0.24);
+
+        // Aprovação: dois beeps limpos
+        [[880, 0.26], [1320, 0.33]].forEach(([freq, delay]) => {
+          const o = c.createOscillator();
+          const g = c.createGain();
+          o.type = 'sine';
+          o.frequency.value = freq;
+          g.gain.setValueAtTime(0.0, t + delay);
+          g.gain.linearRampToValueAtTime(0.1, t + delay + 0.005);
+          g.gain.setValueAtTime(0.1, t + delay + 0.04);
+          g.gain.linearRampToValueAtTime(0.0, t + delay + 0.06);
+          ch(o, g);
+          o.start(t + delay); o.stop(t + delay + 0.07);
+        });
+      },
+
+      /* ── timeline ───────────────────────────────────────────
+         Acesso a arquivo: click mecânico de ratchet
+         + tom de arquivo aberto. Cards de experiência.       */
+      timeline(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Ratchet click (mola mecânica)
+        const s1 = c.createBufferSource();
+        s1.buffer = ns(c, 0.015, 0.08);
+        const d1 = ds(c, 100);
+        const bpf = c.createBiquadFilter();
+        bpf.type = 'bandpass'; bpf.frequency.value = 1400; bpf.Q.value = 2;
+        const g1 = c.createGain();
+        g1.gain.setValueAtTime(0.3, t);
+        g1.gain.exponentialRampToValueAtTime(0.001, t + 0.016);
+        ch(s1, d1, bpf, g1);
+        s1.start(t);
+
+        // Tom de arquivo (triangle suave)
+        const osc = c.createOscillator();
+        const g2 = c.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(520, t + 0.012);
+        osc.frequency.linearRampToValueAtTime(360, t + 0.1);
+        g2.gain.setValueAtTime(0.0, t + 0.012);
+        g2.gain.linearRampToValueAtTime(0.09, t + 0.022);
+        g2.gain.linearRampToValueAtTime(0.0, t + 0.11);
+        ch(osc, g2);
+        osc.start(t + 0.012); osc.stop(t + 0.12);
+      },
+
+      /* ── search ─────────────────────────────────────────────
+         Varredura de radar: ping sônico + eco suave.
+         Input de busca no header.                            */
+      search(c, ch, ns, ds) {
+        const t = c.currentTime;
+
+        // Ping principal (sonar)
+        const osc = c.createOscillator();
+        const g1 = c.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(2200, t);
+        osc.frequency.exponentialRampToValueAtTime(800, t + 0.09);
+        g1.gain.setValueAtTime(0.0, t);
+        g1.gain.linearRampToValueAtTime(0.1, t + 0.005);
+        g1.gain.linearRampToValueAtTime(0.0, t + 0.1);
+        ch(osc, g1);
+        osc.start(t); osc.stop(t + 0.11);
+
+        // Eco atenuado (radar return)
+        const osc2 = c.createOscillator();
+        const g2 = c.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(2200, t + 0.12);
+        osc2.frequency.exponentialRampToValueAtTime(800, t + 0.2);
+        g2.gain.setValueAtTime(0.0, t + 0.12);
+        g2.gain.linearRampToValueAtTime(0.035, t + 0.128);
+        g2.gain.linearRampToValueAtTime(0.0, t + 0.21);
+        ch(osc2, g2);
+        osc2.start(t + 0.12); osc2.stop(t + 0.22);
+      },
+    },
+
+    // ── Método principal ──────────────────────────────────────
     play(name) {
       if (this.muted) return;
-      const sound = this.sounds[name];
-      if (!sound) return;
-
       try {
-        sound.currentTime = 0;
-        sound.play().catch(() => { });
-      } catch (_) { }
+        const c = this._ctx();
+        const ch = (...nodes) => this._chain(this.__master, ...nodes);
+        const ns = this._noise.bind(this);
+        const ds = this._distort.bind(this);
+        const fn = this._sounds[name] || this._sounds.click;
+        fn.call(this._sounds, c, ch, ns, ds);
+      } catch (_) { /* silencia erros de autoplay */ }
     },
 
+    // ── Mute — preserva localStorage ─────────────────────────
     toggleMute() {
       this.muted = !this.muted;
       localStorage.setItem('sfx-muted', this.muted);
-    }
+    },
+
+    // ── Compat ───────────────────────────────────────────────
+    init() { },
   });
 
   // ==============================
@@ -587,30 +1275,39 @@ function app() {
     },
 
     startDecrypt() {
-      if (this.unlocked) { this.showFragment = true; return; }
+      // Se já desbloqueado, apenas exibe o fragmento
+      if (this.unlocked) {
+        this.showFragment = true;
+        return;
+      }
+
+      // Duração total da animação de decrypt em ms
+      // Deve cobrir o som 'decrypt' (~480ms) + silêncio de leitura
+      const DECRYPT_DURATION = 1800;
 
       this.locked = true;
       this.decrypting = true;
       this.progress = 0;
 
-      const audio = this.$store.sfx.sounds.loading;
-      audio.currentTime = 0;
+      // ── 1. Som de glitch/decrypt ──────────────────────────
+      this.$store.sfx.play('decrypt');
 
+      // ── 2. Progresso guiado por timestamp (sem depender de
+      //       audio.duration / audio.ended) ──────────────────
       if (this._raf) cancelAnimationFrame(this._raf);
-      audio.play().catch(() => { });
 
-      const updateProgress = () => {
-        if (!audio.duration || audio.duration === Infinity) {
-          this._raf = requestAnimationFrame(updateProgress);
+      const startTime = performance.now();
+
+      const tick = (now) => {
+        const elapsed = now - startTime;
+        this.progress = Math.min((elapsed / DECRYPT_DURATION) * 100, 100);
+
+        if (elapsed < DECRYPT_DURATION) {
+          this._raf = requestAnimationFrame(tick);
           return;
         }
-        this.progress = Math.min((audio.currentTime / audio.duration) * 100, 100);
-        if (!audio.ended) this._raf = requestAnimationFrame(updateProgress);
-      };
 
-      updateProgress();
-
-      audio.onended = () => {
+        // ── 3. Decrypt concluído ──────────────────────────────
         cancelAnimationFrame(this._raf);
         this.progress = 100;
         this.locked = false;
@@ -618,7 +1315,12 @@ function app() {
         this.unlocked = true;
         this.showFragment = true;
         localStorage.setItem('fragment-unlocked', '1');
+
+        // Tom de acesso liberado logo após fechar o overlay
+        this.$store.sfx.play('unlock');
       };
+
+      this._raf = requestAnimationFrame(tick);
     },
 
     init() {

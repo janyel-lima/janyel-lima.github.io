@@ -2,8 +2,7 @@
     ■ Dev_Profile
 </h2>
 
-<div data-interactive class="rpg-card bg-black/60 p-0 overflow-hidden order-1"
-    @mouseenter="$store.sfx.play('hover');">
+<div data-interactive class="rpg-card bg-black/60 p-0 overflow-hidden order-1" @mouseenter="$store.sfx.play('hover');">
 
     <div class="p-5 space-y-6">
         <div class="space-y-4">
@@ -117,7 +116,7 @@
     <button x-show="showUnlock" x-transition:enter="transition cubic-bezier(0.175, 0.885, 0.32, 1.275) duration-700"
         x-transition:enter-start="opacity-0 translate-y-12 scale-50 rotate-12"
         x-transition:enter-end="opacity-100 translate-y-0 scale-100 rotate-0"
-        @click="startDecrypt(); $store.sfx.play('click');"
+        @click="startDecrypt(); $store.sfx.play('decrypt');"
         class="rpg-decriptor-card animate-pulse w-full py-4 px-6 bg-black/60 flex items-center justify-between group border-2  hover:border-primary bg-primary/5 hover:bg-primary/10 shadow-[0_0_15px_rgba(var(--color-primary-rgb),0.3)] hover:shadow-[0_0_25px_rgba(var(--color-primary-rgb),0.5)] transition-all duration-300">
 
         <div class="flex items-center gap-4">
@@ -157,7 +156,7 @@
 <div data-interactive x-show="showFragment" x-transition:enter="transition duration-700 ease-out"
     x-transition:enter-start="opacity-0 translate-y-6 scale-95"
     x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-    class="order-3 relative flex bg-black/60 border-primary border border-white/10 group overflow-hidden"
+    class="order-3 relative flex bg-black/60  group overflow-hidden"
     style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
     <button @click="closeFragment(); $store.sfx.play('close');"
         class="absolute top-2 right-2 text-primary/60 hover:text-primary transition-colors">
@@ -194,9 +193,9 @@
 
 </h2>
 
-<div data-interactive @mouseenter="$store.sfx.play('hover');"
-    class="rpg-card bg-black/60 p-6  relative group/contact" x-show="showFragment"
-    x-transition:enter="transition duration-700 ease-out" x-transition:enter-start="opacity-0 translate-y-6 scale-95"
+<div data-interactive @mouseenter="$store.sfx.play('hover');" class="rpg-card bg-black/60 p-6  relative group/contact"
+    x-show="showFragment" x-transition:enter="transition duration-700 ease-out"
+    x-transition:enter-start="opacity-0 translate-y-6 scale-95"
     x-transition:enter-end="opacity-100 translate-y-0 scale-100">
     <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
         <span class="text-[length:var(--text-xs)]  text-primary/60 uppercase tracking-[0.1em]"
@@ -280,8 +279,7 @@
 
 <div x-data="{ hardOpen: false, softOpen: false }">
 
-    <div @mouseenter="$store.sfx.play('hover');" data-interactive
-        class="order-4 bg-black/60 rpg-card p-5 mb-10 ">
+    <div @mouseenter="$store.sfx.play('hover');" data-interactive class="order-4 bg-black/60 rpg-card p-5 mb-10 ">
 
         <!-- HEADER -->
         <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
@@ -300,7 +298,7 @@
         <div x-data="{ open: false }" class="mb-4 border-b border-white/5 pb-3">
 
             <!-- TOGGLE -->
-            <button @click="open = !open;$store.sfx.play('click');" class="flex items-center gap-3 text-[length:var(--text-micro)]  uppercase tracking-widest
+            <button @click="open = !open;$store.sfx.play('toggle');" class="flex items-center gap-3 text-[length:var(--text-micro)]  uppercase tracking-widest
                text-primary/70 hover:text-primary transition group">
 
                 <span x-text="$store.i18n.t('rank_legend')"></span>
@@ -370,7 +368,7 @@
             <section class="relative">
 
                 <!-- HEADER -->
-                <button @click="hardOpen = !hardOpen;$store.sfx.play('click');"
+                <button @click="hardOpen = !hardOpen;$store.sfx.play('toggle');"
                     class="group relative w-full text-left overflow-hidden">
 
                     <!-- CHANNEL -->
@@ -462,7 +460,7 @@
             <section class="relative">
 
                 <!-- HEADER -->
-                <button @click="softOpen = !softOpen; $store.sfx.play('click');"
+                <button @click="softOpen = !softOpen; $store.sfx.play('toggle');"
                     class="group relative w-full text-left overflow-hidden">
 
                     <!-- CHANNEL -->
@@ -693,7 +691,7 @@
                     x-text="$store.i18n.t('challenge_disclaimer')"></p>
 
                 <div class="flex gap-2 flex-wrap">
-                    <button @click="accept()" class="flex-1 rpg-button py-2 px-3 flex items-center justify-center gap-2
+                    <button @click="accept(); $store.sfx.play('gamepad');" class="flex-1 rpg-button py-2 px-3 flex items-center justify-center gap-2
                     hover:border-primary bg-primary/5 hover:bg-primary/10
                    text-[length:var(--text-xs)] uppercase tracking-widest transition-all duration-200 group">
                         <i data-lucide="gamepad-2"
@@ -701,7 +699,7 @@
                         <span class="text-primary font-black" x-text="$store.i18n.t('challenge_accept')"></span>
                     </button>
 
-                    <button @click="decline()" class="rpg-button-alt py-2 px-3 flex items-center justify-center
+                    <button @click="decline();$store.sfx.play('decline');" class="rpg-button-alt py-2 px-3 flex items-center justify-center
                    text-[length:var(--text-xs)] uppercase tracking-widest
                    transition-all duration-200" x-text="$store.i18n.t('challenge_decline')"></button>
                 </div>
@@ -755,7 +753,7 @@
                     <div class="w-2 h-2 bg-primary rotate-45 animate-pulse shadow-[0_0_8px_var(--color-primary)]"></div>
                     <span class="text-sm font-black uppercase tracking-[0.1em] text-primary"
                         x-text="$store.i18n.t('challenge_modal_title')"></span>
-                    
+
                 </div>
                 <div class="flex items-center gap-2.5">
                     <div class="flex gap-1">

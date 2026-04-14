@@ -10,96 +10,110 @@
   <!-- ══════════════════════════════════════════════════
     TUTORIAL OVERLAY
   ═══════════════════════════════════════════════════════ -->
-  <div id="tetris-tutorial"
-       class="hidden fixed inset-0 z-[11000]
+  <div id="tetris-tutorial" class="hidden fixed inset-0 z-[11000]
               bg-black/97 flex-col items-center justify-center p-5
-              overflow-y-auto"
-       style="backdrop-filter:blur(6px)">
+              overflow-y-auto" style="backdrop-filter:blur(6px)">
 
     <div class="w-full max-w-xs">
       <div class="flex items-center gap-2 mb-5">
         <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
         <h3 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
-            data-i18n="tetris_tutorial_title">TUTORIAL_TOUCH.exe</h3>
+          data-i18n="tetris_tutorial_title">TUTORIAL_TOUCH.exe</h3>
       </div>
 
       <div class="space-y-2 mb-5">
 
         <!-- ← → -->
         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
-          <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">◀▶</div>
+          <div
+            class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">◀▶
+          </div>
           <div>
             <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight"
-               data-i18n="tetris_ctrl_move">BOTÕES ← →</p>
+              data-i18n="tetris_ctrl_move">BOTÕES ← →</p>
             <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
-               data-i18n="tetris_ctrl_move_desc">mover peça</p>
+              data-i18n="tetris_ctrl_move_desc">mover peça</p>
           </div>
         </div>
 
         <!-- ↻ ↺ -->
         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
-          <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">↻↺</div>
+          <div
+            class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">↻↺
+          </div>
           <div>
             <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight"
-               data-i18n="tetris_ctrl_rotate">ROT ↻ / ROT ↺</p>
+              data-i18n="tetris_ctrl_rotate">ROT ↻ / ROT ↺</p>
             <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
-               data-i18n="tetris_ctrl_rotate_desc">rotacionar peça</p>
+              data-i18n="tetris_ctrl_rotate_desc">rotacionar peça</p>
           </div>
         </div>
 
         <!-- ▼ -->
         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
-          <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-base">▼</div>
+          <div
+            class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-base">
+            ▼</div>
           <div>
             <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight">▼</p>
             <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
-               data-i18n="tetris_ctrl_soft_desc">acelerar</p>
+              data-i18n="tetris_ctrl_soft_desc">acelerar</p>
           </div>
         </div>
 
         <!-- SPC -->
         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
-          <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-sm font-black">SPC</div>
+          <div
+            class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-sm font-black">
+            SPC</div>
           <div>
-            <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight">SPC</p>
+            <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight">SPC
+            </p>
             <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
-               data-i18n="tetris_ctrl_hard_desc">queda rápida</p>
+              data-i18n="tetris_ctrl_hard_desc">queda rápida</p>
           </div>
         </div>
 
         <!-- HOLD -->
         <div class="flex items-center gap-3 p-2.5 border border-primary/20 bg-primary/5">
-          <div class="w-10 h-10 flex items-center justify-center border border-primary/40 bg-primary/10 shrink-0 text-base font-black text-primary">H</div>
+          <div
+            class="w-10 h-10 flex items-center justify-center border border-primary/40 bg-primary/10 shrink-0 text-base font-black text-primary">
+            H</div>
           <div>
-            <p class="text-[length:var(--text-sm)] text-primary font-black uppercase tracking-widest leading-tight">HOLD</p>
+            <p class="text-[length:var(--text-sm)] text-primary font-black uppercase tracking-widest leading-tight">HOLD
+            </p>
             <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
-               data-i18n="tetris_ctrl_hold_desc">guardar peça</p>
+              data-i18n="tetris_ctrl_hold_desc">guardar peça</p>
           </div>
         </div>
 
         <!-- TAP canvas -->
         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
-          <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">👆</div>
+          <div
+            class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">👆
+          </div>
           <div>
             <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight"
-               data-i18n="tetris_ctrl_tap">TAP canvas</p>
+              data-i18n="tetris_ctrl_tap">TAP canvas</p>
             <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
-               data-i18n="tetris_ctrl_tap_desc">rotacionar · swipe ↑=hold</p>
+              data-i18n="tetris_ctrl_tap_desc">rotacionar · swipe ↑=hold</p>
           </div>
         </div>
 
         <!-- Swipe canvas -->
         <div class="flex items-center gap-3 p-2.5 border border-white/5 bg-black/40">
-          <div class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">📱</div>
+          <div
+            class="w-10 h-10 flex items-center justify-center border border-primary/30 bg-primary/5 shrink-0 text-lg">📱
+          </div>
           <div>
             <p class="text-[length:var(--text-sm)] text-white font-black uppercase tracking-widest leading-tight"
-               data-i18n="tetris_ctrl_swipe">Swipe canvas</p>
+              data-i18n="tetris_ctrl_swipe">Swipe canvas</p>
             <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
-               data-i18n="tetris_ctrl_swipe_up">swipe ↑ hold</p>
+              data-i18n="tetris_ctrl_swipe_up">swipe ↑ hold</p>
             <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
-               data-i18n="tetris_ctrl_swipe_lr">swipe ← → mover</p>
+              data-i18n="tetris_ctrl_swipe_lr">swipe ← → mover</p>
             <p class="text-[length:var(--text-micro)] text-gray-500 uppercase tracking-widest"
-               data-i18n="tetris_ctrl_swipe_dn">swipe ↓ queda</p>
+              data-i18n="tetris_ctrl_swipe_dn">swipe ↓ queda</p>
           </div>
         </div>
 
@@ -110,8 +124,7 @@
         <span class="text-primary"> ?</span>
       </p>
 
-      <button id="tetris-tutorial-ok"
-        class="w-full py-2.5 border border-primary/60 bg-primary/10
+      <button id="tetris-tutorial-ok" class="w-full py-2.5 border border-primary/60 bg-primary/10
                hover:bg-primary/20 hover:border-primary text-primary font-black
                uppercase tracking-widest text-[length:var(--text-sm)]
                transition-all duration-200 flex items-center justify-center gap-2 active:scale-95">
@@ -126,16 +139,13 @@
   ═══════════════════════════════════════════════════════ -->
   <div class="tetris-topbar flex-shrink-0 lg:hidden
               flex items-center justify-between
-              px-2 border-b border-primary/10 bg-black/40"
-       style="height:36px;min-height:36px">
+              px-2 border-b border-primary/10 bg-black/40" style="height:36px;min-height:36px">
 
     <!-- Score -->
     <div class="flex items-center gap-1.5">
       <span class="text-[length:var(--text-xs)] text-primary/40 uppercase tracking-widest">sc</span>
-      <span id="tetris-score-mobile"
-            class="font-black text-primary tracking-widest
-                   drop-shadow-[0_0_5px_rgba(var(--color-primary-rgb),0.7)]"
-            style="font-size:13px">0</span>
+      <span id="tetris-score-mobile" class="font-black text-primary tracking-widest
+                   drop-shadow-[0_0_5px_rgba(var(--color-primary-rgb),0.7)]" style="font-size:13px">0</span>
     </div>
 
     <!-- Level / Lines / Best -->
@@ -149,31 +159,31 @@
         <span id="tetris-lines-mob" class="text-xs font-black text-white/70">0</span>
       </div>
       <div class="flex items-center gap-1">
-        <span class="text-[length:var(--text-xs)] text-gray-600 uppercase" data-i18n="tetris_label_best_short">best</span>
+        <span class="text-[length:var(--text-xs)] text-gray-600 uppercase"
+          data-i18n="tetris_label_best_short">best</span>
         <span id="tetris-best-mobile" class="text-xs font-black text-primary/60">0</span>
       </div>
     </div>
 
     <!-- Ações -->
     <div class="flex items-center gap-1">
-      <button id="tetris-show-tutorial"
-        class="w-6 h-6 flex items-center justify-center border border-white/10 bg-black/60
+      <button id="tetris-show-tutorial" class="w-6 h-6 flex items-center justify-center border border-white/10 bg-black/60
                text-white/35 hover:text-primary hover:border-primary transition text-xs font-black touch-manipulation">
         ?
       </button>
-      <button id="tetris-pause-btn-mobile" disabled
-        class="px-1.5 h-6 border border-primary/25 bg-black/60 text-primary
+      <button id="tetris-pause-btn-mobile" disabled class="px-1.5 h-6 border border-primary/25 bg-black/60 text-primary
                text-[length:var(--text-xs)] uppercase tracking-widest
                hover:border-primary transition-all disabled:opacity-25 disabled:cursor-not-allowed touch-manipulation">
         ⏸
       </button>
-      <button id="tetris-restart-btn-mobile" disabled
-        class="px-1.5 h-6 border border-white/10 bg-black/60 text-gray-500
+      <button id="tetris-restart-btn-mobile" disabled class="px-1.5 h-6 border border-white/10 bg-black/60 text-gray-500
                text-[length:var(--text-xs)] uppercase tracking-widest
                hover:border-white/30 hover:text-white transition-all
                disabled:opacity-25 disabled:cursor-not-allowed touch-manipulation">
         ↺
       </button>
+      <button id="tetris-music-btn" class="w-6 h-6 flex items-center justify-center border border-primary/25 bg-black/60
+         text-primary hover:border-primary transition-all touch-manipulation" style="font-size:13px">♪</button>
     </div>
   </div>
 
@@ -196,28 +206,28 @@
       <!-- Hold -->
       <div class="border border-primary/30 bg-black/60 p-3 text-center">
         <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-2"
-           data-i18n="tetris_label_hold">// hold</p>
+          data-i18n="tetris_label_hold">// hold</p>
         <canvas id="tetris-hold" width="80" height="80" class="mx-auto block" style="background:transparent"></canvas>
         <p id="tetris-hold-lock"
-           class="text-[length:var(--text-micro)] text-red-500/60 uppercase tracking-widest mt-1 hidden"
-           data-i18n="tetris_label_locked">locked</p>
+          class="text-[length:var(--text-micro)] text-red-500/60 uppercase tracking-widest mt-1 hidden"
+          data-i18n="tetris_label_locked">locked</p>
       </div>
 
       <!-- Stats -->
       <div class="border border-white/5 bg-black/40 p-3 space-y-3">
         <div>
           <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest"
-             data-i18n="tetris_label_level">// nível</p>
+            data-i18n="tetris_label_level">// nível</p>
           <p id="tetris-level" class="text-lg font-black text-primary tracking-widest">1</p>
         </div>
         <div>
           <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest"
-             data-i18n="tetris_label_lines">// linhas</p>
+            data-i18n="tetris_label_lines">// linhas</p>
           <p id="tetris-lines" class="text-lg font-black text-white/80 tracking-widest">0</p>
         </div>
         <div>
           <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest"
-             data-i18n="tetris_label_combo">// combo</p>
+            data-i18n="tetris_label_combo">// combo</p>
           <p id="tetris-combo" class="text-lg font-black text-accent tracking-widest">0x</p>
         </div>
       </div>
@@ -225,80 +235,83 @@
       <!-- Speed bar -->
       <div class="border border-white/5 bg-black/40 p-3">
         <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest mb-1"
-           data-i18n="tetris_label_spd">// spd</p>
+          data-i18n="tetris_label_spd">// spd</p>
         <div class="h-1 bg-black border border-white/5">
           <div id="tetris-speed-bar"
-               class="h-full bg-primary transition-all duration-500 shadow-[0_0_6px_var(--color-primary)]"
-               style="width:5%"></div>
+            class="h-full bg-primary transition-all duration-500 shadow-[0_0_6px_var(--color-primary)]"
+            style="width:5%"></div>
         </div>
       </div>
 
       <!-- Botões desktop -->
       <div class="flex flex-col gap-2">
-        <button id="tetris-pause-btn" disabled
-          class="py-2 px-3 border border-primary/30 bg-black/60 text-primary
+        <button id="tetris-pause-btn" disabled class="py-2 px-3 border border-primary/30 bg-black/60 text-primary
                  text-[length:var(--text-micro)] uppercase tracking-widest
                  hover:border-primary hover:bg-primary/10 transition-all duration-200
-                 disabled:opacity-30 disabled:cursor-not-allowed"
-          data-i18n="tetris_btn_pause">[ PAUSAR ]</button>
-        <button id="tetris-restart-btn" disabled
-          class="py-2 px-3 border border-white/10 bg-black/60 text-gray-400
+                 disabled:opacity-30 disabled:cursor-not-allowed" data-i18n="tetris_btn_pause">[ PAUSAR ]</button>
+        <button id="tetris-restart-btn" disabled class="py-2 px-3 border border-white/10 bg-black/60 text-gray-400
                  text-[length:var(--text-micro)] uppercase tracking-widest
                  hover:border-white/30 hover:text-white transition-all duration-200
-                 disabled:opacity-30 disabled:cursor-not-allowed"
-          data-i18n="tetris_btn_restart">[ REINICIAR ]</button>
+                 disabled:opacity-30 disabled:cursor-not-allowed" data-i18n="tetris_btn_restart">[ REINICIAR ]</button>
+        <button id="tetris-music-btn-d" class="py-2 px-3 border border-primary/20 bg-black/60 text-primary/70
+         text-[length:var(--text-micro)] uppercase tracking-widest
+         hover:border-primary hover:text-primary hover:bg-primary/5
+         transition-all duration-200">
+          [ ♪ MUSIC ]
+        </button>
       </div>
     </div>
 
 
     <!-- ── Canvas (centro) ───────────────────────────── -->
-    <div class="flex items-center justify-center lg:pt-0" id="tetris-canvas-area"
-         style="flex-shrink:0">
-      <div id="tetris-canvas-wrap"
-           class="relative shrink-0"
-           style="touch-action:none">
+    <div class="flex items-center justify-center lg:pt-0" id="tetris-canvas-area" style="flex-shrink:0">
+      <div id="tetris-canvas-wrap" class="relative shrink-0" style="touch-action:none">
 
         <!-- Glow -->
         <div class="absolute -inset-2 bg-primary/5 blur-xl pointer-events-none"></div>
 
         <!-- Borda + canvas -->
         <div class="relative border border-primary/40 shadow-[0_0_25px_rgba(var(--color-primary-rgb),0.12)]">
-          <canvas id="tetris-canvas" width="240" height="480"
-                  class="block" style="background:#070714;display:block"></canvas>
+          <canvas id="tetris-canvas" width="240" height="480" class="block"
+            style="background:#070714;display:block"></canvas>
           <div class="absolute inset-0 bg-scanlines opacity-5 pointer-events-none"></div>
         </div>
 
         <!-- Feedback flutuante -->
-        <div id="tetris-feedback"
-             class="absolute top-2 left-0 right-0 flex justify-center pointer-events-none"
-             style="opacity:0;transition:opacity 0.3s">
-          <span id="tetris-feedback-text"
-                class="text-[length:var(--text-md)] font-black uppercase tracking-widest text-primary
+        <div id="tetris-feedback" class="absolute top-2 left-0 right-0 flex justify-center pointer-events-none"
+          style="opacity:0;transition:opacity 0.3s">
+          <span id="tetris-feedback-text" class="text-[length:var(--text-md)] font-black uppercase tracking-widest text-primary
                        bg-black/70 px-2 py-0.5
                        drop-shadow-[0_0_10px_rgba(var(--color-primary-rgb),1)]"></span>
         </div>
 
         <!-- Start / Game Over overlay -->
         <div id="tetris-start-screen"
-             class="absolute inset-0 bg-black/93 flex flex-col items-center justify-center p-3 text-center"
-             style="backdrop-filter:blur(2px)">
+          class="absolute inset-0 bg-black/93 flex flex-col items-center justify-center p-3 text-center"
+          style="backdrop-filter:blur(2px)">
           <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)] mb-2"></div>
-          <h3 class="text-[length:var(--text-md)] lg:text-[length:var(--text-lg)] font-black uppercase tracking-[0.1em] text-primary mb-1">
+          <h3
+            class="text-[length:var(--text-md)] lg:text-[length:var(--text-lg)] font-black uppercase tracking-[0.1em] text-primary mb-1">
             TETRIS.exe
           </h3>
           <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-3"
-             data-i18n="tetris_module_sub">// módulo_de_desafio_ativo</p>
+            data-i18n="tetris_module_sub">// módulo_de_desafio_ativo</p>
 
           <!-- Desktop: controles teclado -->
           <div class="hidden lg:block w-full bg-black/60 border border-white/5 p-3 mb-4 text-left
                       text-[length:var(--text-micro)] text-gray-400 uppercase tracking-widest space-y-1">
             <p class="text-primary/60 mb-2" data-i18n="tetris_ctrl_header">// controles</p>
             <p><span class="text-primary">← →</span>&nbsp;&nbsp;<span data-i18n="tetris_ctrl_key_move">mover</span></p>
-            <p><span class="text-primary">↑ / Z</span>&nbsp;<span data-i18n="tetris_ctrl_key_rcw">rotacionar ↻</span></p>
-            <p><span class="text-primary">X</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-i18n="tetris_ctrl_key_rccw">rotacionar ↺</span></p>
-            <p><span class="text-primary">↓</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-i18n="tetris_ctrl_key_soft">acelerar</span></p>
-            <p><span class="text-primary">SPC</span>&nbsp;&nbsp;<span data-i18n="tetris_ctrl_key_hard">queda rápida</span></p>
-            <p><span class="text-primary">C / P</span>&nbsp;<span data-i18n="tetris_ctrl_key_hold">hold / pausar</span></p>
+            <p><span class="text-primary">↑ / Z</span>&nbsp;<span data-i18n="tetris_ctrl_key_rcw">rotacionar ↻</span>
+            </p>
+            <p><span class="text-primary">X</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                data-i18n="tetris_ctrl_key_rccw">rotacionar ↺</span></p>
+            <p><span class="text-primary">↓</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                data-i18n="tetris_ctrl_key_soft">acelerar</span></p>
+            <p><span class="text-primary">SPC</span>&nbsp;&nbsp;<span data-i18n="tetris_ctrl_key_hard">queda
+                rápida</span></p>
+            <p><span class="text-primary">C / P</span>&nbsp;<span data-i18n="tetris_ctrl_key_hold">hold / pausar</span>
+            </p>
           </div>
 
           <!-- Mobile: hint compacto -->
@@ -311,12 +324,11 @@
               <p><span class="text-primary">SWIPE↑</span> <span data-i18n="tetris_hint_up">hold</span></p>
             </div>
             <button id="tetris-open-tutorial-start"
-                    class="text-primary/40 hover:text-primary transition underline underline-offset-2 text-[length:var(--text-xs)]"
-                    data-i18n="tetris_see_tutorial">ver tutorial →</button>
+              class="text-primary/40 hover:text-primary transition underline underline-offset-2 text-[length:var(--text-xs)]"
+              data-i18n="tetris_see_tutorial">ver tutorial →</button>
           </div>
 
-          <button id="tetris-start-btn"
-            class="w-full py-2 lg:py-3 px-4 border border-primary/60 bg-primary/10
+          <button id="tetris-start-btn" class="w-full py-2 lg:py-3 px-4 border border-primary/60 bg-primary/10
                    hover:bg-primary/20 hover:border-primary text-primary font-black
                    uppercase tracking-widest text-[length:var(--text-sm)]
                    transition-all duration-200 flex items-center justify-center gap-2 active:scale-95">
@@ -325,7 +337,7 @@
           </button>
 
           <p id="tetris-gameover-text"
-             class="text-red-500 text-[length:var(--text-md)] font-black uppercase tracking-widest mt-3 hidden">
+            class="text-red-500 text-[length:var(--text-md)] font-black uppercase tracking-widest mt-3 hidden">
             GAME_OVER
           </p>
         </div>
@@ -340,19 +352,18 @@
       <div class="border border-primary/30 bg-black/60 p-3 text-center
                   shadow-[0_0_15px_rgba(var(--color-primary-rgb),0.1)]">
         <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-1"
-           data-i18n="tetris_label_score">// score</p>
-        <p id="tetris-score"
-           class="text-2xl font-black text-primary tracking-widest
+          data-i18n="tetris_label_score">// score</p>
+        <p id="tetris-score" class="text-2xl font-black text-primary tracking-widest
                   drop-shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.8)]">0</p>
         <p class="text-[length:var(--text-micro)] text-gray-600 uppercase tracking-widest mt-1"
-           data-i18n="tetris_label_best">melhor</p>
+          data-i18n="tetris_label_best">melhor</p>
         <p id="tetris-best" class="text-sm font-black text-white/50 tracking-widest">0</p>
       </div>
 
       <!-- Next -->
       <div class="border border-primary/30 bg-black/60 p-3 text-center">
         <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest mb-2"
-           data-i18n="tetris_label_next">// next</p>
+          data-i18n="tetris_label_next">// next</p>
         <canvas id="tetris-next" width="80" height="80" class="mx-auto block" style="background:transparent"></canvas>
       </div>
 
@@ -360,9 +371,9 @@
       <div class="border border-primary/20 bg-black/60 p-3">
         <div class="flex items-center justify-between mb-2">
           <p class="text-[length:var(--text-micro)] text-primary/50 uppercase tracking-widest"
-             data-i18n="tetris_label_ranking">// ranking</p>
+            data-i18n="tetris_label_ranking">// ranking</p>
           <button id="tetris-clear-rank"
-                  class="text-[length:var(--text-micro)] text-red-500/40 hover:text-red-500 transition uppercase tracking-widest">
+            class="text-[length:var(--text-micro)] text-red-500/40 hover:text-red-500 transition uppercase tracking-widest">
             [clr]
           </button>
         </div>
@@ -372,23 +383,20 @@
 
 
     <!-- ── Stats mobile (abaixo do canvas) ──────────── -->
-    <div class="lg:hidden w-full flex-shrink-0 flex gap-1.5 px-2"
-         style="height:58px;min-height:58px">
+    <div class="lg:hidden w-full flex-shrink-0 flex gap-1.5 px-2" style="height:58px;min-height:58px">
 
       <!-- Hold mini -->
       <div class="border border-primary/25 bg-black/50 flex flex-col items-center justify-center"
-           style="width:54px;min-width:54px">
-        <p class="text-[8px] text-primary/40 uppercase tracking-widest leading-none mb-0.5"
-           data-i18n="tetris_mob_hold">hold</p>
+        style="width:54px;min-width:54px">
+        <p class="text-[8px] text-primary/40 uppercase tracking-widest leading-none mb-0.5" data-i18n="tetris_mob_hold">
+          hold</p>
         <canvas id="tetris-hold-mob" width="40" height="40" class="block" style="background:transparent"></canvas>
-        <p id="tetris-hold-lock"
-           class="text-[7px] text-red-500/60 uppercase leading-none hidden"
-           data-i18n="tetris_label_locked_mob">lck</p>
+        <p id="tetris-hold-lock" class="text-[7px] text-red-500/60 uppercase leading-none hidden"
+          data-i18n="tetris_label_locked_mob">lck</p>
       </div>
 
       <!-- Stats: lines + combo -->
-      <div class="border border-white/5 bg-black/40 flex flex-col justify-center gap-1 px-2"
-           style="min-width:64px">
+      <div class="border border-white/5 bg-black/40 flex flex-col justify-center gap-1 px-2" style="min-width:64px">
         <div class="flex items-center justify-between gap-1">
           <span class="text-[8px] text-gray-600 uppercase" data-i18n="tetris_mob_lines">lines</span>
           <span id="tetris-lines" class="text-xs font-black text-white/80">0</span>
@@ -401,19 +409,18 @@
 
       <!-- Next mini -->
       <div class="border border-primary/25 bg-black/50 flex flex-col items-center justify-center"
-           style="width:54px;min-width:54px">
-        <p class="text-[8px] text-primary/40 uppercase tracking-widest leading-none mb-0.5"
-           data-i18n="tetris_mob_next">next</p>
+        style="width:54px;min-width:54px">
+        <p class="text-[8px] text-primary/40 uppercase tracking-widest leading-none mb-0.5" data-i18n="tetris_mob_next">
+          next</p>
         <canvas id="tetris-next-mob" width="40" height="40" class="block" style="background:transparent"></canvas>
       </div>
 
       <!-- Ranking mobile mini -->
       <div class="border border-primary/15 bg-black/40 flex-1 min-w-0 overflow-hidden p-1.5">
         <div class="flex items-center justify-between mb-0.5">
-          <p class="text-[8px] text-primary/40 uppercase tracking-widest"
-             data-i18n="tetris_mob_rank">rank</p>
+          <p class="text-[8px] text-primary/40 uppercase tracking-widest" data-i18n="tetris_mob_rank">rank</p>
           <button id="tetris-clear-rank-mob"
-                  class="text-[8px] text-red-500/30 hover:text-red-500 transition uppercase">[x]</button>
+            class="text-[8px] text-red-500/30 hover:text-red-500 transition uppercase">[x]</button>
         </div>
         <div id="tetris-ranking-list-mob" class="overflow-hidden" style="max-height:36px"></div>
       </div>
@@ -423,58 +430,40 @@
     <!-- ══════════════════════════════════════════════════
       D-PAD INLINE MOBILE — parte do fluxo normal
     ═══════════════════════════════════════════════════════ -->
-    <div id="tetris-dpad"
-         class="lg:hidden w-full flex-shrink-0 border-t border-primary/20 bg-black/90"
-         style="display:none;height:80px;min-height:80px;padding:5px 8px 7px">
+    <div id="tetris-dpad" class="lg:hidden w-full flex-shrink-0 border-t border-primary/20 bg-black/90"
+      style="display:none;height:80px;min-height:80px;padding:5px 8px 7px">
 
       <div class="flex items-center justify-between gap-2 h-full max-w-sm mx-auto">
 
         <!-- ← → -->
         <div class="flex gap-1.5 items-center h-full">
-          <button id="t-left"
-            class="tdb touch-manipulation"
-            style="width:54px;height:56px;font-size:1.15rem"
-            ontouchstart="dpadRepeatStart('left')"
-            ontouchend="dpadRepeatStop()"
+          <button id="t-left" class="tdb touch-manipulation" style="width:54px;height:56px;font-size:1.15rem"
+            ontouchstart="dpadRepeatStart('left')" ontouchend="dpadRepeatStop()"
             ontouchcancel="dpadRepeatStop()">◀</button>
-          <button id="t-right"
-            class="tdb touch-manipulation"
-            style="width:54px;height:56px;font-size:1.15rem"
-            ontouchstart="dpadRepeatStart('right')"
-            ontouchend="dpadRepeatStop()"
+          <button id="t-right" class="tdb touch-manipulation" style="width:54px;height:56px;font-size:1.15rem"
+            ontouchstart="dpadRepeatStart('right')" ontouchend="dpadRepeatStop()"
             ontouchcancel="dpadRepeatStop()">▶</button>
         </div>
 
         <!-- Centro: ↻ ↺ + HOLD -->
         <div class="flex flex-col items-center h-full justify-between" style="padding:2px 0">
           <div class="flex gap-1.5">
-            <button id="t-rot-cw"
-              class="tdb touch-manipulation"
+            <button id="t-rot-cw" class="tdb touch-manipulation"
               style="width:40px;height:32px;font-size:0.95rem;font-weight:900">↻</button>
-            <button id="t-rot-ccw"
-              class="tdb touch-manipulation"
+            <button id="t-rot-ccw" class="tdb touch-manipulation"
               style="width:40px;height:32px;font-size:0.95rem;font-weight:900;opacity:0.65">↺</button>
           </div>
-          <button id="t-hold"
-            class="tdb-accent touch-manipulation"
-            style="width:84px;height:26px;font-size:9px;font-weight:900;
-                   text-transform:uppercase;letter-spacing:0.1em"
-            data-i18n="tetris_dpad_hold">HOLD</button>
+          <button id="t-hold" class="tdb-accent touch-manipulation" style="width:84px;height:26px;font-size:9px;font-weight:900;
+                   text-transform:uppercase;letter-spacing:0.1em" data-i18n="tetris_dpad_hold">HOLD</button>
         </div>
 
         <!-- ▼ + SPC -->
         <div class="flex flex-col items-center h-full justify-between" style="padding:2px 0">
-          <button id="t-soft-down"
-            class="tdb touch-manipulation"
-            style="width:54px;height:32px;font-size:1.1rem"
-            ontouchstart="dpadRepeatStart('down')"
-            ontouchend="dpadRepeatStop()"
+          <button id="t-soft-down" class="tdb touch-manipulation" style="width:54px;height:32px;font-size:1.1rem"
+            ontouchstart="dpadRepeatStart('down')" ontouchend="dpadRepeatStop()"
             ontouchcancel="dpadRepeatStop()">▼</button>
-          <button id="t-drop"
-            class="tdb-drop touch-manipulation"
-            style="width:54px;height:28px;font-size:9px;font-weight:900;
-                   text-transform:uppercase;letter-spacing:0.08em"
-            data-i18n="tetris_dpad_spc">SPC</button>
+          <button id="t-drop" class="tdb-drop touch-manipulation" style="width:54px;height:28px;font-size:9px;font-weight:900;
+                   text-transform:uppercase;letter-spacing:0.08em" data-i18n="tetris_dpad_spc">SPC</button>
         </div>
 
       </div>
@@ -490,60 +479,95 @@
 ════════════════════════════════════════════════════════════ -->
 <style>
   .tdb {
-    display:flex;align-items:center;justify-content:center;
-    border:1px solid rgba(var(--color-primary-rgb),.32);
-    background:rgba(0,0,0,.72);
-    color:rgba(var(--color-primary-rgb),.92);
-    border-radius:3px;font-family:monospace;
-    -webkit-tap-highlight-color:transparent;
-    touch-action:none;transition:all .07s;user-select:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(var(--color-primary-rgb), .32);
+    background: rgba(0, 0, 0, .72);
+    color: rgba(var(--color-primary-rgb), .92);
+    border-radius: 3px;
+    font-family: monospace;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+    transition: all .07s;
+    user-select: none;
   }
-  .tdb:active, .tdb.tdb--pressed {
-    background:rgba(var(--color-primary-rgb),.20);
-    border-color:rgba(var(--color-primary-rgb),1);
-    transform:scale(.88);
+
+  .tdb:active,
+  .tdb.tdb--pressed {
+    background: rgba(var(--color-primary-rgb), .20);
+    border-color: rgba(var(--color-primary-rgb), 1);
+    transform: scale(.88);
   }
+
   .tdb-accent {
-    display:flex;align-items:center;justify-content:center;
-    border:1px solid rgba(var(--color-primary-rgb),.52);
-    background:rgba(var(--color-primary-rgb),.09);
-    color:rgba(var(--color-primary-rgb),1);
-    border-radius:3px;font-family:monospace;
-    -webkit-tap-highlight-color:transparent;
-    touch-action:none;transition:all .07s;user-select:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(var(--color-primary-rgb), .52);
+    background: rgba(var(--color-primary-rgb), .09);
+    color: rgba(var(--color-primary-rgb), 1);
+    border-radius: 3px;
+    font-family: monospace;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+    transition: all .07s;
+    user-select: none;
   }
-  .tdb-accent:active, .tdb-accent.tdb--pressed {
-    background:rgba(var(--color-primary-rgb),.26);
-    transform:scale(.88);
+
+  .tdb-accent:active,
+  .tdb-accent.tdb--pressed {
+    background: rgba(var(--color-primary-rgb), .26);
+    transform: scale(.88);
   }
+
   .tdb-drop {
-    display:flex;align-items:center;justify-content:center;
-    border:1px solid rgba(255,255,255,.16);
-    background:rgba(255,255,255,.05);
-    color:rgba(255,255,255,.58);
-    border-radius:3px;font-family:monospace;
-    -webkit-tap-highlight-color:transparent;
-    touch-action:none;transition:all .07s;user-select:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, .16);
+    background: rgba(255, 255, 255, .05);
+    color: rgba(255, 255, 255, .58);
+    border-radius: 3px;
+    font-family: monospace;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+    transition: all .07s;
+    user-select: none;
   }
-  .tdb-drop:active, .tdb-drop.tdb--pressed {
-    background:rgba(255,255,255,.14);
-    border-color:rgba(255,255,255,.42);
-    color:white;transform:scale(.88);
+
+  .tdb-drop:active,
+  .tdb-drop.tdb--pressed {
+    background: rgba(255, 255, 255, .14);
+    border-color: rgba(255, 255, 255, .42);
+    color: white;
+    transform: scale(.88);
   }
 
   #tetris-ranking-list::-webkit-scrollbar,
-  #tetris-ranking-list-mob::-webkit-scrollbar { width:2px; }
+  #tetris-ranking-list-mob::-webkit-scrollbar {
+    width: 2px;
+  }
+
   #tetris-ranking-list::-webkit-scrollbar-track,
-  #tetris-ranking-list-mob::-webkit-scrollbar-track { background:transparent; }
+  #tetris-ranking-list-mob::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
   #tetris-ranking-list::-webkit-scrollbar-thumb,
-  #tetris-ranking-list-mob::-webkit-scrollbar-thumb { background:rgba(var(--color-primary-rgb),.3); }
+  #tetris-ranking-list-mob::-webkit-scrollbar-thumb {
+    background: rgba(var(--color-primary-rgb), .3);
+  }
 
   #tetris-canvas-wrap canvas {
-    width:  calc(240px * var(--canvas-scale, 1));
+    width: calc(240px * var(--canvas-scale, 1));
     height: calc(480px * var(--canvas-scale, 1));
-    display:block;
+    display: block;
   }
-  #tetris-root { box-sizing:border-box; }
+
+  #tetris-root {
+    box-sizing: border-box;
+  }
 </style>
 
 
@@ -551,678 +575,911 @@
   SCRIPT
 ════════════════════════════════════════════════════════════ -->
 <script>
-(function () {
+  (function () {
 
-  /* ════════════════════════════════════════
-     i18n HELPER
-     Usa o Alpine store se disponível, senão retorna o fallback
-     (o fallback é o texto pt-br já presente no HTML).
-  ════════════════════════════════════════ */
-  function t(key, fallback) {
+    /* ════════════════════════════════════════
+       i18n HELPER
+       Usa o Alpine store se disponível, senão retorna o fallback
+       (o fallback é o texto pt-br já presente no HTML).
+    ════════════════════════════════════════ */
+    function t(key, fallback) {
+      try {
+        const val = window.Alpine?.store('i18n')?.t(key);
+        return (val && val !== key) ? val : fallback;
+      } catch (_) { return fallback; }
+    }
+
+    /* Aplica traduções a todos os [data-i18n] dentro do tetris-root */
+    function applyI18n() {
+      const root = document.getElementById('tetris-root');
+      if (!root) return;
+      root.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        const translated = t(key, null);
+        if (translated) el.textContent = translated;
+      });
+    }
+
+    /* ════════════════════════════════════════
+       CONSTANTS
+    ════════════════════════════════════════ */
+    const COLS = 10;
+    const ROWS = 20;
+    const BLOCK = 24;
+    const MINI_D = 20;
+    const MINI_M = 16;
+    const STORAGE_KEY = 'tetris-rankings';
+    const MAX_RANK = 10;
+    const TUTORIAL_K = 'tetris-tutorial-seen';
+
+    const PIECES = [
+      { id: 'I', shape: [[1, 1, 1, 1]], block: '🟦' },
+      { id: 'O', shape: [[1, 1], [1, 1]], block: '🟨' },
+      { id: 'T', shape: [[0, 1, 0], [1, 1, 1]], block: '🟪' },
+      { id: 'J', shape: [[1, 0, 0], [1, 1, 1]], block: '🟧' },
+      { id: 'L', shape: [[0, 0, 1], [1, 1, 1]], block: '🟫' },
+      { id: 'S', shape: [[0, 1, 1], [1, 1, 0]], block: '🟩' },
+      { id: 'Z', shape: [[1, 1, 0], [0, 1, 1]], block: '🟥' },
+    ];
+
+    const LINE_PTS = [0, 100, 300, 500, 800];
+    const COMBO_BONUS = 50;
+    const SOFT_PTS = 1;
+    const HARD_PTS = 2;
+
+    /* ════════════════════════════════════════
+       CANVAS SCALING
+    ════════════════════════════════════════ */
+    const isMobile = () => window.innerWidth < 1024;
+
+    function calcCanvasScale() {
+      if (!isMobile()) return 1;
+      const TOPBAR = 36;
+      const STATS = 58;
+      const DPAD = 80;
+      const MOD_HDR = 44;
+      const MOD_FTR = 32;
+      const PADDING = 12;
+      const availH = window.innerHeight - MOD_HDR - TOPBAR - STATS - DPAD - MOD_FTR - PADDING;
+      const availW = window.innerWidth - 8;
+      const scH = availH / 480;
+      const scW = availW / 240;
+      return Math.max(0.40, Math.min(scH, scW, 1.2));
+    }
+
+    let canvasScale = 1;
+
+    function applyCanvasScale() {
+      canvasScale = calcCanvasScale();
+      const wrap = document.getElementById('tetris-canvas-wrap');
+      if (wrap) wrap.style.setProperty('--canvas-scale', canvasScale);
+    }
+
+    /* ════════════════════════════════════════
+       DOM
+    ════════════════════════════════════════ */
+    const canvas = document.getElementById('tetris-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const holdCanvasD = document.getElementById('tetris-hold');
+    const nextCanvasD = document.getElementById('tetris-next');
+    const holdCtxD = holdCanvasD?.getContext('2d');
+    const nextCtxD = nextCanvasD?.getContext('2d');
+
+    const holdCanvasM = document.getElementById('tetris-hold-mob');
+    const nextCanvasM = document.getElementById('tetris-next-mob');
+    const holdCtxM = holdCanvasM?.getContext('2d');
+    const nextCtxM = nextCanvasM?.getContext('2d');
+
+    const scoreEl = document.getElementById('tetris-score');
+    const scoreMobile = document.getElementById('tetris-score-mobile');
+    const bestEl = document.getElementById('tetris-best');
+    const bestMobile = document.getElementById('tetris-best-mobile');
+    const levelEl = document.getElementById('tetris-level');
+    const levelMob = document.getElementById('tetris-level-mob');
+    const linesEl = document.getElementById('tetris-lines');
+    const linesMob = document.getElementById('tetris-lines-mob');
+    const comboEl = document.getElementById('tetris-combo');
+    const speedBar = document.getElementById('tetris-speed-bar');
+    const startScreen = document.getElementById('tetris-start-screen');
+    const startBtn = document.getElementById('tetris-start-btn');
+    const startLabel = document.getElementById('tetris-start-label');
+    const pauseBtn = document.getElementById('tetris-pause-btn');
+    const pauseBtnMob = document.getElementById('tetris-pause-btn-mobile');
+    const restartBtn = document.getElementById('tetris-restart-btn');
+    const restartBtnMob = document.getElementById('tetris-restart-btn-mobile');
+    const gameOverEl = document.getElementById('tetris-gameover-text');
+    const holdLockEls = document.querySelectorAll('#tetris-hold-lock');
+    const feedbackEl = document.getElementById('tetris-feedback');
+    const feedbackTxt = document.getElementById('tetris-feedback-text');
+    const rankListD = document.getElementById('tetris-ranking-list');
+    const rankListM = document.getElementById('tetris-ranking-list-mob');
+    const clearRankD = document.getElementById('tetris-clear-rank');
+    const clearRankM = document.getElementById('tetris-clear-rank-mob');
+    const dpad = document.getElementById('tetris-dpad');
+    const tutorial = document.getElementById('tetris-tutorial');
+    const tutorialOk = document.getElementById('tetris-tutorial-ok');
+    const showTut = document.getElementById('tetris-show-tutorial');
+    const openTutStart = document.getElementById('tetris-open-tutorial-start');
+
+    /* ════════════════════════════════════════
+       STATE
+    ════════════════════════════════════════ */
+    let board, current, nextPiece, holdPiece;
+    let score, lines, level, combo, isHoldLocked;
+    let isPaused, isOver;
+    let dropCounter, dropInterval, lastTime, raf;
+    let feedbackTimer;
+
+    const PLAYER = 'RECRUTA';
+
+    /* ════════════════════════════════════════
+       TUTORIAL
+    ════════════════════════════════════════ */
+    function showTutOverlay() {
+      if (!tutorial) return;
+      tutorial.classList.remove('hidden');
+      tutorial.classList.add('flex');
+    }
+    function hideTutOverlay() {
+      if (!tutorial) return;
+      tutorial.classList.add('hidden');
+      tutorial.classList.remove('flex');
+      try { localStorage.setItem(TUTORIAL_K, '1'); } catch (_) { }
+    }
+
+    tutorialOk?.addEventListener('click', hideTutOverlay);
+    showTut?.addEventListener('click', showTutOverlay);
+    openTutStart?.addEventListener('click', showTutOverlay);
+
     try {
-      const val = window.Alpine?.store('i18n')?.t(key);
-      return (val && val !== key) ? val : fallback;
-    } catch (_) { return fallback; }
-  }
+      if (isMobile() && !localStorage.getItem(TUTORIAL_K)) {
+        setTimeout(showTutOverlay, 500);
+      }
+    } catch (_) { }
 
-  /* Aplica traduções a todos os [data-i18n] dentro do tetris-root */
-  function applyI18n() {
-    const root = document.getElementById('tetris-root');
-    if (!root) return;
-    root.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.dataset.i18n;
-      const translated = t(key, null);
-      if (translated) el.textContent = translated;
-    });
-  }
-
-  /* ════════════════════════════════════════
-     CONSTANTS
-  ════════════════════════════════════════ */
-  const COLS        = 10;
-  const ROWS        = 20;
-  const BLOCK       = 24;
-  const MINI_D      = 20;
-  const MINI_M      = 16;
-  const STORAGE_KEY = 'tetris-rankings';
-  const MAX_RANK    = 10;
-  const TUTORIAL_K  = 'tetris-tutorial-seen';
-
-  const PIECES = [
-    { id:'I', shape:[[1,1,1,1]],           block:'🟦' },
-    { id:'O', shape:[[1,1],[1,1]],          block:'🟨' },
-    { id:'T', shape:[[0,1,0],[1,1,1]],      block:'🟪' },
-    { id:'J', shape:[[1,0,0],[1,1,1]],      block:'🟧' },
-    { id:'L', shape:[[0,0,1],[1,1,1]],      block:'🟫' },
-    { id:'S', shape:[[0,1,1],[1,1,0]],      block:'🟩' },
-    { id:'Z', shape:[[1,1,0],[0,1,1]],      block:'🟥' },
-  ];
-
-  const LINE_PTS    = [0, 100, 300, 500, 800];
-  const COMBO_BONUS = 50;
-  const SOFT_PTS    = 1;
-  const HARD_PTS    = 2;
-
-  /* ════════════════════════════════════════
-     CANVAS SCALING
-  ════════════════════════════════════════ */
-  const isMobile = () => window.innerWidth < 1024;
-
-  function calcCanvasScale() {
-    if (!isMobile()) return 1;
-    const TOPBAR   = 36;
-    const STATS    = 58;
-    const DPAD     = 80;
-    const MOD_HDR  = 44;
-    const MOD_FTR  = 32;
-    const PADDING  = 12;
-    const availH = window.innerHeight - MOD_HDR - TOPBAR - STATS - DPAD - MOD_FTR - PADDING;
-    const availW = window.innerWidth  - 8;
-    const scH = availH / 480;
-    const scW = availW / 240;
-    return Math.max(0.40, Math.min(scH, scW, 1.2));
-  }
-
-  let canvasScale = 1;
-
-  function applyCanvasScale() {
-    canvasScale = calcCanvasScale();
-    const wrap = document.getElementById('tetris-canvas-wrap');
-    if (wrap) wrap.style.setProperty('--canvas-scale', canvasScale);
-  }
-
-  /* ════════════════════════════════════════
-     DOM
-  ════════════════════════════════════════ */
-  const canvas       = document.getElementById('tetris-canvas');
-  if (!canvas) return;
-  const ctx          = canvas.getContext('2d');
-
-  const holdCanvasD  = document.getElementById('tetris-hold');
-  const nextCanvasD  = document.getElementById('tetris-next');
-  const holdCtxD     = holdCanvasD?.getContext('2d');
-  const nextCtxD     = nextCanvasD?.getContext('2d');
-
-  const holdCanvasM  = document.getElementById('tetris-hold-mob');
-  const nextCanvasM  = document.getElementById('tetris-next-mob');
-  const holdCtxM     = holdCanvasM?.getContext('2d');
-  const nextCtxM     = nextCanvasM?.getContext('2d');
-
-  const scoreEl      = document.getElementById('tetris-score');
-  const scoreMobile  = document.getElementById('tetris-score-mobile');
-  const bestEl       = document.getElementById('tetris-best');
-  const bestMobile   = document.getElementById('tetris-best-mobile');
-  const levelEl      = document.getElementById('tetris-level');
-  const levelMob     = document.getElementById('tetris-level-mob');
-  const linesEl      = document.getElementById('tetris-lines');
-  const linesMob     = document.getElementById('tetris-lines-mob');
-  const comboEl      = document.getElementById('tetris-combo');
-  const speedBar     = document.getElementById('tetris-speed-bar');
-  const startScreen  = document.getElementById('tetris-start-screen');
-  const startBtn     = document.getElementById('tetris-start-btn');
-  const startLabel   = document.getElementById('tetris-start-label');
-  const pauseBtn     = document.getElementById('tetris-pause-btn');
-  const pauseBtnMob  = document.getElementById('tetris-pause-btn-mobile');
-  const restartBtn   = document.getElementById('tetris-restart-btn');
-  const restartBtnMob= document.getElementById('tetris-restart-btn-mobile');
-  const gameOverEl   = document.getElementById('tetris-gameover-text');
-  const holdLockEls  = document.querySelectorAll('#tetris-hold-lock');
-  const feedbackEl   = document.getElementById('tetris-feedback');
-  const feedbackTxt  = document.getElementById('tetris-feedback-text');
-  const rankListD    = document.getElementById('tetris-ranking-list');
-  const rankListM    = document.getElementById('tetris-ranking-list-mob');
-  const clearRankD   = document.getElementById('tetris-clear-rank');
-  const clearRankM   = document.getElementById('tetris-clear-rank-mob');
-  const dpad         = document.getElementById('tetris-dpad');
-  const tutorial     = document.getElementById('tetris-tutorial');
-  const tutorialOk   = document.getElementById('tetris-tutorial-ok');
-  const showTut      = document.getElementById('tetris-show-tutorial');
-  const openTutStart = document.getElementById('tetris-open-tutorial-start');
-
-  /* ════════════════════════════════════════
-     STATE
-  ════════════════════════════════════════ */
-  let board, current, nextPiece, holdPiece;
-  let score, lines, level, combo, isHoldLocked;
-  let isPaused, isOver;
-  let dropCounter, dropInterval, lastTime, raf;
-  let feedbackTimer;
-
-  const PLAYER = 'RECRUTA';
-
-  /* ════════════════════════════════════════
-     TUTORIAL
-  ════════════════════════════════════════ */
-  function showTutOverlay() {
-    if (!tutorial) return;
-    tutorial.classList.remove('hidden');
-    tutorial.classList.add('flex');
-  }
-  function hideTutOverlay() {
-    if (!tutorial) return;
-    tutorial.classList.add('hidden');
-    tutorial.classList.remove('flex');
-    try { localStorage.setItem(TUTORIAL_K, '1'); } catch (_) {}
-  }
-
-  tutorialOk?.addEventListener('click', hideTutOverlay);
-  showTut?.addEventListener('click', showTutOverlay);
-  openTutStart?.addEventListener('click', showTutOverlay);
-
-  try {
-    if (isMobile() && !localStorage.getItem(TUTORIAL_K)) {
-      setTimeout(showTutOverlay, 500);
+    /* ════════════════════════════════════════
+       RANKING
+    ════════════════════════════════════════ */
+    function loadRanking() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+      catch { return []; }
     }
-  } catch (_) {}
-
-  /* ════════════════════════════════════════
-     RANKING
-  ════════════════════════════════════════ */
-  function loadRanking() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
-    catch { return []; }
-  }
-  function saveRanking(list) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (_) {}
-  }
-  function submitScore(name, pts, lvl) {
-    let list = loadRanking();
-    const idx = list.findIndex(e => e.name === name);
-    const d   = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit' });
-    if (idx >= 0) {
-      if (pts > list[idx].score) list[idx] = { name, score: pts, level: lvl, date: d };
-    } else {
-      list.push({ name, score: pts, level: lvl, date: d });
+    function saveRanking(list) {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (_) { }
     }
-    list.sort((a, b) => b.score - a.score);
-    list = list.slice(0, MAX_RANK);
-    saveRanking(list);
-    renderRanking();
-    return list.findIndex(e => e.name === name) + 1;
-  }
-  function getBest(name) {
-    return loadRanking().find(e => e.name === name)?.score ?? 0;
-  }
-
-  function renderRankInto(el, maxItems) {
-    if (!el) return;
-    const list   = loadRanking();
-    const medals = ['🥇','🥈','🥉'];
-    if (!list.length) {
-      el.innerHTML = `<p style="font-size:8px;color:#374151;text-align:center;text-transform:uppercase">—</p>`;
-      return;
+    function submitScore(name, pts, lvl) {
+      let list = loadRanking();
+      const idx = list.findIndex(e => e.name === name);
+      const d = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+      if (idx >= 0) {
+        if (pts > list[idx].score) list[idx] = { name, score: pts, level: lvl, date: d };
+      } else {
+        list.push({ name, score: pts, level: lvl, date: d });
+      }
+      list.sort((a, b) => b.score - a.score);
+      list = list.slice(0, MAX_RANK);
+      saveRanking(list);
+      renderRanking();
+      return list.findIndex(e => e.name === name) + 1;
     }
-    el.innerHTML = list.slice(0, maxItems).map((e, i) => `
+    function getBest(name) {
+      return loadRanking().find(e => e.name === name)?.score ?? 0;
+    }
+
+    function renderRankInto(el, maxItems) {
+      if (!el) return;
+      const list = loadRanking();
+      const medals = ['🥇', '🥈', '🥉'];
+      if (!list.length) {
+        el.innerHTML = `<p style="font-size:8px;color:#374151;text-align:center;text-transform:uppercase">—</p>`;
+        return;
+      }
+      el.innerHTML = list.slice(0, maxItems).map((e, i) => `
       <div style="display:flex;align-items:center;justify-content:space-between;padding:1px 0;border-bottom:1px solid rgba(255,255,255,.05);gap:4px">
         <div style="display:flex;align-items:center;gap:3px;min-width:0;overflow:hidden">
-          <span style="font-size:8px;flex-shrink:0">${medals[i] ?? `${i+1}.`}</span>
-          <span style="font-size:8px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:${i===0?'rgba(var(--color-primary-rgb),1)':'#6b7280'};font-weight:${i===0?900:400}">${e.name}</span>
+          <span style="font-size:8px;flex-shrink:0">${medals[i] ?? `${i + 1}.`}</span>
+          <span style="font-size:8px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:${i === 0 ? 'rgba(var(--color-primary-rgb),1)' : '#6b7280'};font-weight:${i === 0 ? 900 : 400}">${e.name}</span>
         </div>
-        <span style="font-size:8px;font-weight:900;flex-shrink:0;color:${i===0?'rgba(var(--color-primary-rgb),1)':'rgba(255,255,255,.40)'}">${e.score.toLocaleString()}</span>
+        <span style="font-size:8px;font-weight:900;flex-shrink:0;color:${i === 0 ? 'rgba(var(--color-primary-rgb),1)' : 'rgba(255,255,255,.40)'}">${e.score.toLocaleString()}</span>
       </div>`).join('');
-  }
-
-  function renderRanking() {
-    renderRankInto(rankListD, MAX_RANK);
-    renderRankInto(rankListM, 3);
-  }
-
-  function clearRankFn() {
-    if (confirm(t('tetris_confirm_clear', 'Limpar todo o ranking?'))) {
-      try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
-      renderRanking();
-      if (bestEl)     bestEl.textContent     = '0';
-      if (bestMobile) bestMobile.textContent = '0';
-    }
-  }
-  clearRankD?.addEventListener('click', clearRankFn);
-  clearRankM?.addEventListener('click', clearRankFn);
-
-  /* ════════════════════════════════════════
-     HELPERS
-  ════════════════════════════════════════ */
-  function sfx(name) { try { window.Alpine?.store('sfx')?.play(name); } catch (_) {} }
-
-  function createBoard() {
-    return Array.from({ length: ROWS }, () => Array(COLS).fill(null));
-  }
-  function clonePiece(p) {
-    return { ...p, shape: p.shape.map(r => [...r]) };
-  }
-  function randomPiece() {
-    const p = PIECES[Math.floor(Math.random() * PIECES.length)];
-    return { ...clonePiece(p), x: Math.floor(COLS/2) - Math.floor(p.shape[0].length/2), y: 0 };
-  }
-  function getDropInterval(lvl) {
-    return Math.max(80, Math.round(1000 * Math.pow(0.82, lvl - 1)));
-  }
-  function showFeedback(text) {
-    if (!feedbackEl || !feedbackTxt) return;
-    feedbackTxt.textContent = text;
-    feedbackEl.style.opacity = '1';
-    clearTimeout(feedbackTimer);
-    feedbackTimer = setTimeout(() => { feedbackEl.style.opacity = '0'; }, 900);
-  }
-
-  /* ════════════════════════════════════════
-     DRAW
-  ════════════════════════════════════════ */
-  function drawBlock(c, x, y, emoji, size, ox=0, oy=0, alpha=1) {
-    c.save();
-    c.globalAlpha  = alpha;
-    c.font         = `${size * 0.85}px sans-serif`;
-    c.textAlign    = 'center';
-    c.textBaseline = 'middle';
-    c.fillText(emoji, ox + x*size + size/2, oy + y*size + size/2);
-    c.restore();
-  }
-
-  function drawMini(c, piece, cw, ch, size) {
-    if (!c) return;
-    c.clearRect(0, 0, cw, ch);
-    if (!piece) return;
-    const s  = piece.shape;
-    const ox = (cw - s[0].length * size) / 2;
-    const oy = (ch - s.length    * size) / 2;
-    s.forEach((row, y) => row.forEach((v, x) => {
-      if (v) drawBlock(c, x, y, piece.block, size, ox, oy);
-    }));
-  }
-
-  function drawAllMinis() {
-    drawMini(holdCtxD, holdPiece, 80, 80, MINI_D);
-    drawMini(nextCtxD, nextPiece, 80, 80, MINI_D);
-    drawMini(holdCtxM, holdPiece, 40, 40, MINI_M);
-    drawMini(nextCtxM, nextPiece, 40, 40, MINI_M);
-  }
-
-  function draw() {
-    ctx.fillStyle = '#070714';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.strokeStyle = 'rgba(8,196,202,0.04)';
-    ctx.lineWidth   = 0.5;
-    for (let x = 0; x <= COLS; x++) {
-      ctx.beginPath(); ctx.moveTo(x*BLOCK,0); ctx.lineTo(x*BLOCK,canvas.height); ctx.stroke();
-    }
-    for (let y = 0; y <= ROWS; y++) {
-      ctx.beginPath(); ctx.moveTo(0,y*BLOCK); ctx.lineTo(canvas.width,y*BLOCK); ctx.stroke();
     }
 
-    board.forEach((row, y) => row.forEach((cell, x) => {
-      if (cell) drawBlock(ctx, x, y, cell, BLOCK);
-    }));
+    function renderRanking() {
+      renderRankInto(rankListD, MAX_RANK);
+      renderRankInto(rankListM, 3);
+    }
 
-    if (current) {
-      let gy = current.y;
-      while (!collides({ ...current, y: gy+1 })) gy++;
-      if (gy !== current.y) {
-        current.shape.forEach((row, dy) => row.forEach((v, dx) => {
-          if (v) drawBlock(ctx, current.x+dx, gy+dy, current.block, BLOCK, 0, 0, 0.13);
-        }));
+    function clearRankFn() {
+      if (confirm(t('tetris_confirm_clear', 'Limpar todo o ranking?'))) {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (_) { }
+        renderRanking();
+        if (bestEl) bestEl.textContent = '0';
+        if (bestMobile) bestMobile.textContent = '0';
       }
-      current.shape.forEach((row, dy) => row.forEach((v, dx) => {
-        if (v) drawBlock(ctx, current.x+dx, current.y+dy, current.block, BLOCK);
+    }
+    clearRankD?.addEventListener('click', clearRankFn);
+    clearRankM?.addEventListener('click', clearRankFn);
+
+    /* ════════════════════════════════════════
+       HELPERS
+    ════════════════════════════════════════ */
+    function sfx(name) { try { window.Alpine?.store('sfx')?.play(name); } catch (_) { } }
+
+    function createBoard() {
+      return Array.from({ length: ROWS }, () => Array(COLS).fill(null));
+    }
+    function clonePiece(p) {
+      return { ...p, shape: p.shape.map(r => [...r]) };
+    }
+    function randomPiece() {
+      const p = PIECES[Math.floor(Math.random() * PIECES.length)];
+      return { ...clonePiece(p), x: Math.floor(COLS / 2) - Math.floor(p.shape[0].length / 2), y: 0 };
+    }
+    function getDropInterval(lvl) {
+      return Math.max(80, Math.round(1000 * Math.pow(0.82, lvl - 1)));
+    }
+    function showFeedback(text) {
+      if (!feedbackEl || !feedbackTxt) return;
+      feedbackTxt.textContent = text;
+      feedbackEl.style.opacity = '1';
+      clearTimeout(feedbackTimer);
+      feedbackTimer = setTimeout(() => { feedbackEl.style.opacity = '0'; }, 900);
+    }
+
+    /* ════════════════════════════════════════
+       DRAW
+    ════════════════════════════════════════ */
+    function drawBlock(c, x, y, emoji, size, ox = 0, oy = 0, alpha = 1) {
+      c.save();
+      c.globalAlpha = alpha;
+      c.font = `${size * 0.85}px sans-serif`;
+      c.textAlign = 'center';
+      c.textBaseline = 'middle';
+      c.fillText(emoji, ox + x * size + size / 2, oy + y * size + size / 2);
+      c.restore();
+    }
+
+    function drawMini(c, piece, cw, ch, size) {
+      if (!c) return;
+      c.clearRect(0, 0, cw, ch);
+      if (!piece) return;
+      const s = piece.shape;
+      const ox = (cw - s[0].length * size) / 2;
+      const oy = (ch - s.length * size) / 2;
+      s.forEach((row, y) => row.forEach((v, x) => {
+        if (v) drawBlock(c, x, y, piece.block, size, ox, oy);
       }));
     }
 
+    function drawAllMinis() {
+      drawMini(holdCtxD, holdPiece, 80, 80, MINI_D);
+      drawMini(nextCtxD, nextPiece, 80, 80, MINI_D);
+      drawMini(holdCtxM, holdPiece, 40, 40, MINI_M);
+      drawMini(nextCtxM, nextPiece, 40, 40, MINI_M);
+    }
+
+    function draw() {
+      ctx.fillStyle = '#070714';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = 'rgba(8,196,202,0.04)';
+      ctx.lineWidth = 0.5;
+      for (let x = 0; x <= COLS; x++) {
+        ctx.beginPath(); ctx.moveTo(x * BLOCK, 0); ctx.lineTo(x * BLOCK, canvas.height); ctx.stroke();
+      }
+      for (let y = 0; y <= ROWS; y++) {
+        ctx.beginPath(); ctx.moveTo(0, y * BLOCK); ctx.lineTo(canvas.width, y * BLOCK); ctx.stroke();
+      }
+
+      board.forEach((row, y) => row.forEach((cell, x) => {
+        if (cell) drawBlock(ctx, x, y, cell, BLOCK);
+      }));
+
+      if (current) {
+        let gy = current.y;
+        while (!collides({ ...current, y: gy + 1 })) gy++;
+        if (gy !== current.y) {
+          current.shape.forEach((row, dy) => row.forEach((v, dx) => {
+            if (v) drawBlock(ctx, current.x + dx, gy + dy, current.block, BLOCK, 0, 0, 0.13);
+          }));
+        }
+        current.shape.forEach((row, dy) => row.forEach((v, dx) => {
+          if (v) drawBlock(ctx, current.x + dx, current.y + dy, current.block, BLOCK);
+        }));
+      }
+
+      drawAllMinis();
+
+      const sc = score.toLocaleString();
+      const best = Math.max(getBest(PLAYER), score).toLocaleString();
+
+      if (scoreEl) scoreEl.textContent = sc;
+      if (scoreMobile) scoreMobile.textContent = sc;
+      if (bestEl) bestEl.textContent = best;
+      if (bestMobile) bestMobile.textContent = best;
+      if (levelEl) levelEl.textContent = level;
+      if (levelMob) levelMob.textContent = level;
+      if (linesEl) linesEl.textContent = lines;
+      if (linesMob) linesMob.textContent = lines;
+      if (comboEl) comboEl.textContent = combo > 0 ? `${combo}x` : '0x';
+
+      if (speedBar) {
+        const pct = Math.min(100, Math.round((1 - (dropInterval - 80) / 920) * 100));
+        speedBar.style.width = `${Math.max(5, pct)}%`;
+      }
+    }
+
+    /* ════════════════════════════════════════
+       COLLISION
+    ════════════════════════════════════════ */
+    function collides(piece) {
+      return piece.shape.some((row, dy) =>
+        row.some((v, dx) => {
+          if (!v) return false;
+          const nx = piece.x + dx, ny = piece.y + dy;
+          return nx < 0 || nx >= COLS || ny >= ROWS || (ny >= 0 && board[ny]?.[nx]);
+        })
+      );
+    }
+
+    /* ════════════════════════════════════════
+       MECHANICS
+    ════════════════════════════════════════ */
+    function solidify() {
+      current.shape.forEach((row, dy) => row.forEach((v, dx) => {
+        if (v) board[current.y + dy][current.x + dx] = current.block;
+      }));
+      sfx('tetris_lock');
+    }
+
+    function clearLines() {
+      let cleared = 0;
+      for (let y = ROWS - 1; y >= 0; y--) {
+        if (board[y].every(Boolean)) {
+          board.splice(y, 1);
+          board.unshift(Array(COLS).fill(null));
+          y++;
+          cleared++;
+        }
+      }
+      if (!cleared) { combo = 0; return; }
+
+      combo++;
+      lines += cleared;
+
+      const newLvl = Math.floor(lines / 10) + 1;
+      if (newLvl > level) {
+        level = newLvl;
+        dropInterval = getDropInterval(level);
+        showFeedback(`${t('tetris_fb_level', '▲ LEVEL')} ${level}`);
+        sfx('tetris_levelup');
+      }
+
+      const base = (LINE_PTS[cleared] ?? 800) * level;
+      const comboB = combo > 1 ? COMBO_BONUS * (combo - 1) * level : 0;
+      score += base + comboB;
+
+      const labels = [
+        '',
+        t('tetris_fb_single', 'SINGLE'),
+        t('tetris_fb_double', 'DOUBLE'),
+        t('tetris_fb_triple', 'TRIPLE'),
+        t('tetris_fb_tetris', '✦ TETRIS !!!'),
+      ];
+      const base_msg = cleared === 4 ? t('tetris_fb_tetris', '✦ TETRIS !!!') : labels[cleared];
+      const combo_lbl = t('tetris_fb_combo', 'COMBO');
+      const msg = combo > 1 ? `${base_msg} ${combo}x ${combo_lbl}` : base_msg;
+      showFeedback(msg);
+      sfx(cleared === 4 ? 'tetris_4lines' : 'tetris_clear');
+    }
+
+    function spawnNext() {
+      current = nextPiece;
+      nextPiece = randomPiece();
+      isHoldLocked = false;
+      holdLockEls.forEach(el => el.classList.add('hidden'));
+      dropCounter = 0;
+      if (collides(current)) gameOver();
+    }
+
+    function drop(soft = false) {
+      current.y++;
+      if (collides(current)) {
+        current.y--;
+        solidify();
+        clearLines();
+        spawnNext();
+      } else {
+        if (soft) score += SOFT_PTS;
+        dropCounter = 0;
+      }
+    }
+
+    function hardDrop() {
+      let d = 0;
+      while (!collides({ ...current, y: current.y + 1 })) { current.y++; d++; }
+      score += d * HARD_PTS;
+      sfx('tetris_drop');
+      drop();
+    }
+
+    function rotate(dir = 1) {
+      const orig = current.shape;
+      const R = orig.length, C = orig[0].length;
+      const next = dir > 0
+        ? Array.from({ length: C }, (_, c) => Array.from({ length: R }, (__, r) => orig[R - 1 - r][c]))
+        : Array.from({ length: C }, (_, c) => Array.from({ length: R }, (__, r) => orig[r][C - 1 - c]));
+      current.shape = next;
+      for (const off of [0, -1, 1, -2, 2]) {
+        current.x += off;
+        if (!collides(current)) { sfx('tetris_rotate'); return; }
+        current.x -= off;
+      }
+      current.shape = orig;
+    }
+
+    function holdAction() {
+      if (isHoldLocked) return;
+      const base = PIECES.find(p => p.id === current.id);
+      if (!holdPiece) {
+        holdPiece = clonePiece(base);
+        spawnNext();
+      } else {
+        const prev = clonePiece(PIECES.find(p => p.id === holdPiece.id));
+        holdPiece = clonePiece(base);
+        current = { ...clonePiece(prev), x: Math.floor(COLS / 2) - Math.floor(prev.shape[0].length / 2), y: 0 };
+      }
+      isHoldLocked = true;
+      holdLockEls.forEach(el => el.classList.remove('hidden'));
+      dropCounter = 0;
+      sfx('click');
+    }
+
+    function gameOver() {
+      isOver = true;
+      cancelAnimationFrame(raf);
+      const pos = submitScore(PLAYER, score, level);
+
+      startScreen.style.display = 'flex';
+      gameOverEl.classList.remove('hidden');
+      gameOverEl.textContent = `${t('tetris_gameover', 'GAME_OVER')} — rank #${pos}`;
+      // Botão vira "reiniciar" — usa data-i18n=tetris_btn_restart
+      if (startLabel) startLabel.textContent = t('tetris_btn_restart', '[ REINICIAR ]');
+      if (pauseBtn) pauseBtn.disabled = true;
+      if (pauseBtnMob) pauseBtnMob.disabled = true;
+      if (dpad) dpad.style.display = 'none';
+      TetrisMusic.stop();
+      try { window.Alpine?.store('sfx') && (Alpine.store('sfx').musicPlaying = false); } catch (_) { }
+    }
+
+    /* ════════════════════════════════════════
+       LOOP
+    ════════════════════════════════════════ */
+    function loop(time = 0) {
+      if (isOver || isPaused) return;
+      const dt = time - lastTime;
+      lastTime = time;
+      dropCounter += dt;
+      if (dropCounter > dropInterval) drop();
+      draw();
+      raf = requestAnimationFrame(loop);
+    }
+
+    /* ════════════════════════════════════════
+       RESET
+    ════════════════════════════════════════ */
+    function reset() {
+      cancelAnimationFrame(raf);
+      board = createBoard();
+      score = lines = combo = 0;
+      level = 1;
+      isPaused = isOver = isHoldLocked = false;
+      holdPiece = null;
+      dropInterval = getDropInterval(1);
+      dropCounter = 0;
+      lastTime = 0;
+
+      holdLockEls.forEach(el => el.classList.add('hidden'));
+      nextPiece = randomPiece();
+      spawnNext();
+
+      startScreen.style.display = 'none';
+      gameOverEl.classList.add('hidden');
+      gameOverEl.textContent = t('tetris_gameover', 'GAME_OVER');
+      if (startLabel) startLabel.textContent = t('tetris_btn_start', '[ INICIAR ]');
+
+      if (pauseBtn) { pauseBtn.disabled = false; pauseBtn.textContent = t('tetris_btn_pause', '[ PAUSAR ]'); }
+      if (pauseBtnMob) { pauseBtnMob.disabled = false; pauseBtnMob.textContent = '⏸'; }
+      if (restartBtn) { restartBtn.disabled = false; restartBtn.textContent = t('tetris_btn_restart', '[ REINICIAR ]'); }
+      if (restartBtnMob) restartBtnMob.disabled = false;
+
+      if (isMobile() && dpad) dpad.style.display = 'block';
+
+      applyCanvasScale();
+      sfx('select');
+      if (musicOn && !TetrisMusic.isPlaying()) TetrisMusic.start();
+      raf = requestAnimationFrame(loop);
+    }
+
+    function togglePause() {
+      if (isOver) return;
+      isPaused = !isPaused;
+      if (pauseBtn) pauseBtn.textContent = isPaused ? t('tetris_btn_resume', '[ RETOMAR ]') : t('tetris_btn_pause', '[ PAUSAR ]');
+      if (pauseBtnMob) pauseBtnMob.textContent = isPaused ? '▶' : '⏸';
+      if (!isPaused) { lastTime = 0; raf = requestAnimationFrame(loop); }
+      sfx('click');
+    }
+
+    /* ════════════════════════════════════════
+       INPUT — Teclado
+    ════════════════════════════════════════ */
+    function onKey(e) {
+      if (isOver) return;
+      if (isPaused && !['p', 'P'].includes(e.key)) return;
+      switch (e.key) {
+        case 'ArrowLeft':
+          current.x--;
+          if (collides(current)) current.x++;
+          else sfx('tetris_move');
+          break;
+        case 'ArrowRight':
+          current.x++;
+          if (collides(current)) current.x--;
+          else sfx('tetris_move');
+          break;
+        case 'ArrowDown': drop(true); break;
+        case 'ArrowUp':
+        case 'z': case 'Z': rotate(1); break;
+        case 'x': case 'X': rotate(-1); break;
+        case ' ': e.preventDefault(); hardDrop(); break;
+        case 'c': case 'C': holdAction(); break;
+        case 'p': case 'P': togglePause(); break;
+      }
+    }
+    document.addEventListener('keydown', onKey);
+
+    /* ════════════════════════════════════════
+       INPUT — D-pad botões
+    ════════════════════════════════════════ */
+    let _rId = null, _rIv = null;
+
+    window.dpadRepeatStart = function (dir) {
+      if (isOver || isPaused || !current) return;
+      _doDir(dir);
+      _rId = setTimeout(() => { _rIv = setInterval(() => _doDir(dir), 80); }, 170);
+    };
+    window.dpadRepeatStop = function () {
+      clearTimeout(_rId); clearInterval(_rIv);
+      _rId = _rIv = null;
+    };
+    function _doDir(dir) {
+      if (isOver || isPaused || !current) return;
+      if (dir === 'left') { current.x--; if (collides(current)) current.x++; else sfx('tetris_move'); }
+      if (dir === 'right') { current.x++; if (collides(current)) current.x--; else sfx('tetris_move'); }
+      if (dir === 'down') { drop(true); }
+    }
+
+    document.getElementById('t-rot-cw')?.addEventListener('click', () => !isOver && !isPaused && current && rotate(1));
+    document.getElementById('t-rot-ccw')?.addEventListener('click', () => !isOver && !isPaused && current && rotate(-1));
+    document.getElementById('t-hold')?.addEventListener('click', () => !isOver && !isPaused && current && holdAction());
+    document.getElementById('t-drop')?.addEventListener('click', () => !isOver && !isPaused && current && hardDrop());
+
+    ['t-left', 't-right', 't-rot-cw', 't-rot-ccw', 't-hold', 't-soft-down', 't-drop'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (!btn) return;
+      btn.addEventListener('touchstart', () => btn.classList.add('tdb--pressed'), { passive: true });
+      btn.addEventListener('touchend', () => btn.classList.remove('tdb--pressed'), { passive: true });
+      btn.addEventListener('touchcancel', () => btn.classList.remove('tdb--pressed'), { passive: true });
+    });
+
+    /* ════════════════════════════════════════
+       INPUT — Touch / Swipe no canvas
+    ════════════════════════════════════════ */
+    let swX = 0, swY = 0, swT = 0, lastTap = 0;
+
+    canvas.addEventListener('touchstart', e => {
+      e.preventDefault();
+      const t = e.touches[0];
+      swX = t.clientX; swY = t.clientY; swT = Date.now();
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', e => {
+      e.preventDefault();
+      if (isOver || isPaused || !current) return;
+
+      const touch = e.changedTouches[0];
+      const dx = touch.clientX - swX;
+      const dy = touch.clientY - swY;
+      const ax = Math.abs(dx), ay = Math.abs(dy);
+      const dt = Date.now() - swT;
+
+      if (Math.max(ax, ay) < 12 && dt < 220) {
+        const now = Date.now();
+        if (now - lastTap < 280) { rotate(-1); } else { rotate(1); }
+        lastTap = now;
+        return;
+      }
+      if (ax > ay && ax > 18) {
+        const steps = Math.max(1, Math.round(ax / (28 * canvasScale)));
+        for (let i = 0; i < steps; i++) {
+          if (dx > 0) { current.x++; if (collides(current)) { current.x--; break; } }
+          else { current.x--; if (collides(current)) { current.x++; break; } }
+        }
+        return;
+      }
+      if (dy < -32 && ay > ax) { holdAction(); return; }
+      if (dy > 32 && ay > ax && dt < 160) { hardDrop(); return; }
+      if (dy > 22 && ay > ax) { drop(true); }
+    }, { passive: false });
+
+    /* ════════════════════════════════════════
+       BUTTONS
+    ════════════════════════════════════════ */
+    startBtn?.addEventListener('click', reset);
+    pauseBtn?.addEventListener('click', togglePause);
+    pauseBtnMob?.addEventListener('click', togglePause);
+    restartBtn?.addEventListener('click', reset);
+    restartBtnMob?.addEventListener('click', reset);
+
+    /* ════════════════════════════════════════
+       RESIZE
+    ════════════════════════════════════════ */
+    let _resT;
+    window.addEventListener('resize', () => {
+      clearTimeout(_resT);
+      _resT = setTimeout(applyCanvasScale, 100);
+    });
+
+    /* ════════════════════════════════════════
+       CLEANUP
+    ════════════════════════════════════════ */
+    const _obs = new MutationObserver(() => {
+      if (!document.body.contains(canvas)) {
+        cancelAnimationFrame(raf);
+        document.removeEventListener('keydown', onKey);
+        if (dpad) dpad.style.display = 'none';
+        TetrisMusic.stop(); // ← adicionar aqui
+        try { window.Alpine?.store('sfx') && (Alpine.store('sfx').musicPlaying = false); } catch (_) { }
+        _obs.disconnect();
+      }
+    });
+    _obs.observe(document.body, { childList: true, subtree: true });
+
+    /* ════════════════════════════════════════
+       BOOT
+    ════════════════════════════════════════ */
+    applyCanvasScale();
+    applyI18n();          // ← aplica traduções no HTML estático
+    renderRanking();
+
+    const best = getBest(PLAYER).toLocaleString();
+    if (bestEl) bestEl.textContent = best;
+    if (bestMobile) bestMobile.textContent = best;
+
+    nextPiece = randomPiece();
     drawAllMinis();
 
-    const sc   = score.toLocaleString();
-    const best = Math.max(getBest(PLAYER), score).toLocaleString();
 
-    if (scoreEl)    scoreEl.textContent    = sc;
-    if (scoreMobile)scoreMobile.textContent= sc;
-    if (bestEl)     bestEl.textContent     = best;
-    if (bestMobile) bestMobile.textContent = best;
-    if (levelEl)    levelEl.textContent    = level;
-    if (levelMob)   levelMob.textContent   = level;
-    if (linesEl)    linesEl.textContent    = lines;
-    if (linesMob)   linesMob.textContent   = lines;
-    if (comboEl)    comboEl.textContent    = combo > 0 ? `${combo}x` : '0x';
+    /* ════════════════════════════════════════════════════════
+   TETRIS MUSIC PLAYER — "VOID_PROTOCOL"
+   Chiptune sequencer | Web Audio API | Am key | 150 BPM
+   8 bars = 12.8s por loop | melody + bass + drums
+════════════════════════════════════════════════════════ */
+    const TetrisMusic = (function () {
+      const R = 0;
+      const E3 = 164.81, F3 = 174.61, A3 = 220.00;
+      const G4 = 392.00, A4 = 440.00, B4 = 493.88;
+      const C5 = 523.25, D5 = 587.33, E5 = 659.25;
+      const F5 = 698.46, G5 = 783.99, A5 = 880.00;
 
-    if (speedBar) {
-      const pct = Math.min(100, Math.round((1 - (dropInterval - 80) / 920) * 100));
-      speedBar.style.width = `${Math.max(5, pct)}%`;
-    }
-  }
+      const BPM = 150;
+      const T16 = 60 / BPM / 4;  // 16th note ≈ 0.10s
+      const T8 = T16 * 2;        // 8th note
 
-  /* ════════════════════════════════════════
-     COLLISION
-  ════════════════════════════════════════ */
-  function collides(piece) {
-    return piece.shape.some((row, dy) =>
-      row.some((v, dx) => {
-        if (!v) return false;
-        const nx = piece.x+dx, ny = piece.y+dy;
-        return nx < 0 || nx >= COLS || ny >= ROWS || (ny >= 0 && board[ny]?.[nx]);
-      })
-    );
-  }
+      /* Melody: 8 bars × 16 16th-notes = 128 steps total
+         Formato: [freq_hz, dur_16ths, gate_ratio]           */
+      const MELODY = [
+        [E5, 2, .85], [D5, 2, .85], [C5, 4, .80], [B4, 4, .80], [A4, 4, .70], // bar 1
+        [G4, 4, .80], [A4, 4, .80], [B4, 4, .80], [C5, 4, .70],             // bar 2
+        [D5, 2, .85], [E5, 2, .85], [F5, 4, .80], [E5, 4, .80], [D5, 4, .75], // bar 3
+        [C5, 4, .80], [B4, 4, .80], [A4, 8, .60],                        // bar 4
+        [C5, 2, .85], [D5, 2, .85], [E5, 4, .85], [A5, 4, .80], [G5, 4, .75], // bar 5
+        [F5, 4, .80], [E5, 4, .80], [D5, 4, .80], [C5, 4, .70],             // bar 6
+        [B4, 4, .80], [C5, 4, .80], [D5, 4, .80], [E5, 4, .75],             // bar 7
+        [A4, 12, .60], [R, 4, 0],                                      // bar 8
+      ];
 
-  /* ════════════════════════════════════════
-     MECHANICS
-  ════════════════════════════════════════ */
-  function solidify() {
-    current.shape.forEach((row, dy) => row.forEach((v, dx) => {
-      if (v) board[current.y+dy][current.x+dx] = current.block;
-    }));
-    sfx('click');
-  }
+      /* Bass: progressão Am–F–Am–E, 128 steps              */
+      const BASS = [
+        [A3, 4, .50], [R, 4, 0], [A3, 4, .50], [R, 4, 0],  // bar 1 Am
+        [A3, 4, .50], [R, 4, 0], [A3, 4, .50], [R, 4, 0],  // bar 2 Am
+        [F3, 4, .50], [R, 4, 0], [F3, 4, .50], [R, 4, 0],  // bar 3 F
+        [F3, 4, .50], [R, 4, 0], [F3, 4, .50], [R, 4, 0],  // bar 4 F
+        [A3, 4, .50], [R, 4, 0], [A3, 4, .50], [R, 4, 0],  // bar 5 Am
+        [A3, 4, .50], [R, 4, 0], [A3, 4, .50], [R, 4, 0],  // bar 6 Am
+        [E3, 4, .50], [R, 4, 0], [E3, 4, .50], [R, 4, 0],  // bar 7 E
+        [E3, 4, .50], [R, 4, 0], [E3, 4, .50], [R, 4, 0],  // bar 8 E
+      ];
 
-  function clearLines() {
-    let cleared = 0;
-    for (let y = ROWS-1; y >= 0; y--) {
-      if (board[y].every(Boolean)) {
-        board.splice(y, 1);
-        board.unshift(Array(COLS).fill(null));
-        y++;
-        cleared++;
+      /* Beat: 8 passos por ciclo, cada passo = 1 8th note  */
+      const BEAT = [
+        { k: 1, h: 0, s: 0 }, { k: 0, h: 1, s: 0 }, { k: 0, h: 0, s: 1 }, { k: 0, h: 1, s: 0 },
+        { k: 1, h: 0, s: 0 }, { k: 0, h: 1, s: 0 }, { k: 0, h: 0, s: 1 }, { k: 0, h: 1, s: 0 },
+      ];
+
+      let ac = null, masterG = null;
+      let playing = false, timer = null;
+      let mt = 0, bt = 0, dt = 0;
+      let mi = 0, bi = 0, di = 0;
+      const LA = 0.12, SI = 50;
+
+      function ensureCtx() {
+        if (ac) return;
+        try { ac = window.Alpine?.store('sfx')?._ctx(); } catch (_) { }
+        if (!ac) ac = new (window.AudioContext || window.webkitAudioContext)();
+        masterG = ac.createGain();
+        masterG.gain.value = 0.20;
+        masterG.connect(ac.destination);
       }
-    }
-    if (!cleared) { combo = 0; return; }
 
-    combo++;
-    lines += cleared;
-
-    const newLvl = Math.floor(lines/10)+1;
-    if (newLvl > level) {
-      level        = newLvl;
-      dropInterval = getDropInterval(level);
-      showFeedback(`${t('tetris_fb_level','▲ LEVEL')} ${level}`);
-      sfx('select');
-    }
-
-    const base   = (LINE_PTS[cleared] ?? 800) * level;
-    const comboB = combo > 1 ? COMBO_BONUS*(combo-1)*level : 0;
-    score += base + comboB;
-
-    const labels = [
-      '',
-      t('tetris_fb_single','SINGLE'),
-      t('tetris_fb_double','DOUBLE'),
-      t('tetris_fb_triple','TRIPLE'),
-      t('tetris_fb_tetris','✦ TETRIS !!!'),
-    ];
-    const base_msg = cleared === 4 ? t('tetris_fb_tetris','✦ TETRIS !!!') : labels[cleared];
-    const combo_lbl = t('tetris_fb_combo','COMBO');
-    const msg = combo > 1 ? `${base_msg} ${combo}x ${combo_lbl}` : base_msg;
-    showFeedback(msg);
-    sfx(cleared===4 ? 'select' : 'hover');
-  }
-
-  function spawnNext() {
-    current      = nextPiece;
-    nextPiece    = randomPiece();
-    isHoldLocked = false;
-    holdLockEls.forEach(el => el.classList.add('hidden'));
-    dropCounter  = 0;
-    if (collides(current)) gameOver();
-  }
-
-  function drop(soft=false) {
-    current.y++;
-    if (collides(current)) {
-      current.y--;
-      solidify();
-      clearLines();
-      spawnNext();
-    } else {
-      if (soft) score += SOFT_PTS;
-      dropCounter = 0;
-    }
-  }
-
-  function hardDrop() {
-    let d = 0;
-    while (!collides({ ...current, y: current.y+1 })) { current.y++; d++; }
-    score += d * HARD_PTS;
-    drop();
-  }
-
-  function rotate(dir=1) {
-    const orig = current.shape;
-    const R = orig.length, C = orig[0].length;
-    const next = dir > 0
-      ? Array.from({length:C}, (_,c) => Array.from({length:R}, (__,r) => orig[R-1-r][c]))
-      : Array.from({length:C}, (_,c) => Array.from({length:R}, (__,r) => orig[r][C-1-c]));
-    current.shape = next;
-    for (const off of [0,-1,1,-2,2]) {
-      current.x += off;
-      if (!collides(current)) { sfx('hover'); return; }
-      current.x -= off;
-    }
-    current.shape = orig;
-  }
-
-  function holdAction() {
-    if (isHoldLocked) return;
-    const base = PIECES.find(p => p.id === current.id);
-    if (!holdPiece) {
-      holdPiece = clonePiece(base);
-      spawnNext();
-    } else {
-      const prev = clonePiece(PIECES.find(p => p.id === holdPiece.id));
-      holdPiece  = clonePiece(base);
-      current    = { ...clonePiece(prev), x: Math.floor(COLS/2)-Math.floor(prev.shape[0].length/2), y:0 };
-    }
-    isHoldLocked = true;
-    holdLockEls.forEach(el => el.classList.remove('hidden'));
-    dropCounter  = 0;
-    sfx('click');
-  }
-
-  function gameOver() {
-    isOver = true;
-    cancelAnimationFrame(raf);
-    const pos = submitScore(PLAYER, score, level);
-
-    startScreen.style.display = 'flex';
-    gameOverEl.classList.remove('hidden');
-    gameOverEl.textContent = `${t('tetris_gameover','GAME_OVER')} — rank #${pos}`;
-    // Botão vira "reiniciar" — usa data-i18n=tetris_btn_restart
-    if (startLabel) startLabel.textContent = t('tetris_btn_restart', '[ REINICIAR ]');
-    if (pauseBtn)    pauseBtn.disabled    = true;
-    if (pauseBtnMob) pauseBtnMob.disabled = true;
-    if (dpad)        dpad.style.display   = 'none';
-    sfx('close');
-  }
-
-  /* ════════════════════════════════════════
-     LOOP
-  ════════════════════════════════════════ */
-  function loop(time=0) {
-    if (isOver || isPaused) return;
-    const dt = time - lastTime;
-    lastTime = time;
-    dropCounter += dt;
-    if (dropCounter > dropInterval) drop();
-    draw();
-    raf = requestAnimationFrame(loop);
-  }
-
-  /* ════════════════════════════════════════
-     RESET
-  ════════════════════════════════════════ */
-  function reset() {
-    cancelAnimationFrame(raf);
-    board        = createBoard();
-    score = lines = combo = 0;
-    level        = 1;
-    isPaused = isOver = isHoldLocked = false;
-    holdPiece    = null;
-    dropInterval = getDropInterval(1);
-    dropCounter  = 0;
-    lastTime     = 0;
-
-    holdLockEls.forEach(el => el.classList.add('hidden'));
-    nextPiece = randomPiece();
-    spawnNext();
-
-    startScreen.style.display = 'none';
-    gameOverEl.classList.add('hidden');
-    gameOverEl.textContent = t('tetris_gameover', 'GAME_OVER');
-    if (startLabel) startLabel.textContent = t('tetris_btn_start', '[ INICIAR ]');
-
-    if (pauseBtn)      { pauseBtn.disabled    = false; pauseBtn.textContent    = t('tetris_btn_pause','[ PAUSAR ]'); }
-    if (pauseBtnMob)   { pauseBtnMob.disabled  = false; pauseBtnMob.textContent  = '⏸'; }
-    if (restartBtn)    { restartBtn.disabled   = false; restartBtn.textContent   = t('tetris_btn_restart','[ REINICIAR ]'); }
-    if (restartBtnMob) restartBtnMob.disabled = false;
-
-    if (isMobile() && dpad) dpad.style.display = 'block';
-
-    applyCanvasScale();
-    sfx('click');
-    raf = requestAnimationFrame(loop);
-  }
-
-  function togglePause() {
-    if (isOver) return;
-    isPaused = !isPaused;
-    if (pauseBtn)    pauseBtn.textContent    = isPaused ? t('tetris_btn_resume','[ RETOMAR ]') : t('tetris_btn_pause','[ PAUSAR ]');
-    if (pauseBtnMob) pauseBtnMob.textContent = isPaused ? '▶' : '⏸';
-    if (!isPaused) { lastTime = 0; raf = requestAnimationFrame(loop); }
-    sfx('click');
-  }
-
-  /* ════════════════════════════════════════
-     INPUT — Teclado
-  ════════════════════════════════════════ */
-  function onKey(e) {
-    if (isOver) return;
-    if (isPaused && !['p','P'].includes(e.key)) return;
-    switch (e.key) {
-      case 'ArrowLeft':  current.x--; if(collides(current)) current.x++; break;
-      case 'ArrowRight': current.x++; if(collides(current)) current.x--; break;
-      case 'ArrowDown':  drop(true); break;
-      case 'ArrowUp':
-      case 'z': case 'Z': rotate(1); break;
-      case 'x': case 'X': rotate(-1); break;
-      case ' ':            e.preventDefault(); hardDrop(); break;
-      case 'c': case 'C':  holdAction(); break;
-      case 'p': case 'P':  togglePause(); break;
-    }
-  }
-  document.addEventListener('keydown', onKey);
-
-  /* ════════════════════════════════════════
-     INPUT — D-pad botões
-  ════════════════════════════════════════ */
-  let _rId=null, _rIv=null;
-
-  window.dpadRepeatStart = function(dir) {
-    if (isOver || isPaused || !current) return;
-    _doDir(dir);
-    _rId = setTimeout(() => { _rIv = setInterval(() => _doDir(dir), 80); }, 170);
-  };
-  window.dpadRepeatStop = function() {
-    clearTimeout(_rId); clearInterval(_rIv);
-    _rId = _rIv = null;
-  };
-  function _doDir(dir) {
-    if (isOver || isPaused || !current) return;
-    if (dir==='left')  { current.x--; if(collides(current)) current.x++; }
-    if (dir==='right') { current.x++; if(collides(current)) current.x--; }
-    if (dir==='down')  { drop(true); }
-  }
-
-  document.getElementById('t-rot-cw')?.addEventListener('click',  () => !isOver && !isPaused && current && rotate(1));
-  document.getElementById('t-rot-ccw')?.addEventListener('click', () => !isOver && !isPaused && current && rotate(-1));
-  document.getElementById('t-hold')?.addEventListener('click',    () => !isOver && !isPaused && current && holdAction());
-  document.getElementById('t-drop')?.addEventListener('click',    () => !isOver && !isPaused && current && hardDrop());
-
-  ['t-left','t-right','t-rot-cw','t-rot-ccw','t-hold','t-soft-down','t-drop'].forEach(id => {
-    const btn = document.getElementById(id);
-    if (!btn) return;
-    btn.addEventListener('touchstart', () => btn.classList.add('tdb--pressed'),    { passive:true });
-    btn.addEventListener('touchend',   () => btn.classList.remove('tdb--pressed'), { passive:true });
-    btn.addEventListener('touchcancel',() => btn.classList.remove('tdb--pressed'), { passive:true });
-  });
-
-  /* ════════════════════════════════════════
-     INPUT — Touch / Swipe no canvas
-  ════════════════════════════════════════ */
-  let swX=0, swY=0, swT=0, lastTap=0;
-
-  canvas.addEventListener('touchstart', e => {
-    e.preventDefault();
-    const t = e.touches[0];
-    swX = t.clientX; swY = t.clientY; swT = Date.now();
-  }, { passive:false });
-
-  canvas.addEventListener('touchend', e => {
-    e.preventDefault();
-    if (isOver || isPaused || !current) return;
-
-    const touch = e.changedTouches[0];
-    const dx = touch.clientX - swX;
-    const dy = touch.clientY - swY;
-    const ax = Math.abs(dx), ay = Math.abs(dy);
-    const dt = Date.now() - swT;
-
-    if (Math.max(ax, ay) < 12 && dt < 220) {
-      const now = Date.now();
-      if (now - lastTap < 280) { rotate(-1); } else { rotate(1); }
-      lastTap = now;
-      return;
-    }
-    if (ax > ay && ax > 18) {
-      const steps = Math.max(1, Math.round(ax / (28 * canvasScale)));
-      for (let i=0; i<steps; i++) {
-        if (dx > 0) { current.x++; if(collides(current)){current.x--;break;} }
-        else        { current.x--; if(collides(current)){current.x++;break;} }
+      function noiseBuf(dur) {
+        const len = Math.floor(ac.sampleRate * dur);
+        const buf = ac.createBuffer(1, len, ac.sampleRate);
+        const d = buf.getChannelData(0);
+        for (let i = 0; i < len; i++)
+          d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * 0.3));
+        return buf;
       }
-      return;
+
+      function schedMel(freq, dur, gate, t) {
+        const n = ac.createOscillator(), g = ac.createGain();
+        n.type = 'square'; n.frequency.value = freq; n.detune.value = -8;
+        const d = dur * T16, gd = Math.max(d * gate, 0.01);
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(0.10, t + 0.004);
+        if (gd > 0.02) g.gain.setValueAtTime(0.10, t + gd - 0.015);
+        g.gain.linearRampToValueAtTime(0, t + gd);
+        n.connect(g); g.connect(masterG);
+        n.start(t); n.stop(t + d + 0.01);
+      }
+
+      function schedBas(freq, dur, gate, t) {
+        const n = ac.createOscillator();
+        const lpf = ac.createBiquadFilter(), g = ac.createGain();
+        n.type = 'triangle'; n.frequency.value = freq;
+        lpf.type = 'lowpass'; lpf.frequency.value = 500;
+        const d = dur * T16, gd = Math.max(d * gate, 0.01);
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(0.16, t + 0.008);
+        if (gd > 0.025) g.gain.setValueAtTime(0.16, t + gd - 0.02);
+        g.gain.linearRampToValueAtTime(0, t + gd);
+        n.connect(lpf); lpf.connect(g); g.connect(masterG);
+        n.start(t); n.stop(t + d + 0.01);
+      }
+
+      function schedKick(t) {
+        const o = ac.createOscillator(), g = ac.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(90, t);
+        o.frequency.exponentialRampToValueAtTime(28, t + 0.09);
+        g.gain.setValueAtTime(0.38, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.11);
+        o.connect(g); g.connect(masterG);
+        o.start(t); o.stop(t + 0.13);
+      }
+
+      function schedHat(t) {
+        const src = ac.createBufferSource();
+        src.buffer = noiseBuf(0.04);
+        const hpf = ac.createBiquadFilter(), g = ac.createGain();
+        hpf.type = 'highpass'; hpf.frequency.value = 9000;
+        g.gain.setValueAtTime(0.055, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.035);
+        src.connect(hpf); hpf.connect(g); g.connect(masterG);
+        src.start(t);
+      }
+
+      function schedSnare(t) {
+        const o = ac.createOscillator(), og = ac.createGain();
+        o.type = 'triangle';
+        o.frequency.setValueAtTime(200, t);
+        o.frequency.exponentialRampToValueAtTime(90, t + 0.06);
+        og.gain.setValueAtTime(0.12, t);
+        og.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
+        o.connect(og); og.connect(masterG);
+        o.start(t); o.stop(t + 0.08);
+        const src = ac.createBufferSource();
+        src.buffer = noiseBuf(0.12);
+        const bpf = ac.createBiquadFilter(), ng = ac.createGain();
+        bpf.type = 'bandpass'; bpf.frequency.value = 3000; bpf.Q.value = 0.8;
+        ng.gain.setValueAtTime(0.09, t);
+        ng.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+        src.connect(bpf); bpf.connect(ng); ng.connect(masterG);
+        src.start(t);
+      }
+
+      function schedule() {
+        if (!playing || !ac) return;
+        const lk = ac.currentTime + LA;
+        while (mt < lk) {
+          const [f, dur, gate] = MELODY[mi % MELODY.length];
+          if (f) schedMel(f, dur, gate, mt);
+          mt += dur * T16;
+          mi = (mi + 1) % MELODY.length;
+        }
+        while (bt < lk) {
+          const [f, dur, gate] = BASS[bi % BASS.length];
+          if (f) schedBas(f, dur, gate, bt);
+          bt += dur * T16;
+          bi = (bi + 1) % BASS.length;
+        }
+        while (dt < lk) {
+          const beat = BEAT[di % BEAT.length];
+          if (beat.k) schedKick(dt);
+          if (beat.h) schedHat(dt);
+          if (beat.s) schedSnare(dt);
+          dt += T8; di++;
+        }
+      }
+
+      return {
+        start() {
+          if (playing) return;
+          ensureCtx();
+          if (ac.state === 'suspended') ac.resume();
+          playing = true;
+          mi = bi = di = 0;
+          const now = ac.currentTime + 0.05;
+          mt = bt = dt = now;
+          masterG.gain.setValueAtTime(0.20, ac.currentTime);
+          const tick = () => {
+            if (!playing) return;
+            schedule();
+            timer = setTimeout(tick, SI);
+          };
+          tick();
+        },
+        stop() {
+          playing = false;
+          clearTimeout(timer);
+          if (masterG && ac) {
+            masterG.gain.cancelScheduledValues(ac.currentTime);
+            masterG.gain.setTargetAtTime(0, ac.currentTime, 0.15);
+            setTimeout(() => { if (masterG && !playing) masterG.gain.value = 0.20; }, 700);
+          }
+        },
+        toggle() { playing ? this.stop() : this.start(); },
+        isPlaying() { return playing; },
+      };
+    })();
+
+    window.TetrisMusic = TetrisMusic;
+
+    /* ── Music toggle UI ───────────────────────────────────── */
+    let musicOn = (() => {
+      try { return localStorage.getItem('tetris-music') !== 'false'; } catch (_) { return true; }
+    })();
+
+    function updateMusicBtns() {
+      const mb = document.getElementById('tetris-music-btn');
+      const mbd = document.getElementById('tetris-music-btn-d');
+      if (mb) mb.textContent = musicOn ? '♫' : '♪';
+      if (mbd) mbd.textContent = musicOn ? '♫ MUSIC ON' : '♪ MUSIC OFF';
+      try { window.Alpine?.store('sfx') && (Alpine.store('sfx').musicPlaying = musicOn); } catch (_) { }
     }
-    if (dy < -32 && ay > ax) { holdAction(); return; }
-    if (dy > 32 && ay > ax && dt < 160) { hardDrop(); return; }
-    if (dy > 22 && ay > ax) { drop(true); }
-  }, { passive:false });
 
-  /* ════════════════════════════════════════
-     BUTTONS
-  ════════════════════════════════════════ */
-  startBtn?.addEventListener('click',     reset);
-  pauseBtn?.addEventListener('click',     togglePause);
-  pauseBtnMob?.addEventListener('click',  togglePause);
-  restartBtn?.addEventListener('click',   reset);
-  restartBtnMob?.addEventListener('click',reset);
-
-  /* ════════════════════════════════════════
-     RESIZE
-  ════════════════════════════════════════ */
-  let _resT;
-  window.addEventListener('resize', () => {
-    clearTimeout(_resT);
-    _resT = setTimeout(applyCanvasScale, 100);
-  });
-
-  /* ════════════════════════════════════════
-     CLEANUP
-  ════════════════════════════════════════ */
-  const _obs = new MutationObserver(() => {
-    if (!document.body.contains(canvas)) {
-      cancelAnimationFrame(raf);
-      document.removeEventListener('keydown', onKey);
-      if (dpad) dpad.style.display = 'none';
-      _obs.disconnect();
+    function toggleMusicBtn() {
+      musicOn = !musicOn;
+      try { localStorage.setItem('tetris-music', musicOn); } catch (_) { }
+      if (musicOn) TetrisMusic.start(); else TetrisMusic.stop();
+      updateMusicBtns();
+      sfx('toggle');
     }
-  });
-  _obs.observe(document.body, { childList:true, subtree:true });
 
-  /* ════════════════════════════════════════
-     BOOT
-  ════════════════════════════════════════ */
-  applyCanvasScale();
-  applyI18n();          // ← aplica traduções no HTML estático
-  renderRanking();
-
-  const best = getBest(PLAYER).toLocaleString();
-  if (bestEl)     bestEl.textContent     = best;
-  if (bestMobile) bestMobile.textContent = best;
-
-  nextPiece = randomPiece();
-  drawAllMinis();
-
-})();
+    document.getElementById('tetris-music-btn')?.addEventListener('click', toggleMusicBtn);
+    document.getElementById('tetris-music-btn-d')?.addEventListener('click', toggleMusicBtn);
+    updateMusicBtns();
+  })();
 </script>

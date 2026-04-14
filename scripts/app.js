@@ -72,6 +72,7 @@ document.addEventListener('alpine:init', () => {
   // ==============================
   Alpine.store('sfx', {
     muted: localStorage.getItem('sfx-muted') === 'true',
+    musicPlaying: false,
     __ctx: null,
     __master: null,
 
@@ -770,6 +771,343 @@ document.addEventListener('alpine:init', () => {
         osc2.start(t + 0.12); osc2.stop(t + 0.22);
       },
     },
+    /* ── link ───────────────────────────────────────────────
+   Portal aberto: ping ascendente + burst de dados
+   + eco de confirmação. Links externos e sociais.        */
+    link(c, ch, ns, ds) {
+      const t = c.currentTime;
+
+      // Ping de portal (varredura ascendente)
+      const osc = c.createOscillator();
+      const g1 = c.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(400, t);
+      osc.frequency.exponentialRampToValueAtTime(1800, t + 0.08);
+      g1.gain.setValueAtTime(0.0, t);
+      g1.gain.linearRampToValueAtTime(0.11, t + 0.010);
+      g1.gain.linearRampToValueAtTime(0.0, t + 0.10);
+      ch(osc, g1);
+      osc.start(t); osc.stop(t + 0.11);
+
+      // Burst de dados
+      const sn = c.createBufferSource();
+      sn.buffer = ns(c, 0.04, 0.15);
+      const bpf = c.createBiquadFilter();
+      bpf.type = 'bandpass'; bpf.frequency.value = 3000; bpf.Q.value = 2;
+      const gn = c.createGain();
+      gn.gain.setValueAtTime(0.14, t + 0.04);
+      gn.gain.exponentialRampToValueAtTime(0.001, t + 0.10);
+      ch(sn, bpf, gn);
+      sn.start(t + 0.04);
+
+      // Eco de confirmação
+      const osc2 = c.createOscillator();
+      const g2 = c.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.value = 1200;
+      g2.gain.setValueAtTime(0.0, t + 0.10);
+      g2.gain.linearRampToValueAtTime(0.055, t + 0.11);
+      g2.gain.linearRampToValueAtTime(0.0, t + 0.17);
+      ch(osc2, g2);
+      osc2.start(t + 0.10); osc2.stop(t + 0.18);
+    },
+
+    /* ── carousel ───────────────────────────────────────────
+       Avanço de filme mecânico: click de precisão +
+       sweep direcional rápido. Carrossel de imagens.         */
+    carousel(c, ch, ns, ds) {
+      const t = c.currentTime;
+
+      // Click de avanço mecânico
+      const sn = c.createBufferSource();
+      sn.buffer = ns(c, 0.015, 0.08);
+      const d1 = ds(c, 80);
+      const bpf = c.createBiquadFilter();
+      bpf.type = 'bandpass'; bpf.frequency.value = 1800; bpf.Q.value = 2;
+      const g1 = c.createGain();
+      g1.gain.setValueAtTime(0.26, t);
+      g1.gain.exponentialRampToValueAtTime(0.001, t + 0.016);
+      ch(sn, d1, bpf, g1);
+      sn.start(t);
+
+      // Sweep direcional (triangle suave)
+      const osc = c.createOscillator();
+      const lpf = c.createBiquadFilter();
+      const g2 = c.createGain();
+      lpf.type = 'lowpass'; lpf.frequency.value = 900;
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(200, t + 0.01);
+      osc.frequency.exponentialRampToValueAtTime(600, t + 0.07);
+      g2.gain.setValueAtTime(0.07, t + 0.01);
+      g2.gain.linearRampToValueAtTime(0.0, t + 0.09);
+      ch(osc, lpf, g2);
+      osc.start(t + 0.01); osc.stop(t + 0.10);
+    },
+
+    /* ── expand ─────────────────────────────────────────────
+       Expansão de membrana: swell grave + cauda HF.
+       Botões expand/collapse de texto em cards e timeline.   */
+    expand(c, ch, ns, ds) {
+      const t = c.currentTime;
+
+      // Swell de membrana
+      const osc = c.createOscillator();
+      const g1 = c.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(180, t);
+      osc.frequency.linearRampToValueAtTime(290, t + 0.13);
+      g1.gain.setValueAtTime(0.0, t);
+      g1.gain.linearRampToValueAtTime(0.085, t + 0.03);
+      g1.gain.linearRampToValueAtTime(0.0, t + 0.16);
+      ch(osc, g1);
+      osc.start(t); osc.stop(t + 0.17);
+
+      // Cauda HF (dados revelados)
+      const osc2 = c.createOscillator();
+      const g2 = c.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(2800, t + 0.05);
+      osc2.frequency.linearRampToValueAtTime(1400, t + 0.14);
+      g2.gain.setValueAtTime(0.0, t + 0.05);
+      g2.gain.linearRampToValueAtTime(0.038, t + 0.07);
+      g2.gain.linearRampToValueAtTime(0.0, t + 0.15);
+      ch(osc2, g2);
+      osc2.start(t + 0.05); osc2.stop(t + 0.16);
+
+      // Noise sussurro
+      const sn = c.createBufferSource();
+      sn.buffer = ns(c, 0.08, 0.4);
+      const hpf = c.createBiquadFilter();
+      hpf.type = 'highpass'; hpf.frequency.value = 2000;
+      const gn = c.createGain();
+      gn.gain.setValueAtTime(0.045, t + 0.02);
+      gn.gain.linearRampToValueAtTime(0.0, t + 0.10);
+      ch(sn, hpf, gn);
+      sn.start(t + 0.02);
+    },
+
+    /* ── page ───────────────────────────────────────────────
+       Virada de página digital: burst de ruído +
+       tick de confirmação. Navegação de páginas do PDF.      */
+    page(c, ch, ns, ds) {
+      const t = c.currentTime;
+
+      // Burst de virada
+      const sn = c.createBufferSource();
+      sn.buffer = ns(c, 0.06, 0.20);
+      const bpf = c.createBiquadFilter();
+      bpf.type = 'bandpass'; bpf.frequency.value = 2200; bpf.Q.value = 1.5;
+      const gn = c.createGain();
+      gn.gain.setValueAtTime(0.18, t);
+      gn.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
+      ch(sn, bpf, gn);
+      sn.start(t);
+
+      // Tick de confirmação descendente
+      const osc = c.createOscillator();
+      const g1 = c.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(1400, t + 0.04);
+      osc.frequency.linearRampToValueAtTime(900, t + 0.10);
+      g1.gain.setValueAtTime(0.0, t + 0.04);
+      g1.gain.linearRampToValueAtTime(0.065, t + 0.050);
+      g1.gain.linearRampToValueAtTime(0.0, t + 0.11);
+      ch(osc, g1);
+      osc.start(t + 0.04); osc.stop(t + 0.12);
+    },
+
+    /* ── zoom ───────────────────────────────────────────────
+       Ajuste óptico: micro-servo click + tom de lente.
+       Zoom in/out e botões fit do visualizador de cert.      */
+    zoom(c, ch, ns, ds) {
+      const t = c.currentTime;
+
+      // Micro-servo click
+      const sn = c.createBufferSource();
+      sn.buffer = ns(c, 0.008, 0.06);
+      const hpf = c.createBiquadFilter();
+      hpf.type = 'highpass'; hpf.frequency.value = 4500;
+      const g1 = c.createGain();
+      g1.gain.setValueAtTime(0.14, t);
+      g1.gain.exponentialRampToValueAtTime(0.001, t + 0.010);
+      ch(sn, hpf, g1);
+      sn.start(t);
+
+      // Tom de ajuste óptico
+      const osc = c.createOscillator();
+      const g2 = c.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(1600, t + 0.006);
+      osc.frequency.linearRampToValueAtTime(2000, t + 0.04);
+      g2.gain.setValueAtTime(0.0, t + 0.006);
+      g2.gain.linearRampToValueAtTime(0.055, t + 0.013);
+      g2.gain.linearRampToValueAtTime(0.0, t + 0.045);
+      ch(osc, g2);
+      osc.start(t + 0.006); osc.stop(t + 0.05);
+    },
+    /* ── tetris_move ─────────────────────────────────────────
+   Micro-tick de posicionamento: noise HF ultracurto.
+   Movimentação ← → de peça.                             */
+    tetris_move(c, ch, ns, ds) {
+      const t = c.currentTime;
+      const sn = c.createBufferSource();
+      sn.buffer = ns(c, 0.006, 0.04);
+      const hpf = c.createBiquadFilter();
+      hpf.type = 'highpass'; hpf.frequency.value = 5500;
+      const g = c.createGain();
+      g.gain.setValueAtTime(0.10, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.007);
+      ch(sn, hpf, g);
+      sn.start(t);
+    },
+
+    /* ── tetris_rotate ───────────────────────────────────────
+       Spin mecânico: sine ascendente rápido.
+       Rotação de peça (↻ / ↺).                              */
+    tetris_rotate(c, ch, ns, ds) {
+      const t = c.currentTime;
+      const osc = c.createOscillator();
+      const g = c.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(600, t);
+      osc.frequency.exponentialRampToValueAtTime(1100, t + 0.045);
+      g.gain.setValueAtTime(0.0, t);
+      g.gain.linearRampToValueAtTime(0.065, t + 0.006);
+      g.gain.linearRampToValueAtTime(0.0, t + 0.052);
+      ch(osc, g);
+      osc.start(t); osc.stop(t + 0.06);
+    },
+
+    /* ── tetris_lock ─────────────────────────────────────────
+       Encaixe de peça: sub-thud + click metálico.
+       solidify() — peça fixada no board.                    */
+    tetris_lock(c, ch, ns, ds) {
+      const t = c.currentTime;
+      const sub = c.createOscillator();
+      const gs = c.createGain();
+      sub.type = 'sine';
+      sub.frequency.setValueAtTime(110, t);
+      sub.frequency.exponentialRampToValueAtTime(42, t + 0.07);
+      gs.gain.setValueAtTime(0.28, t);
+      gs.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
+      ch(sub, gs);
+      sub.start(t); sub.stop(t + 0.09);
+      const sn = c.createBufferSource();
+      sn.buffer = ns(c, 0.03, 0.12);
+      const bpf = c.createBiquadFilter();
+      bpf.type = 'bandpass'; bpf.frequency.value = 2000; bpf.Q.value = 1.5;
+      const gn = c.createGain();
+      gn.gain.setValueAtTime(0.18, t);
+      gn.gain.exponentialRampToValueAtTime(0.001, t + 0.04);
+      ch(sn, bpf, gn);
+      sn.start(t);
+    },
+
+    /* ── tetris_drop ─────────────────────────────────────────
+       Hard drop: impacto pesado + burst de ruído.
+       hardDrop() — queda forçada.                           */
+    tetris_drop(c, ch, ns, ds) {
+      const t = c.currentTime;
+      const sub = c.createOscillator();
+      const gs = c.createGain();
+      sub.type = 'sine';
+      sub.frequency.setValueAtTime(200, t);
+      sub.frequency.exponentialRampToValueAtTime(35, t + 0.09);
+      gs.gain.setValueAtTime(0.38, t);
+      gs.gain.exponentialRampToValueAtTime(0.001, t + 0.10);
+      ch(sub, gs);
+      sub.start(t); sub.stop(t + 0.11);
+      const sn = c.createBufferSource();
+      sn.buffer = ns(c, 0.08, 0.20);
+      const bpf = c.createBiquadFilter();
+      bpf.type = 'bandpass'; bpf.frequency.value = 700; bpf.Q.value = 1.0;
+      const gn = c.createGain();
+      gn.gain.setValueAtTime(0.25, t);
+      gn.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
+      ch(sn, bpf, gn);
+      sn.start(t);
+    },
+
+    /* ── tetris_clear ────────────────────────────────────────
+       Limpeza de linha: arpejo ascendente satisfatório.
+       clearLines() — 1-3 linhas.                            */
+    tetris_clear(c, ch, ns, ds) {
+      const t = c.currentTime;
+      [[349, 0], [440, .055], [523, .11], [659, .165]].forEach(([freq, delay]) => {
+        const osc = c.createOscillator();
+        const g = c.createGain();
+        osc.type = 'square'; osc.frequency.value = freq;
+        g.gain.setValueAtTime(0.0, t + delay);
+        g.gain.linearRampToValueAtTime(0.085, t + delay + 0.006);
+        g.gain.setValueAtTime(0.085, t + delay + 0.040);
+        g.gain.linearRampToValueAtTime(0.0, t + delay + 0.068);
+        ch(osc, g);
+        osc.start(t + delay); osc.stop(t + delay + 0.08);
+      });
+      const sn = c.createBufferSource();
+      sn.buffer = ns(c, 0.22, 0.45);
+      const bpf = c.createBiquadFilter();
+      bpf.type = 'bandpass'; bpf.frequency.value = 2800; bpf.Q.value = 2;
+      const gn = c.createGain();
+      gn.gain.setValueAtTime(0.09, t);
+      gn.gain.linearRampToValueAtTime(0.0, t + 0.22);
+      ch(sn, bpf, gn);
+      sn.start(t);
+    },
+
+    /* ── tetris_4lines ───────────────────────────────────────
+       TETRIS: acorde épico + sub-boom.
+       clearLines() — 4 linhas simultâneas.                  */
+    tetris_4lines(c, ch, ns, ds) {
+      const t = c.currentTime;
+      [[440, 0], [554, .05], [659, .10], [880, .15], [1100, .22]].forEach(([freq, delay]) => {
+        const osc = c.createOscillator();
+        const g = c.createGain();
+        osc.type = 'square'; osc.frequency.value = freq;
+        g.gain.setValueAtTime(0.0, t + delay);
+        g.gain.linearRampToValueAtTime(0.13, t + delay + 0.007);
+        g.gain.setValueAtTime(0.13, t + delay + 0.10);
+        g.gain.linearRampToValueAtTime(0.0, t + delay + 0.25);
+        ch(osc, g);
+        osc.start(t + delay); osc.stop(t + delay + 0.27);
+      });
+      const sub = c.createOscillator();
+      const gs = c.createGain();
+      sub.type = 'sine';
+      sub.frequency.setValueAtTime(75, t + 0.18);
+      sub.frequency.exponentialRampToValueAtTime(28, t + 0.42);
+      gs.gain.setValueAtTime(0.38, t + 0.18);
+      gs.gain.exponentialRampToValueAtTime(0.001, t + 0.46);
+      ch(sub, gs);
+      sub.start(t + 0.18); sub.stop(t + 0.48);
+      const sn = c.createBufferSource();
+      sn.buffer = ns(c, 0.5, 0.38);
+      const bpf = c.createBiquadFilter();
+      bpf.type = 'bandpass'; bpf.frequency.value = 1800; bpf.Q.value = 1;
+      const gn = c.createGain();
+      gn.gain.setValueAtTime(0.14, t);
+      gn.gain.linearRampToValueAtTime(0.0, t + 0.5);
+      ch(sn, bpf, gn);
+      sn.start(t);
+    },
+
+    /* ── tetris_levelup ──────────────────────────────────────
+       Level up: fanfare ascendente de 5 notas.
+       clearLines() — level++.                               */
+    tetris_levelup(c, ch, ns, ds) {
+      const t = c.currentTime;
+      [[523, 0], [659, .065], [784, .13], [1047, .195], [1319, .27]].forEach(([freq, delay]) => {
+        const osc = c.createOscillator();
+        const g = c.createGain();
+        osc.type = 'square'; osc.frequency.value = freq;
+        g.gain.setValueAtTime(0.0, t + delay);
+        g.gain.linearRampToValueAtTime(0.10, t + delay + 0.005);
+        g.gain.setValueAtTime(0.10, t + delay + 0.046);
+        g.gain.linearRampToValueAtTime(0.0, t + delay + 0.068);
+        ch(osc, g);
+        osc.start(t + delay); osc.stop(t + delay + 0.08);
+      });
+    },
 
     // ── Método principal ──────────────────────────────────────
     play(name) {
@@ -788,6 +1126,21 @@ document.addEventListener('alpine:init', () => {
     toggleMute() {
       this.muted = !this.muted;
       localStorage.setItem('sfx-muted', this.muted);
+      if (this.muted) this.stopMusic();
+    },
+    startMusic() {
+      if (this.muted) return;
+      window.TetrisMusic?.start();
+      this.musicPlaying = true;
+    },
+
+    stopMusic() {
+      window.TetrisMusic?.stop();
+      this.musicPlaying = false;
+    },
+
+    toggleMusic() {
+      this.musicPlaying ? this.stopMusic() : this.startMusic();
     },
 
     // ── Compat ───────────────────────────────────────────────

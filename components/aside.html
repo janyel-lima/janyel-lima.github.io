@@ -89,7 +89,8 @@
             </div>
 
             <div class="pt-2">
-                <a href="seu-caminho/curriculo.pdf" @click="$store.sfx.play('click');" download="Curriculo_Janyel_Lima"
+                <a href="seu-caminho/curriculo.pdf" @click="$store.sfx.play('download');"
+                    download="Curriculo_Janyel_Lima"
                     class="rpg-button w-full py-4 px-5 flex items-center justify-between group/cv border-accent/30 hover:border-accent bg-accent/5">
 
                     <div class="flex items-center gap-4">
@@ -208,7 +209,7 @@
     </div>
 
     <div class="flex flex-col gap-4">
-        <a :href="devStats.social_links.whatsapp" target="_blank"
+        <a :href="devStats.social_links.whatsapp" @click="$store.sfx.play('link')" target="_blank"
             class="rpg-button py-4 px-5 flex items-center justify-between group/btn">
             <div class="flex items-center gap-4">
                 <i data-lucide="message-circle"
@@ -226,7 +227,8 @@
                 x-text="$store.i18n.t('btn_send')"></div>
         </a>
 
-        <a :href="devStats.social_links.email" class="rpg-button py-4 px-5 flex items-center justify-between group/btn">
+        <a :href="devStats.social_links.email" @click="$store.sfx.play('link')"
+            class="rpg-button py-4 px-5 flex items-center justify-between group/btn">
             <div class="flex items-center gap-4">
                 <i data-lucide="mail"
                     class="w-5 h-5 text-primary shrink-0 transition-transform group-hover/btn:scale-110"></i>
@@ -264,12 +266,12 @@
         </div>
     </div>
     <div class="flex flex-col gap-3">
-        <a target="_blank" :href="devStats.social_links.github"
+        <a target="_blank" @click="$store.sfx.play('link')" :href="devStats.social_links.github"
             class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[length:var(--text-md)]">
             <i data-lucide="github" class="w-4 h-4 text-primary shrink-0"></i>
             <span class="tracking-[0.1em]">Github</span>
         </a>
-        <a target="_blank" :href="devStats.social_links.linkedin"
+        <a target="_blank" @click="$store.sfx.play('link')" :href="devStats.social_links.linkedin"
             class="rpg-button py-3 px-5 flex items-center justify-start gap-4 text-[length:var(--text-md)]">
             <i data-lucide="linkedin" class="w-4 h-4 text-primary shrink-0"></i>
             <span class="tracking-[0.1em]">LinkedIn</span>
@@ -761,7 +763,7 @@
                         <div class="w-1 h-2 bg-primary/50"></div>
                         <div class="w-1 h-2 bg-primary animate-pulse"></div>
                     </div>
-                    <button @click="close()" class="text-primary/50 hover:text-primary transition-colors p-1">
+                    <button @click="close() " class="text-primary/50 hover:text-primary transition-colors p-1">
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
                 </div>

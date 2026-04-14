@@ -30,11 +30,11 @@ function certViewerData() {
     // ── Closure variables — completely invisible to Alpine ────────────────────
     // Alpine proxies everything inside return{}. These live in the closure scope
     // and are accessed directly by all methods without going through the Proxy.
-    let _pdfDoc      = null;   // PDFDocumentProxy — MUST stay here, not in return{}
-    let _renderTask  = null;
-    let _resizeObs   = null;
-    let _boundKey    = null;
-    let _boundFsChg  = null;
+    let _pdfDoc = null;   // PDFDocumentProxy — MUST stay here, not in return{}
+    let _renderTask = null;
+    let _resizeObs = null;
+    let _boundKey = null;
+    let _boundFsChg = null;
     let _touchStartX = null;
     // ─────────────────────────────────────────────────────────────────────────
 
@@ -42,15 +42,15 @@ function certViewerData() {
 
         /* ── Reactive state (safe for Alpine Proxy) ──────── */
         certModal: {
-            open:       false,
-            file:       null,
-            page:       1,
-            total:      0,
-            loading:    false,
+            open: false,
+            file: null,
+            page: 1,
+            total: 0,
+            loading: false,
             fullscreen: false,
-            zoom:       1,        // actual render scale
-            zoomPct:    100,      // display value (integer %)
-            fitMode:   'width',   // 'width' | 'page' | 'custom'
+            zoom: 1,        // actual render scale
+            zoomPct: 100,      // display value (integer %)
+            fitMode: 'width',   // 'width' | 'page' | 'custom'
         },
 
         /* ══════════════════════════════════════════════════
@@ -84,11 +84,13 @@ function certViewerData() {
 
         async prevPage() {
             if (this.certModal.page <= 1) return;
+            this.$store.sfx.play('page');
             await this._renderPage(_pdfDoc, this.certModal.page - 1);
         },
 
         async nextPage() {
             if (this.certModal.page >= this.certModal.total) return;
+            this.$store.sfx.play('page');
             await this._renderPage(_pdfDoc, this.certModal.page + 1);
         },
 
@@ -96,27 +98,31 @@ function certViewerData() {
 
         zoomIn() {
             const next = Math.min(this.certModal.zoom * 1.25, 4);
+            this.$store.sfx.play('zoom');
             this._applyCustomZoom(next);
         },
 
         zoomOut() {
             const next = Math.max(this.certModal.zoom * 0.8, 0.25);
+            this.$store.sfx.play('zoom');
             this._applyCustomZoom(next);
         },
 
         fitWidth() {
             this.certModal.fitMode = 'width';
+            this.$store.sfx.play('zoom');
             this._renderPage(_pdfDoc, this.certModal.page);
         },
 
         fitPage() {
             this.certModal.fitMode = 'page';
+            this.$store.sfx.play('zoom');
             this._renderPage(_pdfDoc, this.certModal.page);
         },
 
         _applyCustomZoom(scale) {
             this.certModal.fitMode = 'custom';
-            this.certModal.zoom    = scale;
+            this.certModal.zoom = scale;
             this.certModal.zoomPct = Math.round(scale * 100);
             this._renderPage(_pdfDoc, this.certModal.page);
         },
@@ -134,7 +140,7 @@ function certViewerData() {
                             this._renderPage(_pdfDoc, this.certModal.page)
                         );
                     })
-                    .catch(() => {});
+                    .catch(() => { });
             } else {
                 this._exitFs();
             }
@@ -166,7 +172,7 @@ function certViewerData() {
 
         _cancelRender() {
             if (_renderTask) {
-                try { _renderTask.cancel(); } catch (_) {}
+                try { _renderTask.cancel(); } catch (_) { }
                 _renderTask = null;
             }
         },
@@ -212,9 +218,9 @@ function certViewerData() {
         },
 
         _detachListeners() {
-            if (_boundKey)   { window.removeEventListener('keydown', _boundKey); _boundKey = null; }
+            if (_boundKey) { window.removeEventListener('keydown', _boundKey); _boundKey = null; }
             if (_boundFsChg) { window.removeEventListener('fullscreenchange', _boundFsChg); _boundFsChg = null; }
-            if (_resizeObs)  { _resizeObs.disconnect(); _resizeObs = null; }
+            if (_resizeObs) { _resizeObs.disconnect(); _resizeObs = null; }
         },
 
         _onKey(e) {
@@ -280,7 +286,7 @@ function certViewerData() {
 
         async _preload(pdf, pageNum) {
             if (pageNum < 1 || pageNum > (pdf?.numPages ?? 0)) return;
-            try { await pdf.getPage(pageNum); } catch (_) {}
+            try { await pdf.getPage(pageNum); } catch (_) { }
         },
 
         /* ── Rendering ───────────────────────────────────── */
@@ -301,13 +307,13 @@ function certViewerData() {
             }
 
             const canvas = document.getElementById('cert-canvas');
-            const wrap   = document.getElementById('cert-canvas-wrap');
+            const wrap = document.getElementById('cert-canvas-wrap');
             if (!canvas || !wrap) return;
 
-            const dpr  = Math.min(window.devicePixelRatio || 1, 2);
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
             const padX = 32;
             const padY = 32;
-            const availW = wrap.clientWidth  - padX;
+            const availW = wrap.clientWidth - padX;
             const availH = wrap.clientHeight - padY;
 
             const base = page.getViewport({ scale: 1 });
@@ -323,16 +329,16 @@ function certViewerData() {
             }
             scale = Math.max(0.25, Math.min(scale, 4));
 
-            this.certModal.zoom    = scale;
+            this.certModal.zoom = scale;
             this.certModal.zoomPct = Math.round(scale * 100);
 
-            const cssW = Math.round(base.width  * scale);
+            const cssW = Math.round(base.width * scale);
             const cssH = Math.round(base.height * scale);
 
             const vp = page.getViewport({ scale: scale * dpr });
-            canvas.width  = vp.width;
+            canvas.width = vp.width;
             canvas.height = vp.height;
-            canvas.style.width  = cssW + 'px';
+            canvas.style.width = cssW + 'px';
             canvas.style.height = cssH + 'px';
 
             const task = page.render({
@@ -345,7 +351,7 @@ function certViewerData() {
                 await task.promise;
 
                 this.certModal.loading = false;
-                this.certModal.page    = pageNum;
+                this.certModal.page = pageNum;
 
                 this._preload(pdf, pageNum + 1);
                 this._preload(pdf, pageNum - 1);

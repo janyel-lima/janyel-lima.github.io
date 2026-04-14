@@ -42,13 +42,13 @@
         class="text-[length:var(--text-md)] tracking-[0.1em] text-gray-200 uppercase mb-2">
       </span>
 
-      <a href="#top" class="text-[length:var(--text-micro)]  tracking-[0.1em] text-gray-400 hover:text-primary
+      <a @click="$store.sfx.play('link')" href="#top" class="text-[length:var(--text-micro)]  tracking-[0.1em] text-gray-400 hover:text-primary
                  transition-colors uppercase ">
         >>
         <span x-text="$store.i18n.t('return_top')"></span>
       </a>
 
-      <a href="mailto:seu-email@dominio.com" class="text-[length:var(--text-micro)] tracking-[0.1em]  text-gray-400 hover:text-primary
+      <a @click="$store.sfx.play('link')" href="mailto:janyel.lima2809@outlook.com" class="text-[length:var(--text-micro)] tracking-[0.1em]  text-gray-400 hover:text-primary
                  transition-colors uppercase ">
         >>
         <span x-text="$store.i18n.t('send_transmission')"></span>

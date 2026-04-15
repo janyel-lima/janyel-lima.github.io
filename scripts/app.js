@@ -17,7 +17,6 @@ let currentLang = detectLocale();
 // ALPINE INIT
 // ==============================
 document.addEventListener('alpine:init', () => {
-
   // ==============================
   // GLOBAL: I18N STORE
   // ==============================
@@ -38,7 +37,7 @@ document.addEventListener('alpine:init', () => {
         val &&
         typeof val === 'object' &&
         !Array.isArray(val) &&
-        (('en' in val) || ('pt-br' in val))
+        ('en' in val || 'pt-br' in val)
       ) {
         return val[this.lang] ?? val.en ?? val['pt-br'] ?? key;
       }
@@ -57,15 +56,17 @@ document.addEventListener('alpine:init', () => {
       // para que updateInterfaceStatic já leia o valor correto
       currentLang = this.lang;
 
-      window.dispatchEvent(new CustomEvent('i18n:changed', {
-        detail: { lang: this.lang }
-      }));
+      window.dispatchEvent(
+        new CustomEvent('i18n:changed', {
+          detail: { lang: this.lang },
+        })
+      );
     },
 
     toggle() {
       this.setLang(this.lang === 'en' ? 'pt-br' : 'en');
-    }
-  });// ==============================
+    },
+  }); // ==============================
   // GLOBAL: SFX STORE — Web Audio API
   // Armored Core VI: Fires of Rubicon — dark mech interface
   // $store.sfx.play('nome') | toggleMute() | muted
@@ -83,8 +84,22 @@ document.addEventListener('alpine:init', () => {
         this.__master = this.__ctx.createGain();
         this.__master.gain.value = 0.38;
         this.__master.connect(this.__ctx.destination);
+
+        // Desbloqueia no primeiro gesto do usuário (resolve o aviso de autoplay)
+        const resume = () => {
+          if (this.__ctx?.state === 'suspended') {
+            this.__ctx.resume().catch(() => {});
+          }
+        };
+        ['click', 'keydown', 'pointerdown'].forEach(evt =>
+          document.addEventListener(evt, resume, { once: true, capture: true })
+        );
       }
-      if (this.__ctx.state === 'suspended') this.__ctx.resume();
+
+      // NÃO chama resume() aqui — o listener acima cuida disso no primeiro gesto
+      // Retorna null se ainda suspenso; play() trata o null com segurança
+      if (this.__ctx.state === 'suspended') return null;
+
       return this.__ctx;
     },
 
@@ -121,7 +136,6 @@ document.addEventListener('alpine:init', () => {
 
     // ── Catálogo de sons ──────────────────────────────────────
     _sounds: {
-
       /* ── hover ─────────────────────────────────────────────
          Retículo de mira se movendo: micro-tick metálico
          + sweep HF suave. Quase inaudível, só uma textura.    */
@@ -132,7 +146,8 @@ document.addEventListener('alpine:init', () => {
         const s1 = c.createBufferSource();
         s1.buffer = ns(c, 0.012, 0.08);
         const hpf = c.createBiquadFilter();
-        hpf.type = 'highpass'; hpf.frequency.value = 4000;
+        hpf.type = 'highpass';
+        hpf.frequency.value = 4000;
         const g1 = c.createGain();
         g1.gain.setValueAtTime(0.18, t);
         g1.gain.exponentialRampToValueAtTime(0.001, t + 0.012);
@@ -148,7 +163,8 @@ document.addEventListener('alpine:init', () => {
         g2.gain.setValueAtTime(0.045, t + 0.005);
         g2.gain.linearRampToValueAtTime(0, t + 0.07);
         ch(osc, g2);
-        osc.start(t + 0.005); osc.stop(t + 0.08);
+        osc.start(t + 0.005);
+        osc.stop(t + 0.08);
       },
 
       /* ── click ─────────────────────────────────────────────
@@ -166,13 +182,16 @@ document.addEventListener('alpine:init', () => {
         gs.gain.setValueAtTime(0.32, t);
         gs.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
         ch(sub, gs);
-        sub.start(t); sub.stop(t + 0.065);
+        sub.start(t);
+        sub.stop(t + 0.065);
 
         // Impacto metálico (corpo do clique)
         const s1 = c.createBufferSource();
         s1.buffer = ns(c, 0.03, 0.1);
         const bpf = c.createBiquadFilter();
-        bpf.type = 'bandpass'; bpf.frequency.value = 2800; bpf.Q.value = 1.2;
+        bpf.type = 'bandpass';
+        bpf.frequency.value = 2800;
+        bpf.Q.value = 1.2;
         const g1 = c.createGain();
         g1.gain.setValueAtTime(0.45, t);
         g1.gain.exponentialRampToValueAtTime(0.001, t + 0.03);
@@ -183,7 +202,8 @@ document.addEventListener('alpine:init', () => {
         const s2 = c.createBufferSource();
         s2.buffer = ns(c, 0.008, 0.05);
         const hpf = c.createBiquadFilter();
-        hpf.type = 'highpass'; hpf.frequency.value = 5500;
+        hpf.type = 'highpass';
+        hpf.frequency.value = 5500;
         const g2 = c.createGain();
         g2.gain.setValueAtTime(0.22, t);
         g2.gain.exponentialRampToValueAtTime(0.001, t + 0.008);
@@ -192,14 +212,19 @@ document.addEventListener('alpine:init', () => {
       },
 
       /* ── loading ── alias de click ──────────────────────── */
-      loading(c, ch, ns, ds) { this.click(c, ch, ns, ds); },
+      loading(c, ch, ns, ds) {
+        this.click(c, ch, ns, ds);
+      },
 
       /* ── select ─────────────────────────────────────────────
          Confirmação de seleção de missão: dois beeps limpos
          eletrônicos, precisos, militares.                     */
       select(c, ch, ns, ds) {
         const t = c.currentTime;
-        [[880, 0], [1320, 0.08]].forEach(([freq, delay]) => {
+        [
+          [880, 0],
+          [1320, 0.08],
+        ].forEach(([freq, delay]) => {
           const osc = c.createOscillator();
           const g = c.createGain();
           osc.type = 'sine';
@@ -209,7 +234,8 @@ document.addEventListener('alpine:init', () => {
           g.gain.setValueAtTime(0.14, t + delay + 0.035);
           g.gain.linearRampToValueAtTime(0.0, t + delay + 0.055);
           ch(osc, g);
-          osc.start(t + delay); osc.stop(t + delay + 0.065);
+          osc.start(t + delay);
+          osc.stop(t + delay + 0.065);
         });
       },
 
@@ -232,7 +258,8 @@ document.addEventListener('alpine:init', () => {
         g1.gain.setValueAtTime(0.12, t);
         g1.gain.linearRampToValueAtTime(0, t + 0.2);
         ch(osc, lpf, g1);
-        osc.start(t); osc.stop(t + 0.22);
+        osc.start(t);
+        osc.stop(t + 0.22);
 
         // Thud de impacto mecânico no fim
         const sub = c.createOscillator();
@@ -243,13 +270,16 @@ document.addEventListener('alpine:init', () => {
         gs.gain.setValueAtTime(0.28, t + 0.14);
         gs.gain.exponentialRampToValueAtTime(0.001, t + 0.24);
         ch(sub, gs);
-        sub.start(t + 0.14); sub.stop(t + 0.26);
+        sub.start(t + 0.14);
+        sub.stop(t + 0.26);
 
         // Noise de impacto
         const sn = c.createBufferSource();
         sn.buffer = ns(c, 0.04, 0.12);
         const bpf = c.createBiquadFilter();
-        bpf.type = 'bandpass'; bpf.frequency.value = 600; bpf.Q.value = 0.8;
+        bpf.type = 'bandpass';
+        bpf.frequency.value = 600;
+        bpf.Q.value = 0.8;
         const gn = c.createGain();
         gn.gain.setValueAtTime(0.2, t + 0.15);
         gn.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
@@ -268,7 +298,9 @@ document.addEventListener('alpine:init', () => {
         s1.buffer = ns(c, 0.018, 0.1);
         const d1 = ds(c, 120);
         const bpf = c.createBiquadFilter();
-        bpf.type = 'bandpass'; bpf.frequency.value = 1600; bpf.Q.value = 1.5;
+        bpf.type = 'bandpass';
+        bpf.frequency.value = 1600;
+        bpf.Q.value = 1.5;
         const g1 = c.createGain();
         g1.gain.setValueAtTime(0.3, t);
         g1.gain.exponentialRampToValueAtTime(0.001, t + 0.018);
@@ -279,20 +311,23 @@ document.addEventListener('alpine:init', () => {
         const osc = c.createOscillator();
         const lpf = c.createBiquadFilter();
         const g2 = c.createGain();
-        lpf.type = 'lowpass'; lpf.frequency.value = 800;
+        lpf.type = 'lowpass';
+        lpf.frequency.value = 800;
         osc.type = 'sawtooth';
         osc.frequency.setValueAtTime(320, t + 0.018);
         osc.frequency.exponentialRampToValueAtTime(140, t + 0.07);
         g2.gain.setValueAtTime(0.08, t + 0.018);
         g2.gain.linearRampToValueAtTime(0, t + 0.08);
         ch(osc, lpf, g2);
-        osc.start(t + 0.018); osc.stop(t + 0.085);
+        osc.start(t + 0.018);
+        osc.stop(t + 0.085);
 
         // Echo tick seco
         const s2 = c.createBufferSource();
         s2.buffer = ns(c, 0.01, 0.06);
         const hpf = c.createBiquadFilter();
-        hpf.type = 'highpass'; hpf.frequency.value = 3500;
+        hpf.type = 'highpass';
+        hpf.frequency.value = 3500;
         const g3 = c.createGain();
         g3.gain.setValueAtTime(0.12, t + 0.055);
         g3.gain.exponentialRampToValueAtTime(0.001, t + 0.065);
@@ -323,14 +358,17 @@ document.addEventListener('alpine:init', () => {
         const osc = c.createOscillator();
         const bpf = c.createBiquadFilter();
         const g1 = c.createGain();
-        bpf.type = 'bandpass'; bpf.frequency.value = 700; bpf.Q.value = 2;
+        bpf.type = 'bandpass';
+        bpf.frequency.value = 700;
+        bpf.Q.value = 2;
         osc.type = 'sawtooth';
         osc.frequency.setValueAtTime(160, t);
         osc.frequency.exponentialRampToValueAtTime(1200, t + 0.13);
         g1.gain.setValueAtTime(0.14, t);
         g1.gain.linearRampToValueAtTime(0, t + 0.15);
         ch(osc, bpf, g1);
-        osc.start(t); osc.stop(t + 0.16);
+        osc.start(t);
+        osc.stop(t + 0.16);
 
         // HF tail (esteira de ar)
         const osc2 = c.createOscillator();
@@ -341,7 +379,8 @@ document.addEventListener('alpine:init', () => {
         g2.gain.setValueAtTime(0.05, t + 0.06);
         g2.gain.linearRampToValueAtTime(0, t + 0.22);
         ch(osc2, g2);
-        osc2.start(t + 0.06); osc2.stop(t + 0.24);
+        osc2.start(t + 0.06);
+        osc2.stop(t + 0.24);
       },
 
       /* ── decrypt ────────────────────────────────────────────
@@ -360,7 +399,8 @@ document.addEventListener('alpine:init', () => {
         g1.gain.setValueAtTime(0.12, t);
         g1.gain.linearRampToValueAtTime(0, t + 0.1);
         ch(o1, d1, g1);
-        o1.start(t); o1.stop(t + 0.11);
+        o1.start(t);
+        o1.stop(t + 0.11);
 
         // Onda 2: glitch médio
         const o2 = c.createOscillator();
@@ -372,26 +412,32 @@ document.addEventListener('alpine:init', () => {
         g2.gain.setValueAtTime(0.1, t + 0.1);
         g2.gain.linearRampToValueAtTime(0, t + 0.2);
         ch(o2, d2, g2);
-        o2.start(t + 0.1); o2.stop(t + 0.21);
+        o2.start(t + 0.1);
+        o2.stop(t + 0.21);
 
         // Onda 3: alta frequência (data corruption)
         const o3 = c.createOscillator();
         const bpf = c.createBiquadFilter();
         const g3 = c.createGain();
-        bpf.type = 'bandpass'; bpf.frequency.value = 3200; bpf.Q.value = 3;
+        bpf.type = 'bandpass';
+        bpf.frequency.value = 3200;
+        bpf.Q.value = 3;
         o3.type = 'square';
         o3.frequency.setValueAtTime(1600, t + 0.2);
         o3.frequency.linearRampToValueAtTime(400, t + 0.28);
         g3.gain.setValueAtTime(0.09, t + 0.2);
         g3.gain.linearRampToValueAtTime(0, t + 0.3);
         ch(o3, bpf, g3);
-        o3.start(t + 0.2); o3.stop(t + 0.32);
+        o3.start(t + 0.2);
+        o3.stop(t + 0.32);
 
         // Estática de transmissão
         const sn = c.createBufferSource();
         sn.buffer = ns(c, 0.28, 0.5);
         const bpf2 = c.createBiquadFilter();
-        bpf2.type = 'bandpass'; bpf2.frequency.value = 2000; bpf2.Q.value = 1.5;
+        bpf2.type = 'bandpass';
+        bpf2.frequency.value = 2000;
+        bpf2.Q.value = 1.5;
         const gn = c.createGain();
         gn.gain.setValueAtTime(0.16, t);
         gn.gain.setValueAtTime(0.16, t + 0.22);
@@ -408,7 +454,8 @@ document.addEventListener('alpine:init', () => {
         gs.gain.setValueAtTime(0.28, t + 0.28);
         gs.gain.exponentialRampToValueAtTime(0.001, t + 0.44);
         ch(sub, gs);
-        sub.start(t + 0.28); sub.stop(t + 0.46);
+        sub.start(t + 0.28);
+        sub.stop(t + 0.46);
 
         // Confirmação de acesso (tom limpo ascendente)
         const osc = c.createOscillator();
@@ -421,7 +468,8 @@ document.addEventListener('alpine:init', () => {
         gc.gain.setValueAtTime(0.13, t + 0.5);
         gc.gain.linearRampToValueAtTime(0.0, t + 0.55);
         ch(osc, gc);
-        osc.start(t + 0.38); osc.stop(t + 0.57);
+        osc.start(t + 0.38);
+        osc.stop(t + 0.57);
       },
 
       /* ── unlock ─────────────────────────────────────────────
@@ -431,7 +479,12 @@ document.addEventListener('alpine:init', () => {
         const t = c.currentTime;
 
         // Arpejo de autorização (AC6-style: 4 notas + acorde)
-        [[440, 0], [554, 0.075], [659, 0.15], [880, 0.225]].forEach(([freq, delay]) => {
+        [
+          [440, 0],
+          [554, 0.075],
+          [659, 0.15],
+          [880, 0.225],
+        ].forEach(([freq, delay]) => {
           const osc = c.createOscillator();
           const g = c.createGain();
           osc.type = 'sine';
@@ -441,14 +494,16 @@ document.addEventListener('alpine:init', () => {
           g.gain.setValueAtTime(0.12, t + delay + 0.055);
           g.gain.linearRampToValueAtTime(0.0, t + delay + 0.09);
           ch(osc, g);
-          osc.start(t + delay); osc.stop(t + delay + 0.1);
+          osc.start(t + delay);
+          osc.stop(t + delay + 0.1);
         });
 
         // Tick metálico de confirmação final
         const sn = c.createBufferSource();
         sn.buffer = ns(c, 0.015, 0.08);
         const hpf = c.createBiquadFilter();
-        hpf.type = 'highpass'; hpf.frequency.value = 5000;
+        hpf.type = 'highpass';
+        hpf.frequency.value = 5000;
         const gn = c.createGain();
         gn.gain.setValueAtTime(0.2, t + 0.32);
         gn.gain.exponentialRampToValueAtTime(0.001, t + 0.34);
@@ -463,7 +518,13 @@ document.addEventListener('alpine:init', () => {
         const t = c.currentTime;
 
         // Sequência de uplink (beeps precisos)
-        [[440, 0], [440, 0.06], [660, 0.12], [440, 0.18], [880, 0.24]].forEach(([freq, delay]) => {
+        [
+          [440, 0],
+          [440, 0.06],
+          [660, 0.12],
+          [440, 0.18],
+          [880, 0.24],
+        ].forEach(([freq, delay]) => {
           const osc = c.createOscillator();
           const g = c.createGain();
           osc.type = 'square';
@@ -473,14 +534,17 @@ document.addEventListener('alpine:init', () => {
           g.gain.setValueAtTime(0.07, t + delay + 0.035);
           g.gain.linearRampToValueAtTime(0.0, t + delay + 0.048);
           ch(osc, g);
-          osc.start(t + delay); osc.stop(t + delay + 0.055);
+          osc.start(t + delay);
+          osc.stop(t + delay + 0.055);
         });
 
         // Ruído de transmissão (carrier wave)
         const sn = c.createBufferSource();
         sn.buffer = ns(c, 0.32, 0.6);
         const bpf = c.createBiquadFilter();
-        bpf.type = 'bandpass'; bpf.frequency.value = 3500; bpf.Q.value = 4;
+        bpf.type = 'bandpass';
+        bpf.frequency.value = 3500;
+        bpf.Q.value = 4;
         const gn = c.createGain();
         gn.gain.setValueAtTime(0.06, t);
         gn.gain.linearRampToValueAtTime(0, t + 0.32);
@@ -496,7 +560,8 @@ document.addEventListener('alpine:init', () => {
         gs.gain.setValueAtTime(0.22, t + 0.3);
         gs.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
         ch(sub, gs);
-        sub.start(t + 0.3); sub.stop(t + 0.42);
+        sub.start(t + 0.3);
+        sub.stop(t + 0.42);
       },
 
       /* ── lang ───────────────────────────────────────────────
@@ -515,7 +580,8 @@ document.addEventListener('alpine:init', () => {
           g.gain.setValueAtTime(0.07, t + i * 0.028);
           g.gain.linearRampToValueAtTime(0, t + i * 0.028 + 0.022);
           ch(osc, d, g);
-          osc.start(t + i * 0.028); osc.stop(t + i * 0.028 + 0.03);
+          osc.start(t + i * 0.028);
+          osc.stop(t + i * 0.028 + 0.03);
         }
 
         // Beep de sync confirmado
@@ -527,7 +593,8 @@ document.addEventListener('alpine:init', () => {
         g.gain.linearRampToValueAtTime(0.1, t + 0.168);
         g.gain.linearRampToValueAtTime(0.0, t + 0.2);
         ch(osc, g);
-        osc.start(t + 0.16); osc.stop(t + 0.21);
+        osc.start(t + 0.16);
+        osc.stop(t + 0.21);
       },
 
       /* ── theme ──────────────────────────────────────────────
@@ -563,7 +630,8 @@ document.addEventListener('alpine:init', () => {
         g1.gain.linearRampToValueAtTime(0.14, t + 0.22);
         g1.gain.linearRampToValueAtTime(0.0, t + 0.48);
         ch(osc, lpf2, g1);
-        osc.start(t + 0.15); osc.stop(t + 0.5);
+        osc.start(t + 0.15);
+        osc.stop(t + 0.5);
 
         // Sub-impacto de reboot
         const sub = c.createOscillator();
@@ -574,7 +642,8 @@ document.addEventListener('alpine:init', () => {
         gs.gain.setValueAtTime(0.3, t + 0.15);
         gs.gain.exponentialRampToValueAtTime(0.001, t + 0.32);
         ch(sub, gs);
-        sub.start(t + 0.15); sub.stop(t + 0.34);
+        sub.start(t + 0.15);
+        sub.stop(t + 0.34);
       },
 
       /* ── gamepad ────────────────────────────────────────────
@@ -584,11 +653,17 @@ document.addEventListener('alpine:init', () => {
         const t = c.currentTime;
 
         // Arpejo de missão aceita (square wave limpo)
-        [[523, 0], [659, 0.07], [784, 0.14], [1047, 0.21]].forEach(([freq, delay]) => {
+        [
+          [523, 0],
+          [659, 0.07],
+          [784, 0.14],
+          [1047, 0.21],
+        ].forEach(([freq, delay]) => {
           const osc = c.createOscillator();
           const lpf = c.createBiquadFilter();
           const g = c.createGain();
-          lpf.type = 'lowpass'; lpf.frequency.value = 2000 - delay * 1000;
+          lpf.type = 'lowpass';
+          lpf.frequency.value = 2000 - delay * 1000;
           osc.type = 'square';
           osc.frequency.value = freq;
           g.gain.setValueAtTime(0.0, t + delay);
@@ -596,7 +671,8 @@ document.addEventListener('alpine:init', () => {
           g.gain.setValueAtTime(0.11, t + delay + 0.045);
           g.gain.linearRampToValueAtTime(0.0, t + delay + 0.065);
           ch(osc, lpf, g);
-          osc.start(t + delay); osc.stop(t + delay + 0.075);
+          osc.start(t + delay);
+          osc.stop(t + delay + 0.075);
         });
 
         // Impacto de confirmação no fim
@@ -608,12 +684,15 @@ document.addEventListener('alpine:init', () => {
         gs.gain.setValueAtTime(0.3, t + 0.3);
         gs.gain.exponentialRampToValueAtTime(0.001, t + 0.44);
         ch(sub, gs);
-        sub.start(t + 0.3); sub.stop(t + 0.46);
+        sub.start(t + 0.3);
+        sub.stop(t + 0.46);
 
         const sn = c.createBufferSource();
         sn.buffer = ns(c, 0.04, 0.15);
         const bpf = c.createBiquadFilter();
-        bpf.type = 'bandpass'; bpf.frequency.value = 1200; bpf.Q.value = 1;
+        bpf.type = 'bandpass';
+        bpf.frequency.value = 1200;
+        bpf.Q.value = 1;
         const gn = c.createGain();
         gn.gain.setValueAtTime(0.25, t + 0.3);
         gn.gain.exponentialRampToValueAtTime(0.001, t + 0.36);
@@ -628,7 +707,12 @@ document.addEventListener('alpine:init', () => {
         const t = c.currentTime;
 
         // Descida de frequência (abort sequence)
-        [[440, 0], [330, 0.08], [220, 0.16], [165, 0.24]].forEach(([freq, delay]) => {
+        [
+          [440, 0],
+          [330, 0.08],
+          [220, 0.16],
+          [165, 0.24],
+        ].forEach(([freq, delay]) => {
           const osc = c.createOscillator();
           const d = ds(c, 60);
           const g = c.createGain();
@@ -639,20 +723,23 @@ document.addEventListener('alpine:init', () => {
           g.gain.setValueAtTime(0.1, t + delay + 0.05);
           g.gain.linearRampToValueAtTime(0.0, t + delay + 0.07);
           ch(osc, d, g);
-          osc.start(t + delay); osc.stop(t + delay + 0.08);
+          osc.start(t + delay);
+          osc.stop(t + delay + 0.08);
         });
 
         // Buzz de sistema rejeitado
         const osc = c.createOscillator();
         const lpf = c.createBiquadFilter();
         const g = c.createGain();
-        lpf.type = 'lowpass'; lpf.frequency.value = 400;
+        lpf.type = 'lowpass';
+        lpf.frequency.value = 400;
         osc.type = 'square';
         osc.frequency.value = 120;
         g.gain.setValueAtTime(0.1, t + 0.32);
         g.gain.linearRampToValueAtTime(0, t + 0.46);
         ch(osc, lpf, g);
-        osc.start(t + 0.32); osc.stop(t + 0.48);
+        osc.start(t + 0.32);
+        osc.stop(t + 0.48);
       },
 
       /* ── cert ───────────────────────────────────────────────
@@ -670,12 +757,15 @@ document.addEventListener('alpine:init', () => {
         gs.gain.setValueAtTime(0.32, t);
         gs.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
         ch(sub, gs);
-        sub.start(t); sub.stop(t + 0.08);
+        sub.start(t);
+        sub.stop(t + 0.08);
 
         const sn = c.createBufferSource();
         sn.buffer = ns(c, 0.05, 0.18);
         const bpf = c.createBiquadFilter();
-        bpf.type = 'bandpass'; bpf.frequency.value = 2500; bpf.Q.value = 2;
+        bpf.type = 'bandpass';
+        bpf.frequency.value = 2500;
+        bpf.Q.value = 2;
         const gn = c.createGain();
         gn.gain.setValueAtTime(0.28, t);
         gn.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
@@ -692,10 +782,14 @@ document.addEventListener('alpine:init', () => {
         g1.gain.linearRampToValueAtTime(0.08, t + 0.1);
         g1.gain.linearRampToValueAtTime(0.0, t + 0.22);
         ch(osc, g1);
-        osc.start(t + 0.08); osc.stop(t + 0.24);
+        osc.start(t + 0.08);
+        osc.stop(t + 0.24);
 
         // Aprovação: dois beeps limpos
-        [[880, 0.26], [1320, 0.33]].forEach(([freq, delay]) => {
+        [
+          [880, 0.26],
+          [1320, 0.33],
+        ].forEach(([freq, delay]) => {
           const o = c.createOscillator();
           const g = c.createGain();
           o.type = 'sine';
@@ -705,7 +799,8 @@ document.addEventListener('alpine:init', () => {
           g.gain.setValueAtTime(0.1, t + delay + 0.04);
           g.gain.linearRampToValueAtTime(0.0, t + delay + 0.06);
           ch(o, g);
-          o.start(t + delay); o.stop(t + delay + 0.07);
+          o.start(t + delay);
+          o.stop(t + delay + 0.07);
         });
       },
 
@@ -720,7 +815,9 @@ document.addEventListener('alpine:init', () => {
         s1.buffer = ns(c, 0.015, 0.08);
         const d1 = ds(c, 100);
         const bpf = c.createBiquadFilter();
-        bpf.type = 'bandpass'; bpf.frequency.value = 1400; bpf.Q.value = 2;
+        bpf.type = 'bandpass';
+        bpf.frequency.value = 1400;
+        bpf.Q.value = 2;
         const g1 = c.createGain();
         g1.gain.setValueAtTime(0.3, t);
         g1.gain.exponentialRampToValueAtTime(0.001, t + 0.016);
@@ -737,7 +834,8 @@ document.addEventListener('alpine:init', () => {
         g2.gain.linearRampToValueAtTime(0.09, t + 0.022);
         g2.gain.linearRampToValueAtTime(0.0, t + 0.11);
         ch(osc, g2);
-        osc.start(t + 0.012); osc.stop(t + 0.12);
+        osc.start(t + 0.012);
+        osc.stop(t + 0.12);
       },
 
       /* ── search ─────────────────────────────────────────────
@@ -756,7 +854,8 @@ document.addEventListener('alpine:init', () => {
         g1.gain.linearRampToValueAtTime(0.1, t + 0.005);
         g1.gain.linearRampToValueAtTime(0.0, t + 0.1);
         ch(osc, g1);
-        osc.start(t); osc.stop(t + 0.11);
+        osc.start(t);
+        osc.stop(t + 0.11);
 
         // Eco atenuado (radar return)
         const osc2 = c.createOscillator();
@@ -768,12 +867,14 @@ document.addEventListener('alpine:init', () => {
         g2.gain.linearRampToValueAtTime(0.035, t + 0.128);
         g2.gain.linearRampToValueAtTime(0.0, t + 0.21);
         ch(osc2, g2);
-        osc2.start(t + 0.12); osc2.stop(t + 0.22);
+        osc2.start(t + 0.12);
+        osc2.stop(t + 0.22);
       },
     },
+
     /* ── link ───────────────────────────────────────────────
-   Portal aberto: ping ascendente + burst de dados
-   + eco de confirmação. Links externos e sociais.        */
+       Portal aberto: ping ascendente + burst de dados
+       + eco de confirmação. Links externos e sociais.        */
     link(c, ch, ns, ds) {
       const t = c.currentTime;
 
@@ -784,19 +885,22 @@ document.addEventListener('alpine:init', () => {
       osc.frequency.setValueAtTime(400, t);
       osc.frequency.exponentialRampToValueAtTime(1800, t + 0.08);
       g1.gain.setValueAtTime(0.0, t);
-      g1.gain.linearRampToValueAtTime(0.11, t + 0.010);
-      g1.gain.linearRampToValueAtTime(0.0, t + 0.10);
+      g1.gain.linearRampToValueAtTime(0.11, t + 0.01);
+      g1.gain.linearRampToValueAtTime(0.0, t + 0.1);
       ch(osc, g1);
-      osc.start(t); osc.stop(t + 0.11);
+      osc.start(t);
+      osc.stop(t + 0.11);
 
       // Burst de dados
       const sn = c.createBufferSource();
       sn.buffer = ns(c, 0.04, 0.15);
       const bpf = c.createBiquadFilter();
-      bpf.type = 'bandpass'; bpf.frequency.value = 3000; bpf.Q.value = 2;
+      bpf.type = 'bandpass';
+      bpf.frequency.value = 3000;
+      bpf.Q.value = 2;
       const gn = c.createGain();
       gn.gain.setValueAtTime(0.14, t + 0.04);
-      gn.gain.exponentialRampToValueAtTime(0.001, t + 0.10);
+      gn.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
       ch(sn, bpf, gn);
       sn.start(t + 0.04);
 
@@ -805,11 +909,12 @@ document.addEventListener('alpine:init', () => {
       const g2 = c.createGain();
       osc2.type = 'sine';
       osc2.frequency.value = 1200;
-      g2.gain.setValueAtTime(0.0, t + 0.10);
+      g2.gain.setValueAtTime(0.0, t + 0.1);
       g2.gain.linearRampToValueAtTime(0.055, t + 0.11);
       g2.gain.linearRampToValueAtTime(0.0, t + 0.17);
       ch(osc2, g2);
-      osc2.start(t + 0.10); osc2.stop(t + 0.18);
+      osc2.start(t + 0.1);
+      osc2.stop(t + 0.18);
     },
 
     /* ── carousel ───────────────────────────────────────────
@@ -823,7 +928,9 @@ document.addEventListener('alpine:init', () => {
       sn.buffer = ns(c, 0.015, 0.08);
       const d1 = ds(c, 80);
       const bpf = c.createBiquadFilter();
-      bpf.type = 'bandpass'; bpf.frequency.value = 1800; bpf.Q.value = 2;
+      bpf.type = 'bandpass';
+      bpf.frequency.value = 1800;
+      bpf.Q.value = 2;
       const g1 = c.createGain();
       g1.gain.setValueAtTime(0.26, t);
       g1.gain.exponentialRampToValueAtTime(0.001, t + 0.016);
@@ -834,14 +941,16 @@ document.addEventListener('alpine:init', () => {
       const osc = c.createOscillator();
       const lpf = c.createBiquadFilter();
       const g2 = c.createGain();
-      lpf.type = 'lowpass'; lpf.frequency.value = 900;
+      lpf.type = 'lowpass';
+      lpf.frequency.value = 900;
       osc.type = 'triangle';
       osc.frequency.setValueAtTime(200, t + 0.01);
       osc.frequency.exponentialRampToValueAtTime(600, t + 0.07);
       g2.gain.setValueAtTime(0.07, t + 0.01);
       g2.gain.linearRampToValueAtTime(0.0, t + 0.09);
       ch(osc, lpf, g2);
-      osc.start(t + 0.01); osc.stop(t + 0.10);
+      osc.start(t + 0.01);
+      osc.stop(t + 0.1);
     },
 
     /* ── expand ─────────────────────────────────────────────
@@ -860,7 +969,8 @@ document.addEventListener('alpine:init', () => {
       g1.gain.linearRampToValueAtTime(0.085, t + 0.03);
       g1.gain.linearRampToValueAtTime(0.0, t + 0.16);
       ch(osc, g1);
-      osc.start(t); osc.stop(t + 0.17);
+      osc.start(t);
+      osc.stop(t + 0.17);
 
       // Cauda HF (dados revelados)
       const osc2 = c.createOscillator();
@@ -872,16 +982,18 @@ document.addEventListener('alpine:init', () => {
       g2.gain.linearRampToValueAtTime(0.038, t + 0.07);
       g2.gain.linearRampToValueAtTime(0.0, t + 0.15);
       ch(osc2, g2);
-      osc2.start(t + 0.05); osc2.stop(t + 0.16);
+      osc2.start(t + 0.05);
+      osc2.stop(t + 0.16);
 
       // Noise sussurro
       const sn = c.createBufferSource();
       sn.buffer = ns(c, 0.08, 0.4);
       const hpf = c.createBiquadFilter();
-      hpf.type = 'highpass'; hpf.frequency.value = 2000;
+      hpf.type = 'highpass';
+      hpf.frequency.value = 2000;
       const gn = c.createGain();
       gn.gain.setValueAtTime(0.045, t + 0.02);
-      gn.gain.linearRampToValueAtTime(0.0, t + 0.10);
+      gn.gain.linearRampToValueAtTime(0.0, t + 0.1);
       ch(sn, hpf, gn);
       sn.start(t + 0.02);
     },
@@ -894,9 +1006,11 @@ document.addEventListener('alpine:init', () => {
 
       // Burst de virada
       const sn = c.createBufferSource();
-      sn.buffer = ns(c, 0.06, 0.20);
+      sn.buffer = ns(c, 0.06, 0.2);
       const bpf = c.createBiquadFilter();
-      bpf.type = 'bandpass'; bpf.frequency.value = 2200; bpf.Q.value = 1.5;
+      bpf.type = 'bandpass';
+      bpf.frequency.value = 2200;
+      bpf.Q.value = 1.5;
       const gn = c.createGain();
       gn.gain.setValueAtTime(0.18, t);
       gn.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
@@ -908,12 +1022,13 @@ document.addEventListener('alpine:init', () => {
       const g1 = c.createGain();
       osc.type = 'sine';
       osc.frequency.setValueAtTime(1400, t + 0.04);
-      osc.frequency.linearRampToValueAtTime(900, t + 0.10);
+      osc.frequency.linearRampToValueAtTime(900, t + 0.1);
       g1.gain.setValueAtTime(0.0, t + 0.04);
-      g1.gain.linearRampToValueAtTime(0.065, t + 0.050);
+      g1.gain.linearRampToValueAtTime(0.065, t + 0.05);
       g1.gain.linearRampToValueAtTime(0.0, t + 0.11);
       ch(osc, g1);
-      osc.start(t + 0.04); osc.stop(t + 0.12);
+      osc.start(t + 0.04);
+      osc.stop(t + 0.12);
     },
 
     /* ── zoom ───────────────────────────────────────────────
@@ -926,10 +1041,11 @@ document.addEventListener('alpine:init', () => {
       const sn = c.createBufferSource();
       sn.buffer = ns(c, 0.008, 0.06);
       const hpf = c.createBiquadFilter();
-      hpf.type = 'highpass'; hpf.frequency.value = 4500;
+      hpf.type = 'highpass';
+      hpf.frequency.value = 4500;
       const g1 = c.createGain();
       g1.gain.setValueAtTime(0.14, t);
-      g1.gain.exponentialRampToValueAtTime(0.001, t + 0.010);
+      g1.gain.exponentialRampToValueAtTime(0.001, t + 0.01);
       ch(sn, hpf, g1);
       sn.start(t);
 
@@ -943,19 +1059,22 @@ document.addEventListener('alpine:init', () => {
       g2.gain.linearRampToValueAtTime(0.055, t + 0.013);
       g2.gain.linearRampToValueAtTime(0.0, t + 0.045);
       ch(osc, g2);
-      osc.start(t + 0.006); osc.stop(t + 0.05);
+      osc.start(t + 0.006);
+      osc.stop(t + 0.05);
     },
+
     /* ── tetris_move ─────────────────────────────────────────
-   Micro-tick de posicionamento: noise HF ultracurto.
-   Movimentação ← → de peça.                             */
+       Micro-tick de posicionamento: noise HF ultracurto.
+       Movimentação ← → de peça.                             */
     tetris_move(c, ch, ns, ds) {
       const t = c.currentTime;
       const sn = c.createBufferSource();
       sn.buffer = ns(c, 0.006, 0.04);
       const hpf = c.createBiquadFilter();
-      hpf.type = 'highpass'; hpf.frequency.value = 5500;
+      hpf.type = 'highpass';
+      hpf.frequency.value = 5500;
       const g = c.createGain();
-      g.gain.setValueAtTime(0.10, t);
+      g.gain.setValueAtTime(0.1, t);
       g.gain.exponentialRampToValueAtTime(0.001, t + 0.007);
       ch(sn, hpf, g);
       sn.start(t);
@@ -975,7 +1094,8 @@ document.addEventListener('alpine:init', () => {
       g.gain.linearRampToValueAtTime(0.065, t + 0.006);
       g.gain.linearRampToValueAtTime(0.0, t + 0.052);
       ch(osc, g);
-      osc.start(t); osc.stop(t + 0.06);
+      osc.start(t);
+      osc.stop(t + 0.06);
     },
 
     /* ── tetris_lock ─────────────────────────────────────────
@@ -991,11 +1111,14 @@ document.addEventListener('alpine:init', () => {
       gs.gain.setValueAtTime(0.28, t);
       gs.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
       ch(sub, gs);
-      sub.start(t); sub.stop(t + 0.09);
+      sub.start(t);
+      sub.stop(t + 0.09);
       const sn = c.createBufferSource();
       sn.buffer = ns(c, 0.03, 0.12);
       const bpf = c.createBiquadFilter();
-      bpf.type = 'bandpass'; bpf.frequency.value = 2000; bpf.Q.value = 1.5;
+      bpf.type = 'bandpass';
+      bpf.frequency.value = 2000;
+      bpf.Q.value = 1.5;
       const gn = c.createGain();
       gn.gain.setValueAtTime(0.18, t);
       gn.gain.exponentialRampToValueAtTime(0.001, t + 0.04);
@@ -1014,13 +1137,16 @@ document.addEventListener('alpine:init', () => {
       sub.frequency.setValueAtTime(200, t);
       sub.frequency.exponentialRampToValueAtTime(35, t + 0.09);
       gs.gain.setValueAtTime(0.38, t);
-      gs.gain.exponentialRampToValueAtTime(0.001, t + 0.10);
+      gs.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
       ch(sub, gs);
-      sub.start(t); sub.stop(t + 0.11);
+      sub.start(t);
+      sub.stop(t + 0.11);
       const sn = c.createBufferSource();
-      sn.buffer = ns(c, 0.08, 0.20);
+      sn.buffer = ns(c, 0.08, 0.2);
       const bpf = c.createBiquadFilter();
-      bpf.type = 'bandpass'; bpf.frequency.value = 700; bpf.Q.value = 1.0;
+      bpf.type = 'bandpass';
+      bpf.frequency.value = 700;
+      bpf.Q.value = 1.0;
       const gn = c.createGain();
       gn.gain.setValueAtTime(0.25, t);
       gn.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
@@ -1033,21 +1159,30 @@ document.addEventListener('alpine:init', () => {
        clearLines() — 1-3 linhas.                            */
     tetris_clear(c, ch, ns, ds) {
       const t = c.currentTime;
-      [[349, 0], [440, .055], [523, .11], [659, .165]].forEach(([freq, delay]) => {
+      [
+        [349, 0],
+        [440, 0.055],
+        [523, 0.11],
+        [659, 0.165],
+      ].forEach(([freq, delay]) => {
         const osc = c.createOscillator();
         const g = c.createGain();
-        osc.type = 'square'; osc.frequency.value = freq;
+        osc.type = 'square';
+        osc.frequency.value = freq;
         g.gain.setValueAtTime(0.0, t + delay);
         g.gain.linearRampToValueAtTime(0.085, t + delay + 0.006);
-        g.gain.setValueAtTime(0.085, t + delay + 0.040);
+        g.gain.setValueAtTime(0.085, t + delay + 0.04);
         g.gain.linearRampToValueAtTime(0.0, t + delay + 0.068);
         ch(osc, g);
-        osc.start(t + delay); osc.stop(t + delay + 0.08);
+        osc.start(t + delay);
+        osc.stop(t + delay + 0.08);
       });
       const sn = c.createBufferSource();
       sn.buffer = ns(c, 0.22, 0.45);
       const bpf = c.createBiquadFilter();
-      bpf.type = 'bandpass'; bpf.frequency.value = 2800; bpf.Q.value = 2;
+      bpf.type = 'bandpass';
+      bpf.frequency.value = 2800;
+      bpf.Q.value = 2;
       const gn = c.createGain();
       gn.gain.setValueAtTime(0.09, t);
       gn.gain.linearRampToValueAtTime(0.0, t + 0.22);
@@ -1060,16 +1195,24 @@ document.addEventListener('alpine:init', () => {
        clearLines() — 4 linhas simultâneas.                  */
     tetris_4lines(c, ch, ns, ds) {
       const t = c.currentTime;
-      [[440, 0], [554, .05], [659, .10], [880, .15], [1100, .22]].forEach(([freq, delay]) => {
+      [
+        [440, 0],
+        [554, 0.05],
+        [659, 0.1],
+        [880, 0.15],
+        [1100, 0.22],
+      ].forEach(([freq, delay]) => {
         const osc = c.createOscillator();
         const g = c.createGain();
-        osc.type = 'square'; osc.frequency.value = freq;
+        osc.type = 'square';
+        osc.frequency.value = freq;
         g.gain.setValueAtTime(0.0, t + delay);
         g.gain.linearRampToValueAtTime(0.13, t + delay + 0.007);
-        g.gain.setValueAtTime(0.13, t + delay + 0.10);
+        g.gain.setValueAtTime(0.13, t + delay + 0.1);
         g.gain.linearRampToValueAtTime(0.0, t + delay + 0.25);
         ch(osc, g);
-        osc.start(t + delay); osc.stop(t + delay + 0.27);
+        osc.start(t + delay);
+        osc.stop(t + delay + 0.27);
       });
       const sub = c.createOscillator();
       const gs = c.createGain();
@@ -1079,11 +1222,14 @@ document.addEventListener('alpine:init', () => {
       gs.gain.setValueAtTime(0.38, t + 0.18);
       gs.gain.exponentialRampToValueAtTime(0.001, t + 0.46);
       ch(sub, gs);
-      sub.start(t + 0.18); sub.stop(t + 0.48);
+      sub.start(t + 0.18);
+      sub.stop(t + 0.48);
       const sn = c.createBufferSource();
       sn.buffer = ns(c, 0.5, 0.38);
       const bpf = c.createBiquadFilter();
-      bpf.type = 'bandpass'; bpf.frequency.value = 1800; bpf.Q.value = 1;
+      bpf.type = 'bandpass';
+      bpf.frequency.value = 1800;
+      bpf.Q.value = 1;
       const gn = c.createGain();
       gn.gain.setValueAtTime(0.14, t);
       gn.gain.linearRampToValueAtTime(0.0, t + 0.5);
@@ -1096,16 +1242,24 @@ document.addEventListener('alpine:init', () => {
        clearLines() — level++.                               */
     tetris_levelup(c, ch, ns, ds) {
       const t = c.currentTime;
-      [[523, 0], [659, .065], [784, .13], [1047, .195], [1319, .27]].forEach(([freq, delay]) => {
+      [
+        [523, 0],
+        [659, 0.065],
+        [784, 0.13],
+        [1047, 0.195],
+        [1319, 0.27],
+      ].forEach(([freq, delay]) => {
         const osc = c.createOscillator();
         const g = c.createGain();
-        osc.type = 'square'; osc.frequency.value = freq;
+        osc.type = 'square';
+        osc.frequency.value = freq;
         g.gain.setValueAtTime(0.0, t + delay);
-        g.gain.linearRampToValueAtTime(0.10, t + delay + 0.005);
-        g.gain.setValueAtTime(0.10, t + delay + 0.046);
+        g.gain.linearRampToValueAtTime(0.1, t + delay + 0.005);
+        g.gain.setValueAtTime(0.1, t + delay + 0.046);
         g.gain.linearRampToValueAtTime(0.0, t + delay + 0.068);
         ch(osc, g);
-        osc.start(t + delay); osc.stop(t + delay + 0.08);
+        osc.start(t + delay);
+        osc.stop(t + delay + 0.08);
       });
     },
 
@@ -1114,12 +1268,15 @@ document.addEventListener('alpine:init', () => {
       if (this.muted) return;
       try {
         const c = this._ctx();
+        if (!c) return; // AudioContext ainda suspenso — aguarda primeiro gesto
         const ch = (...nodes) => this._chain(this.__master, ...nodes);
         const ns = this._noise.bind(this);
         const ds = this._distort.bind(this);
-        const fn = this._sounds[name] || this._sounds.click;
+        const fn = this._sounds[name] ?? this._sounds.click;
         fn.call(this._sounds, c, ch, ns, ds);
-      } catch (_) { /* silencia erros de autoplay */ }
+      } catch (_) {
+        /* silencia erros de autoplay */
+      }
     },
 
     // ── Mute — preserva localStorage ─────────────────────────
@@ -1128,6 +1285,7 @@ document.addEventListener('alpine:init', () => {
       localStorage.setItem('sfx-muted', this.muted);
       if (this.muted) this.stopMusic();
     },
+
     startMusic() {
       if (this.muted) return;
       window.TetrisMusic?.start();
@@ -1144,7 +1302,7 @@ document.addEventListener('alpine:init', () => {
     },
 
     // ── Compat ───────────────────────────────────────────────
-    init() { },
+    init() {},
   });
 
   // ==============================
@@ -1162,7 +1320,9 @@ document.addEventListener('alpine:init', () => {
     start() {
       this.pause();
       if (!this.images || this.images.length <= 1) return;
-      this.interval = setInterval(() => { this.next(); }, 3000);
+      this.interval = setInterval(() => {
+        this.next();
+      }, 3000);
     },
 
     pause() {
@@ -1170,8 +1330,12 @@ document.addEventListener('alpine:init', () => {
       this.interval = null;
     },
 
-    resume() { this.start(); },
-    destroy() { this.pause(); },
+    resume() {
+      this.start();
+    },
+    destroy() {
+      this.pause();
+    },
 
     next() {
       const total = this.images?.length ?? 0;
@@ -1185,7 +1349,7 @@ document.addEventListener('alpine:init', () => {
       const idx = Number(i);
       if (!Number.isFinite(idx)) return;
       this.index = Math.max(0, Math.min(idx, total - 1));
-    }
+    },
   }));
 
   // ==============================
@@ -1194,8 +1358,13 @@ document.addEventListener('alpine:init', () => {
   Alpine.store('search', {
     q: localStorage.getItem('search-q') || '',
 
-    persist() { localStorage.setItem('search-q', this.q || ''); },
-    clear() { this.q = ''; localStorage.removeItem('search-q'); },
+    persist() {
+      localStorage.setItem('search-q', this.q || '');
+    },
+    clear() {
+      this.q = '';
+      localStorage.removeItem('search-q');
+    },
 
     normalize(str) {
       return String(str ?? '')
@@ -1210,7 +1379,7 @@ document.addEventListener('alpine:init', () => {
       const q = this.normalize(this.q);
       if (!q) return true;
       return this.normalize(haystack).includes(q);
-    }
+    },
   });
 
   // ==============================
@@ -1265,10 +1434,9 @@ document.addEventListener('alpine:init', () => {
         ].join(' ');
         return s.match(text);
       });
-    }
+    },
   }));
 });
-
 
 // ==============================
 // GLOBAL HELPERS
@@ -1276,8 +1444,12 @@ document.addEventListener('alpine:init', () => {
 
 function getTranslatedLabels() {
   const i18nStore = Alpine.store('i18n');
-  const hardLabels = Object.values(window.skillLevels?.hard ?? {}).map(s => s?.label).filter(Boolean);
-  const softLabels = Object.values(window.skillLevels?.soft ?? {}).map(s => s?.label).filter(Boolean);
+  const hardLabels = Object.values(window.skillLevels?.hard ?? {})
+    .map(s => s?.label)
+    .filter(Boolean);
+  const softLabels = Object.values(window.skillLevels?.soft ?? {})
+    .map(s => s?.label)
+    .filter(Boolean);
   return [...hardLabels, ...softLabels].map(key => i18nStore.t(`skills.${key}`));
 }
 
@@ -1290,7 +1462,6 @@ function getMinYear(period) {
   const years = String(period).match(/\d{4}/g);
   return years ? Math.min(...years.map(Number)) : '';
 }
-
 
 // ==============================
 // STATIC I18N: DATA-I18N ELEMENTS
@@ -1316,7 +1487,6 @@ document.addEventListener('DOMContentLoaded', () => {
   updateInterfaceStatic();
 });
 
-
 // ==============================
 // ICONS REFRESH (RAF DEBOUNCED)
 // ==============================
@@ -1329,7 +1499,6 @@ function refreshIcons() {
   });
 }
 
-
 // ==============================
 // SKILL RESOLVER
 // ==============================
@@ -1341,10 +1510,9 @@ function resolveSkill(skillKey) {
     labelKey,
     label: Alpine.store('i18n').t(`skills.${labelKey}`),
     icon: window.skillIcons?.[labelKey] ?? window.DEFAULT_ICON,
-    level: level?.level ?? null
+    level: level?.level ?? null,
   };
 }
-
 
 // ==============================
 // IMAGE ERROR HANDLING
@@ -1371,7 +1539,6 @@ function handleImageError(e) {
   img.style.filter = 'sepia(1) hue-rotate(240deg) brightness(0.3)';
 }
 
-
 // ==============================
 // SENIORITY CALCULATION
 // ==============================
@@ -1397,10 +1564,9 @@ function calculateLevel() {
   return {
     years: years.toFixed(1),
     label,
-    percent: Math.min(progress, 100).toFixed(0)
+    percent: Math.min(progress, 100).toFixed(0),
   };
 }
-
 
 // ==============================
 // HEADER SCROLL (OPTIMIZED)
@@ -1408,29 +1574,46 @@ function calculateLevel() {
 (() => {
   let lastCompact = null;
 
-  window.addEventListener('scroll', () => {
-    const header = document.getElementById('main-header');
-    const logoContainer = document.getElementById('header-logo-container');
-    if (!header || !logoContainer) return;
+  window.addEventListener(
+    'scroll',
+    () => {
+      const header = document.getElementById('main-header');
+      const logoContainer = document.getElementById('header-logo-container');
+      if (!header || !logoContainer) return;
 
-    const compact = window.scrollY > 50;
-    if (compact === lastCompact) return;
-    lastCompact = compact;
+      const compact = window.scrollY > 50;
+      if (compact === lastCompact) return;
+      lastCompact = compact;
 
-    if (compact) {
-      header.classList.remove('p-4', 'md:p-6', 'h-24', 'md:h-28');
-      header.classList.add('p-2', 'md:p-3', 'h-16', 'border-primary/60', 'backdrop-blur-md', 'shadow-[0_4px_20px_rgba(0,0,0,0.5)]');
-      logoContainer.classList.remove('md:w-16', 'md:h-16');
-      logoContainer.classList.add('md:w-10', 'md:h-10');
-    } else {
-      header.classList.add('p-4', 'md:p-6', 'h-24', 'md:h-28');
-      header.classList.remove('p-2', 'md:p-3', 'h-16', 'border-primary/60', 'backdrop-blur-md', 'shadow-[0_4px_20px_rgba(0,0,0,0.5)]');
-      logoContainer.classList.add('md:w-16', 'md:h-16');
-      logoContainer.classList.remove('md:w-10', 'md:h-10');
-    }
-  }, { passive: true });
+      if (compact) {
+        header.classList.remove('p-4', 'md:p-6', 'h-24', 'md:h-28');
+        header.classList.add(
+          'p-2',
+          'md:p-3',
+          'h-16',
+          'border-primary/60',
+          'backdrop-blur-md',
+          'shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
+        );
+        logoContainer.classList.remove('md:w-16', 'md:h-16');
+        logoContainer.classList.add('md:w-10', 'md:h-10');
+      } else {
+        header.classList.add('p-4', 'md:p-6', 'h-24', 'md:h-28');
+        header.classList.remove(
+          'p-2',
+          'md:p-3',
+          'h-16',
+          'border-primary/60',
+          'backdrop-blur-md',
+          'shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
+        );
+        logoContainer.classList.add('md:w-16', 'md:h-16');
+        logoContainer.classList.remove('md:w-10', 'md:h-10');
+      }
+    },
+    { passive: true }
+  );
 })();
-
 
 // ==============================
 // PARTICLES (SAFE INIT)
@@ -1442,20 +1625,36 @@ function calculateLevel() {
     particles: {
       number: { value: 70, density: { enable: true, value_area: 850 } },
       color: { value: '#d0eef2' },
-      opacity: { value: 0.5, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
-      size: { value: 2, random: true, anim: { enable: false, speed: 20, size_min: 0.1, sync: false } },
+      opacity: {
+        value: 0.5,
+        random: false,
+        anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false },
+      },
+      size: {
+        value: 2,
+        random: true,
+        anim: { enable: false, speed: 20, size_min: 0.1, sync: false },
+      },
       line_linked: { enable: true, distance: 150, color: '#d0eef2', opacity: 0.4, width: 1 },
-      move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 } }
+      move: {
+        enable: true,
+        speed: 2,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false,
+        attract: { enable: false, rotateX: 600, rotateY: 1200 },
+      },
     },
     interactivity: {
       detect_on: 'canvas',
       events: { onhover: { enable: true, mode: 'grab' }, resize: true },
-      modes: { grab: { distance: 180, line_linked: { opacity: 0.6 } } }
+      modes: { grab: { distance: 180, line_linked: { opacity: 0.6 } } },
     },
-    retina_detect: true
+    retina_detect: true,
   });
 })();
-
 
 // ==============================
 // EXPANDABLE TYPED TEXT
@@ -1493,14 +1692,17 @@ function expandableTypedText(getText, truncateAt = 20, speed = 12) {
     init() {
       this.lastFullText = this.fullText;
 
-      this.observer = new IntersectionObserver((entries) => {
-        const entry = entries[0];
-        this.isVisible = entry.isIntersecting;
-        if (!this.isVisible) this.stopTyping();
-        if (this.isVisible && this.expanded && this.typedText.length < this.fullText.length) {
-          this.resumeTyping();
-        }
-      }, { threshold: 0.15 });
+      this.observer = new IntersectionObserver(
+        entries => {
+          const entry = entries[0];
+          this.isVisible = entry.isIntersecting;
+          if (!this.isVisible) this.stopTyping();
+          if (this.isVisible && this.expanded && this.typedText.length < this.fullText.length) {
+            this.resumeTyping();
+          }
+        },
+        { threshold: 0.15 }
+      );
 
       this.observer.observe(this.$el);
 
@@ -1515,8 +1717,14 @@ function expandableTypedText(getText, truncateAt = 20, speed = 12) {
 
     destroy() {
       this.stopTyping();
-      if (this.observer) { this.observer.disconnect(); this.observer = null; }
-      if (this._onLang) { window.removeEventListener('i18n:changed', this._onLang); this._onLang = null; }
+      if (this.observer) {
+        this.observer.disconnect();
+        this.observer = null;
+      }
+      if (this._onLang) {
+        window.removeEventListener('i18n:changed', this._onLang);
+        this._onLang = null;
+      }
     },
 
     onTextChanged() {
@@ -1555,7 +1763,10 @@ function expandableTypedText(getText, truncateAt = 20, speed = 12) {
 
       let i = this.typedText.length;
       this.interval = setInterval(() => {
-        if (!this.isVisible) { this.stopTyping(); return; }
+        if (!this.isVisible) {
+          this.stopTyping();
+          return;
+        }
         this.typedText += full[i++] ?? '';
         if (i >= full.length) this.stopTyping();
       }, speed);
@@ -1564,10 +1775,9 @@ function expandableTypedText(getText, truncateAt = 20, speed = 12) {
     stopTyping() {
       if (this.interval) clearInterval(this.interval);
       this.interval = null;
-    }
+    },
   };
 }
-
 
 // ==============================
 // PROJECT CARD
@@ -1578,7 +1788,9 @@ function projectCard(p) {
     images: p?.images ?? [],
     index: 0,
 
-    get currentImage() { return this.images?.[this.index] ?? ''; },
+    get currentImage() {
+      return this.images?.[this.index] ?? '';
+    },
 
     init() {
       if (!this.images.length) this.index = 0;
@@ -1595,10 +1807,9 @@ function projectCard(p) {
       const total = this.images.length;
       if (!total) return;
       this.index = (this.index - 1 + total) % total;
-    }
+    },
   };
 }
-
 
 // ==============================
 // MAIN APP
@@ -1622,7 +1833,7 @@ function app() {
     get tierLabel() {
       const map = {
         'pt-br': { Junior: 'Júnior', Pleno: 'Pleno', Senior: 'Sênior' },
-        'en': { Junior: 'Junior', Pleno: 'Mid-Level', Senior: 'Senior' }
+        en: { Junior: 'Junior', Pleno: 'Mid-Level', Senior: 'Senior' },
       };
       return map[this.$store.i18n.lang]?.[this.level.label] ?? this.level.label;
     },
@@ -1651,7 +1862,7 @@ function app() {
 
       const startTime = performance.now();
 
-      const tick = (now) => {
+      const tick = now => {
         const elapsed = now - startTime;
         this.progress = Math.min((elapsed / DECRYPT_DURATION) * 100, 100);
 
@@ -1684,7 +1895,7 @@ function app() {
       updateInterfaceStatic();
       this.recalculateLevel();
 
-      window.addEventListener('i18n:changed', (e) => {
+      window.addEventListener('i18n:changed', e => {
         // currentLang já foi sincronizado pelo store.setLang antes do evento
         // mas garantimos aqui também por segurança
         currentLang = e.detail.lang;
@@ -1704,6 +1915,6 @@ function app() {
     closeFragment() {
       this.showFragment = false;
       this.$store.sfx.play('close');
-    }
+    },
   };
 }

@@ -1,80 +1,95 @@
 <div id="projects" x-data="projectStream(myData.projects, 2)">
-  <h2 x-text="$store.i18n.t('title_about')"
-    class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.1em]">■
+  <h2
+    x-text="$store.i18n.t('title_about')"
+    class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.1em]"
+  >
+    ■
   </h2>
 
-  <div class="relative flex bg-black/60 border-white/10 mb-5 group overflow-hidden"
-    style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
+  <div
+    class="relative flex bg-black/60 border-white/10 mb-5 group overflow-hidden"
+    style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%)"
+  >
     <div class="scan-line"></div>
     <div class="w-1 bg-primary shadow-[2px_0_10px_rgba(var(--color-primary-rgb),0.3)]"></div>
 
     <div class="p-4 pr-6">
       <div class="flex items-center gap-2 mb-3">
-        <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]">
-        </div>
+        <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
 
-        <h5 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
-          x-text="$store.i18n.t('data_about')">
-        </h5>
+        <h5
+          class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
+          x-text="$store.i18n.t('data_about')"
+        ></h5>
       </div>
 
-      <div class="text-[length:var(--text-xs)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
-        x-text="$store.i18n.t('transmission_source')">
-      </div>
+      <div
+        class="text-[length:var(--text-xs)] text-gray-400 uppercase mb-1 tracking-[0.1em]"
+        x-text="$store.i18n.t('transmission_source')"
+      ></div>
 
-      <p class="text-[length:var(--text-base)] tracking-[0.1em] text-gray-300  leading-snug
-               group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('about_me_text')">
-      </p>
+      <p
+        class="text-[length:var(--text-base)] tracking-[0.1em] text-gray-300 leading-snug group-hover:text-gray-200 transition-colors"
+        x-text="$store.i18n.t('about_me_text')"
+      ></p>
     </div>
 
-    <div class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20" style="clip-path: polygon(100% 0, 100% 100%, 0 100%);">
-    </div>
+    <div
+      class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20"
+      style="clip-path: polygon(100% 0, 100% 100%, 0 100%)"
+    ></div>
   </div>
 
-  <h2 x-text="$store.i18n.t('title_projects')"
-    class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.1em]">■
+  <h2
+    x-text="$store.i18n.t('title_projects')"
+    class="text-accent font-bold text-[length:var(--text-md)] mb-6 uppercase tracking-[0.1em]"
+  >
+    ■
   </h2>
 
-  <div class="flex flex-col sm:flex-row gap-3 sm:gap-0
-         justify-between items-center
-         mb-6 text-[length:var(--text-md)]  text-primary/70 tracking-[0.1em]st">
-
+  <div
+    class="flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between items-center mb-6 text-[length:var(--text-md)] text-primary/70 tracking-[0.1em]st"
+  >
     <!-- PREV -->
-    <button @click="prev;$store.sfx.play('nav');" data-interactive class="rpg-button-left bg-black/60 w-full sm:w-auto
-           py-3 px-4 sm:py-4 sm:px-5
-           flex items-center justify-center sm:justify-start gap-2">
-
+    <button
+      @click="prev;$store.sfx.play('nav');"
+      data-interactive
+      class="rpg-button-left bg-black/60 w-full sm:w-auto py-3 px-4 sm:py-4 sm:px-5 flex items-center justify-center sm:justify-start gap-2"
+    >
       <span class="whitespace-nowrap" x-text="$store.i18n.t('prev_sector')"></span>
     </button>
 
     <!-- STATUS -->
-    <span x-text="$store.i18n.t('stream_active')"
-      class="order-first sm:order-none text-[length:var(--text-micro)] sm:text-[length:var(--text-md)] text-primary animate-pulse">
-    </span>
+    <span
+      x-text="$store.i18n.t('stream_active')"
+      class="order-first sm:order-none text-[length:var(--text-micro)] sm:text-[length:var(--text-md)] text-primary animate-pulse"
+    ></span>
 
     <!-- NEXT -->
-    <button data-interactive @click="next;$store.sfx.play('nav');" class="rpg-button-right bg-black/60 w-full sm:w-auto
-           py-3 px-4 sm:py-4 sm:px-5
-           flex items-center justify-center sm:justify-end gap-2">
-
+    <button
+      data-interactive
+      @click="next;$store.sfx.play('nav');"
+      class="rpg-button-right bg-black/60 w-full sm:w-auto py-3 px-4 sm:py-4 sm:px-5 flex items-center justify-center sm:justify-end gap-2"
+    >
       <span class="whitespace-nowrap" x-text="$store.i18n.t('next_sector')"></span>
     </button>
-
   </div>
 
   <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-
     <template x-for="(p, i) in visibleProjects" :key="`${p.title}-${cursor}-${i}`">
-
-      <div data-interactive class="rpg-card p-4 md:p-5 group flex flex-col h-full
-             transition-all bg-black/60
-             border-white/10 mb-5 overflow-hidden" x-data="projectCard(p)" x-init="init()"
-        @mouseenter="$store.sfx.play('hover')">
-
+      <div
+        data-interactive
+        class="rpg-card p-4 md:p-5 group flex flex-col h-full transition-all bg-black/60 border-white/10 mb-5 overflow-hidden"
+        x-data="projectCard(p)"
+        x-init="init()"
+        @mouseenter="$store.sfx.play('hover')"
+      >
         <!-- HEADER -->
         <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-2">
-          <span class="text-[length:var(--text-micro)]  text-primary/60 uppercase tracking-[0.1em]"
-            x-text="$store.i18n.t('project_data')"></span>
+          <span
+            class="text-[length:var(--text-micro)] text-primary/60 uppercase tracking-[0.1em]"
+            x-text="$store.i18n.t('project_data')"
+          ></span>
 
           <div class="flex gap-1">
             <div class="w-1 h-2 bg-primary/20"></div>
@@ -84,38 +99,35 @@
         </div>
 
         <!-- CAROUSEL -->
-        <div class="relative h-32 md:h-40 bg-gray-900 mb-4 overflow-hidden
-              border-white/5 loading-shimmer group leading-none">
-
+        <div
+          class="relative h-32 md:h-40 bg-gray-900 mb-4 overflow-hidden border-white/5 loading-shimmer group leading-none"
+        >
           <!-- IMAGE -->
-          <img :src="currentImage" @error="handleImageError" class="block absolute inset-0 w-full h-full object-cover
-                transition-all duration-700
-                grayscale opacity-80
-                group-hover:grayscale-0
-                group-hover:opacity-100
-                group-hover:scale-110" />
+          <img
+            :src="currentImage"
+            @error="handleImageError"
+            class="block absolute inset-0 w-full h-full object-cover transition-all duration-700 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110"
+          />
 
           <!-- PREV -->
-          <button @click="prev(); $store.sfx.play('carousel')" class="absolute left-2 top-1/2 -translate-y-1/2 z-20
-                   w-7 h-7 flex items-center justify-center
-                   bg-black/50 border-primary
-                   hover:bg-primary/20 transition">
-
+          <button
+            @click="prev(); $store.sfx.play('carousel')"
+            class="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 flex items-center justify-center bg-black/50 border-primary hover:bg-primary/20 transition"
+          >
             <i data-lucide="chevron-left" class="w-4 h-4 text-primary"></i>
           </button>
 
           <!-- NEXT -->
-          <button @click="next(); $store.sfx.play('carousel')" class="absolute right-2 top-1/2 -translate-y-1/2 z-20
-                   w-7 h-7 flex items-center justify-center
-                   bg-black/50 border-primary
-                   hover:bg-primary/20 transition">
-
+          <button
+            @click="next(); $store.sfx.play('carousel')"
+            class="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 flex items-center justify-center bg-black/50 border-primary hover:bg-primary/20 transition"
+          >
             <i data-lucide="chevron-right" class="w-4 h-4 text-primary"></i>
           </button>
 
           <!-- COUNTER -->
           <div class="absolute bottom-3 left-3 z-20 flex items-end gap-1">
-            <div class="ml-3  text-[length:var(--text-micro)] tracking-[0.1em]st text-primary/80">
+            <div class="ml-3 text-[length:var(--text-micro)] tracking-[0.1em]st text-primary/80">
               <span x-text="String(index + 1).padStart(2,'0')"></span>
               /
               <span x-text="String(images.length).padStart(2,'0')"></span>
@@ -124,354 +136,392 @@
         </div>
 
         <!-- TITLE -->
-        <h4 class="font-bold tracking-[0.1em] text-base truncate uppercase  text-white" x-text="p.title"></h4>
+        <h4
+          class="font-bold tracking-[0.1em] text-base truncate uppercase text-white"
+          x-text="p.title"
+        ></h4>
 
         <!-- ABOUT (i18n + typing + cancel offscreen) -->
-        <div class="mt-3" x-data="expandableTypedText(() => p.about[$store.i18n.lang], 160)" x-init="init()"
-          x-on:alpine:destroy="destroy()" x-effect="onTextChanged()">
-
-          <p class="text-[length:var(--text-micro)] text-primary uppercase  mb-2 tracking-[0.1em] font-black">
-            // <span x-text="p.type[$store.i18n.lang]"></span>
+        <div
+          class="mt-3"
+          x-data="expandableTypedText(() => p.about[$store.i18n.lang], 160)"
+          x-init="init()"
+          x-on:alpine:destroy="destroy()"
+          x-effect="onTextChanged()"
+        >
+          <p
+            class="text-[length:var(--text-micro)] text-primary uppercase mb-2 tracking-[0.1em] font-black"
+          >
+            //
+            <span x-text="p.type[$store.i18n.lang]"></span>
           </p>
 
-          <p class="text-[length:var(--text-sm)] text-gray-300 tracking-[0.1em]  leading-relaxed transition-all duration-300"
-            :class="expanded ? '' : 'line-clamp-2'" x-text="displayText">
-          </p>
+          <p
+            class="text-[length:var(--text-sm)] text-gray-300 tracking-[0.1em] leading-relaxed transition-all duration-300"
+            :class="expanded ? '' : 'line-clamp-2'"
+            x-text="displayText"
+          ></p>
 
-          <button x-show="shouldShowToggle" @click="toggle(); $store.sfx.play('expand')" class="animate-pulse mt-5 mb-5 flex items-center gap-2
-                   text-[length:var(--text-micro)]  uppercase tracking-[0.1em]st">
-            <span :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
+          <button
+            x-show="shouldShowToggle"
+            @click="toggle(); $store.sfx.play('expand')"
+            class="animate-pulse mt-5 mb-5 flex items-center gap-2 text-[length:var(--text-micro)] uppercase tracking-[0.1em]st"
+          >
+            <span
+              :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
               x-effect="expanded; $nextTick(() => updateInterfaceStatic())"
-              class="text-primary tracking-[0.1em] hover:text-primary transition">
-            </span>
+              class="text-primary tracking-[0.1em] hover:text-primary transition"
+            ></span>
             <span class="animate-pulse text-primary">█</span>
           </button>
         </div>
 
         <!-- STACK -->
-        <details class="group/details" x-data="{ expanded: false }" @toggle="expanded = $el.open"
-          @click="$store.sfx.play('toggle')">
+        <details
+          class="group/details"
+          x-data="{ expanded: false }"
+          @toggle="expanded = $el.open"
+          @click="$store.sfx.play('toggle')"
+        >
+          <summary
+            class="group relative w-full list-none cursor-pointer text-left overflow-hidden select-none"
+          >
+            <span
+              class="absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300 opacity-30 group-open/details:opacity-100 group-open/details:shadow-[0_0_12px_rgba(var(--color-primary-rgb),1)]"
+            ></span>
 
-          <summary class="group relative w-full list-none cursor-pointer text-left overflow-hidden select-none">
-
-            <span class="absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300
-                   opacity-30
-                   group-open/details:opacity-100
-                   group-open/details:shadow-[0_0_12px_rgba(var(--color-primary-rgb),1)]">
-            </span>
-
-            <div class="relative flex items-center gap-3 px-4 py-3
-                  bg-black/50 border-white/5
-                  hover:border-primary transition">
-
-              <i data-lucide="layers" class="w-5 h-5 text-primary shrink-0 transition-all duration-300
-                  opacity-70
-                  group-open/details:opacity-100
-                  group-open/details:scale-110
-                  group-open/details:drop-shadow-[0_0_8px_rgba(var(--color-primary-rgb),1)]">
-              </i>
+            <div
+              class="relative flex items-center gap-3 px-4 py-3 bg-black/50 border-white/5 hover:border-primary transition"
+            >
+              <i
+                data-lucide="layers"
+                class="w-5 h-5 text-primary shrink-0 transition-all duration-300 opacity-70 group-open/details:opacity-100 group-open/details:scale-110 group-open/details:drop-shadow-[0_0_8px_rgba(var(--color-primary-rgb),1)]"
+              ></i>
 
               <div class="flex-1 min-w-0">
-                <p x-text="$store.i18n.t('stack_analysis')" class="text-[length:var(--text-sm)]  uppercase tracking-[0.1em] truncate
-                    text-primary/70 group-open/details:text-primary">
+                <p
+                  x-text="$store.i18n.t('stack_analysis')"
+                  class="text-[length:var(--text-sm)] uppercase tracking-[0.1em] truncate text-primary/70 group-open/details:text-primary"
+                ></p>
 
-                </p>
-
-                <p x-text="$store.i18n.t('system_modules')"
-                  class="text-[length:var(--text-micro)] tracking-[0.1em]  text-white/40 truncate">
-
-                </p>
+                <p
+                  x-text="$store.i18n.t('system_modules')"
+                  class="text-[length:var(--text-micro)] tracking-[0.1em] text-white/40 truncate"
+                ></p>
               </div>
 
-              <span class="text-[length:var(--text-md)]  tracking-[0.1em]st shrink-0"
-                :class="expanded ? 'text-primary' : 'text-white/40'">
+              <span
+                class="text-[length:var(--text-md)] tracking-[0.1em]st shrink-0"
+                :class="expanded ? 'text-primary' : 'text-white/40'"
+              >
                 [
                 <span x-show="!expanded">OFF</span>
                 <span x-show="expanded">ON</span>
                 ]
               </span>
 
-              <i data-lucide="chevron-right" class="w-4 h-4 text-primary shrink-0 transition-transform duration-300
-                  opacity-60
-                  group-open/details:rotate-90
-                  group-open/details:opacity-100
-                  group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
-              </i>
-
+              <i
+                data-lucide="chevron-right"
+                class="w-4 h-4 text-primary shrink-0 transition-transform duration-300 opacity-60 group-open/details:rotate-90 group-open/details:opacity-100 group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]"
+              ></i>
             </div>
           </summary>
 
           <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 animate-fade-in">
             <template x-for="(s, i) in p.stack" :key="s.key ?? i">
-
-              <div class="relative flex items-center gap-3 px-3 py-2
-                    bg-black/35 border-white/5
-                    hover:border-primary transition group/stack">
-
+              <div
+                class="relative flex items-center gap-3 px-3 py-2 bg-black/35 border-white/5 hover:border-primary transition group/stack"
+              >
                 <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
 
-
                 <template x-if="s.type === 'devicon' && skillIcons[s.key]">
-                  <i :class="skillIcons[s.key].icon" class="text-primary text-[length:var(--text-lg)] shrink-0"></i>
+                  <i
+                    :class="skillIcons[s.key].icon"
+                    class="text-primary text-[length:var(--text-lg)] shrink-0"
+                  ></i>
                 </template>
 
                 <div class="flex-1 min-w-0">
-                  <p class="text-[length:var(--text-micro)]  uppercase tracking-[0.1em]st text-white truncate">
+                  <p
+                    class="text-[length:var(--text-micro)] uppercase tracking-[0.1em]st text-white truncate"
+                  >
                     <span x-text="resolveSkill(s.key).label"></span>
                   </p>
                 </div>
 
-                <span class="w-1 h-5 bg-primary
-                       shadow-[0_0_8px_var(--color-primary)]
-                       animate-pulse">
-                </span>
-
+                <span
+                  class="w-1 h-5 bg-primary shadow-[0_0_8px_var(--color-primary)] animate-pulse"
+                ></span>
               </div>
-
             </template>
           </div>
         </details>
 
         <!-- TEAM -->
-        <details class="mt-auto group/details" x-data="{ expanded: false }" @toggle="expanded = $el.open"
-          @click="$store.sfx.play('toggle')">
+        <details
+          class="mt-auto group/details"
+          x-data="{ expanded: false }"
+          @toggle="expanded = $el.open"
+          @click="$store.sfx.play('toggle')"
+        >
+          <summary
+            class="group relative w-full list-none cursor-pointer text-left overflow-hidden select-none"
+          >
+            <span
+              class="absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300 opacity-30 group-open/details:opacity-100 group-open/details:shadow-[0_0_12px_rgba(var(--color-primary-rgb),1)]"
+            ></span>
 
-          <summary class="group relative w-full list-none cursor-pointer text-left overflow-hidden select-none">
-
-            <span class="absolute left-0 top-0 h-full w-[3px] bg-primary transition-all duration-300
-                   opacity-30
-                   group-open/details:opacity-100
-                   group-open/details:shadow-[0_0_12px_rgba(var(--color-primary-rgb),1)]">
-            </span>
-
-            <div class="relative flex items-center gap-3 px-4 py-3
-                  bg-black/50 border-white/5
-                  hover:border-primary transition min-w-0">
-
-              <i data-lucide="users" class="w-5 h-5 text-primary shrink-0 transition-all duration-300
-                  opacity-70
-                  group-open/details:opacity-100
-                  group-open/details:scale-110
-                  group-open/details:drop-shadow-[0_0_8px_rgba(var(--color-primary-rgb),1)]">
-              </i>
+            <div
+              class="relative flex items-center gap-3 px-4 py-3 bg-black/50 border-white/5 hover:border-primary transition min-w-0"
+            >
+              <i
+                data-lucide="users"
+                class="w-5 h-5 text-primary shrink-0 transition-all duration-300 opacity-70 group-open/details:opacity-100 group-open/details:scale-110 group-open/details:drop-shadow-[0_0_8px_rgba(var(--color-primary-rgb),1)]"
+              ></i>
 
               <div class="flex-1 min-w-0">
-                <p x-text="$store.i18n.t('unit_support')"
-                  class="text-[length:var(--text-sm)]  uppercase tracking-[0.1em] truncate text-primary/70">
+                <p
+                  x-text="$store.i18n.t('unit_support')"
+                  class="text-[length:var(--text-sm)] uppercase tracking-[0.1em] truncate text-primary/70"
+                ></p>
 
-                </p>
-
-                <p x-text="$store.i18n.t('auxiliary_modules')"
-                  class="text-[length:var(--text-micro)] tracking-[0.1em] text-white/40 truncate">
-
-                </p>
+                <p
+                  x-text="$store.i18n.t('auxiliary_modules')"
+                  class="text-[length:var(--text-micro)] tracking-[0.1em] text-white/40 truncate"
+                ></p>
               </div>
 
-              <span class="text-[length:var(--text-md)]  tracking-[0.1em]st shrink-0"
-                :class="expanded ? 'text-primary' : 'text-white/40'">
+              <span
+                class="text-[length:var(--text-md)] tracking-[0.1em]st shrink-0"
+                :class="expanded ? 'text-primary' : 'text-white/40'"
+              >
                 [
                 <span x-show="!expanded">OFF</span>
                 <span x-show="expanded">ON</span>
                 ]
               </span>
 
-              <i data-lucide="chevron-right" class="w-4 h-4 text-primary shrink-0 transition-transform duration-300
-                  opacity-60
-                  group-open/details:rotate-90
-                  group-open/details:opacity-100
-                  group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
-              </i>
+              <i
+                data-lucide="chevron-right"
+                class="w-4 h-4 text-primary shrink-0 transition-transform duration-300 opacity-60 group-open/details:rotate-90 group-open/details:opacity-100 group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]"
+              ></i>
             </div>
           </summary>
 
           <div class="grid grid-cols-1 gap-3 py-4 animate-fade-in">
             <template x-for="member in p.team" :key="member.name">
-
-              <div class="relative group/member bg-black/20
-                    flex items-center gap-4 p-2
-                    border-white/5
-                    transition-all duration-300
-                    hover:bg-primary/10
-                    hover:border-primary">
-
+              <div
+                class="relative group/member bg-black/20 flex items-center gap-4 p-2 border-white/5 transition-all duration-300 hover:bg-primary/10 hover:border-primary"
+              >
                 <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
 
-                <span class="absolute left-0 top-0 h-full w-[2px]
-                       bg-primary opacity-30
-                       group-hover/member:opacity-100
-                       group-hover/member:shadow-[0_0_10px_rgba(var(--color-primary-rgb),1)]
-                       transition-all">
-                </span>
+                <span
+                  class="absolute left-0 top-0 h-full w-[2px] bg-primary opacity-30 group-hover/member:opacity-100 group-hover/member:shadow-[0_0_10px_rgba(var(--color-primary-rgb),1)] transition-all"
+                ></span>
 
-                <span class="absolute -top-1 -left-1 w-2 h-2
-                       border-t border-l border-primary opacity-40">
-                </span>
+                <span
+                  class="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-primary opacity-40"
+                ></span>
 
                 <div class="w-10 h-10 shrink-0 overflow-hidden bg-gray-900 relative">
-                  <img :src="member.avatar_url" @error="handleImageError" class="w-full h-full object-cover
-                        grayscale opacity-80
-                        group-hover/member:grayscale-0
-                        group-hover/member:opacity-100
-                        transition-all">
+                  <img
+                    :src="member.avatar_url"
+                    @error="handleImageError"
+                    class="w-full h-full object-cover grayscale opacity-80 group-hover/member:grayscale-0 group-hover/member:opacity-100 transition-all"
+                  />
                 </div>
 
                 <div class="flex-1 min-w-0">
-                  <p class="text-[length:var(--text-md)] font-bold uppercase tracking-[0.1em] text-gray-100"
-                    x-text="member.name"></p>
+                  <p
+                    class="text-[length:var(--text-md)] font-bold uppercase tracking-[0.1em] text-gray-100"
+                    x-text="member.name"
+                  ></p>
 
-                  <p class="text-[length:var(--text-micro)]  uppercase text-primary/70 tracking-[0.1em]">
-                    // <span x-text="member.role[$store.i18n.lang]"></span>
+                  <p
+                    class="text-[length:var(--text-micro)] uppercase text-primary/70 tracking-[0.1em]"
+                  >
+                    //
+                    <span x-text="member.role[$store.i18n.lang]"></span>
                   </p>
 
                   <div class="flex gap-3 mt-1.5">
-                    <a x-show="member.linkedin" :href="member.linkedin" target="_blank"
-                      class="text-gray-400 icon-primary transition-colors">
-                      <i data-lucide="linkedin" class="w-3 h-3"></i>
+                    <!-- LinkedIn Devicon -->
+                    <a
+                      x-show="member.linkedin"
+                      :href="member.linkedin"
+                      target="_blank"
+                      class="text-gray-400 icon-primary transition-colors"
+                    >
+                      <i class="devicon-linkedin-plain text-[12px]"></i>
                     </a>
 
-                    <a x-show="member.github" :href="member.github" target="_blank"
-                      class="text-gray-400 icon-primary transition-colors">
-                      <i data-lucide="github" class="w-3 h-3"></i>
+                    <!-- Github Devicon -->
+                    <a
+                      x-show="member.github"
+                      :href="member.github"
+                      target="_blank"
+                      class="text-gray-400 icon-primary transition-colors"
+                    >
+                      <i class="devicon-github-original text-[12px]"></i>
                     </a>
 
-                    <a x-show="member.portfolio" :href="member.portfolio" target="_blank"
-                      class="text-gray-400 icon-primary transition-colors">
-                      <i data-lucide="globe" class="w-3 h-3"></i>
+                    <!-- Portfolio (Como o Devicon não tem 'globe', o uso de 'browser' é o padrão tecnológico) -->
+                    <a
+                      x-show="member.portfolio"
+                      :href="member.portfolio"
+                      target="_blank"
+                      class="text-gray-400 icon-primary transition-colors"
+                    >
+                      <i class="devicon-chrome-plain text-[12px]"></i>
                     </a>
                   </div>
                 </div>
               </div>
-
             </template>
           </div>
         </details>
-
       </div>
-
     </template>
   </div>
-
 </div>
 
-<div class="relative flex bg-black/60 border-primary border-white/10 mb-5 group overflow-hidden"
-  style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
-
+<div
+  class="relative flex bg-black/60 border-primary border-white/10 mb-5 group overflow-hidden"
+  style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%)"
+>
   <div class="w-1 bg-primary shadow-[2px_0_10px_rgba(var(--color-primary-rgb),0.3)]"></div>
   <div class="scan-line"></div>
   <div class="p-4 pr-6">
     <div class="flex items-center gap-2 mb-3">
       <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
 
-      <h5 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
-        x-text="$store.i18n.t('timeline_fragment')">
-      </h5>
+      <h5
+        class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
+        x-text="$store.i18n.t('timeline_fragment')"
+      ></h5>
     </div>
 
-    <div class="text-[length:var(--text-xs)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
-      x-text="$store.i18n.t('transmission_source')">
-    </div>
+    <div
+      class="text-[length:var(--text-xs)] text-gray-400 uppercase mb-1 tracking-[0.1em]"
+      x-text="$store.i18n.t('transmission_source')"
+    ></div>
 
-    <p class="text-[length:var(--text-base)] tracking-[0.1em] text-gray-300  leading-snug
-               group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('timeline_source')">
-    </p>
+    <p
+      class="text-[length:var(--text-base)] tracking-[0.1em] text-gray-300 leading-snug group-hover:text-gray-200 transition-colors"
+      x-text="$store.i18n.t('timeline_source')"
+    ></p>
   </div>
 
-  <div class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20" style="clip-path: polygon(100% 0, 100% 100%, 0 100%);">
-  </div>
+  <div
+    class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20"
+    style="clip-path: polygon(100% 0, 100% 100%, 0 100%)"
+  ></div>
 </div>
 
-<div id="exp" x-data="{
+<div
+  id="exp"
+  x-data="{
     devStats,
     allOpen: true,
     toggleAll() {
       this.allOpen = !this.allOpen;
       this.$dispatch('timeline-toggle-all', { open: this.allOpen });
     }
-  }">
-
+  }"
+>
   <!-- TITLE ROW + GLOBAL TOGGLE -->
   <div class="flex items-center justify-between gap-4 mb-6">
-
-    <h2 x-text="$store.i18n.t('title_exp')"
-      class="text-accent font-bold text-[length:var(--text-md)] uppercase tracking-[0.1em]">
-    </h2>
+    <h2
+      x-text="$store.i18n.t('title_exp')"
+      class="text-accent font-bold text-[length:var(--text-md)] uppercase tracking-[0.1em]"
+    ></h2>
 
     <!-- Global collapse/expand — mirrors the skills-subsystem summary bar -->
-    <button @click="toggleAll(); $store.sfx.play('timeline');" data-interactive class="flex items-center gap-2 sm:gap-3 px-3 py-1.5
-             bg-black/50 border border-white/5
-             hover:border-primary transition
-             cursor-pointer select-none flex-shrink-0">
+    <button
+      @click="toggleAll(); $store.sfx.play('timeline');"
+      data-interactive
+      class="flex items-center gap-2 sm:gap-3 px-3 py-1.5 bg-black/50 border border-white/5 hover:border-primary transition cursor-pointer select-none flex-shrink-0"
+    >
+      <i
+        data-lucide="list-collapse"
+        class="w-3.5 h-3.5 text-primary transition-transform duration-300"
+        :class="allOpen ? '' : 'rotate-180'"
+      ></i>
 
-      <i data-lucide="list-collapse" class="w-3.5 h-3.5 text-primary transition-transform duration-300"
-        :class="allOpen ? '' : 'rotate-180'">
-      </i>
-
-      <p class="text-[length:var(--text-micro)] uppercase tracking-[0.35em]
-                text-primary/70 hidden sm:block">
-        <span x-text="allOpen
+      <p
+        class="text-[length:var(--text-micro)] uppercase tracking-[0.35em] text-primary/70 hidden sm:block"
+      >
+        <span
+          x-text="allOpen
           ? $store.i18n.t('collapse_all') || 'COLLAPSE ALL'
-          : $store.i18n.t('expand_all')   || 'EXPAND ALL'">
-        </span>
+          : $store.i18n.t('expand_all')   || 'EXPAND ALL'"
+        ></span>
       </p>
 
-      <span class="text-[length:var(--text-micro)] tracking-[0.1em]"
-        :class="allOpen ? 'text-primary' : 'text-white/40'">
-        [ <span x-show="!allOpen">OFF</span><span x-show="allOpen">ON</span> ]
+      <span
+        class="text-[length:var(--text-micro)] tracking-[0.1em]"
+        :class="allOpen ? 'text-primary' : 'text-white/40'"
+      >
+        [
+        <span x-show="!allOpen">OFF</span>
+        <span x-show="allOpen">ON</span>
+        ]
       </span>
-
     </button>
   </div>
 
   <div id="experience-timeline" @mouseenter="$store.sfx.play('hover');" class="space-y-0">
-
     <template x-for="(job, index) in devStats.history" :key="job.company + '-' + job.period.en">
-
-      <div class="relative pl-7 sm:pl-10 border-l-2 border-primary pb-10 sm:pb-12 last:pb-0" x-data="{ open: true }"
-        x-on:timeline-toggle-all.window="open = $event.detail.open">
-
+      <div
+        class="relative pl-7 sm:pl-10 border-l-2 border-primary pb-10 sm:pb-12 last:pb-0"
+        x-data="{ open: true }"
+        x-on:timeline-toggle-all.window="open = $event.detail.open"
+      >
         <!-- TIMELINE AXIS -->
-        <span class="absolute left-[28px] sm:left-[40px] top-0 bottom-0 w-[2px] bg-primary/30"></span>
+        <span
+          class="absolute left-[28px] sm:left-[40px] top-0 bottom-0 w-[2px] bg-primary/30"
+        ></span>
 
         <div data-interactive>
-
           <!-- YEAR LABEL -->
-          <div data-non-interactive class="absolute left-[28px] sm:left-[40px] -top-2 -translate-x-1/2
-                   text-[length:var(--text-sm)] tracking-[0.1em] uppercase
-                   text-white px-1 sm:px-2">
+          <div
+            data-non-interactive
+            class="absolute left-[28px] sm:left-[40px] -top-2 -translate-x-1/2 text-[length:var(--text-sm)] tracking-[0.1em] uppercase text-white px-1 sm:px-2"
+          >
             <span x-text="job.period[$store.i18n.lang].split(' ')[0]"></span>
           </div>
 
           <!-- NODE — pulses when collapsed to signal hidden content -->
-          <div data-non-interactive class="absolute -left-[9px] top-1 w-4 h-4 bg-main border-2 border-primary
-                   rotate-45 flex items-center justify-center transition-all duration-300" :class="open
+          <div
+            data-non-interactive
+            class="absolute -left-[9px] top-1 w-4 h-4 bg-main border-2 border-primary rotate-45 flex items-center justify-center transition-all duration-300"
+            :class="open
               ? 'shadow-[0_0_10px_var(--color-primary)]'
-              : 'shadow-[0_0_18px_var(--color-primary)] scale-110'">
+              : 'shadow-[0_0_18px_var(--color-primary)] scale-110'"
+          >
             <div class="w-1 h-1 bg-primary animate-pulse"></div>
           </div>
 
           <!-- CARD -->
-          <div class="rpg-card relative ml-7 sm:ml-10
-                      bg-black/65 border-white/5
-                      hover:border-primary
-                      transition-all duration-300
-                      hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.15)]
-                      overflow-hidden">
-
+          <div
+            class="rpg-card relative ml-7 sm:ml-10 bg-black/65 border-white/5 hover:border-primary transition-all duration-300 hover:shadow-[0_0_20px_rgba(var(--color-primary-rgb),0.15)] overflow-hidden"
+          >
             <!-- TOP ENERGY LINE -->
-            <div class="absolute inset-x-0 top-0 h-[2px]
-                        bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+            <div
+              class="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"
+            ></div>
 
             <!-- HEADER — clickable to collapse/expand body -->
-            <div class="p-3 sm:p-4 flex flex-col xs:flex-row sm:flex-row
-                        gap-2 sm:gap-0 justify-between items-start bg-primary/5
-                        cursor-pointer select-none group/header"
-              @click="open = !open; $store.sfx.play('toggle'); $nextTick(() => window.lucide && lucide.createIcons())">
-
+            <div
+              class="p-3 sm:p-4 flex flex-col xs:flex-row sm:flex-row gap-2 sm:gap-0 justify-between items-start bg-primary/5 cursor-pointer select-none group/header"
+              @click="open = !open; $store.sfx.play('toggle'); $nextTick(() => window.lucide && lucide.createIcons())"
+            >
               <!-- LEFT -->
               <div class="space-y-1 min-w-0 flex-1">
-                <h3 class="font-black text-white uppercase tracking-[0.1em]
-                           text-[length:var(--text-md)] leading-tight" x-text="job.role[$store.i18n.lang]">
-                </h3>
+                <h3
+                  class="font-black text-white uppercase tracking-[0.1em] text-[length:var(--text-md)] leading-tight"
+                  x-text="job.role[$store.i18n.lang]"
+                ></h3>
 
                 <p class="text-[length:var(--text-micro)] uppercase tracking-[0.1em] text-primary">
                   <span x-text="$store.i18n.t('deploy')"></span>
@@ -481,87 +531,105 @@
               </div>
 
               <!-- RIGHT -->
-              <div class="text-left xs:text-right sm:text-right flex-shrink-0 flex items-start gap-3">
-
+              <div
+                class="text-left xs:text-right sm:text-right flex-shrink-0 flex items-start gap-3"
+              >
                 <div>
-                  <p x-text="$store.i18n.t('period')"
-                    class="text-[length:var(--text-micro)] uppercase tracking-[0.1em] text-white/40 mb-1">
-                  </p>
-                  <p class="text-[length:var(--text-md)] text-white bg-white/5 px-2 py-0.5 inline-block">
+                  <p
+                    x-text="$store.i18n.t('period')"
+                    class="text-[length:var(--text-micro)] uppercase tracking-[0.1em] text-white/40 mb-1"
+                  ></p>
+                  <p
+                    class="text-[length:var(--text-md)] text-white bg-white/5 px-2 py-0.5 inline-block"
+                  >
                     <span x-text="job.period[$store.i18n.lang]"></span>
                   </p>
                 </div>
 
                 <!-- Collapse indicator — bracket + rotating diamond -->
-                <div class="flex items-center gap-1.5 mt-0.5 text-[length:var(--text-micro)] tracking-[0.1em]
-                            transition-colors duration-200" :class="open ? 'text-primary' : 'text-white/30'">
-
+                <div
+                  class="flex items-center gap-1.5 mt-0.5 text-[length:var(--text-micro)] tracking-[0.1em] transition-colors duration-200"
+                  :class="open ? 'text-primary' : 'text-white/30'"
+                >
                   <span>[</span>
                   <!-- diamond rotates on collapse -->
-                  <span class="inline-block transition-transform duration-300 text-primary text-[8px]"
-                    :class="open ? 'rotate-45' : 'rotate-0 text-white/30'">◆</span>
+                  <span
+                    class="inline-block transition-transform duration-300 text-primary text-[8px]"
+                    :class="open ? 'rotate-45' : 'rotate-0 text-white/30'"
+                  >
+                    ◆
+                  </span>
                   <span>]</span>
-
                 </div>
-
               </div>
-
             </div>
             <!-- END HEADER -->
 
             <!-- BODY — collapses smoothly -->
-            <div class="grid transition-all duration-400 ease-in-out"
-              :style="open ? 'grid-template-rows: 1fr; opacity: 1' : 'grid-template-rows: 0fr; opacity: 0'">
+            <div
+              class="grid transition-all duration-400 ease-in-out"
+              :style="open ? 'grid-template-rows: 1fr; opacity: 1' : 'grid-template-rows: 0fr; opacity: 0'"
+            >
               <div class="overflow-hidden">
-
                 <div class="p-3 sm:p-4 space-y-4 sm:space-y-5">
-
                   <!-- SYSTEM LOG -->
-                  <div class="text-[length:var(--text-sm)] text-gray-300
-                              leading-relaxed border-l border-primary pl-3"
-                    x-data="expandableTypedText(() => job.description[$store.i18n.lang], 180)" x-init="init()"
-                    x-on:alpine:destroy="destroy()" x-effect="onTextChanged()">
-
-                    <p x-text="displayText"
+                  <div
+                    class="text-[length:var(--text-sm)] text-gray-300 leading-relaxed border-l border-primary pl-3"
+                    x-data="expandableTypedText(() => job.description[$store.i18n.lang], 180)"
+                    x-init="init()"
+                    x-on:alpine:destroy="destroy()"
+                    x-effect="onTextChanged()"
+                  >
+                    <p
+                      x-text="displayText"
                       class="mb-2 whitespace-pre-line tracking-[0.1em] transition-all duration-300"
-                      :class="expanded ? '' : 'line-clamp-2'">
-                    </p>
+                      :class="expanded ? '' : 'line-clamp-2'"
+                    ></p>
 
-                    <button x-show="shouldShowToggle" @click="toggle(); $store.sfx.play('expand')" class="animate-pulse mt-3 flex items-center gap-2
-                             text-[length:var(--text-micro)] uppercase tracking-[0.1em]">
-                      <span :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
+                    <button
+                      x-show="shouldShowToggle"
+                      @click="toggle(); $store.sfx.play('expand')"
+                      class="animate-pulse mt-3 flex items-center gap-2 text-[length:var(--text-micro)] uppercase tracking-[0.1em]"
+                    >
+                      <span
+                        :data-i18n="expanded ? 'collapse_data' : 'expand_data'"
                         x-effect="expanded; $nextTick(() => updateInterfaceStatic())"
-                        class="text-primary tracking-[0.1em] hover:text-primary transition">
-                      </span>
+                        class="text-primary tracking-[0.1em] hover:text-primary transition"
+                      ></span>
                       <span class="animate-pulse text-primary">█</span>
                     </button>
-
                   </div>
 
                   <!-- SKILLS SUBSYSTEM -->
-                  <details class="group/details" x-data="{ expanded: false }"
-                    @toggle="expanded = $el.open; $store.sfx.play('toggle');">
-
+                  <details
+                    class="group/details"
+                    x-data="{ expanded: false }"
+                    @toggle="expanded = $el.open; $store.sfx.play('toggle');"
+                  >
                     <summary class="list-none cursor-pointer select-none">
-                      <div class="flex items-center gap-3 px-3 py-2
-                                  bg-black/50 border-white/5
-                                  hover:border-primary transition">
+                      <div
+                        class="flex items-center gap-3 px-3 py-2 bg-black/50 border-white/5 hover:border-primary transition"
+                      >
+                        <i
+                          data-lucide="layers"
+                          class="w-4 h-4 text-primary transition group-open/details:scale-110 group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]"
+                        ></i>
 
-                        <i data-lucide="layers" class="w-4 h-4 text-primary transition
-                                 group-open/details:scale-110
-                                 group-open/details:drop-shadow-[0_0_6px_rgba(var(--color-primary-rgb),1)]">
-                        </i>
-
-                        <p class="text-[length:var(--text-micro)] uppercase tracking-[0.35em]
-                                  text-primary/70 group-open/details:text-primary">
+                        <p
+                          class="text-[length:var(--text-micro)] uppercase tracking-[0.35em] text-primary/70 group-open/details:text-primary"
+                        >
                           <span x-text="$store.i18n.t('skills_used')"></span>
                         </p>
 
-                        <span class="ml-auto text-[length:var(--text-micro)] tracking-[0.1em]"
-                          :class="expanded ? 'text-primary' : 'text-white/40'">
-                          [ <span x-show="!expanded">OFF</span><span x-show="expanded">ON</span> ]
+                        <span
+                          class="ml-auto text-[length:var(--text-micro)] tracking-[0.1em]"
+                          :class="expanded ? 'text-primary' : 'text-white/40'"
+                        >
+                          [
+                          <span x-show="!expanded">OFF</span>
+                          <span x-show="expanded">ON</span>
+                          ]
                         </span>
-
                       </div>
                     </summary>
 
@@ -571,80 +639,75 @@
 
                       <div class="flex gap-2 sm:gap-3 min-w-max px-2 pt-3">
                         <template x-for="s in job.skills" :key="s.key">
-
-                          <div class="relative flex items-center gap-1.5 sm:gap-2
-                                      px-2 sm:px-3 py-1.5 sm:py-2
-                                      bg-black/40 border-white/5
-                                      hover:border-primary transition">
-
+                          <div
+                            class="relative flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 bg-black/40 border-white/5 hover:border-primary transition"
+                          >
                             <span class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
 
                             <template x-if="s.type === 'devicon' && skillIcons[s.key]">
-                              <i :class="skillIcons[s.key].icon"
-                                class="text-primary text-[length:var(--text-base)] shrink-0">
-                              </i>
+                              <i
+                                :class="skillIcons[s.key].icon"
+                                class="text-primary text-[length:var(--text-base)] shrink-0"
+                              ></i>
                             </template>
 
-                            <p class="text-[length:var(--text-micro)] uppercase tracking-[0.1em]
-                                      text-white/90 truncate">
+                            <p
+                              class="text-[length:var(--text-micro)] uppercase tracking-[0.1em] text-white/90 truncate"
+                            >
                               <span x-text="resolveSkill(s.key).label"></span>
                             </p>
 
-                            <span class="w-1 h-4 bg-primary
-                                         shadow-[0_0_6px_var(--color-primary)]
-                                         animate-pulse">
-                            </span>
-
+                            <span
+                              class="w-1 h-4 bg-primary shadow-[0_0_6px_var(--color-primary)] animate-pulse"
+                            ></span>
                           </div>
-
                         </template>
                       </div>
                     </div>
-
                   </details>
-
                 </div>
-
               </div>
             </div>
             <!-- END BODY -->
-
           </div>
-
         </div>
       </div>
     </template>
-
   </div>
 </div>
 
-<div class="relative flex bg-black/60 border-primary border-white/10 mb-5 group overflow-hidden"
-  style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);">
-
+<div
+  class="relative flex bg-black/60 border-primary border-white/10 mb-5 group overflow-hidden"
+  style="clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%)"
+>
   <div class="w-1 bg-primary shadow-[2px_0_10px_rgba(var(--color-primary-rgb),0.3)]"></div>
   <div class="scan-line"></div>
   <div class="p-4 pr-6">
     <div class="flex items-center gap-2 mb-3">
       <div class="w-2 h-2 bg-primary rotate-45 shadow-[0_0_8px_var(--color-primary)]"></div>
 
-      <h5 class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
-        x-text="$store.i18n.t('academic_fragment')">
-      </h5>
+      <h5
+        class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] text-primary"
+        x-text="$store.i18n.t('academic_fragment')"
+      ></h5>
     </div>
 
-    <div class="text-[length:var(--text-xs)]  text-gray-400 uppercase mb-1 tracking-[0.1em]"
-      x-text="$store.i18n.t('transmission_source')">
-    </div>
+    <div
+      class="text-[length:var(--text-xs)] text-gray-400 uppercase mb-1 tracking-[0.1em]"
+      x-text="$store.i18n.t('transmission_source')"
+    ></div>
 
-    <p class="text-[length:var(--text-base)] tracking-[0.1em] text-gray-300  leading-snug
-               group-hover:text-gray-200 transition-colors" x-text="$store.i18n.t('academic_source')">
-    </p>
+    <p
+      class="text-[length:var(--text-base)] tracking-[0.1em] text-gray-300 leading-snug group-hover:text-gray-200 transition-colors"
+      x-text="$store.i18n.t('academic_source')"
+    ></p>
   </div>
 
-  <div class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20" style="clip-path: polygon(100% 0, 100% 100%, 0 100%);">
-  </div>
+  <div
+    class="absolute bottom-0 right-0 w-2 h-2 bg-primary/20"
+    style="clip-path: polygon(100% 0, 100% 100%, 0 100%)"
+  ></div>
 </div>
-
 
 <!-- ═══════════════════════════════════════════════
   ARCHIVE_NODE — Education & Certifications
@@ -652,78 +715,104 @@
   v4: pdf.js extracted · chevron rotation fixed
 ════════════════════════════════════════════════ -->
 
-
-
-<div class="edu-node relative mb-10" x-data="{
+<div
+  class="edu-node relative mb-10"
+  x-data="{
        ...certViewerData(),
        educationLogs,
-     }" data-interactive @keydown.escape.window="closeCert()" @fullscreenchange.window="
+     }"
+  data-interactive
+  @keydown.escape.window="closeCert()"
+  @fullscreenchange.window="
        if (!document.fullscreenElement) {
          certModal.fullscreen = false;
          $nextTick(() => window.lucide && lucide.createIcons());
        }
-     ">
-
+     "
+>
   <!-- ── Outer frame ──────────────────────────── -->
-  <div class="rpg-card relative bg-black/70" style="clip-path: polygon(0 0, 100% 0, 100% 96%, 92% 100%, 0 100%)">
-
+  <div
+    class="rpg-card relative bg-black/70"
+    style="clip-path: polygon(0 0, 100% 0, 100% 96%, 92% 100%, 0 100%)"
+  >
     <!-- ══ HEADER ══════════════════════════════ -->
-    <div class="relative flex items-center justify-between
-                px-5 py-3 border-b border-white/20
-                bg-gradient-to-r from-primary/8 via-transparent to-transparent">
-
+    <div
+      class="relative flex items-center justify-between px-5 py-3 border-b border-white/20 bg-gradient-to-r from-primary/8 via-transparent to-transparent"
+    >
       <div class="flex items-center gap-3">
-        <div class="relative flex items-center justify-center w-9 h-9 bg-primary/10
-                    shadow-[0_0_14px_rgba(var(--color-primary-rgb),0.30)]"
-          style="clip-path:polygon(20% 0,80% 0,100% 20%,100% 80%,80% 100%,20% 100%,0 80%,0 20%)">
+        <div
+          class="relative flex items-center justify-center w-9 h-9 bg-primary/10 shadow-[0_0_14px_rgba(var(--color-primary-rgb),0.30)]"
+          style="
+            clip-path: polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%);
+          "
+        >
           <i data-lucide="graduation-cap" class="w-5 h-5 text-primary"></i>
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <div class="w-1.5 h-1.5 bg-primary rotate-45 shadow-[0_0_6px_var(--color-primary)]"></div>
-            <span class="text-[length:var(--text-base)] font-black uppercase tracking-[0.12em] text-primary"
-              x-text="$store.i18n.t('edu_archive_title')">
-            </span>
+            <div
+              class="w-1.5 h-1.5 bg-primary rotate-45 shadow-[0_0_6px_var(--color-primary)]"
+            ></div>
+            <span
+              class="text-[length:var(--text-base)] font-black uppercase tracking-[0.12em] text-primary"
+              x-text="$store.i18n.t('edu_archive_title')"
+            ></span>
           </div>
-          <span class="text-[length:var(--text-xs)] text-primary/40 uppercase tracking-[0.2em]"
-            x-text="$store.i18n.t('edu_knowledge_loaded')">
-          </span>
+          <span
+            class="text-[length:var(--text-xs)] text-primary/40 uppercase tracking-[0.2em]"
+            x-text="$store.i18n.t('edu_knowledge_loaded')"
+          ></span>
         </div>
       </div>
 
       <div class="flex items-center gap-3">
         <div class="hidden sm:flex flex-col items-end gap-0.5">
-          <span class="text-[length:var(--text-xs)] text-primary/45 uppercase tracking-[0.1em]"
-            x-text="$store.i18n.t('edu_node_id')"></span>
-          <span class="text-[length:var(--text-sm)] text-primary/60 font-black tracking-[0.1em]"
-            x-text="$store.i18n.t('edu_node_code')"></span>
+          <span
+            class="text-[length:var(--text-xs)] text-primary/45 uppercase tracking-[0.1em]"
+            x-text="$store.i18n.t('edu_node_id')"
+          ></span>
+          <span
+            class="text-[length:var(--text-sm)] text-primary/60 font-black tracking-[0.1em]"
+            x-text="$store.i18n.t('edu_node_code')"
+          ></span>
         </div>
       </div>
     </div>
 
     <!-- ══ BODY ════════════════════════════════ -->
     <div class="relative p-5 space-y-3">
-
-
-
       <!-- SECTION LOOP -->
       <template x-for="(items, section) in educationLogs" :key="section">
-
         <!-- ══ SECTION WRAPPER ══ -->
-        <div x-data="{ secOpen: true }" x-init="$nextTick(() => window.lucide && lucide.createIcons())"
-          class="relative">
-
+        <div
+          x-data="{ secOpen: true }"
+          x-init="$nextTick(() => window.lucide && lucide.createIcons())"
+          class="relative"
+        >
           <!-- ── SECTION HEADER ────────────────────────── -->
-          <div class="relative flex items-center gap-3 mb-0 cursor-pointer select-none group/sec
-                      px-1 py-2 rounded-sm transition-colors duration-200"
-            @click="secOpen = !secOpen; $store.sfx.play('toggle'); $nextTick(() => window.lucide && lucide.createIcons())">
-
+          <div
+            class="relative flex items-center gap-3 mb-0 cursor-pointer select-none group/sec px-1 py-2 rounded-sm transition-colors duration-200"
+            @click="secOpen = !secOpen; $store.sfx.play('toggle'); $nextTick(() => window.lucide && lucide.createIcons())"
+          >
             <!-- Section icon -->
-            <div class="flex-shrink-0 w-9 h-9 flex items-center justify-center
-                        transition-all duration-300" :class="secOpen
+            <div
+              class="flex-shrink-0 w-9 h-9 flex items-center justify-center transition-all duration-300"
+              :class="secOpen
                    ? 'bg-primary/15 shadow-[0_0_12px_rgba(var(--color-primary-rgb),0.25)]'
                    : 'bg-primary/8'"
-              style="clip-path:polygon(10% 0,90% 0,100% 10%,100% 90%,90% 100%,10% 100%,0 90%,0 10%)">
+              style="
+                clip-path: polygon(
+                  10% 0,
+                  90% 0,
+                  100% 10%,
+                  100% 90%,
+                  90% 100%,
+                  10% 100%,
+                  0 90%,
+                  0 10%
+                );
+              "
+            >
               <template x-if="section === 'higher'">
                 <i data-lucide="landmark" class="w-5 h-5 text-primary"></i>
               </template>
@@ -738,123 +827,181 @@
             <!-- Label -->
             <span
               class="text-[length:var(--text-ms)] font-black uppercase tracking-[0.18em] transition-colors duration-200"
-              :class="secOpen ? 'text-primary' : 'text-primary/50'" x-text="$store.i18n.t(
+              :class="secOpen ? 'text-primary' : 'text-primary/50'"
+              x-text="$store.i18n.t(
                     section === 'higher'    ? 'higher_education' :
                     section === 'languages' ? 'edu_languages'    : 'courses'
-                  )">
-            </span>
+                  )"
+            ></span>
 
             <!-- Counter badge -->
-            <div class="flex items-center justify-center h-5 px-2 transition-all duration-200" :class="secOpen
+            <div
+              class="flex items-center justify-center h-5 px-2 transition-all duration-200"
+              :class="secOpen
                    ? 'bg-primary/15 shadow-[0_0_6px_rgba(var(--color-primary-rgb),0.2)]'
-                   : 'bg-primary/5'">
-              <span class="text-[10px] font-black tracking-[0.1em]"
-                :class="secOpen ? 'text-primary' : 'text-primary/40'" x-text="items.length">
-              </span>
+                   : 'bg-primary/5'"
+            >
+              <span
+                class="text-[10px] font-black tracking-[0.1em]"
+                :class="secOpen ? 'text-primary' : 'text-primary/40'"
+                x-text="items.length"
+              ></span>
             </div>
 
             <!-- Divider line -->
             <div class="flex-1 relative h-px overflow-hidden">
-              <div class="absolute inset-0 transition-opacity duration-300" :class="secOpen
+              <div
+                class="absolute inset-0 transition-opacity duration-300"
+                :class="secOpen
                      ? 'bg-gradient-to-r from-primary/30 to-transparent opacity-100'
-                     : 'bg-gradient-to-r from-primary/10 to-transparent opacity-60'">
-              </div>
-              <div class="absolute top-0 bottom-0 w-16 bg-gradient-to-r from-transparent via-primary/60 to-transparent"
-                :class="secOpen ? 'animate-[secScan_0.7s_ease-out_forwards]' : ''" style="left:-64px">
-              </div>
+                     : 'bg-gradient-to-r from-primary/10 to-transparent opacity-60'"
+              ></div>
+              <div
+                class="absolute top-0 bottom-0 w-16 bg-gradient-to-r from-transparent via-primary/60 to-transparent"
+                :class="secOpen ? 'animate-[secScan_0.7s_ease-out_forwards]' : ''"
+                style="left: -64px"
+              ></div>
             </div>
 
             <!--
               ★ SECTION CHEVRON — wrapper carries the rotation,
                 icon just carries the color.
             -->
-            <div class="flex-shrink-0 transition-all duration-300" :class="secOpen
+            <div
+              class="flex-shrink-0 transition-all duration-300"
+              :class="secOpen
                    ? 'bg-primary/12 shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.2)]'
-                   : 'bg-primary/5'" style="clip-path:polygon(10% 0,90% 0,100% 10%,100% 90%,90% 100%,10% 100%,0 90%,0 10%);
-                        width:1.75rem; height:1.75rem;">
+                   : 'bg-primary/5'"
+              style="
+                clip-path: polygon(
+                  10% 0,
+                  90% 0,
+                  100% 10%,
+                  100% 90%,
+                  90% 100%,
+                  10% 100%,
+                  0 90%,
+                  0 10%
+                );
+                width: 1.75rem;
+                height: 1.75rem;
+              "
+            >
               <!-- rotation wrapper -->
               <div class="edu-chev w-full h-full" :class="secOpen ? 'is-open' : ''">
-                <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-colors duration-200"
-                  :class="secOpen ? 'text-primary' : 'text-primary/30'">
-                </i>
+                <i
+                  data-lucide="chevron-down"
+                  class="w-3.5 h-3.5 transition-colors duration-200"
+                  :class="secOpen ? 'text-primary' : 'text-primary/30'"
+                ></i>
               </div>
             </div>
-
           </div>
           <!-- ── END SECTION HEADER ─────────────────────── -->
 
           <!-- ── SECTION BODY — collapses ────────────────── -->
-          <div class="edu-sec-body overflow-hidden"
-            :style="secOpen ? 'max-height:2000px; opacity:1' : 'max-height:0; opacity:0'">
-
+          <div
+            class="edu-sec-body overflow-hidden"
+            :style="secOpen ? 'max-height:2000px; opacity:1' : 'max-height:0; opacity:0'"
+          >
             <!-- ITEM LOOP -->
             <div class="space-y-2 pl-1 pt-3">
               <template x-for="(item, idx) in items" :key="item.title_key">
-
-                <div class="edu-item relative border border-white/5 bg-black/30
-                            transition-all duration-300" x-data="{ open: false }" :class="open
+                <div
+                  class="edu-item relative border border-white/5 bg-black/30 transition-all duration-300"
+                  x-data="{ open: false }"
+                  :class="open
                        ? 'border-primary bg-black/50 shadow-[inset_0_0_20px_rgba(var(--color-primary-rgb),0.04)]'
                        : 'border-primary/6'"
-                  style="clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)">
-
+                  style="
+                    clip-path: polygon(
+                      0 0,
+                      100% 0,
+                      100% calc(100% - 10px),
+                      calc(100% - 10px) 100%,
+                      0 100%
+                    );
+                  "
+                >
                   <!-- Active bar left -->
-                  <div class="absolute left-0 top-0 w-[2px] bg-primary shadow-[0_0_8px_var(--color-primary)]
-                              pointer-events-none transition-all duration-500"
-                    :style="open ? 'height:100%' : 'height:0'">
-                  </div>
+                  <div
+                    class="absolute left-0 top-0 w-[2px] bg-primary shadow-[0_0_8px_var(--color-primary)] pointer-events-none transition-all duration-500"
+                    :style="open ? 'height:100%' : 'height:0'"
+                  ></div>
 
                   <!-- Sweep layer -->
-                  <div class="edu-sweep absolute inset-y-0 w-16 pointer-events-none
-                              bg-gradient-to-r from-transparent via-primary/12 to-transparent -translate-x-full">
-                  </div>
+                  <div
+                    class="edu-sweep absolute inset-y-0 w-16 pointer-events-none bg-gradient-to-r from-transparent via-primary/12 to-transparent -translate-x-full"
+                  ></div>
 
                   <!-- ── ITEM HEADER ROW ── -->
-                  <div class="relative flex items-center gap-4 px-4 py-3.5 cursor-pointer select-none"
-                    @click="open = !open; $store.sfx.play('toggle'); $nextTick(() => window.lucide && lucide.createIcons())">
-
+                  <div
+                    class="relative flex items-center gap-4 px-4 py-3.5 cursor-pointer select-none"
+                    @click="open = !open; $store.sfx.play('toggle'); $nextTick(() => window.lucide && lucide.createIcons())"
+                  >
                     <!-- Icon badge -->
-                    <div class="flex-shrink-0 flex items-center justify-center w-10 h-10
-                                transition-all duration-300" :class="open
+                    <div
+                      class="flex-shrink-0 flex items-center justify-center w-10 h-10 transition-all duration-300"
+                      :class="open
                            ? 'bg-primary/15 shadow-[0_0_14px_rgba(var(--color-primary-rgb),0.3)]'
                            : 'bg-primary/8'"
-                      style="clip-path:polygon(15% 0,85% 0,100% 15%,100% 85%,85% 100%,15% 100%,0 85%,0 15%)">
-                      <i :data-lucide="item.icon || 'book-open'" class="w-4.5 h-4.5 transition-colors duration-300"
-                        :class="open ? 'text-primary' : 'text-primary/55'">
-                      </i>
+                      style="
+                        clip-path: polygon(
+                          15% 0,
+                          85% 0,
+                          100% 15%,
+                          100% 85%,
+                          85% 100%,
+                          15% 100%,
+                          0 85%,
+                          0 15%
+                        );
+                      "
+                    >
+                      <i
+                        :data-lucide="item.icon || 'book-open'"
+                        class="w-4.5 h-4.5 transition-colors duration-300"
+                        :class="open ? 'text-primary' : 'text-primary/55'"
+                      ></i>
                     </div>
 
                     <!-- Title + Provider -->
                     <div class="flex-1 min-w-0 flex flex-col gap-1">
-                      <div class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] leading-tight
-                                  flex items-center gap-2 transition-colors duration-200"
-                        :class="open ? 'text-primary' : 'text-primary/75'">
+                      <div
+                        class="text-[length:var(--text-md)] font-black uppercase tracking-[0.1em] leading-tight flex items-center gap-2 transition-colors duration-200"
+                        :class="open ? 'text-primary' : 'text-primary/75'"
+                      >
                         <template x-if="item.flag">
                           <span class="leading-none" x-text="item.flag"></span>
                         </template>
                         <span x-text="$store.i18n.t(item.title_key)"></span>
                       </div>
                       <div class="flex items-center gap-1.5">
-                        <i data-lucide="shield-check" class="w-3 h-3 flex-shrink-0 transition-colors duration-200"
-                          :class="open ? 'text-primary/55' : 'text-primary/30'">
-                        </i>
+                        <i
+                          data-lucide="shield-check"
+                          class="w-3 h-3 flex-shrink-0 transition-colors duration-200"
+                          :class="open ? 'text-primary/55' : 'text-primary/30'"
+                        ></i>
                         <span
                           class="text-[length:var(--text-md)] text-primary/30 tracking-[0.08em] transition-colors duration-200"
-                          :class="open ? '!text-primary/45' : ''" x-text="$store.i18n.t(item.provider_key)">
-                        </span>
+                          :class="open ? '!text-primary/45' : ''"
+                          x-text="$store.i18n.t(item.provider_key)"
+                        ></span>
                       </div>
                     </div>
 
                     <!-- Right area: mini-peek + chevron -->
                     <div class="flex-shrink-0 flex items-center gap-2">
-
                       <!-- Mini indicators (only when closed) -->
-                      <div class="flex items-center gap-1.5 overflow-hidden transition-all duration-200"
-                        :style="open ? 'max-width:0;opacity:0;margin:0' : 'max-width:96px;opacity:1'">
+                      <div
+                        class="flex items-center gap-1.5 overflow-hidden transition-all duration-200"
+                        :style="open ? 'max-width:0;opacity:0;margin:0' : 'max-width:96px;opacity:1'"
+                      >
                         <template x-if="item.hours">
                           <span
                             class="text-[10px] font-black text-primary/25 tracking-[0.08em] uppercase whitespace-nowrap"
-                            x-text="item.hours + $store.i18n.t('edu_hours_unit')">
-                          </span>
+                            x-text="item.hours + $store.i18n.t('edu_hours_unit')"
+                          ></span>
                         </template>
                         <template x-if="item.cert">
                           <div class="w-1.5 h-1.5 bg-primary/30 rotate-45 flex-shrink-0"></div>
@@ -862,9 +1009,11 @@
                         <template x-if="item.proficiency">
                           <div class="flex items-end gap-[2px] flex-shrink-0">
                             <template x-for="i in 5" :key="i">
-                              <div :class="i <= item.proficiency ? 'bg-primary/45' : 'bg-primary/10'"
-                                :style="`height:${3 + i * 1.5}px`" class="w-[3px]">
-                              </div>
+                              <div
+                                :class="i <= item.proficiency ? 'bg-primary/45' : 'bg-primary/10'"
+                                :style="`height:${3 + i * 1.5}px`"
+                                class="w-[3px]"
+                              ></div>
                             </template>
                           </div>
                         </template>
@@ -873,151 +1022,166 @@
                       <!--
                         ★ ITEM CHEVRON — same fix: wrapper rotates, icon colours.
                       -->
-                      <div class="flex-shrink-0 transition-all duration-300" :class="open
+                      <div
+                        class="flex-shrink-0 transition-all duration-300"
+                        :class="open
                              ? 'bg-primary/12 shadow-[0_0_8px_rgba(var(--color-primary-rgb),0.2)]'
-                             : 'bg-primary/5'" style="clip-path:polygon(10% 0,90% 0,100% 10%,100% 90%,90% 100%,10% 100%,0 90%,0 10%);
-                                  width:1.5rem; height:1.5rem;">
+                             : 'bg-primary/5'"
+                        style="
+                          clip-path: polygon(
+                            10% 0,
+                            90% 0,
+                            100% 10%,
+                            100% 90%,
+                            90% 100%,
+                            10% 100%,
+                            0 90%,
+                            0 10%
+                          );
+                          width: 1.5rem;
+                          height: 1.5rem;
+                        "
+                      >
                         <!-- rotation wrapper -->
                         <div class="edu-chev w-full h-full" :class="open ? 'is-open' : ''">
-                          <i data-lucide="chevron-down" class="w-3 h-3 transition-colors duration-200"
-                            :class="open ? 'text-primary' : 'text-primary/30'">
-                          </i>
+                          <i
+                            data-lucide="chevron-down"
+                            class="w-3 h-3 transition-colors duration-200"
+                            :class="open ? 'text-primary' : 'text-primary/30'"
+                          ></i>
                         </div>
                       </div>
-
                     </div>
                   </div>
                   <!-- ── END ITEM HEADER ROW ── -->
 
                   <!-- ── ITEM EXPANDED PANEL ── -->
-                  <div class="edu-item-wrap overflow-hidden"
-                    :style="open ? 'max-height:120px; opacity:1' : 'max-height:0; opacity:0'">
-
+                  <div
+                    class="edu-item-wrap overflow-hidden"
+                    :style="open ? 'max-height:120px; opacity:1' : 'max-height:0; opacity:0'"
+                  >
                     <!-- Scan separator -->
-                    <div class="relative mx-4 h-px overflow-hidden" style="transition:opacity 0.15s ease 0.08s"
-                      :style="open ? 'opacity:1' : 'opacity:0'">
-                      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent">
-                      </div>
+                    <div
+                      class="relative mx-4 h-px overflow-hidden"
+                      style="transition: opacity 0.15s ease 0.08s"
+                      :style="open ? 'opacity:1' : 'opacity:0'"
+                    >
+                      <div
+                        class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent"
+                      ></div>
                       <div
                         class="absolute top-0 bottom-0 w-12 bg-gradient-to-r from-transparent via-primary/60 to-transparent"
-                        :class="open ? 'animate-[eduScan_0.55s_ease-out_0.05s_forwards]' : ''" style="left:-48px">
-                      </div>
+                        :class="open ? 'animate-[eduScan_0.55s_ease-out_0.05s_forwards]' : ''"
+                        style="left: -48px"
+                      ></div>
                     </div>
 
                     <!-- Actions -->
                     <div class="flex items-center flex-shrink-0 gap-1.5 px-4 py-3 flex-wrap">
-
                       <!-- Proficiency badge — signal strength: sky blue nos bars ativos -->
                       <template x-if="item.proficiency">
-                        <div class="group/prof flex items-center gap-2 h-8 px-2.5 bg-black/50
-                border border-sky-500/20
-                hover:border-sky-400/60 hover:bg-sky-950/40
-                hover:shadow-[0_0_14px_rgba(125,211,252,0.18)]
-                transition-all duration-200 cursor-default">
+                        <div
+                          class="group/prof flex items-center gap-2 h-8 px-2.5 bg-black/50 border border-sky-500/20 hover:border-sky-400/60 hover:bg-sky-950/40 hover:shadow-[0_0_14px_rgba(125,211,252,0.18)] transition-all duration-200 cursor-default"
+                        >
                           <div class="flex items-end gap-[3px]">
                             <template x-for="i in 5" :key="i">
-                              <div :class="i <= item.proficiency
+                              <div
+                                :class="i <= item.proficiency
                         ? 'bg-sky-400 group-hover/prof:shadow-[0_0_8px_rgba(125,211,252,0.8)]'
-                        : 'bg-sky-900/50'" :style="`height:${6 + i * 2}px`" class="w-1.5 transition-all duration-200">
-                              </div>
+                        : 'bg-sky-900/50'"
+                                :style="`height:${6 + i * 2}px`"
+                                class="w-1.5 transition-all duration-200"
+                              ></div>
                             </template>
                           </div>
-                          <span class="text-[length:var(--text-xs)] font-black tracking-[0.1em] uppercase
-                   text-sky-400/70 group-hover/prof:text-sky-300
-                   transition-colors duration-200" x-text="$store.i18n.t(item.proficiency_key)">
-                          </span>
+                          <span
+                            class="text-[length:var(--text-xs)] font-black tracking-[0.1em] uppercase text-sky-400/70 group-hover/prof:text-sky-300 transition-colors duration-200"
+                            x-text="$store.i18n.t(item.proficiency_key)"
+                          ></span>
                         </div>
                       </template>
 
                       <!-- Hours badge — relógio: ponteiros giram, laranja quente -->
                       <template x-if="item.hours">
-                        <div class="group/hrs flex items-center gap-1.5 h-8 px-2.5 bg-black/50
-                border border-amber-500/15
-                hover:border-amber-400/60 hover:bg-amber-950/35
-                hover:shadow-[0_0_14px_rgba(251,191,36,0.15)]
-                transition-all duration-200 cursor-default">
-                          <i data-lucide="clock" class="w-3 h-3 text-amber-500/50
-                group-hover/hrs:text-amber-300
-                group-hover/hrs:rotate-[30deg]
-                transition-all duration-300">
-                          </i>
-                          <span class="text-[length:var(--text-xs)] font-black tracking-[0.1em] uppercase
-                   text-amber-500/55 group-hover/hrs:text-amber-300
-                   transition-colors duration-200" x-text="item.hours + $store.i18n.t('edu_hours_unit')">
-                          </span>
+                        <div
+                          class="group/hrs flex items-center gap-1.5 h-8 px-2.5 bg-black/50 border border-amber-500/15 hover:border-amber-400/60 hover:bg-amber-950/35 hover:shadow-[0_0_14px_rgba(251,191,36,0.15)] transition-all duration-200 cursor-default"
+                        >
+                          <i
+                            data-lucide="clock"
+                            class="w-3 h-3 text-amber-500/50 group-hover/hrs:text-amber-300 group-hover/hrs:rotate-[30deg] transition-all duration-300"
+                          ></i>
+                          <span
+                            class="text-[length:var(--text-xs)] font-black tracking-[0.1em] uppercase text-amber-500/55 group-hover/hrs:text-amber-300 transition-colors duration-200"
+                            x-text="item.hours + $store.i18n.t('edu_hours_unit')"
+                          ></span>
                         </div>
                       </template>
 
                       <!-- Cert button — lacre/selo: violet, badge cresce -->
                       <template x-if="item.cert">
-                        <button @click.stop="openCert(item.cert)" class="group/cert flex items-center gap-1.5 h-8 px-3 bg-black/50
-                   border border-violet-500/15
-                   text-[length:var(--text-xs)] font-black uppercase tracking-[0.1em]
-                   text-violet-400/55
-                   hover:border-violet-400/70 hover:text-violet-300 hover:bg-violet-950/40
-                   hover:shadow-[0_0_16px_rgba(56,189,248,0.2)]
-                   transition-all duration-200">
-                          <i data-lucide="file-badge" class="w-3.5 h-3.5
-                group-hover/cert:scale-110 group-hover/cert:drop-shadow-[0_0_4px_rgba(56,189,248,0.7)]
-                transition-all duration-200">
-                          </i>
+                        <button
+                          @click.stop="openCert(item.cert)"
+                          class="group/cert flex items-center gap-1.5 h-8 px-3 bg-black/50 border border-violet-500/15 text-[length:var(--text-xs)] font-black uppercase tracking-[0.1em] text-violet-400/55 hover:border-violet-400/70 hover:text-violet-300 hover:bg-violet-950/40 hover:shadow-[0_0_16px_rgba(56,189,248,0.2)] transition-all duration-200"
+                        >
+                          <i
+                            data-lucide="file-badge"
+                            class="w-3.5 h-3.5 group-hover/cert:scale-110 group-hover/cert:drop-shadow-[0_0_4px_rgba(56,189,248,0.7)] transition-all duration-200"
+                          ></i>
                           <span x-text="$store.i18n.t('edu_cert_btn')"></span>
                         </button>
                       </template>
 
                       <!-- External link — portal: teal, ícone translada diagonal -->
                       <div class="flex-1 min-w-0"></div>
-                      <a :href="item.url" target="_blank" rel="noopener noreferrer" @click.stop class="group/ext flex items-center justify-center w-8 h-8 bg-black/40
-            border border-teal-500/15
-            hover:border-teal-400/60 hover:bg-teal-950/35
-            hover:shadow-[0_0_14px_rgba(167,139,250,0.2)]
-            transition-all duration-200">
-                        <i data-lucide="external-link" class="w-3.5 h-3.5 text-teal-400/35
-              group-hover/ext:text-teal-300
-              group-hover/ext:translate-x-[2px] group-hover/ext:-translate-y-[2px]
-              group-hover/ext:drop-shadow-[0_0_4px_rgba(167,139,250,0.6)]
-              transition-all duration-200">
-                        </i>
+                      <a
+                        :href="item.url"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        @click.stop
+                        class="group/ext flex items-center justify-center w-8 h-8 bg-black/40 border border-teal-500/15 hover:border-teal-400/60 hover:bg-teal-950/35 hover:shadow-[0_0_14px_rgba(167,139,250,0.2)] transition-all duration-200"
+                      >
+                        <i
+                          data-lucide="external-link"
+                          class="w-3.5 h-3.5 text-teal-400/35 group-hover/ext:text-teal-300 group-hover/ext:translate-x-[2px] group-hover/ext:-translate-y-[2px] group-hover/ext:drop-shadow-[0_0_4px_rgba(167,139,250,0.6)] transition-all duration-200"
+                        ></i>
                       </a>
-
                     </div>
                   </div>
                   <!-- ── END ITEM EXPANDED PANEL ── -->
-
                 </div>
-
               </template>
             </div>
             <!-- END ITEM LOOP -->
-
           </div>
           <!-- ── END SECTION BODY ─────────────────────────── -->
-
         </div>
         <!-- ══ END SECTION WRAPPER ══ -->
-
       </template>
-
     </div>
 
     <!-- ══ FOOTER ══════════════════════════════ -->
-    <div class="relative flex items-center justify-between px-5 py-2.5 border-t border-white/20 bg-black/40">
+    <div
+      class="relative flex items-center justify-between px-5 py-2.5 border-t border-white/20 bg-black/40"
+    >
       <div class="flex items-center gap-2">
         <div class="flex gap-1">
           <div class="w-1 h-1.5 bg-primary/20"></div>
           <div class="w-1 h-1.5 bg-primary/50"></div>
           <div class="w-1 h-1.5 bg-primary animate-pulse"></div>
         </div>
-        <span class="text-[length:var(--text-xs)] text-primary/40 uppercase tracking-[0.1em]"
-          x-text="$store.i18n.t('edu_status_verified')"></span>
+        <span
+          class="text-[length:var(--text-xs)] text-primary/40 uppercase tracking-[0.1em]"
+          x-text="$store.i18n.t('edu_status_verified')"
+        ></span>
       </div>
     </div>
 
-    <div class="absolute bottom-0 right-0 w-6 h-6 bg-primary/15 pointer-events-none"
-      style="clip-path:polygon(100% 0,100% 100%,0 100%)"></div>
-
-  </div><!-- /.outer frame -->
-
+    <div
+      class="absolute bottom-0 right-0 w-6 h-6 bg-primary/15 pointer-events-none"
+      style="clip-path: polygon(100% 0, 100% 100%, 0 100%)"
+    ></div>
+  </div>
+  <!-- /.outer frame -->
 
   <!-- ══════════════════════════════════════════════════════════
   PDF CERT MODAL
@@ -1026,63 +1190,70 @@
     @keydown.escape.window="closeCert()"
     @fullscreenchange.window (now handled inside certViewerData)
 ════════════════════════════════════════════════════════════ -->
-  <div x-show="certModal.open" x-transition:enter="transition duration-300 ease-out"
-    x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-    x-transition:leave="transition duration-200 ease-in" x-transition:leave-start="opacity-100 scale-100"
-    x-transition:leave-end="opacity-0 scale-95" class="fixed inset-0 z-[12000] flex items-end sm:items-center justify-center
-         p-0 sm:p-4" style="backdrop-filter:blur(10px); background:rgba(0,0,0,0.90)">
-
-    <div id="cert-modal-box" class="relative w-full sm:max-w-4xl flex flex-col bg-black
-           border border-primary
-           shadow-[0_0_60px_rgba(var(--color-primary-rgb),0.2)]" style="
-      /* Mobile: tall sheet; Desktop: constrained box */
-      height: 92svh;
-      max-height: 92svh;
-    ">
-
+  <div
+    x-show="certModal.open"
+    x-transition:enter="transition duration-300 ease-out"
+    x-transition:enter-start="opacity-0 scale-95"
+    x-transition:enter-end="opacity-100 scale-100"
+    x-transition:leave="transition duration-200 ease-in"
+    x-transition:leave-start="opacity-100 scale-100"
+    x-transition:leave-end="opacity-0 scale-95"
+    class="fixed inset-0 z-[12000] flex items-end sm:items-center justify-center p-0 sm:p-4"
+    style="backdrop-filter: blur(10px); background: rgba(0, 0, 0, 0.9)"
+  >
+    <div
+      id="cert-modal-box"
+      class="relative w-full sm:max-w-4xl flex flex-col bg-black border border-primary shadow-[0_0_60px_rgba(var(--color-primary-rgb),0.2)]"
+      style="/* Mobile: tall sheet; Desktop: constrained box */ height: 92svh; max-height: 92svh"
+    >
       <!-- ── Top accent line ──────────────────────────── -->
-      <div class="absolute inset-x-0 top-0 h-px opacity-70
-                bg-gradient-to-r from-transparent via-primary to-transparent
-                pointer-events-none">
-      </div>
+      <div
+        class="absolute inset-x-0 top-0 h-px opacity-70 bg-gradient-to-r from-transparent via-primary to-transparent pointer-events-none"
+      ></div>
 
       <!-- ══ HEADER ══════════════════════════════════════ -->
-      <div class="flex-shrink-0 flex items-center justify-between
-                px-3 sm:px-4 py-2.5 border-b border-primary bg-primary/5">
-
+      <div
+        class="flex-shrink-0 flex items-center justify-between px-3 sm:px-4 py-2.5 border-b border-primary bg-primary/5"
+      >
         <!-- Left: title + filename -->
         <div class="flex items-center gap-2 min-w-0">
-          <div class="w-1.5 h-1.5 bg-primary rotate-45 flex-shrink-0 animate-pulse"
-            style="box-shadow:0 0 6px var(--color-primary)"></div>
-          <span class="text-[length:var(--text-sm)] font-black uppercase tracking-[0.1em] text-primary"
-            x-text="$store.i18n.t('edu_cert_viewer')"></span>
-          <span class="hidden sm:block text-[length:var(--text-xs)] text-primary/40
-                     uppercase tracking-[0.1em] truncate max-w-[200px]" x-text="certModal.file"></span>
+          <div
+            class="w-1.5 h-1.5 bg-primary rotate-45 flex-shrink-0 animate-pulse"
+            style="box-shadow: 0 0 6px var(--color-primary)"
+          ></div>
+          <span
+            class="text-[length:var(--text-sm)] font-black uppercase tracking-[0.1em] text-primary"
+            x-text="$store.i18n.t('edu_cert_viewer')"
+          ></span>
+          <span
+            class="hidden sm:block text-[length:var(--text-xs)] text-primary/40 uppercase tracking-[0.1em] truncate max-w-[200px]"
+            x-text="certModal.file"
+          ></span>
         </div>
 
         <!-- Right: page nav + fullscreen + close -->
         <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-
           <!-- Page nav (only when multi-page) -->
           <template x-if="certModal.total > 1">
             <div class="flex items-center gap-1">
-              <button @click="prevPage()" :disabled="certModal.page <= 1" class="w-6 h-6 flex items-center justify-center
-                     border border-primary bg-black/60
-                     text-primary/60 hover:text-primary hover:border-primary
-                     disabled:opacity-20 disabled:cursor-not-allowed
-                     transition-all duration-150">
+              <button
+                @click="prevPage()"
+                :disabled="certModal.page <= 1"
+                class="w-6 h-6 flex items-center justify-center border border-primary bg-black/60 text-primary/60 hover:text-primary hover:border-primary disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-150"
+              >
                 <i data-lucide="chevron-left" class="w-3 h-3"></i>
               </button>
 
-              <span class="text-[length:var(--text-xs)] text-primary/50 font-black
-                         tracking-[0.1em] px-1.5 whitespace-nowrap tabular-nums"
-                x-text="certModal.page + ' / ' + certModal.total"></span>
+              <span
+                class="text-[length:var(--text-xs)] text-primary/50 font-black tracking-[0.1em] px-1.5 whitespace-nowrap tabular-nums"
+                x-text="certModal.page + ' / ' + certModal.total"
+              ></span>
 
-              <button @click="nextPage()" :disabled="certModal.page >= certModal.total" class="w-6 h-6 flex items-center justify-center
-                     border border-primary bg-black/60
-                     text-primary/60 hover:text-primary hover:border-primary
-                     disabled:opacity-20 disabled:cursor-not-allowed
-                     transition-all duration-150">
+              <button
+                @click="nextPage()"
+                :disabled="certModal.page >= certModal.total"
+                class="w-6 h-6 flex items-center justify-center border border-primary bg-black/60 text-primary/60 hover:text-primary hover:border-primary disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-150"
+              >
                 <i data-lucide="chevron-right" class="w-3 h-3"></i>
               </button>
             </div>
@@ -1092,49 +1263,78 @@
           <div class="w-px h-4 bg-primary/15 hidden sm:block"></div>
 
           <!-- Fullscreen -->
-          <button @click="toggleFullscreen()" class="w-7 h-7 hidden sm:flex items-center justify-center
-                 bg-primary/8 text-primary/40
-                 hover:text-primary hover:bg-primary/18
-                 hover:shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.2)]
-                 transition-all duration-200"
-            style="clip-path:polygon(10% 0,90% 0,100% 10%,100% 90%,90% 100%,10% 100%,0 90%,0 10%)" :title="certModal.fullscreen
+          <button
+            @click="toggleFullscreen()"
+            class="w-7 h-7 hidden sm:flex items-center justify-center bg-primary/8 text-primary/40 hover:text-primary hover:bg-primary/18 hover:shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.2)] transition-all duration-200"
+            style="
+              clip-path: polygon(
+                10% 0,
+                90% 0,
+                100% 10%,
+                100% 90%,
+                90% 100%,
+                10% 100%,
+                0 90%,
+                0 10%
+              );
+            "
+            :title="certModal.fullscreen
             ? $store.i18n.t('edu_fullscreen_exit')
-            : $store.i18n.t('edu_fullscreen_enter')">
-            <i :data-lucide="certModal.fullscreen ? 'minimize-2' : 'maximize-2'" class="w-3.5 h-3.5"></i>
+            : $store.i18n.t('edu_fullscreen_enter')"
+          >
+            <i
+              :data-lucide="certModal.fullscreen ? 'minimize-2' : 'maximize-2'"
+              class="w-3.5 h-3.5"
+            ></i>
           </button>
 
           <!-- Close -->
-          <button @click="closeCert()" class="w-7 h-7 flex items-center justify-center
-                 bg-primary/8 text-primary/35
-                 hover:text-primary hover:bg-primary/18
-                 hover:shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.2)]
-                 transition-all duration-200"
-            style="clip-path:polygon(10% 0,90% 0,100% 10%,100% 90%,90% 100%,10% 100%,0 90%,0 10%)">
+          <button
+            @click="closeCert()"
+            class="w-7 h-7 flex items-center justify-center bg-primary/8 text-primary/35 hover:text-primary hover:bg-primary/18 hover:shadow-[0_0_10px_rgba(var(--color-primary-rgb),0.2)] transition-all duration-200"
+            style="
+              clip-path: polygon(
+                10% 0,
+                90% 0,
+                100% 10%,
+                100% 90%,
+                90% 100%,
+                10% 100%,
+                0 90%,
+                0 10%
+              );
+            "
+          >
             <i data-lucide="x" class="w-4 h-4"></i>
           </button>
-
         </div>
       </div>
       <!-- ══ END HEADER ══════════════════════════════════ -->
 
       <!-- ══ ZOOM TOOLBAR ════════════════════════════════ -->
-      <div class="flex-shrink-0 flex items-center gap-1.5 sm:gap-2
-                px-3 sm:px-4 py-1.5 border-b border-primary bg-black/60">
-
+      <div
+        class="flex-shrink-0 flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 border-b border-primary bg-black/60"
+      >
         <!-- Fit-width -->
-        <button @click="fitWidth()" class="flex items-center gap-1.5 px-2.5 py-1 transition-all duration-150
-               text-[length:var(--text-xs)] font-black uppercase tracking-[0.1em]" :class="certModal.fitMode === 'width'
+        <button
+          @click="fitWidth()"
+          class="flex items-center gap-1.5 px-2.5 py-1 transition-all duration-150 text-[length:var(--text-xs)] font-black uppercase tracking-[0.1em]"
+          :class="certModal.fitMode === 'width'
           ? 'text-primary bg-primary/12 border border-primary shadow-[0_0_8px_rgba(var(--color-primary-rgb),0.15)]'
-          : 'text-primary/40 hover:text-primary hover:bg-primary/8 border border-transparent'">
+          : 'text-primary/40 hover:text-primary hover:bg-primary/8 border border-transparent'"
+        >
           <i data-lucide="move-horizontal" class="w-3 h-3"></i>
           <span class="hidden sm:inline">Fit</span>
         </button>
 
         <!-- Fit-page -->
-        <button @click="fitPage()" class="flex items-center gap-1.5 px-2.5 py-1 transition-all duration-150
-               text-[length:var(--text-xs)] font-black uppercase tracking-[0.1em]" :class="certModal.fitMode === 'page'
+        <button
+          @click="fitPage()"
+          class="flex items-center gap-1.5 px-2.5 py-1 transition-all duration-150 text-[length:var(--text-xs)] font-black uppercase tracking-[0.1em]"
+          :class="certModal.fitMode === 'page'
           ? 'text-primary bg-primary/12 border border-primary shadow-[0_0_8px_rgba(var(--color-primary-rgb),0.15)]'
-          : 'text-primary/40 hover:text-primary hover:bg-primary/8 border border-transparent'">
+          : 'text-primary/40 hover:text-primary hover:bg-primary/8 border border-transparent'"
+        >
           <i data-lucide="maximize" class="w-3 h-3"></i>
           <span class="hidden sm:inline">Page</span>
         </button>
@@ -1143,29 +1343,28 @@
         <div class="w-px h-4 bg-primary/15 mx-0.5"></div>
 
         <!-- Zoom out -->
-        <button @click="zoomOut()" :disabled="certModal.zoom <= 0.26" class="w-7 h-7 flex items-center justify-center
-               border border-primary bg-black/40
-               text-primary/40 hover:text-primary hover:border-primary
-               disabled:opacity-20 disabled:cursor-not-allowed
-               transition-all duration-150">
+        <button
+          @click="zoomOut()"
+          :disabled="certModal.zoom <= 0.26"
+          class="w-7 h-7 flex items-center justify-center border border-primary bg-black/40 text-primary/40 hover:text-primary hover:border-primary disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-150"
+        >
           <i data-lucide="minus" class="w-3 h-3"></i>
         </button>
 
         <!-- Zoom % (click to reset to fit-width) -->
-        <button @click="fitWidth()" class="min-w-[3.5rem] px-2 py-1 text-center
-               border border-primary bg-black/40
-               text-[length:var(--text-xs)] font-black tracking-[0.08em] tabular-nums
-               text-primary/55 hover:text-primary hover:border-primary
-               transition-all duration-150">
+        <button
+          @click="fitWidth()"
+          class="min-w-[3.5rem] px-2 py-1 text-center border border-primary bg-black/40 text-[length:var(--text-xs)] font-black tracking-[0.08em] tabular-nums text-primary/55 hover:text-primary hover:border-primary transition-all duration-150"
+        >
           <span x-text="certModal.zoomPct + '%'"></span>
         </button>
 
         <!-- Zoom in -->
-        <button @click="zoomIn()" :disabled="certModal.zoom >= 3.99" class="w-7 h-7 flex items-center justify-center
-               border border-primary bg-black/40
-               text-primary/40 hover:text-primary hover:border-primary
-               disabled:opacity-20 disabled:cursor-not-allowed
-               transition-all duration-150">
+        <button
+          @click="zoomIn()"
+          :disabled="certModal.zoom >= 3.99"
+          class="w-7 h-7 flex items-center justify-center border border-primary bg-black/40 text-primary/40 hover:text-primary hover:border-primary disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-150"
+        >
           <i data-lucide="plus" class="w-3 h-3"></i>
         </button>
 
@@ -1177,52 +1376,73 @@
           <span class="w-px h-3 bg-primary/15"></span>
           <span class="text-[9px] uppercase tracking-[0.12em]">F fullscreen</span>
         </div>
-
       </div>
       <!-- ══ END ZOOM TOOLBAR ══════════════════════════════ -->
 
       <!-- ══ CANVAS AREA ══════════════════════════════════ -->
-      <div id="cert-canvas-wrap" class="flex-1 overflow-auto relative
-             flex items-start justify-center p-4" style="min-height:0; scroll-behavior:smooth">
-
+      <div
+        id="cert-canvas-wrap"
+        class="flex-1 overflow-auto relative flex items-start justify-center p-4"
+        style="min-height: 0; scroll-behavior: smooth"
+      >
         <!-- Loading overlay -->
-        <div x-show="certModal.loading" x-transition:enter="transition-opacity duration-150"
-          x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-          x-transition:leave="transition-opacity duration-200" x-transition:leave-start="opacity-100"
-          x-transition:leave-end="opacity-0" class="absolute inset-0 flex flex-col items-center justify-center
-               gap-3 bg-black/70 z-10 backdrop-blur-sm">
-
+        <div
+          x-show="certModal.loading"
+          x-transition:enter="transition-opacity duration-150"
+          x-transition:enter-start="opacity-0"
+          x-transition:enter-end="opacity-100"
+          x-transition:leave="transition-opacity duration-200"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0"
+          class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/70 z-10 backdrop-blur-sm"
+        >
           <!-- Animated dots -->
           <div class="flex items-center gap-2">
-            <div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style="animation-delay:0ms"></div>
-            <div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style="animation-delay:150ms"></div>
-            <div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style="animation-delay:300ms"></div>
+            <div
+              class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"
+              style="animation-delay: 0ms"
+            ></div>
+            <div
+              class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"
+              style="animation-delay: 150ms"
+            ></div>
+            <div
+              class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"
+              style="animation-delay: 300ms"
+            ></div>
           </div>
 
           <!-- Progress hint -->
-          <span class="text-[length:var(--text-xs)] text-primary/50 uppercase tracking-[0.12em]"
-            x-text="$store.i18n.t('edu_cert_loading')"></span>
+          <span
+            class="text-[length:var(--text-xs)] text-primary/50 uppercase tracking-[0.12em]"
+            x-text="$store.i18n.t('edu_cert_loading')"
+          ></span>
 
           <!-- Scan line -->
-          <div class="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent
-                    animate-[eduScan_1.2s_ease-in-out_infinite]" style="top:50%"></div>
-
+          <div
+            class="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent animate-[eduScan_1.2s_ease-in-out_infinite]"
+            style="top: 50%"
+          ></div>
         </div>
 
         <!-- THE CANVAS -->
-        <canvas id="cert-canvas" class="shadow-[0_0_40px_rgba(0,0,0,0.9)]" style="display:block; max-width:none">
-        </canvas>
-
+        <canvas
+          id="cert-canvas"
+          class="shadow-[0_0_40px_rgba(0,0,0,0.9)]"
+          style="display: block; max-width: none"
+        ></canvas>
       </div>
       <!-- ══ END CANVAS AREA ══════════════════════════════ -->
 
       <!-- ══ FOOTER ═══════════════════════════════════════ -->
-      <div class="flex-shrink-0 flex items-center justify-between
-                px-3 sm:px-4 py-1.5 border-t border-primary bg-black/40">
-
+      <div
+        class="flex-shrink-0 flex items-center justify-between px-3 sm:px-4 py-1.5 border-t border-primary bg-black/40"
+      >
         <!-- Hint -->
-        <span class="text-[length:var(--text-xs)] text-primary/25 uppercase tracking-[0.1em]"
-          x-text="$store.i18n.t('edu_cert_esc')"></span>
+        <span
+          class="text-[length:var(--text-xs)] text-primary/25 uppercase tracking-[0.1em]"
+          x-text="$store.i18n.t('edu_cert_esc')"
+        ></span>
 
         <!-- Blinking status lights -->
         <div class="flex gap-1 items-end">
@@ -1230,11 +1450,9 @@
           <div class="w-1 h-1.5 bg-primary/50"></div>
           <div class="w-1 h-1.5 bg-primary animate-pulse"></div>
         </div>
-
       </div>
       <!-- ══ END FOOTER ═══════════════════════════════════ -->
-
     </div>
   </div>
-
-</div><!-- /.edu-node -->
+</div>
+<!-- /.edu-node -->

@@ -1,169 +1,203 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ── SEO & Meta ──────────────────────────────────────────── -->
+    <title data-i18n="page_title">Janyel Lima - Dev Portfolio</title>
+    <meta name="description" content="Fullstack Developer — Janyel B. Lima" />
+    <meta name="author" content="Janyel B. Lima" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
 
-  <!-- ── SEO & Meta ──────────────────────────────────────────── -->
-  <title data-i18n="page_title">Janyel Lima - Dev Portfolio</title>
-  <meta name="description" content="Fullstack Developer — Janyel B. Lima" />
-  <meta name="author" content="Janyel B. Lima" />
-  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <!-- ── DNS Prefetch / Preconnect (CDNs externos) ───────────── -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
 
-  <!-- ── DNS Prefetch / Preconnect (CDNs externos) ───────────── -->
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="preconnect" href="https://unpkg.com" />
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-  <link rel="dns-prefetch" href="https://unpkg.com" />
+    <!-- ── Estilos ─────────────────────────────────────────────── -->
+    <link rel="stylesheet" href="styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
 
-  <!-- ── Estilos ─────────────────────────────────────────────── -->
-  <link rel="stylesheet" href="styles/style.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <!-- ── Tailwind ──────────────────────────────────────────────── -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- ── Dados críticos (sync) ─────────────────────────────────── -->
+    <script src="scripts/lang.js"></script>
+    <script src="scripts/theme.js"></script>
+    <script src="scripts/data.js"></script>
+    <script src="scripts/game.js"></script>
 
+    <!-- ── Libs utilitárias (sync) ───────────────────────────────── -->
+    <script src="scripts/particles.js"></script>
+    <script src="scripts/include.js"></script>
+    <script src="scripts/pdf.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- ── Tailwind ──────────────────────────────────────────────── -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ── Chart.js + charts app (sync — charts.js depende do Chart) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="scripts/charts.js"></script>
 
-  <!-- ── Dados críticos (sync) ─────────────────────────────────── -->
-  <script src="scripts/lang.js"></script>
-  <script src="scripts/theme.js"></script>
-  <script src="scripts/data.js"></script>
-  <script src="scripts/game.js"></script>
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
-  <!-- ── Libs utilitárias (sync) ───────────────────────────────── -->
-  <script src="scripts/particles.js"></script>
-  <script src="scripts/include.js"></script>
-  <script src="scripts/pdf.js"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- ── Alpine: plugins ANTES do core, ambos defer ───────────── -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.15.3/dist/cdn.min.js"
+    ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.3/dist/cdn.min.js"></script>
+  </head>
 
-  <!-- ── Chart.js + charts app (sync — charts.js depende do Chart) -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="scripts/charts.js"></script>
-  <script src="scripts/sfx.js"></script>
-
-  <!-- PDF.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
-  <!-- ── Alpine: plugins ANTES do core, ambos defer ───────────── -->
-  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.15.3/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.3/dist/cdn.min.js"></script>
-</head>
-
-<body class="theme-void bg-main text-white min-h-screen transition-colors duration-700" x-data="app()"
-  x-init="init(); includeHTML();">
-
-  <!-- ═══════════════════════════════════════════════════════════
+  <body
+    class="theme-void bg-main text-white min-h-screen transition-colors duration-700"
+    x-data="app()"
+    x-init="init(); includeHTML();"
+  >
+    <!-- ═══════════════════════════════════════════════════════════
     FX LAYER — Particles background (z-base)
   ══════════════════════════════════════════════════════════════ -->
-  <div id="fx-layer" aria-hidden="true">
-    <div id="particles-js"></div>
-  </div>
-
-
-  <!-- ═══════════════════════════════════════════════════════════
-    APP SHELL
-  ══════════════════════════════════════════════════════════════ -->
-  <div id="app" class="relative z-10">
-
-    <!-- Âncora para "voltar ao topo" -->
-    <div id="top" aria-hidden="true"></div>
-
-    <!-- ── HEADER ─────────────────────────────────────────────── -->
-    <header id="main-header" data-include="./components/header.html" data-interactive class="fixed top-0 left-0 right-0
-             z-[9999] isolate
-             p-4 md:p-6 h-24 md:h-28
-             flex justify-between items-center
-             border-b border-primary/30"></header>
-
-    <!-- ── MAIN ───────────────────────────────────────────────── -->
-    <main class="max-w-6xl mx-auto p-4 md:p-6 pt-28 md:pt-32 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-
-        <!-- Sidebar / Profile -->
-        <aside data-include="./components/aside.html" class="lg:col-span-4 order-1 lg:order-1 space-y-6"></aside>
-
-        <!-- Content sections -->
-        <section data-include="./components/section.html" class="lg:col-span-8 order-2 lg:order-2 space-y-12"></section>
-
-      </div>
-    </main>
-
-    <!-- ── FOOTER ─────────────────────────────────────────────── -->
-    <footer data-include="./components/footer.html" data-interactive
-      class="mt-20 border-t border-primary/30 bg-black/40 pt-12 pb-8 px-4"></footer>
-
+    <div id="fx-layer" aria-hidden="true">
+      <div id="particles-js"></div>
+    </div>
 
     <!-- ═══════════════════════════════════════════════════════════
+    APP SHELL
+  ══════════════════════════════════════════════════════════════ -->
+    <div id="app" class="relative z-10">
+      <!-- Âncora para "voltar ao topo" -->
+      <div id="top" aria-hidden="true"></div>
+
+      <!-- ── HEADER ─────────────────────────────────────────────── -->
+      <header
+        id="main-header"
+        data-include="./components/header.html"
+        data-interactive
+        class="fixed top-0 left-0 right-0 z-[9999] isolate p-4 md:p-6 h-24 md:h-28 flex justify-between items-center border-b border-primary/30"
+      ></header>
+
+      <!-- ── MAIN ───────────────────────────────────────────────── -->
+      <main class="max-w-6xl mx-auto p-4 md:p-6 pt-28 md:pt-32 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Sidebar / Profile -->
+          <aside
+            data-include="./components/aside.html"
+            class="lg:col-span-4 order-1 lg:order-1 space-y-6"
+          ></aside>
+
+          <!-- Content sections -->
+          <section
+            data-include="./components/section.html"
+            class="lg:col-span-8 order-2 lg:order-2 space-y-12"
+          ></section>
+        </div>
+      </main>
+
+      <!-- ── FOOTER ─────────────────────────────────────────────── -->
+      <footer
+        data-include="./components/footer.html"
+        data-interactive
+        class="mt-20 border-t border-primary/30 bg-black/40 pt-12 pb-8 px-4"
+      ></footer>
+
+      <!-- ═══════════════════════════════════════════════════════════
       OVERLAYS
     ══════════════════════════════════════════════════════════════ -->
 
-    <!-- Decrypt / Fragment locked overlay -->
-    <div x-cloak x-show="locked" x-transition.opacity x-effect="
+      <!-- Decrypt / Fragment locked overlay -->
+      <div
+        x-cloak
+        x-show="locked"
+        x-transition.opacity
+        x-effect="
         const fx = document.getElementById('fx-layer');
         if (fx) fx.style.pointerEvents = locked ? 'none' : 'auto';
-      " data-overlay @keydown.escape.prevent role="dialog" aria-modal="true" aria-labelledby="overlay-title"
-      class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center">
-      <div class="relative w-[320px] bg-black p-4
-                  border-forced
-                  shadow-[0_0_25px_rgba(var(--color-primary-rgb),0.35)]">
+      "
+        data-overlay
+        @keydown.escape.prevent
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="overlay-title"
+        class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center"
+      >
+        <div
+          class="relative w-[320px] bg-black p-4 border-forced shadow-[0_0_25px_rgba(var(--color-primary-rgb),0.35)]"
+        >
+          <p
+            id="overlay-title"
+            class="text-[length:var(--text-md)] text-primary tracking-widest uppercase mb-2"
+            x-text="$store.i18n.t('system_alert')"
+          ></p>
 
-        <p id="overlay-title" class="text-[length:var(--text-md)] text-primary tracking-widest uppercase mb-2"
-          x-text="$store.i18n.t('system_alert')">
-        </p>
+          <p
+            class="text-[length:var(--text-sm)] text-gray-300 mb-4"
+            x-text="$store.i18n.t('secure_fragment_locked')"
+          ></p>
 
-        <p class="text-[length:var(--text-sm)] text-gray-300 mb-4" x-text="$store.i18n.t('secure_fragment_locked')">
-        </p>
+          <div
+            class="h-2 bg-black overflow-hidden"
+            role="progressbar"
+            :aria-valuenow="progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div
+              class="h-full bg-primary transition-all duration-100"
+              :style="`width: ${progress}%`"
+            ></div>
+          </div>
 
-        <div class="h-2 bg-black overflow-hidden" role="progressbar" :aria-valuenow="progress" aria-valuemin="0"
-          aria-valuemax="100">
-          <div class="h-full bg-primary transition-all duration-100" :style="`width: ${progress}%`"></div>
+          <p
+            class="text-[length:var(--text-micro)] text-gray-400 mt-2 uppercase tracking-widest"
+            x-text="$store.i18n.t('decrypting')"
+          ></p>
         </div>
+      </div>
 
-        <p class="text-[length:var(--text-micro)] text-gray-400 mt-2 uppercase tracking-widest"
-          x-text="$store.i18n.t('decrypting')">
-        </p>
+      <!-- System boot overlay (desativado — x-show="false" mantido) -->
+      <div
+        x-show="false"
+        x-transition.opacity
+        data-overlay
+        aria-hidden="true"
+        class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center"
+      >
+        <div
+          class="relative w-[320px] bg-black p-4 border-forced shadow-[0_0_25px_rgba(var(--color-primary-rgb),0.35)]"
+        >
+          <p
+            class="text-[length:var(--text-md)] text-primary tracking-widest uppercase mb-2"
+            x-text="$store.i18n.t('system_boot')"
+          ></p>
+
+          <div class="h-2 bg-black overflow-hidden">
+            <div class="h-full bg-primary" :style="`width: ${progress}%`"></div>
+          </div>
+
+          <p
+            class="text-[length:var(--text-micro)] text-gray-400 mt-2 uppercase tracking-widest"
+            x-text="$store.i18n.t('loading')"
+          ></p>
+        </div>
       </div>
     </div>
+    <!-- /#app -->
 
-    <!-- System boot overlay (desativado — x-show="false" mantido) -->
-    <div x-show="false" x-transition.opacity data-overlay aria-hidden="true"
-      class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center">
-      <div class="relative w-[320px] bg-black p-4
-                  border-forced
-                  shadow-[0_0_25px_rgba(var(--color-primary-rgb),0.35)]">
-
-        <p class="text-[length:var(--text-md)] text-primary tracking-widest uppercase mb-2"
-          x-text="$store.i18n.t('system_boot')">
-        </p>
-
-        <div class="h-2 bg-black overflow-hidden">
-          <div class="h-full bg-primary" :style="`width: ${progress}%`"></div>
-        </div>
-
-        <p class="text-[length:var(--text-micro)] text-gray-400 mt-2 uppercase tracking-widest"
-          x-text="$store.i18n.t('loading')">
-        </p>
-      </div>
-    </div>
-
-  </div><!-- /#app -->
-
-
-  <!-- ═══════════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════════
     app.js — SÍNCRONO no fim do body.
     Neste ponto: DOM parseado ✓ | todos os sync do head rodaram ✓
     Alpine (defer) ainda NÃO disparou → app() será definido a tempo.
   ══════════════════════════════════════════════════════════════ -->
-  <script src="scripts/app.js"></script>
-  <script>
-    // Ícones estáticos do HTML inicial (includes dinâmicos são
-    // tratados pelo refreshIcons() dentro de includeHTML)
-    if (window.lucide) lucide.createIcons();
-  </script>
-
-</body>
-
+    <script src="scripts/app.js"></script>
+    <script>
+      // Ícones estáticos do HTML inicial (includes dinâmicos são
+      // tratados pelo refreshIcons() dentro de includeHTML)
+      if (window.lucide) lucide.createIcons();
+    </script>
+  </body>
 </html>

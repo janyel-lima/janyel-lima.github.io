@@ -1,0 +1,6 @@
+{
+  "name": "Janyel Lima - Dev Portfolio (Vue 3)",
+  "description": "Portfólio interativo Cyberpunk/RPG migrado para Vue 3, TypeScript, Vite e Tailwind CSS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,66 +1,122 @@
-# Janyel Lima - GitHub Pages
+# Janyel Barbosa Lima — Senior Fullstack Portfolio (Vue 3 + TypeScript)
 
-Bem-vindo ao meu **GitHub Pages**!  
-Este repositório hospeda meu portfólio e projetos pessoais, funcionando como uma vitrine do meu trabalho em desenvolvimento web e design interativo.
+[![Node.js 24](https://img.shields.io/badge/Node.js-24.x-339933?logo=node.js&logoColor=white)](./.devcontainer/devcontainer.json)
+[![Vue 3.5](https://img.shields.io/badge/Vue-3.5_(Composition_API)-4FC08D?logo=vue.js&logoColor=white)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white)](./tsconfig.json)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)](./src/index.css)
+[![CI/CD](https://img.shields.io/badge/GitHub_Actions-CI%2FCD_%26_Pages-2088FF?logo=github-actions&logoColor=white)](./.github/workflows/deploy.yml)
 
----
-
-## 🌐 Sobre este site
-
-Este site apresenta:
-
-- **Projetos interativos**: aplicações web, mini-games e experimentos gráficos.
-- **Portfólio pessoal**: showcase de trabalhos, contribuições e experimentações visuais.
-- **Blog e anotações**: insights, tutoriais e testes de UI/UX.
-- **Design moderno e responsivo**: efeitos neon, glitch e interações dinâmicas.
+Portfólio profissional e currículo interativo de **Janyel Barbosa Lima** (Desenvolvedor Fullstack Sênior), migrado de uma implementação artesanal em HTML/CSS/JS Vanilla para uma arquitetura moderna em **Vue 3 (`<script setup lang="ts">`) + TypeScript + Vite + Tailwind CSS v4**, mantendo paridade visual e evoluindo para um sistema **Dual-Realm (Dois Reinos)** voltado a dois perfis de recrutadores.
 
 ---
 
-## 🛠 Tecnologias utilizadas
+## Sumário Executivo da Arquitetura
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=Alpine.js&logoColor=white)
-![Particle.js](https://img.shields.io/badge/Particle.js-FF3E00?style=for-the-badge&logo=javascript&logoColor=white)
-![Devicons](https://img.shields.io/badge/Devicons-007ACC?style=for-the-badge&logo=devicons&logoColor=white)
-![Lucide Icons](https://img.shields.io/badge/Lucide_Icons-000000?style=for-the-badge&logo=icons8&logoColor=white)
-![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chart.js&logoColor=white)
-![Vanilla JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+### 1. Sistema Dual-Realm (`useTheme.ts` + `useI18n.ts`)
+A aplicação opera com dois modos visuais, funcionais e semânticos distintos acionados pelo botão **Troca de Reino (`Realm Shift`)**:
 
----
+| Característica | Reino Turquesa (`theme-core` · Padrão) | Reino Roxo (`theme-void` · Elden Ring) |
+| :--- | :--- | :--- |
+| **Público-Alvo** | Recrutadores Tech modernos, Tech Leads e Engenheiros | Recrutadores tradicionais, RH Executivo e Gestores |
+| **Direção de Arte** | Cyberpunk Tech HUD (`#00ffff` / `#00222b`), recortes poligonais, scanlines | Interface inspirada em *Elden Ring* em Ametista & Ouro Rúnico (`#b366ff` / `#c9a84c`), molduras duplas e placas clássicas |
+| **Tipografia** | `EuroStile` / `Orbitron` / `Rajdhani` | `Cinzel` (títulos clássicos) + `Rajdhani` (corpo legível) |
+| **Linguagem & Copy** | Telemetria de sistema (`■ Perfil_Dev`, `■ Registros_de_Projeto`, `// OPERACIONAL_EM::`) | Linguagem executiva direta (`Ficha do Profissional`, `Portfólio de Projetos Realizados`, `Histórico e Experiência Profissional`) |
+| **UX de Leitura** | Painéis compactos sob demanda (`[ OFF ]` / `[ ON ]`) e desafio de descriptografia | Auto-expansão imediata de Habilidades, Stacks, Experiências, Certificados e Contatos |
+| **Particles.js** | **Adição no clique** (`onclick: 'push'`) e conexão por proximidade (`onhover: 'grab'`) | **Repulsão magnética** (`onhover: 'repulse'`, `onclick: 'repulse'`) com partículas púrpuras e douradas |
+| **Web Audio SFX** | Sintetizador Sci-Fi / Telemetria digital | Acordes harmônicos e sinos ressonantes (`playEldenChime`) |
 
-## ✨ Funcionalidades principais
+### 2. Visualização Interativa de Competências (`SkillChartPanel.vue` + `SkillsSubsystem.vue`)
+- **Gráficos Reativos (Chart.js 4)**: Suporte a alternância em tempo real entre **Barras (`▬ BAR`)**, **Radar (`◈ RADAR`)** e **Área Polar (`◎ POLAR`)**, além de exportação instantânea em **PNG** (com fundo adaptado ao tema ativo) e **CSV** localizado.
+- **Paleta Dinâmica por Reino (`getChartThemePalette`)**: Os gráficos re-renderizam automaticamente ao alternar entre o modo Turquesa e o modo Roxo/Ouro Rúnico, ou ao trocar o idioma (`PT-BR` / `EN`).
+- **Interação Bidirecional (Skills ↔ Charts)**: Clicar em qualquer habilidade na lista destaca a barra/vértice correspondente no gráfico e exibe o badge detalhado de proficiência (`Rank S/A/B/C/D`); clicar diretamente em uma barra ou ponto no canvas do gráfico seleciona a habilidade correspondente na grade.
 
-- Sistema de **portfolio dinâmico**, com filtros, animações e pop-ups.
-- **Mini-games e experimentos interativos** usando Vanilla JS e Canvas.
-- **Efeitos visuais avançados**: glitch, neon, partículas e animações CSS.
-- **Charts e visualização de dados** usando Chart.js.
-- Componentes **reativos** e interativos com Alpine.js.
-- Design **responsivo**, com ajuste dinâmico de fontes e layout à tela.
-
----
-
-## 🎯 Objetivo
-
-1. **Portfólio profissional** – apresentar minhas habilidades a recrutadores e colegas.  
-2. **Laboratório experimental** – testar efeitos visuais, UI/UX e jogos web.  
-3. **Repositório de aprendizado** – documentação de soluções, experimentos e técnicas.
+### 3. Currículos Oficiais por Idioma (`getResumeAsset`)
+- Download dinâmico e visualização integrada via modal PDF (`pdf.js`):
+  - **Português (`pt-br`)**: `/cv/cv-br.pdf` → `Curriculo-Janyel-Barbosa-Lima-PT-BR.pdf`
+  - **Inglês (`en`)**: `/cv/cv-en.pdf` → `Resume-Janyel-Barbosa-Lima-EN.pdf`
 
 ---
 
-## 🔗 Acesso
+## Estrutura de Pastas
 
-Visite o site aqui:  
-[https://janyel-lima.github.io](https://janyel-lima.github.io)
+```text
+├── .devcontainer/
+│   ├── devcontainer.json          # Configuração VS Code Dev Container (Node 24)
+│   └── Dockerfile                 # Imagem base node:24-bookworm
+├── .github/workflows/
+│   ├── ci.yml                     # Pipeline de Integração Contínua (Typecheck + Testes + Build)
+│   └── deploy.yml                 # Deploy automatizado para GitHub Pages (Node 24)
+├── docs/
+│   └── ARCHITECTURE.md            # Documentação técnica detalhada da arquitetura
+├── public/
+│   ├── certs/                     # Certificados acadêmicos e técnicos em PDF
+│   ├── cv/                        # Currículos oficiais (cv-br.pdf e cv-en.pdf)
+│   └── img/                       # Logos de projetos, avatar e assets visuais
+├── src/
+│   ├── components/
+│   │   ├── aside/                 # ProfileAside, SkillsSubsystem, SkillChartPanel, SecretFragmentPanel, TetrisChallengeCard
+│   │   ├── common/                # ExpandableTypedText (efeito typewriter expansível)
+│   │   ├── layout/                # AppHeader (busca, mute, reino, idioma), AppFooter, ParticlesBackground
+│   │   ├── modals/                # CertViewerModal (PDF.js), TetrisChallengeModal, DecryptOverlay
+│   │   └── sections/              # ProjectStreamSection, ProjectCard, ExperienceTimeline, EducationArchive
+│   ├── composables/               # useTheme, useI18n, useSfx, useSearch (estado reativo compartilhado)
+│   ├── data/                      # portfolioData.ts (projetos, histórico, skills) e i18n.ts (PT-BR / EN + Dual Mode)
+│   ├── types/                     # Contratos e interfaces TypeScript (portfolio.ts)
+│   └── utils/                     # Lógica pura desacoplada (portfolioLogic.ts) + testes unitários (portfolioLogic.test.ts)
+├── .node-version                  # Pin Node 24
+├── .nvmrc                         # Pin Node 24
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
 
 ---
 
-## 📫 Contato
+## Ambiente de Desenvolvimento (Node 24 & Dev Container)
 
-- **Email**: janyel.lima2809@outlook.com  
-- **GitHub**: [@janyel-lima](https://github.com/janyel-lima)  
-- **LinkedIn**: [Janyel Lima](https://linkedin.com/in/janyel-lima)
+### Opção 1: VS Code Dev Container (Recomendado)
+O projeto inclui configuração completa em `.devcontainer/` com **Node.js 24 (`node:24-bookworm`)**, extensões pré-configuradas (`Vue.volar`, `Tailwind CSS`, `ESLint`, `Prettier`) e porta `3000` mapeada automaticamente:
+1. Abra a pasta no VS Code com a extensão **Dev Containers** instalada.
+2. Execute `Dev Containers: Reopen in Container`.
+3. O comando `npm install` será executado automaticamente.
+
+### Opção 2: Execução Local
+Requer **Node.js >= 24.0.0**:
+
+```bash
+# Instalar dependências
+npm ci
+
+# Iniciar servidor de desenvolvimento (http://localhost:3000)
+npm run dev
+
+# Executar verificação estática de tipos (TypeScript)
+npm run typecheck
+
+# Executar suíte de testes unitários (node:test via tsx)
+npm test
+
+# Gerar build de produção em ./dist
+npm run build
+```
 
 ---
 
-> Este site é atualizado constantemente com novos projetos, experimentos e melhorias visuais. Sinta-se à vontade para explorar, clonar ou se inspirar no código.
+## CI/CD & Deploy no GitHub Pages
+
+O repositório conta com dois workflows automatizados em `.github/workflows/`:
+1. **`ci.yml`**: Executado em todo `push` e `pull_request` para `main`, `master` ou `develop`, validando `npm run typecheck`, `npm test` e `npm run build` em **Node.js 24**.
+2. **`deploy.yml`**: Constrói o bundle estático com `VITE_BASE_PATH` dinâmico, gera `.nojekyll` e `404.html` para roteamento SPA e publica automaticamente no **GitHub Pages** via `actions/deploy-pages@v4`.
+
+Para ativar o GitHub Pages no seu repositório:
+1. Acesse **Settings → Pages** no GitHub.
+2. Em **Build and deployment → Source**, selecione **GitHub Actions**.
+
+---
+
+## Autor
+
+**Janyel Barbosa Lima** — Desenvolvedor Fullstack Sênior
+- **E-mail**: [janyel.lima2809@outlook.com](mailto:janyel.lima2809@outlook.com)
+- **LinkedIn**: [linkedin.com/in/janyel-lima](https://www.linkedin.com/in/janyel-lima)
+- **GitHub**: [github.com/janyel-lima](https://github.com/janyel-lima)

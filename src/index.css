@@ -25,13 +25,13 @@
     --font-main: "EuroStile", "Rajdhani", "Orbitron", sans-serif;
     --font-display: "Orbitron", "Rajdhani", sans-serif;
 
-    --text-micro: clamp(0.68rem, 0.65vw, 0.75rem);
-    --text-xs: clamp(0.75rem, 0.75vw, 0.8125rem);
-    --text-sm: clamp(0.8125rem, 0.85vw, 0.875rem);
-    --text-md: clamp(0.875rem, 0.95vw, 1rem);
-    --text-base: clamp(0.9375rem, 1vw, 1rem);
-    --text-lg: clamp(1.125rem, 1.35vw, 1.25rem);
-    --text-xl: 1.25rem;
+    --text-micro: clamp(0.66rem, 0.58rem + 0.2vw, 0.78rem);
+    --text-xs: clamp(0.73rem, 0.65rem + 0.24vw, 0.85rem);
+    --text-sm: clamp(0.8rem, 0.72rem + 0.28vw, 0.94rem);
+    --text-md: clamp(0.875rem, 0.78rem + 0.34vw, 1.0625rem);
+    --text-base: clamp(0.9rem, 0.82rem + 0.3vw, 1.05rem);
+    --text-lg: clamp(1.05rem, 0.92rem + 0.45vw, 1.35rem);
+    --text-xl: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
 
     --color-alt: #9724D1;
     --color-alt-accent: #AB34FA;
@@ -55,6 +55,15 @@
     --card-bg: rgba(0, 0, 0, 0.3);
     --font-main: "EuroStile", "Rajdhani", "Orbitron", sans-serif;
     --font-display: "Orbitron", "Rajdhani", sans-serif;
+
+    /* Escala tipográfica responsiva calibrada para fontes geométricas/HUD (Orbitron & Rajdhani) */
+    --text-micro: clamp(0.64rem, 0.56rem + 0.2vw, 0.76rem);
+    --text-xs: clamp(0.71rem, 0.63rem + 0.24vw, 0.84rem);
+    --text-sm: clamp(0.79rem, 0.71rem + 0.26vw, 0.925rem);
+    --text-md: clamp(0.86rem, 0.76rem + 0.32vw, 1.04rem);
+    --text-base: clamp(0.89rem, 0.8rem + 0.28vw, 1.025rem);
+    --text-lg: clamp(1.02rem, 0.9rem + 0.42vw, 1.3rem);
+    --text-xl: clamp(1.15rem, 0.98rem + 0.55vw, 1.52rem);
   }
 
   /* Purple Elden Ring × Traditional Recruiter Mode */
@@ -73,6 +82,15 @@
     --card-bg: rgba(14, 7, 26, 0.88);
     --font-main: "Rajdhani", sans-serif;
     --font-display: "Cinzel", "Cormorant Garamond", Georgia, serif;
+
+    /* Escala tipográfica responsiva calibrada para leitura executiva e serifas Cinzel */
+    --text-micro: clamp(0.68rem, 0.6rem + 0.22vw, 0.8rem);
+    --text-xs: clamp(0.75rem, 0.67rem + 0.25vw, 0.88rem);
+    --text-sm: clamp(0.825rem, 0.74rem + 0.28vw, 0.96rem);
+    --text-md: clamp(0.9rem, 0.8rem + 0.35vw, 1.1rem);
+    --text-base: clamp(0.9375rem, 0.84rem + 0.32vw, 1.08rem);
+    --text-lg: clamp(1.08rem, 0.94rem + 0.48vw, 1.38rem);
+    --text-xl: clamp(1.22rem, 1.04rem + 0.62vw, 1.62rem);
   }
 }
 
@@ -136,20 +154,57 @@ body.theme-void ::-webkit-scrollbar-thumb {
   border-radius: 2px;
 }
 
-.rpg-button-alt {
-  color: var(--color-alt);
-  background: rgba(108, 19, 190, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-left: 4px solid var(--color-alt);
+/* ── Botão de Recusar (Cross-Realm):
+   No Reino Turquesa (.theme-core) -> assume cores e estilo do Reino Roxo (Elden Ring)
+   No Reino Roxo (.theme-void)     -> assume cores e estilo do Reino Turquesa (Cyber HUD) ── */
+.rpg-button-alt,
+body.theme-core .rpg-button-alt {
+  color: #e2c777;
+  background: linear-gradient(180deg, rgba(28, 12, 48, 0.92) 0%, rgba(12, 5, 22, 0.96) 100%);
+  border: 1px solid rgba(179, 102, 255, 0.45);
+  border-top: 1px solid rgba(201, 168, 76, 0.55);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.42);
+  box-shadow:
+    inset 0 0 16px rgba(0, 0, 0, 0.7),
+    0 0 10px rgba(179, 102, 255, 0.15);
+  font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  letter-spacing: 0.08em;
+  font-weight: 700;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-weight: bold;
 }
 
-.rpg-button-alt:hover {
-  background: rgba(61, 5, 150, 0.1);
-  border-color: var(--color-alt);
-  transform: translateX(-5px);
-  box-shadow: 0 0 15px rgba(var(--color-alt-rgb), 0.3);
+.rpg-button-alt:hover,
+body.theme-core .rpg-button-alt:hover {
+  color: #f3efe6;
+  background: linear-gradient(180deg, rgba(52, 22, 88, 0.95) 0%, rgba(24, 9, 44, 0.98) 100%);
+  border-color: rgba(201, 168, 76, 0.85);
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 18px rgba(179, 102, 255, 0.4),
+    inset 0 0 12px rgba(201, 168, 76, 0.2);
+}
+
+body.theme-void .rpg-button-alt {
+  color: #00ffff;
+  background: rgba(0, 34, 43, 0.65);
+  border: 1px solid rgba(36, 198, 209, 0.28);
+  border-left: 4px solid #00ffff;
+  box-shadow: inset 0 0 14px rgba(0, 255, 255, 0.06);
+  font-family: "Orbitron", "Rajdhani", sans-serif;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.theme-void .rpg-button-alt:hover {
+  color: #ffffff;
+  background: rgba(0, 255, 255, 0.14);
+  border-color: #24C6D1;
+  border-left-color: #00ffff;
+  transform: translateX(-4px);
+  box-shadow:
+    0 0 16px rgba(36, 198, 209, 0.4),
+    inset 0 0 12px rgba(0, 255, 255, 0.15);
 }
 
 .rpg-button {
@@ -197,8 +252,8 @@ body.theme-void ::-webkit-scrollbar-thumb {
 @media (max-width: 640px) {
   .rpg-button-left,
   .rpg-button-right {
-    font-size: 9px;
-    letter-spacing: 0.2em;
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
   }
 }
 
@@ -394,13 +449,16 @@ body.theme-void .rpg-button-right:hover {
 }
 
 .er-guide-block::before {
-  content: "◆";
+  content: "";
   position: absolute;
-  left: -4.5px;
-  top: 0;
-  font-size: 8px;
-  line-height: 1;
-  color: #c9a84c;
+  left: -3px;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  background-color: #c9a84c;
+  transform: rotate(45deg);
+  transform-origin: center;
+  pointer-events: none;
 }
 
 /* Elden Ring Character Base Bottom Name Banner */

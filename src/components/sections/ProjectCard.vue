@@ -111,11 +111,11 @@ function getSkillLabel(key: string): string {
 
     <!-- TITLE -->
     <div v-if="isEldenMode" class="er-title-plaque mb-2">
-      <h4 class="font-bold tracking-[0.1em] text-sm uppercase text-[#f5f0ff] truncate">
+      <h4 class="font-bold tracking-[0.1em] text-[length:var(--text-md)] uppercase text-[#f5f0ff] truncate">
         {{ project.title }}
       </h4>
     </div>
-    <h4 v-else class="font-bold tracking-[0.1em] text-base truncate uppercase text-white">
+    <h4 v-else class="font-bold tracking-[0.1em] text-[length:var(--text-md)] truncate uppercase text-white">
       {{ project.title }}
     </h4>
 

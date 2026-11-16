@@ -97,7 +97,7 @@ onUnmounted(() => {
         <div class="flex items-center gap-2.5">
           <h1
             class="text-[length:var(--text-md)] tracking-[0.08em] uppercase font-black"
-            :class="isEldenMode ? 'font-elden text-[#f3efe6] text-lg' : ''"
+            :class="isEldenMode ? 'font-elden text-[#f3efe6] text-[length:var(--text-lg)]' : ''"
           >
             {{ t('header_brand_title') }}
           </h1>

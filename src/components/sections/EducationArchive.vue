@@ -211,7 +211,7 @@ function getSectionTitleKey(section: string): string {
                 "
               >
                 <span
-                  class="text-[10px] font-black tracking-[0.1em]"
+                  class="text-[length:var(--text-micro)] font-black tracking-[0.1em]"
                   :class="secOpen[section] ? 'text-primary' : 'text-primary/50'"
                 >
                   {{ items.length }}
@@ -321,7 +321,7 @@ function getSectionTitleKey(section: string): string {
                       >
                         <span
                           v-if="item.hours"
-                          class="text-[10px] font-black text-primary/45 tracking-[0.08em] uppercase whitespace-nowrap"
+                          class="text-[length:var(--text-micro)] font-black text-primary/45 tracking-[0.08em] uppercase whitespace-nowrap"
                         >
                           {{ item.hours }}{{ t('edu_hours_unit') }}
                         </span>
@@ -362,7 +362,7 @@ function getSectionTitleKey(section: string): string {
                   <!-- ITEM EXPANDED PANEL -->
                   <div
                     class="edu-item-wrap overflow-hidden"
-                    :style="itemOpen[item.title_key] ? 'max-height:140px; opacity:1' : 'max-height:0; opacity:0'"
+                    :style="itemOpen[item.title_key] ? 'max-height:220px; opacity:1' : 'max-height:0; opacity:0'"
                   >
                     <div class="flex items-center flex-shrink-0 gap-2 px-4 py-3 flex-wrap border-t border-white/10">
                       <!-- Proficiency badge -->

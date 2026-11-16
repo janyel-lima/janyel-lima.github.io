@@ -102,32 +102,32 @@ onUnmounted(() => {
           </div>
 
           <p
-            class="text-[length:var(--text-sm)] text-gray-300 leading-relaxed mb-1 pl-3 tracking-[0.05em]"
-            :class="isEldenMode ? 'border-l border-[#c9a84c]/40' : 'border-l border-primary/40'"
+            class="text-[length:var(--text-sm)] text-gray-300 leading-relaxed mb-1.5 ml-[3.5px] pl-3.5 tracking-[0.05em]"
+            :class="isEldenMode ? 'border-l border-[#c9a84c]/45' : 'border-l border-primary/40'"
           >
             {{ t('challenge_body') }}
           </p>
 
-          <p class="text-[length:var(--text-micro)] text-gray-500 pl-3 mb-4 uppercase tracking-widest">
+          <p class="text-[length:var(--text-micro)] text-gray-400 ml-[3.5px] pl-3.5 mb-4 uppercase tracking-widest leading-relaxed">
             {{ t('challenge_disclaimer') }}
           </p>
 
-          <div class="flex gap-2 flex-wrap">
+          <div class="flex flex-wrap items-stretch gap-2.5">
             <button
               type="button"
               @click="accept"
-              class="flex-1 rpg-button py-2 px-3 flex items-center justify-center gap-2 hover:border-primary bg-primary/5 hover:bg-primary/10 text-[length:var(--text-xs)] uppercase tracking-widest transition-all duration-200 group cursor-pointer"
+              class="flex-1 min-w-[140px] rpg-button py-2.5 px-3.5 flex items-center justify-center gap-2 hover:border-primary bg-primary/5 hover:bg-primary/10 text-[length:var(--text-xs)] uppercase tracking-widest transition-all duration-200 group cursor-pointer text-center leading-snug"
             >
-              <Gamepad2 class="w-3 h-3 text-primary group-hover:scale-110 transition-transform shrink-0" />
+              <Gamepad2 class="w-3.5 h-3.5 text-primary group-hover:scale-110 transition-transform shrink-0" />
               <span class="text-primary font-black">{{ t('challenge_accept') }}</span>
             </button>
 
             <button
               type="button"
               @click="decline"
-              class="rpg-button-alt py-2 px-3 flex items-center justify-center text-[length:var(--text-xs)] uppercase tracking-widest transition-all duration-200 cursor-pointer"
+              class="flex-1 sm:flex-initial min-w-[120px] rpg-button-alt py-2.5 px-4 flex items-center justify-center text-[length:var(--text-xs)] uppercase tracking-widest transition-all duration-200 cursor-pointer text-center leading-snug"
             >
-              {{ t('challenge_decline') }}
+              <span>{{ t('challenge_decline') }}</span>
             </button>
           </div>
         </div>

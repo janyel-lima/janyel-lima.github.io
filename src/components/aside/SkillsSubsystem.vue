@@ -91,7 +91,7 @@ function toggleSoftSkillSelection(skillKey: string) {
           "
           class="flex items-center gap-3 text-[length:var(--text-micro)] uppercase tracking-widest text-primary/80 hover:text-primary transition group cursor-pointer"
         >
-          <span :class="isEldenMode ? 'font-elden text-xs text-[#c9a84c]' : ''">
+          <span :class="isEldenMode ? 'font-elden text-[length:var(--text-xs)] text-[#c9a84c]' : ''">
             {{ t('rank_legend') }}
           </span>
           <span
@@ -177,7 +177,7 @@ function toggleSoftSkillSelection(skillKey: string) {
               </div>
 
               <span
-                class="text-xs tracking-widest shrink-0"
+                class="text-[length:var(--text-xs)] tracking-widest shrink-0"
                 :class="hardOpen ? 'text-primary' : 'text-white/40'"
               >
                 [ {{ hardOpen ? 'ON' : 'OFF' }} ]
@@ -225,7 +225,7 @@ function toggleSoftSkillSelection(skillKey: string) {
                   class="truncate"
                   :class="
                     isEldenMode
-                      ? 'text-xs font-semibold text-[#f3efe6] tracking-wide'
+                      ? 'text-[length:var(--text-xs)] font-semibold text-[#f3efe6] tracking-wide'
                       : 'text-[length:var(--text-micro)] uppercase tracking-widest text-white'
                   "
                 >
@@ -237,8 +237,8 @@ function toggleSoftSkillSelection(skillKey: string) {
                 class="font-black"
                 :class="
                   isEldenMode
-                    ? 'text-sm font-elden text-[#e2c777] px-1.5 py-0.5 bg-[#1b0b30] border border-[#c9a84c]/40'
-                    : 'text-xl animate-pulse italic text-primary'
+                    ? 'text-[length:var(--text-sm)] font-elden text-[#e2c777] px-1.5 py-0.5 bg-[#1b0b30] border border-[#c9a84c]/40'
+                    : 'text-[length:var(--text-xl)] animate-pulse italic text-primary'
                 "
               >
                 {{ data.level }}
@@ -289,7 +289,7 @@ function toggleSoftSkillSelection(skillKey: string) {
               </div>
 
               <span
-                class="text-xs tracking-widest shrink-0"
+                class="text-[length:var(--text-xs)] tracking-widest shrink-0"
                 :class="softOpen ? 'text-primary' : 'text-white/40'"
               >
                 [ {{ softOpen ? 'ON' : 'OFF' }} ]
@@ -337,7 +337,7 @@ function toggleSoftSkillSelection(skillKey: string) {
                   class="truncate"
                   :class="
                     isEldenMode
-                      ? 'text-xs font-semibold text-[#f3efe6] tracking-wide'
+                      ? 'text-[length:var(--text-xs)] font-semibold text-[#f3efe6] tracking-wide'
                       : 'text-[length:var(--text-micro)] uppercase tracking-widest text-white'
                   "
                 >
@@ -349,8 +349,8 @@ function toggleSoftSkillSelection(skillKey: string) {
                 class="font-black"
                 :class="
                   isEldenMode
-                    ? 'text-sm font-elden text-[#e2c777] px-1.5 py-0.5 bg-[#1b0b30] border border-[#c9a84c]/40'
-                    : 'text-xl animate-pulse italic text-primary'
+                    ? 'text-[length:var(--text-sm)] font-elden text-[#e2c777] px-1.5 py-0.5 bg-[#1b0b30] border border-[#c9a84c]/40'
+                    : 'text-[length:var(--text-xl)] animate-pulse italic text-primary'
                 "
               >
                 {{ data.level }}

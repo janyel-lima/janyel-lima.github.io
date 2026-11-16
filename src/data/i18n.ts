@@ -2,7 +2,7 @@ import type { Locale, ThemeRealm } from '../types/portfolio';
 
 export const i18nMessages: Record<Locale, Record<string, any>> = {
   'pt-br': {
-    page_title: 'Janyel Lima - Portfólio do Profissional',
+    page_title: 'Janyel Lima - Portfólio Dev',
     header_brand_title: '// CORE_WORKS',
     language: 'Idioma',
     nav_projects: 'Projetos',
@@ -260,7 +260,7 @@ export const i18nMessages: Record<Locale, Record<string, any>> = {
     },
   },
   'en': {
-    page_title: "Janyel Lima - Professional's Portfolio",
+    page_title: 'Janyel Lima - Dev Portfolio',
     header_brand_title: '// CORE_WORKS',
     language: 'Language',
     nav_projects: 'Projects',
@@ -526,7 +526,7 @@ export const i18nMessages: Record<Locale, Record<string, any>> = {
  */
 export const traditionalI18nOverrides: Record<Locale, Record<string, any>> = {
   'pt-br': {
-    page_title: 'Janyel Lima · Currículo Executivo & Portfólio',
+    page_title: 'Janyel Lima - Portfólio Profissional',
     header_brand_title: 'Janyel B. Lima',
     language: 'Idioma',
     btn_theme: 'Troca de Reino',
@@ -645,7 +645,7 @@ export const traditionalI18nOverrides: Record<Locale, Record<string, any>> = {
     },
   },
   'en': {
-    page_title: 'Janyel Lima · Executive Resume & Portfolio',
+    page_title: 'Janyel Lima - Professional Portfolio',
     header_brand_title: 'Janyel B. Lima',
     language: 'Language',
     btn_theme: 'Realm Shift',

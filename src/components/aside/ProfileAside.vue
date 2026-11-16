@@ -81,14 +81,14 @@ function closeResumePreview() {
         </div>
 
         <!-- ORNATE CHARACTER BASE PORTRAIT FRAME -->
-        <div class="relative p-1.5 bg-[#0c0617] border border-[#c9a84c]/40 shadow-[inset_0_0_25px_rgba(0,0,0,0.9)]">
-          <div class="aspect-square overflow-hidden relative border border-[#b366ff]/30">
+        <div class="media-reveal-frame relative p-1.5 bg-[#0c0617] border border-[#c9a84c]/40 shadow-[inset_0_0_25px_rgba(0,0,0,0.9)] transition-all duration-500">
+          <div class="media-reveal-inner aspect-square overflow-hidden relative border border-[#b366ff]/30 transition-all duration-500">
             <img
               src="/img/me.png"
               @error="handleImageError"
               id="photo"
               alt="Janyel B. Lima"
-              class="block w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              class="portfolio-media-img block w-full h-full object-cover"
             />
           </div>
           <!-- Elden Ring "Select Character Base" Title Plaque -->
@@ -204,13 +204,13 @@ function closeResumePreview() {
             <span class="text-[length:var(--text-micro)] tracking-[0.1em] text-gray-400 uppercase block mb-1">
               {{ t('bio_scan') }}
             </span>
-            <div class="animated w-full aspect-square bg-gray-900 overflow-hidden relative border border-white/5">
+            <div class="media-reveal-frame media-reveal-inner animated w-full aspect-square bg-gray-900 overflow-hidden relative border border-white/5 transition-all duration-500">
               <img
                 src="/img/me.png"
                 @error="handleImageError"
                 id="photo"
                 alt="Janyel B. Lima"
-                class="block w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                class="portfolio-media-img block w-full h-full object-cover"
               />
               <div class="absolute inset-0 pointer-events-none opacity-20 z-10"></div>
             </div>

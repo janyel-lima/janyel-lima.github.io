@@ -65,23 +65,18 @@ function getSkillLabel(key: string): string {
 
     <!-- CAROUSEL / ELDEN RING ITEM FRAME -->
     <div
-      class="relative h-36 md:h-44 bg-gray-950 mb-4 overflow-hidden animated group leading-none"
+      class="media-reveal-frame media-reveal-inner relative h-36 md:h-44 bg-gray-950 mb-4 overflow-hidden animated leading-none transition-all duration-500"
       :class="
         isEldenMode
           ? 'border border-[#a855f7]/40 shadow-[inset_0_0_0_1px_rgba(201,168,76,0.22),0_6px_16px_rgba(0,0,0,0.75)]'
-          : 'border-white/5'
+          : 'border border-white/5'
       "
     >
       <img
         :src="currentImage"
         :alt="project.title"
         @error="handleImageError"
-        class="block absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-        :class="
-          isEldenMode
-            ? 'opacity-95'
-            : 'grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100'
-        "
+        class="portfolio-media-img block absolute inset-0 w-full h-full object-cover"
       />
 
       <!-- PREV -->
@@ -263,13 +258,12 @@ function getSkillLabel(key: string): string {
           <span v-if="!isEldenMode" class="absolute inset-x-0 top-0 h-px bg-primary/30"></span>
           <span v-if="!isEldenMode" class="absolute left-0 top-0 h-full w-[2px] bg-primary opacity-30 group-hover/member:opacity-100 transition-all"></span>
 
-          <div class="w-10 h-10 shrink-0 overflow-hidden bg-gray-900 relative border border-primary/30">
+          <div class="media-reveal-inner w-10 h-10 shrink-0 overflow-hidden bg-gray-900 relative border border-primary/30 transition-all duration-500">
             <img
               :src="member.avatar_url"
               :alt="member.name"
               @error="handleImageError"
-              class="w-full h-full object-cover transition-all"
-              :class="isEldenMode ? 'opacity-95' : 'grayscale opacity-80 group-hover/member:grayscale-0 group-hover/member:opacity-100'"
+              class="portfolio-member-img w-full h-full object-cover"
             />
           </div>
 

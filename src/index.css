@@ -556,21 +556,23 @@ body.theme-void .rpg-button-right:hover {
 body.theme-void #photo {
   mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
-  filter: contrast(1.04) saturate(0.95);
 }
 
+/* Fallback for missing image placeholder only */
 img.grayscale {
-  filter: sepia(1) hue-rotate(240deg) brightness(0.4) grayscale(0.8);
-}
-
-body.theme-void img.grayscale {
-  filter: contrast(1.02) brightness(0.92);
+  filter: grayscale(1) brightness(0.4);
 }
 
 .animated {
-  background: linear-gradient(45deg, rgba(0, 0, 0, 0.6) 25%, rgba(20, 20, 20, 0.6) 50%, rgba(0, 0, 0, 0.6) 75%);
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.65) 25%, rgba(24, 34, 38, 0.65) 50%, rgba(0, 0, 0, 0.65) 75%);
   background-size: 200% 200%;
-  animation: loading-shimmer 2s infinite linear;
+  animation: loading-shimmer 2.2s infinite linear;
+}
+
+body.theme-void .animated {
+  background: linear-gradient(45deg, rgba(6, 3, 14, 0.82) 25%, rgba(28, 12, 52, 0.78) 50%, rgba(6, 3, 14, 0.82) 75%);
+  background-size: 200% 200%;
+  animation: loading-shimmer 2.8s infinite linear;
 }
 
 @keyframes loading-shimmer {
@@ -629,22 +631,58 @@ summary::-webkit-details-marker {
 }
 
 .core-glow {
-  filter: drop-shadow(0 0 6px rgba(var(--color-primary-rgb), 0.35));
+  filter: drop-shadow(0 0 3px rgba(var(--color-primary-rgb), 0.2));
   transform: scale(1);
+  transition: transform 0.35s ease, filter 0.35s ease;
 }
 
 .group:hover .core-glow {
   transform: scale(1.08);
-  animation: corePulse 1.6s ease-in-out infinite;
+  filter:
+    drop-shadow(0 0 5px rgba(var(--color-primary-rgb), 0.42))
+    drop-shadow(0 0 11px rgba(var(--color-primary-rgb), 0.24));
+  animation: corePulse 2s ease-in-out infinite;
 }
 
 @keyframes corePulse {
   0%, 100% {
-    filter: drop-shadow(0 0 6px rgba(var(--color-primary-rgb), 0.4)) drop-shadow(0 0 14px rgba(var(--color-primary-rgb), 0.35));
+    filter:
+      drop-shadow(0 0 4px rgba(var(--color-primary-rgb), 0.36))
+      drop-shadow(0 0 10px rgba(var(--color-primary-rgb), 0.2));
   }
   50% {
-    filter: drop-shadow(0 0 10px rgba(var(--color-primary-rgb), 0.75)) drop-shadow(0 0 26px rgba(var(--color-primary-rgb), 0.65));
+    filter:
+      drop-shadow(0 0 6px rgba(var(--color-primary-rgb), 0.52))
+      drop-shadow(0 0 14px rgba(var(--color-primary-rgb), 0.3));
   }
+}
+
+/* Brilho suave no hover para os demais ícones usando a cor principal sem ofuscar o ícone */
+i[class*="devicon-"],
+.rpg-button svg,
+.rpg-button-left svg,
+.rpg-button-right svg,
+.edu-node svg,
+section button svg,
+details summary svg {
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.rpg-button:hover svg,
+.rpg-button:hover i[class*="devicon-"],
+.rpg-button-left:hover svg,
+.rpg-button-right:hover svg,
+button:hover > i[class*="devicon-"],
+button:hover > svg,
+.group\/stack:hover i[class*="devicon-"],
+.er-slot:hover i[class*="devicon-"],
+details summary:hover svg,
+.edu-item:hover .edu-node svg,
+.group\/sec:hover svg,
+a.icon-primary:hover i[class*="devicon-"] {
+  filter:
+    drop-shadow(0 0 4px rgba(var(--color-primary-rgb), 0.45))
+    drop-shadow(0 0 9px rgba(var(--color-primary-rgb), 0.22));
 }
 
 #fx-layer {

@@ -1,0 +1,845 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-main: var(--theme-main);
+  --color-primary: var(--theme-primary);
+  --color-secondary: var(--theme-secondary);
+  --color-accent: var(--theme-accent);
+  --color-alt: var(--theme-alt);
+}
+
+@layer base {
+  :root {
+    --theme-main: #00222bff;
+    --theme-primary: #00ffff;
+    --theme-secondary: #24C6D1;
+    --theme-accent: rgb(10, 158, 163);
+    --theme-alt: #9724D1;
+
+    --color-main: #00222bff;
+    --color-primary: #00ffff;
+    --color-primary-rgb: 36, 198, 209;
+    --color-secondary: #24C6D1;
+    --color-accent: rgb(10, 158, 163);
+    --card-bg: rgba(0, 0, 0, 0.3);
+    --font-main: "EuroStile", "Rajdhani", "Orbitron", sans-serif;
+    --font-display: "Orbitron", "Rajdhani", sans-serif;
+
+    --text-micro: clamp(0.66rem, 0.58rem + 0.2vw, 0.78rem);
+    --text-xs: clamp(0.73rem, 0.65rem + 0.24vw, 0.85rem);
+    --text-sm: clamp(0.8rem, 0.72rem + 0.28vw, 0.94rem);
+    --text-md: clamp(0.875rem, 0.78rem + 0.34vw, 1.0625rem);
+    --text-base: clamp(0.9rem, 0.82rem + 0.3vw, 1.05rem);
+    --text-lg: clamp(1.05rem, 0.92rem + 0.45vw, 1.35rem);
+    --text-xl: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
+
+    --color-alt: #9724D1;
+    --color-alt-accent: #AB34FA;
+    --color-alt-rgb: 151, 36, 209;
+    --er-gold: #c9a84c;
+    --er-gold-rgb: 201, 168, 76;
+    --er-parchment: #f3efe6;
+  }
+
+  .theme-core {
+    --theme-main: #00222bff;
+    --theme-primary: #00ffff;
+    --theme-secondary: #24C6D1;
+    --theme-accent: rgb(10, 158, 163);
+
+    --color-main: #00222bff;
+    --color-primary: #00ffff;
+    --color-primary-rgb: 36, 198, 209;
+    --color-secondary: #24C6D1;
+    --color-accent: rgb(10, 158, 163);
+    --card-bg: rgba(0, 0, 0, 0.3);
+    --font-main: "EuroStile", "Rajdhani", "Orbitron", sans-serif;
+    --font-display: "Orbitron", "Rajdhani", sans-serif;
+
+    /* Escala tipográfica responsiva calibrada para fontes geométricas/HUD (Orbitron & Rajdhani) */
+    --text-micro: clamp(0.64rem, 0.56rem + 0.2vw, 0.76rem);
+    --text-xs: clamp(0.71rem, 0.63rem + 0.24vw, 0.84rem);
+    --text-sm: clamp(0.79rem, 0.71rem + 0.26vw, 0.925rem);
+    --text-md: clamp(0.86rem, 0.76rem + 0.32vw, 1.04rem);
+    --text-base: clamp(0.89rem, 0.8rem + 0.28vw, 1.025rem);
+    --text-lg: clamp(1.02rem, 0.9rem + 0.42vw, 1.3rem);
+    --text-xl: clamp(1.15rem, 0.98rem + 0.55vw, 1.52rem);
+  }
+
+  /* Purple Elden Ring × Traditional Recruiter Mode */
+  .theme-void,
+  .theme-voidz {
+    --theme-main: #090512;
+    --theme-primary: #b366ff;
+    --theme-secondary: #581c87;
+    --theme-accent: #d8b4fe;
+
+    --color-main: #090512;
+    --color-primary: #b366ff;
+    --color-primary-rgb: 179, 102, 255;
+    --color-secondary: #581c87;
+    --color-accent: #d8b4fe;
+    --card-bg: rgba(14, 7, 26, 0.88);
+    --font-main: "Rajdhani", sans-serif;
+    --font-display: "Cinzel", "Cormorant Garamond", Georgia, serif;
+
+    /* Escala tipográfica responsiva calibrada para leitura executiva e serifas Cinzel */
+    --text-micro: clamp(0.68rem, 0.6rem + 0.22vw, 0.8rem);
+    --text-xs: clamp(0.75rem, 0.67rem + 0.25vw, 0.88rem);
+    --text-sm: clamp(0.825rem, 0.74rem + 0.28vw, 0.96rem);
+    --text-md: clamp(0.9rem, 0.8rem + 0.35vw, 1.1rem);
+    --text-base: clamp(0.9375rem, 0.84rem + 0.32vw, 1.08rem);
+    --text-lg: clamp(1.08rem, 0.94rem + 0.48vw, 1.38rem);
+    --text-xl: clamp(1.22rem, 1.04rem + 0.62vw, 1.62rem);
+  }
+}
+
+@layer utilities {
+  .bg-main {
+    background-color: var(--color-main);
+  }
+
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .font-elden {
+    font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  }
+}
+
+body {
+  background-color: var(--color-main);
+  color: white;
+  transition: background-color 0.7s ease;
+  font-family: var(--font-main);
+  font-size: var(--text-base);
+}
+
+body.theme-void {
+  color: var(--er-parchment);
+  background-image:
+    radial-gradient(ellipse 140% 60% at 50% 0%, rgba(105, 25, 175, 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 50% at 90% 100%, rgba(70, 15, 125, 0.14) 0%, transparent 70%),
+    radial-gradient(circle at 15% 50%, rgba(201, 168, 76, 0.04) 0%, transparent 50%);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+
+body.theme-void ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(var(--er-gold-rgb), 0.6), var(--color-primary));
+  border-radius: 2px;
+}
+
+/* ── Botão de Recusar (Cross-Realm):
+   No Reino Turquesa (.theme-core) -> assume cores e estilo do Reino Roxo (Elden Ring)
+   No Reino Roxo (.theme-void)     -> assume cores e estilo do Reino Turquesa (Cyber HUD) ── */
+.rpg-button-alt,
+body.theme-core .rpg-button-alt {
+  color: #e2c777;
+  background: linear-gradient(180deg, rgba(28, 12, 48, 0.92) 0%, rgba(12, 5, 22, 0.96) 100%);
+  border: 1px solid rgba(179, 102, 255, 0.45);
+  border-top: 1px solid rgba(201, 168, 76, 0.55);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.42);
+  box-shadow:
+    inset 0 0 16px rgba(0, 0, 0, 0.7),
+    0 0 10px rgba(179, 102, 255, 0.15);
+  font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rpg-button-alt:hover,
+body.theme-core .rpg-button-alt:hover {
+  color: #f3efe6;
+  background: linear-gradient(180deg, rgba(52, 22, 88, 0.95) 0%, rgba(24, 9, 44, 0.98) 100%);
+  border-color: rgba(201, 168, 76, 0.85);
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 18px rgba(179, 102, 255, 0.4),
+    inset 0 0 12px rgba(201, 168, 76, 0.2);
+}
+
+body.theme-void .rpg-button-alt {
+  color: #00ffff;
+  background: rgba(0, 34, 43, 0.65);
+  border: 1px solid rgba(36, 198, 209, 0.28);
+  border-left: 4px solid #00ffff;
+  box-shadow: inset 0 0 14px rgba(0, 255, 255, 0.06);
+  font-family: "Orbitron", "Rajdhani", sans-serif;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.theme-void .rpg-button-alt:hover {
+  color: #ffffff;
+  background: rgba(0, 255, 255, 0.14);
+  border-color: #24C6D1;
+  border-left-color: #00ffff;
+  transform: translateX(-4px);
+  box-shadow:
+    0 0 16px rgba(36, 198, 209, 0.4),
+    inset 0 0 12px rgba(0, 255, 255, 0.15);
+}
+
+.rpg-button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid var(--color-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rpg-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-accent);
+  transform: translateX(-5px);
+  box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.3);
+}
+
+.rpg-button-left {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid var(--color-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rpg-button-left:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-accent);
+  transform: translateX(-5px);
+  box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.3);
+}
+
+.rpg-button-right {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 4px solid var(--color-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rpg-button-right:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-accent);
+  transform: translateX(5px);
+  box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.3);
+}
+
+@media (max-width: 640px) {
+  .rpg-button-left,
+  .rpg-button-right {
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+  }
+}
+
+.rpg-card {
+  border: 2px solid rgba(255, 255, 255, 0.10);
+  border-top: 2px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.05), inset 0 0 60px rgba(0, 0, 0, 0.5);
+}
+
+.rpg-card:hover {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--color-primary);
+  transform: translateX(2px);
+  box-shadow: -4px 4px 20px rgba(0, 0, 0, 0.4), 0 0 25px rgba(var(--color-primary-rgb), 0.12);
+}
+
+.rpg-decriptor-card {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top: 2px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  clip-path: polygon(0 0, 100% 0, 100% 96%, 92% 100%, 0 100%);
+}
+
+.rpg-decriptor-card:hover {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-primary);
+  transform: translateX(5px);
+  box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELDEN RING PURPLE MODE (.theme-void) — UI FRAMES & TRADITIONAL RECRUITER UX
+   Inspired by Elden Ring Inventory / Equipment / Character Status screens
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+body.theme-void h1,
+body.theme-void h2,
+body.theme-void h3,
+body.theme-void h4,
+body.theme-void h5,
+body.theme-void .er-heading {
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+}
+
+/* Remove sci-fi 45-degree polygon cuts and scanlines in Elden Ring mode */
+body.theme-void .rpg-card,
+body.theme-void .rpg-decriptor-card,
+body.theme-void [style*="clip-path"] {
+  clip-path: none !important;
+}
+
+body.theme-void .scan-line {
+  display: none !important;
+}
+
+/* Elden Ring Double-Framed Stone/Amethyst Panels */
+body.theme-void .rpg-card,
+body.theme-void .rpg-decriptor-card,
+body.theme-void .er-panel {
+  position: relative;
+  border: 1px solid rgba(179, 102, 255, 0.32) !important;
+  border-top: 1px solid rgba(201, 168, 76, 0.45) !important;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.30) !important;
+  outline: 1px solid rgba(179, 102, 255, 0.14);
+  outline-offset: -4px;
+  background: linear-gradient(180deg, rgba(18, 9, 32, 0.92) 0%, rgba(10, 5, 19, 0.96) 100%) !important;
+  box-shadow:
+    inset 0 0 45px rgba(0, 0, 0, 0.78),
+    0 10px 30px rgba(0, 0, 0, 0.55) !important;
+  border-radius: 2px;
+}
+
+body.theme-void .rpg-card::before,
+body.theme-void .er-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 6%;
+  right: 6%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 168, 76, 0.65) 30%,
+    rgba(179, 102, 255, 0.85) 50%,
+    rgba(201, 168, 76, 0.65) 70%,
+    transparent
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+body.theme-void .rpg-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(192, 132, 252, 0.65) !important;
+  border-top-color: rgba(201, 168, 76, 0.75) !important;
+  box-shadow:
+    inset 0 0 35px rgba(88, 28, 135, 0.25),
+    0 12px 32px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(179, 102, 255, 0.2) !important;
+}
+
+/* Elden Ring Inventory / Action Slot Buttons */
+body.theme-void .rpg-button,
+body.theme-void .rpg-button-left,
+body.theme-void .rpg-button-right {
+  background: linear-gradient(180deg, rgba(24, 11, 42, 0.9) 0%, rgba(12, 5, 22, 0.95) 100%);
+  border: 1px solid rgba(179, 102, 255, 0.35);
+  border-top: 1px solid rgba(201, 168, 76, 0.42);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.35);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.65);
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+}
+
+body.theme-void .rpg-button:hover,
+body.theme-void .rpg-button-left:hover,
+body.theme-void .rpg-button-right:hover {
+  background: linear-gradient(180deg, rgba(48, 20, 82, 0.92) 0%, rgba(24, 9, 44, 0.96) 100%);
+  border-color: rgba(201, 168, 76, 0.75);
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 18px rgba(179, 102, 255, 0.35),
+    inset 0 0 12px rgba(201, 168, 76, 0.15);
+}
+
+/* Elden Ring Section Header Banner (like "Smithing Table" / "Equipment" / "Character Status") */
+.er-section-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(179, 102, 255, 0.25);
+}
+
+.er-section-banner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 65%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.75), rgba(179, 102, 255, 0.4), transparent);
+}
+
+/* Elden Ring Equipment Slot Box */
+.er-slot {
+  position: relative;
+  background: radial-gradient(circle at 50% 40%, rgba(46, 16, 82, 0.38) 0%, rgba(8, 4, 15, 0.92) 100%);
+  border: 1px solid rgba(179, 102, 255, 0.28);
+  outline: 1px solid rgba(201, 168, 76, 0.15);
+  outline-offset: -3px;
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.8);
+  transition: all 0.2s ease;
+}
+
+.er-slot:hover {
+  border-color: rgba(201, 168, 76, 0.7);
+  background: radial-gradient(circle at 50% 40%, rgba(88, 28, 155, 0.48) 0%, rgba(14, 7, 26, 0.95) 100%);
+  box-shadow:
+    inset 0 0 15px rgba(179, 102, 255, 0.25),
+    0 0 12px rgba(179, 102, 255, 0.25);
+}
+
+/* Elden Ring Character Status Key-Value Row */
+.er-stat-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.38rem 0.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-variant-numeric: tabular-nums;
+}
+
+.er-stat-row:hover {
+  background: linear-gradient(90deg, rgba(179, 102, 255, 0.08), transparent);
+}
+
+/* Elden Ring Left Vertical Section Guide (like Attack Power / Attribute Scaling) */
+.er-guide-block {
+  position: relative;
+  padding-left: 0.9rem;
+  border-left: 1px solid rgba(201, 168, 76, 0.38);
+}
+
+.er-guide-block::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  background-color: #c9a84c;
+  transform: rotate(45deg);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+/* Elden Ring Character Base Bottom Name Banner */
+.er-title-plaque {
+  position: relative;
+  text-align: center;
+  padding: 0.45rem 1rem;
+  background: linear-gradient(90deg, transparent, rgba(24, 10, 44, 0.92) 20%, rgba(38, 14, 68, 0.96) 50%, rgba(24, 10, 44, 0.92) 80%, transparent);
+  border-top: 1px solid rgba(201, 168, 76, 0.4);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.4);
+  font-family: var(--font-display);
+}
+
+/* Bespoke Elden Ring / St. Trina Lore Unseal Expand & Collapse Animation */
+.er-lore-preview-masked {
+  mask-image: linear-gradient(to bottom, #000 45%, rgba(0, 0, 0, 0.2) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.er-lore-preview-drawer {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition:
+    grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.32s ease;
+}
+
+.er-lore-preview-drawer.is-hidden {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+.er-lore-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.er-lore-drawer.is-expanded {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.er-unseal-beam {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  margin: 0.35rem 0 0.6rem;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 168, 76, 0.55) 25%,
+    rgba(179, 102, 255, 0.9) 50%,
+    rgba(201, 168, 76, 0.55) 75%,
+    transparent 100%
+  );
+  overflow: hidden;
+}
+
+.er-unseal-beam::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, #fff7d6, #d8b4fe, transparent);
+  animation: erRuneSweep 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes erRuneSweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.er-lore-line {
+  opacity: 0;
+  transform: translateY(8px);
+  filter: blur(3px);
+  animation: erLoreReveal 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.er-lore-line-collapsing {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.99);
+  filter: blur(2px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.35s ease;
+}
+
+@keyframes erLoreReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+    filter: blur(3px);
+    text-shadow: 0 0 14px rgba(201, 168, 76, 0.65), 0 0 24px rgba(179, 102, 255, 0.55);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0px);
+    text-shadow: 0 0 10px rgba(201, 168, 76, 0.35);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+    text-shadow: none;
+  }
+}
+
+.er-lore-toggle-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.38rem 0.85rem;
+  background: linear-gradient(
+    90deg,
+    rgba(18, 8, 34, 0.92) 0%,
+    rgba(38, 15, 68, 0.95) 50%,
+    rgba(18, 8, 34, 0.92) 100%
+  );
+  border: 1px solid rgba(201, 168, 76, 0.38);
+  box-shadow:
+    inset 0 0 12px rgba(0, 0, 0, 0.75),
+    0 2px 10px rgba(0, 0, 0, 0.45);
+  font-family: var(--font-display);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.er-lore-toggle-btn:hover {
+  border-color: rgba(201, 168, 76, 0.85);
+  box-shadow:
+    inset 0 0 14px rgba(179, 102, 255, 0.25),
+    0 0 14px rgba(201, 168, 76, 0.28);
+  transform: translateY(-1px);
+}
+
+#photo {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+body.theme-void #photo {
+  mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+}
+
+/* Fallback for missing image placeholder only */
+img.grayscale {
+  filter: grayscale(1) brightness(0.4);
+}
+
+.animated {
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.65) 25%, rgba(24, 34, 38, 0.65) 50%, rgba(0, 0, 0, 0.65) 75%);
+  background-size: 200% 200%;
+  animation: loading-shimmer 2.2s infinite linear;
+}
+
+body.theme-void .animated {
+  background: linear-gradient(45deg, rgba(6, 3, 14, 0.82) 25%, rgba(28, 12, 52, 0.78) 50%, rgba(6, 3, 14, 0.82) 75%);
+  background-size: 200% 200%;
+  animation: loading-shimmer 2.8s infinite linear;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.scan-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: rgba(var(--color-primary-rgb), 0.5);
+  top: 0;
+  animation: scanLineAnim 2s linear infinite;
+}
+
+@keyframes scanLineAnim {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.border-forced {
+  border: 2px solid var(--color-primary) !important;
+}
+
+.core-glow {
+  filter: drop-shadow(0 0 3px rgba(var(--color-primary-rgb), 0.2));
+  transform: scale(1);
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.group:hover .core-glow {
+  transform: scale(1.08);
+  filter:
+    drop-shadow(0 0 5px rgba(var(--color-primary-rgb), 0.42))
+    drop-shadow(0 0 11px rgba(var(--color-primary-rgb), 0.24));
+  animation: corePulse 2s ease-in-out infinite;
+}
+
+@keyframes corePulse {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 4px rgba(var(--color-primary-rgb), 0.36))
+      drop-shadow(0 0 10px rgba(var(--color-primary-rgb), 0.2));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 6px rgba(var(--color-primary-rgb), 0.52))
+      drop-shadow(0 0 14px rgba(var(--color-primary-rgb), 0.3));
+  }
+}
+
+/* Brilho suave no hover para os demais ícones usando a cor principal sem ofuscar o ícone */
+i[class*="devicon-"],
+.rpg-button svg,
+.rpg-button-left svg,
+.rpg-button-right svg,
+.edu-node svg,
+section button svg,
+details summary svg {
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.rpg-button:hover svg,
+.rpg-button:hover i[class*="devicon-"],
+.rpg-button-left:hover svg,
+.rpg-button-right:hover svg,
+button:hover > i[class*="devicon-"],
+button:hover > svg,
+.group\/stack:hover i[class*="devicon-"],
+.er-slot:hover i[class*="devicon-"],
+details summary:hover svg,
+.edu-item:hover .edu-node svg,
+.group\/sec:hover svg,
+a.icon-primary:hover i[class*="devicon-"] {
+  filter:
+    drop-shadow(0 0 4px rgba(var(--color-primary-rgb), 0.45))
+    drop-shadow(0 0 9px rgba(var(--color-primary-rgb), 0.22));
+}
+
+#fx-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+#particles-js {
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+[data-interactive] {
+  pointer-events: auto;
+}
+
+[data-non-interactive] {
+  pointer-events: none;
+}
+
+.scrollbar-thin-cyber {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--color-primary-rgb), 0.4) transparent;
+}
+
+.scrollbar-thin-cyber::-webkit-scrollbar {
+  height: 4px;
+}
+
+.scrollbar-thin-cyber::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin-cyber::-webkit-scrollbar-thumb {
+  background: rgba(var(--color-primary-rgb), 0.35);
+  border-radius: 999px;
+  box-shadow: 0 0 6px rgba(var(--color-primary-rgb), 0.6);
+}
+
+.edu-chev {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.edu-chev.is-open {
+  transform: rotate(180deg);
+}
+
+.edu-item-wrap {
+  transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease;
+}
+
+.edu-sec-body {
+  transition: max-height 0.42s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.32s ease;
+}
+
+.edu-item:hover .edu-sweep {
+  transform: translateX(200%);
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  50%, 100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes eduScan {
+  from {
+    left: -48px;
+  }
+  to {
+    left: 110%;
+  }
+}
+
+@keyframes secScan {
+  from {
+    left: -64px;
+  }
+  to {
+    left: 110%;
+  }
+}
+
+.icon-primary:hover {
+  color: var(--color-primary);
+  text-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.6);
+}

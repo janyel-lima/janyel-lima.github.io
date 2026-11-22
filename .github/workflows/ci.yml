@@ -1,0 +1,37 @@
+name: Continuous Integration (Node 24)
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-and-build:
+    name: Typecheck, Unit Tests & Production Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run TypeScript Static Analysis
+        run: npm run typecheck
+
+      - name: Run Unit Test Suite
+        run: npm test
+
+      - name: Build Production Bundle
+        run: npm run build
